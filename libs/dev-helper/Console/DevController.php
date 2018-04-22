@@ -231,7 +231,7 @@ class DevController extends Controller
         $protoType = $input->getOpt('type') ?: 'https';
         $protoHost = $protoType === 'ssl' ? self::TYPE_SSL : self::TYPE_HTTPS;
         $workDir = $this->componentDir;
-        $onExec = $config['onExec'];
+        $onExec = $config['onExec'] ?? null;
 
         // eg. git subtree push --prefix=src/view git@github.com:php-toolkit/php-utils.git master [--squash]
         $output->writeln("\n<comment>{$config['begin']}</comment>:");
@@ -241,6 +241,7 @@ class DevController extends Controller
                 continue;
             }
 
+            $ret = null;
             $remote = \sprintf($this->gitUrl, $protoHost, $name);
             $command = \sprintf('git subtree %s --prefix=libs/%s %s master%s', $operate, $name, $remote, $squash);
 
@@ -254,14 +255,13 @@ class DevController extends Controller
                 if ($code !== 0) {
                     throw new \RuntimeException("Exec command failed. command: $command error: $err \nreturn: \n$ret");
                 }
-
-                $output->color($doneOne, 'success');
-
-                if ($input->getOpt('show-result')) {
-                    $output->writeln(\PHP_EOL . $ret);
-                }
             }
 
+            $output->color($doneOne, 'success');
+
+            if ($ret && $input->getOpt('show-result')) {
+                $output->writeln(\PHP_EOL . $ret);
+            }
         }
 
         $output->color(\sprintf($config['done'], \count($names)), 'success');

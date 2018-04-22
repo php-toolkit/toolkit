@@ -8,9 +8,9 @@ $iterator = Finder::create()
   ->files()
   ->name('*.php')
   ->notName('routes.php')
-  ->exclude(['test'])
+  ->exclude(['test', 'example'])
   ->in([
-    __DIR__ . '/src/'
+    __DIR__ . '/libs/'
   ]);
 
 $versions = GitVersionCollection::create(__DIR__);
