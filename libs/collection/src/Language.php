@@ -505,7 +505,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * @return Collection
      */
-    public function getData()
+    public function getData(): Collection
     {
         return $this->data;
     }
@@ -557,7 +557,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * @return Collection
      */
-    public function getFallbackData()
+    public function getFallbackData(): Collection
     {
         return $this->fallbackData;
     }

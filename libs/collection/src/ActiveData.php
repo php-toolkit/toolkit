@@ -44,7 +44,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * @param bool $recursive
      * @return $this
      */
-    public function load($data, $recursive = false)
+    public function load($data, $recursive = false): self
     {
         foreach ($data as $name => $value) {
             $name = trim($name);
@@ -128,7 +128,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * @param   mixed $offset The array offset.
      * @return  boolean  True if the offset exists, false otherwise.
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return property_exists($this, $offset);
     }

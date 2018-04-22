@@ -12,11 +12,9 @@ namespace Toolkit\ArrUtil;
  * Class ArrBuffer
  * @package Toolkit\ArrUtil
  */
-final class AryBuffer
+final class ArrBuffer
 {
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $body = [];
 
     /** @var string */

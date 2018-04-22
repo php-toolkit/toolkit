@@ -137,7 +137,7 @@ trait AopProxyAwareTrait
      * @param string $position
      * @return $this
      */
-    public function register($key, $handler, $position = 'before')
+    public function register($key, $handler, $position = 'before'): self
     {
         return $this->addProxy($key, $handler, $position);
     }
@@ -148,7 +148,7 @@ trait AopProxyAwareTrait
      * @param string $position 'before' 'after'
      * @return $this
      */
-    public function addProxy($key, $handler, $position = 'before')
+    public function addProxy($key, $handler, $position = 'before'): self
     {
         if (!\in_array($position, self::$proxyPoints, true)) {
             return $this;
@@ -164,7 +164,7 @@ trait AopProxyAwareTrait
      * @param array $map
      * @return $this
      */
-    public function addProxies(array $map)
+    public function addProxies(array $map): self
     {
         foreach ($map as $key => $handler) {
             $position = 'before';

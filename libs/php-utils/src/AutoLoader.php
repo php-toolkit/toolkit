@@ -66,7 +66,7 @@ class AutoLoader
     /**
      * @return self
      */
-    public static function getLoader()
+    public static function getLoader(): self
     {
         if (null !== self::$loader) {
             return self::$loader;

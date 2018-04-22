@@ -19,7 +19,7 @@ interface CollectionInterface extends \Serializable, \ArrayAccess, \Countable, \
     /**
      * @return array
      */
-    public function all();
+    public function all(): array;
 
     /**
      * @param string $key

@@ -147,7 +147,7 @@ class Directory extends FileSystem
      * @return array
      * @throws FileNotFoundException
      */
-    public static function getDirs($path, $loop = false, $parent = null, array $list = [])
+    public static function getDirs($path, $loop = false, $parent = null, array $list = []): array
     {
         $path = self::pathFormat($path);
 

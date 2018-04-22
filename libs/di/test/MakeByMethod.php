@@ -14,7 +14,7 @@ namespace Toolkit\DI\Test;
  */
 class MakeByMethod
 {
-    public function factory(array $options = [])
+    public function factory(array $options = []): SomeClass
     {
         return new SomeClass($options);
     }

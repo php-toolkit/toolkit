@@ -31,7 +31,7 @@ trait CallableResolverAwareTrait
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \RuntimeException If the string cannot be resolved as a callable
      */
-    protected function resolveCallable($callable)
+    protected function resolveCallable($callable): callable
     {
         if (!$this->container instanceof ContainerInterface) {
             return $callable;

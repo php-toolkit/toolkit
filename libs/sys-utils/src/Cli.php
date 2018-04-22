@@ -113,7 +113,7 @@ class Cli
      * @param string|int|array $style
      * @return string
      */
-    public static function color($text, $style = null)
+    public static function color($text, $style = null): string
     {
         if (!$text) {
             return $text;
@@ -173,7 +173,7 @@ class Cli
      * @param string $text
      * @return string
      */
-    public static function clearColor($text)
+    public static function clearColor($text): string
     {
         // return preg_replace('/\033\[(?:\d;?)+m/', '' , "\033[0;36mtext\033[0m");
         return preg_replace('/\033\[(?:\d;?)+m/', '', strip_tags($text));
@@ -252,7 +252,7 @@ class Cli
      * \Symfony\Component\Console\Output\OutputStream.
      * @return boolean
      */
-    public static function isSupportColor()
+    public static function isSupportColor(): bool
     {
         return SysEnv::isSupportColor();
     }
@@ -271,7 +271,7 @@ class Cli
      * @param bool $mergeOpts
      * @return array
      */
-    public static function parseArgv(array $noValues = [], $mergeOpts = false)
+    public static function parseArgv(array $noValues = [], $mergeOpts = false): array
     {
         $params = $GLOBALS['argv'];
         reset($params);

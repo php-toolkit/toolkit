@@ -75,7 +75,7 @@ class SysEnv
     /**
      * @return string
      */
-    public static function getHostname()
+    public static function getHostname(): string
     {
         return php_uname('n');
     }
@@ -83,7 +83,7 @@ class SysEnv
     /**
      * @return string
      */
-    public static function getNullDevice()
+    public static function getNullDevice(): string
     {
         if (self::isUnix()) {
             return '/dev/null';
@@ -98,7 +98,7 @@ class SysEnv
      * \Symfony\Component\Console\Output\OutputStream.
      * @return boolean
      */
-    public static function isSupportColor()
+    public static function isSupportColor(): bool
     {
         if (DIRECTORY_SEPARATOR === '\\') {
             return
@@ -121,7 +121,7 @@ class SysEnv
      * @param  int|resource $fileDescriptor
      * @return boolean
      */
-    public static function isInteractive($fileDescriptor)
+    public static function isInteractive($fileDescriptor): bool
     {
         return \function_exists('posix_isatty') && @posix_isatty($fileDescriptor);
     }

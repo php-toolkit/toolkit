@@ -14,7 +14,7 @@ namespace Toolkit\DI\Test;
  */
 class MakeByStatic
 {
-    public static function factory(array $options = [])
+    public static function factory(array $options = []): SomeClass
     {
         return new SomeClass($options);
     }

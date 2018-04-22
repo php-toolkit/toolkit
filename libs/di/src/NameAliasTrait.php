@@ -86,7 +86,7 @@ trait NameAliasTrait
      * @param array $aliases
      * @return $this
      */
-    public function setAliases(array $aliases)
+    public function setAliases(array $aliases): self
     {
         $this->aliases = $aliases;
 

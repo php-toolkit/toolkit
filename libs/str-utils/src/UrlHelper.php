@@ -18,7 +18,7 @@ class UrlHelper
      * @param string $url the URL to be checked
      * @return boolean whether the URL is relative
      */
-    public static function isRelative($url)
+    public static function isRelative($url): bool
     {
         return false === strpos($url, '//') && strpos($url, '://') === false;
     }
@@ -27,7 +27,7 @@ class UrlHelper
      * @param $str
      * @return bool
      */
-    public static function isUrl($str)
+    public static function isUrl($str): bool
     {
         $rule = '/^(http|https|ftp):\/\/([A-Z0-9][A-Z0-9_-]*(?:\.[A-Z0-9][A-Z0-9_-]*)+):?(\d+)?\/?/i';
 
@@ -38,7 +38,7 @@ class UrlHelper
      * @param $url
      * @return bool
      */
-    public static function isFullUrl($url)
+    public static function isFullUrl($url): bool
     {
         return 0 === strpos($url, 'http:') || 0 === strpos($url, 'https:') || 0 === strpos($url, '//');
     }
@@ -48,7 +48,7 @@ class UrlHelper
      * @param mixed $data
      * @return string
      */
-    public static function build($url, $data = null)
+    public static function build($url, $data = null): string
     {
         if ($data && ($param = http_build_query($data))) {
             $url .= (strpos($url, '?') ? '&' : '?') . $param;
@@ -62,7 +62,7 @@ class UrlHelper
      * @param $url
      * @return bool
      */
-    public static function canAccessed($url)
+    public static function canAccessed($url): bool
     {
         $url = trim($url);
 
@@ -136,7 +136,7 @@ class UrlHelper
         ']'
     );
 
-    public static function parseUrl($url)
+    public static function parseUrl($url): array
     {
         $result = [];
 

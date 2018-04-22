@@ -21,7 +21,7 @@ class HtmlHelper
      * @return string the encoded data
      * @see http://www.php.net/manual/en/function.htmlspecialchars.php
      */
-    public static function encode($text, $charset = 'utf-8')
+    public static function encode($text, $charset = 'utf-8'): string
     {
         return htmlspecialchars($text, ENT_QUOTES, $charset);
     }
@@ -32,7 +32,7 @@ class HtmlHelper
      * @return string the decoded data
      * @see http://www.php.net/manual/en/function.htmlspecialchars-decode.php
      */
-    public static function decode($text)
+    public static function decode($text): string
     {
         return htmlspecialchars_decode($text, ENT_QUOTES);
     }
@@ -44,7 +44,7 @@ class HtmlHelper
      * @return array the encoded data
      * @see http://www.php.net/manual/en/function.htmlspecialchars.php
      */
-    public static function encodeArray($data, $charset = 'utf-8')
+    public static function encodeArray($data, $charset = 'utf-8'): array
     {
         $d = [];
 

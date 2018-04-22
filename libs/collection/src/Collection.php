@@ -162,7 +162,7 @@ class Collection extends SimpleCollection
     /**
      * @return string
      */
-    public function getSeparator()
+    public function getSeparator(): string
     {
         return $this->separator;
     }
@@ -178,7 +178,7 @@ class Collection extends SimpleCollection
     /**
      * @return array
      */
-    public static function getFormats()
+    public static function getFormats(): array
     {
         return static::$formats;
     }
@@ -188,7 +188,7 @@ class Collection extends SimpleCollection
      * @param string $value
      * @return $this
      */
-    public function setName($value)
+    public function setName($value): self
     {
         $this->name = $value;
 
@@ -199,14 +199,14 @@ class Collection extends SimpleCollection
      * getName
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
      * load
-     * @param string|array $data
+     * @param string|array|mixed $data
      * @param string $format = 'php'
      * @return static
      * @throws \RuntimeException
@@ -249,6 +249,7 @@ class Collection extends SimpleCollection
      * @param $file
      * @param string $format
      * @return array|mixed
+     * @throws \Toolkit\FileUtil\Exception\FileNotFoundException
      */
     public static function read($file, $format = self::FORMAT_PHP)
     {
@@ -316,7 +317,7 @@ class Collection extends SimpleCollection
      * @return Collection
      * @throws RuntimeException
      */
-    public function loadJson($data)
+    public function loadJson($data): Collection
     {
         return $this->bindData($this->data, static::parseJson($data));
     }
@@ -327,7 +328,7 @@ class Collection extends SimpleCollection
      * @param bool|false $raw
      * @return $this
      */
-    protected function bindData(&$parent, $data, $raw = false)
+    protected function bindData(&$parent, $data, $raw = false): self
     {
         // Ensure the input data is an array.
         if (!$raw) {
@@ -356,7 +357,7 @@ class Collection extends SimpleCollection
     /**
      * @return array
      */
-    public function getKeys()
+    public function getKeys(): array
     {
         return array_keys($this->data);
     }
@@ -395,7 +396,7 @@ class Collection extends SimpleCollection
      * @param string $fileDir
      * @return array
      */
-    public static function parseIni($string, $enhancement = false, callable $pathHandler = null, $fileDir = '')
+    public static function parseIni($string, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
         return IniParser::parse($string, $enhancement, $pathHandler, $fileDir);
     }
@@ -407,7 +408,7 @@ class Collection extends SimpleCollection
      * @param string $fileDir
      * @return array
      */
-    public static function parseJson($data, $enhancement = false, callable $pathHandler = null, $fileDir = '')
+    public static function parseJson($data, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
         return JsonParser::parse($data, $enhancement, $pathHandler, $fileDir);
     }
@@ -420,7 +421,7 @@ class Collection extends SimpleCollection
      * @param string $fileDir When the second param is true, this param is valid.
      * @return array
      */
-    public static function parseYaml($data, $enhancement = false, callable $pathHandler = null, $fileDir = '')
+    public static function parseYaml($data, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
         return YmlParser::parse($data, $enhancement, $pathHandler, $fileDir);
     }

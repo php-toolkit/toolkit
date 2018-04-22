@@ -67,7 +67,7 @@ class Sys extends SysEnv
      * @param bool $returnStatus
      * @return array
      */
-    public static function runCommand($command, $returnStatus = true)
+    public static function runCommand($command, $returnStatus = true): array
     {
         $return_var = 1;
 

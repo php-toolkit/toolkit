@@ -92,7 +92,7 @@ class DataProxy
      * @param string $name
      * @return bool
      */
-    public function hasName(string $name)
+    public function hasName(string $name): bool
     {
         return isset($this->proxies[$name]);
     }

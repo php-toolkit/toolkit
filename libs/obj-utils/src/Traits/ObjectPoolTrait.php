@@ -66,7 +66,7 @@ trait ObjectPoolTrait
      * @param string|\stdClass $class
      * @return \SplStack
      */
-    public static function getStack($class)
+    public static function getStack($class): \SplStack
     {
         $class = \is_string($class) ? $class : \get_class($class);
 
@@ -82,7 +82,7 @@ trait ObjectPoolTrait
      * @return int
      * @throws \InvalidArgumentException
      */
-    public static function count($class = null)
+    public static function count($class = null): int
     {
         if ($class) {
             if (!isset(self::$pool[$class])) {

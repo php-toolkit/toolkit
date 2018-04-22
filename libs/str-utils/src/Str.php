@@ -35,7 +35,7 @@ class Str extends StringHelper
      * @param string|array $needle
      * @return bool
      */
-    public static function contains(string $string, $needle)
+    public static function contains(string $string, $needle): bool
     {
         return self::has($string, $needle);
     }
@@ -45,7 +45,7 @@ class Str extends StringHelper
      * @param string|array $needle
      * @return bool
      */
-    public static function has(string $string, $needle)
+    public static function has(string $string, $needle): bool
     {
         if (\is_string($needle)) {
             return stripos($string, $needle) !== false;

@@ -33,7 +33,7 @@ final class DIManager
     /**
      * @return Container
      */
-    public static function getDefault()
+    public static function getDefault(): Container
     {
         return self::make('root', self::$defaultGroup);
     }
@@ -42,7 +42,7 @@ final class DIManager
      * @param null|string $name
      * @return Container
      */
-    public static function getContainer(string $name = null)
+    public static function getContainer(string $name = null): Container
     {
         return self::make($name);
     }
@@ -52,7 +52,7 @@ final class DIManager
      * @param string $group
      * @return Container
      */
-    public static function make(string $name = null, string $group = null)
+    public static function make(string $name = null, string $group = null): Container
     {
         $group = $group ?: self::$defaultGroup;
 
@@ -100,7 +100,7 @@ final class DIManager
      * Method to get property Profile
      * @return  string
      */
-    public static function getDefaultGroup()
+    public static function getDefaultGroup(): string
     {
         return static::$defaultGroup;
     }

@@ -66,7 +66,7 @@ class JsonMessage
     /**
      * @return bool
      */
-    public function isSuccess()
+    public function isSuccess(): bool
     {
         return (int)$this->code === 0;
     }
@@ -74,7 +74,7 @@ class JsonMessage
     /**
      * @return bool
      */
-    public function isFailure()
+    public function isFailure(): bool
     {
         return (int)$this->code !== 0;
     }
@@ -83,7 +83,7 @@ class JsonMessage
      * @param $code
      * @return $this
      */
-    public function code($code)
+    public function code($code): self
     {
         $this->code = (int)$code;
 
@@ -94,7 +94,7 @@ class JsonMessage
      * @param $msg
      * @return $this
      */
-    public function msg($msg)
+    public function msg($msg): self
     {
         $this->msg = $msg;
 
@@ -118,7 +118,7 @@ class JsonMessage
      * @param array|string $data
      * @return $this
      */
-    public function data($data)
+    public function data($data): self
     {
         $this->data = $data;
 
@@ -128,7 +128,7 @@ class JsonMessage
     /**
      * @return array
      */
-    public function all()
+    public function all(): array
     {
         // add a new alert message
         return [
@@ -141,7 +141,7 @@ class JsonMessage
     /**
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return $this->all();
     }

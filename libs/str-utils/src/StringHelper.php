@@ -16,7 +16,7 @@ abstract class StringHelper
      * @param string $rule 验证规则 require email url currency number integer english
      * @return boolean
      */
-    public static function regexVerify($value, $rule)
+    public static function regexVerify($value, $rule): bool
     {
         $value = trim($value);
         $validate = array(
@@ -84,7 +84,7 @@ abstract class StringHelper
      * @internal param bool $type 计算长度类型，0(默认)表示一个中文算一个字符，1表示一个中文算两个字符
      * @return int
      */
-    public static function absLen($str)
+    public static function absLen($str): int
     {
         if (empty($str)) {
             return 0;
@@ -111,7 +111,7 @@ abstract class StringHelper
      * @param int $end 要进行截取的长度
      * @return string
      */
-    public static function utf8SubStr($str, $start = 0, $end = null)
+    public static function utf8SubStr($str, $start = 0, $end = null): string
     {
         if (empty($str)) {
             return false;
@@ -153,7 +153,7 @@ abstract class StringHelper
      * @param bool $suffix 是否加尾缀
      * @return string
      */
-    public static function zhSubStr($str, $start = 0, $length, $charset = 'utf-8', $suffix = true)
+    public static function zhSubStr($str, $start = 0, $length, $charset = 'utf-8', $suffix = true): string
     {
         if (\function_exists('mb_substr')) {
             if (mb_strlen($str, $charset) <= $length) {
@@ -190,7 +190,7 @@ abstract class StringHelper
      * @internal param string $chars
      * @return string
      */
-    public static function random($length, array $param = [])
+    public static function random($length, array $param = []): string
     {
         $param = array_merge([
             'prefix' => '',
@@ -253,7 +253,7 @@ abstract class StringHelper
      * @param string $str String to transform
      * @return string New string
      */
-    public static function nl2br($str)
+    public static function nl2br($str): string
     {
         return str_replace(["\r\n", "\r", "\n"], '<br />', $str);
     }
@@ -330,7 +330,7 @@ abstract class StringHelper
      * @param $str
      * @return string
      */
-    public static function ucfirst($str)
+    public static function ucfirst($str): string
     {
         return self::strtoupper(self::substr($str, 0, 1)) . self::substr($str, 1);
     }
@@ -339,7 +339,7 @@ abstract class StringHelper
      * @param $str
      * @return string
      */
-    public static function ucwords($str)
+    public static function ucwords($str): string
     {
         return \function_exists('mb_convert_case') ? mb_convert_case($str,
             MB_CASE_TITLE) : ucwords(self::strtolower($str));
@@ -350,7 +350,7 @@ abstract class StringHelper
      * @param  string $sep
      * @return array
      */
-    public static function toArray($str, $sep = ',')
+    public static function toArray($str, $sep = ','): array
     {
         $array = [];
 
@@ -373,7 +373,7 @@ abstract class StringHelper
      * @param string $sep
      * @return array
      */
-    public static function str2array($str, $sep = ',')
+    public static function str2array($str, $sep = ','): array
     {
         $str = trim($str, "$sep ");
 
@@ -389,7 +389,7 @@ abstract class StringHelper
      * @param string $separator
      * @return  array
      */
-    public static function split2Array($path, $separator = '.')
+    public static function split2Array($path, $separator = '.'): array
     {
         return array_values(array_filter(explode($separator, $path), '\strlen'));
     }
@@ -403,7 +403,7 @@ abstract class StringHelper
      */
     /* CAUTION : Use it only on module hookEvents.
     ** For other purposes use the smarty function instead */
-    public static function truncate($str, $max_length, $suffix = '...')
+    public static function truncate($str, $max_length, $suffix = '...'): string
     {
         if (self::strlen($str) <= $max_length) {
             return $str;
@@ -421,7 +421,7 @@ abstract class StringHelper
      * @param null|int $length
      * @return string
      */
-    public static function truncate_two($str, $start, $length = null)
+    public static function truncate_two($str, $start, $length = null): string
     {
         if (!$length) {
             $length = $start;
@@ -600,7 +600,7 @@ abstract class StringHelper
         }, $str);
     }
 
-    public static function toSnake($str, $sep = '_')
+    public static function toSnake($str, $sep = '_'): string
     {
         return self::toSnakeCase($str, $sep);
     }
@@ -611,7 +611,7 @@ abstract class StringHelper
      * @param string $sep
      * @return string
      */
-    public static function toSnakeCase($str, $sep = '_')
+    public static function toSnakeCase($str, $sep = '_'): string
     {
         // 'CMSCategories' => 'cms_categories'
         // 'RangePrice' => 'range_price'
@@ -675,7 +675,7 @@ abstract class StringHelper
      * ]
      * @return string [type]                [description]
      */
-    public static function format($str, array $replaceParams = [], array $pregParams = [])
+    public static function format($str, array $replaceParams = [], array $pregParams = []): string
     {
         if (!\is_string($str) || !$str || (!$replaceParams && !$pregParams)) {
             return $str;
@@ -699,7 +699,7 @@ abstract class StringHelper
      * @param  string $keyword 字符串
      * @return string 格式化后的字符串
      */
-    public static function wordFormat($keyword)
+    public static function wordFormat($keyword): string
     {
         // 将全角角逗号换为空格
         $keyword = str_replace(['，', ','], ' ', $keyword);

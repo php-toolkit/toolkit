@@ -64,7 +64,7 @@ class SimpleCollection implements CollectionInterface
      * @param $value
      * @return $this
      */
-    public function add($name, $value)
+    public function add($name, $value): self
     {
         if (!$this->has($name)) {
             $this->set($name, $value);

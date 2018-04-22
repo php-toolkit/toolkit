@@ -59,7 +59,7 @@ class PhpHelper
      * @param bool $realUsage
      * @return array
      */
-    public static function runtime($startTime, $startMem, array $info = [], $realUsage = false)
+    public static function runtime($startTime, $startMem, array $info = [], $realUsage = false): array
     {
         $info['startTime'] = $startTime;
         $info['endTime'] = microtime(true);
