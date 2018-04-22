@@ -1,0 +1,34 @@
+{
+  "name": "mylib/utils",
+  "type": "library",
+  "description": "some helper tool library of the php",
+  "keywords": ["library","tool","php"],
+  "homepage": "https://github.com/php-mylib/utils",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inhere",
+      "email": "in.798@qq.com",
+      "homepage": "http://www.yzone.net/"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "mylib/arr-utils": "~1.0",
+    "mylib/obj-utils": "~1.0",
+    "mylib/str-utils": "~1.0",
+    "mylib/sys-utils": "~1.0",
+    "mylib/file-utils": "~1.0",
+    "mylib/php-utils": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MyLib\\Utils\\" : "src/"
+    }
+  },
+  "suggest": {
+    "inhere/simple-print-tool": "Very lightweight data printing tools",
+    "inhere/php-validate": "Very lightweight data validate tool",
+    "inhere/console": "a lightweight php console application library."
+  }
+}
