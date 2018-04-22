@@ -1,0 +1,11 @@
+.idea/
+.phpintel/
+vendor/
+!README.md
+!.gitkeep
+composer.lock
+*.swp
+*.log
+*.pid
+*.patch
+.DS_Store
