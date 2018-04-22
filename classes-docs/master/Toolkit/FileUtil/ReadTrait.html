@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Toolkit\FileUtil\ReadTrait | Php Toolkit Classes Documentation</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Toolkit_FileUtil_ReadTrait" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Php Toolkit Classes Documentation</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">trait</span></li>
+                        <li><a href="../../Toolkit.html">Toolkit</a></li><li class="backslash">\</li><li><a href="../../Toolkit/FileUtil.html">FileUtil</a></li><li class="backslash">\</li><li>ReadTrait</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            ReadTrait
+                
+        </h1>
+    </div>
+
+    <p>    trait
+    <strong>ReadTrait</strong>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Class Read</p>                                </div>
+    
+    
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_load">load</a>(string $src, string $format = self::FORMAT_PHP)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_loadPhp">loadPhp</a>(string $file, bool $throwError = true)
+        
+                                            <p>load array data form file.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_loadJson">loadJson</a>(string $file)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_loadIni">loadIni</a>(string $ini)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_loadYml">loadYml</a>(string $yml)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_readAllLine">readAllLine</a>($file, bool|<abbr title="Toolkit\FileUtil\true">true</abbr> $filter = true)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_readLines">readLines</a>(string $fileName, int $startLine = 1, int $endLine = 10, string $mode = &#039;rb&#039;)
+        
+                                            <p>getLines 获取文件一定范围内的内容</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_readSymmetry">readSymmetry</a>(string $fileName, integer $current = 1, integer $lineNum = 3)
+        
+                                            <p>symmetry  得到当前行对称上下几($lineNum)行的内容</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_readRangeLines">readRangeLines</a>(string $file, int $baseLine, int $prevLines = 3, int $nextLines = 3)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getLines5u3d">getLines5u3d</a>(string $file, int $baseLine = 1)
+        
+                                            <p>得到基准行数上5行下3行的内容， lines up and down</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_tail">tail</a>(resource $fp, int $n, int $base = 5)
+        
+                                            <p>读取文件的最后几行（支持大文件读取）</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_load">
+        <div class="location">at         line 31</div>
+        <code>        static            array|bool
+    <strong>load</strong>(string $src, string $format = self::FORMAT_PHP)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$src</td>
+                <td>要解析的 文件 或 字符串内容。</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$format</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loadPhp">
+        <div class="location">at         line 64</div>
+        <code>        static            array
+    <strong>loadPhp</strong>(string $file, bool $throwError = true)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>load array data form file.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$throwError</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loadJson">
+        <div class="location">at         line 85</div>
+        <code>        static            array
+    <strong>loadJson</strong>(string $file)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loadIni">
+        <div class="location">at         line 94</div>
+        <code>        static            array|bool
+    <strong>loadIni</strong>(string $ini)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$ini</td>
+                <td>要解析的 ini 文件名 或 字符串内容。</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loadYml">
+        <div class="location">at         line 103</div>
+        <code>        static            array|bool
+    <strong>loadYml</strong>(string $yml)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$yml</td>
+                <td>要解析的 yml 文件名 或 字符串内容。</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_readAllLine">
+        <div class="location">at         line 115</div>
+        <code>        static            array|string
+    <strong>readAllLine</strong>($file, bool|<abbr title="Toolkit\FileUtil\true">true</abbr> $filter = true)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool|<abbr title="Toolkit\FileUtil\true">true</abbr></td>
+                <td>$filter</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileReadException.html"><abbr title="Toolkit\FileUtil\Exception\FileReadException">FileReadException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_readLines">
+        <div class="location">at         line 137</div>
+        <code>        static            array
+    <strong>readLines</strong>(string $fileName, int $startLine = 1, int $endLine = 10, string $mode = &#039;rb&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>getLines 获取文件一定范围内的内容</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fileName</td>
+                <td>含完整路径的文件</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$startLine</td>
+                <td>开始行数 默认第1行</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$endLine</td>
+                <td>结束行数 默认第50行</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$mode</td>
+                <td>打开文件方式</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>返回内容</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_readSymmetry">
+        <div class="location">at         line 191</div>
+        <code>        static            array
+    <strong>readSymmetry</strong>(string $fileName, integer $current = 1, integer $lineNum = 3)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>symmetry  得到当前行对称上下几($lineNum)行的内容</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fileName</td>
+                <td>含完整路径的文件</td>
+            </tr>
+                    <tr>
+                <td>integer</td>
+                <td>$current</td>
+                <td>[当前行数]</td>
+            </tr>
+                    <tr>
+                <td>integer</td>
+                <td>$lineNum</td>
+                <td>[获取行数] = $lineNum*2+1</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_readRangeLines">
+        <div class="location">at         line 212</div>
+        <code>        static            array
+    <strong>readRangeLines</strong>(string $file, int $baseLine, int $prevLines = 3, int $nextLines = 3)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$baseLine</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$prevLines</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$nextLines</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getLines5u3d">
+        <div class="location">at         line 227</div>
+        <code>        static            array
+    <strong>getLines5u3d</strong>(string $file, int $baseLine = 1)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>得到基准行数上5行下3行的内容， lines up and down</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$baseLine</td>
+                <td>基准行数</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_tail">
+        <div class="location">at         line 240</div>
+        <code>        static            array
+    <strong>tail</strong>(resource $fp, int $n, int $base = 5)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>读取文件的最后几行（支持大文件读取）</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>resource</td>
+                <td>$fp</td>
+                <td>e.g fopen("access.log", "r+")</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$n</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$base</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

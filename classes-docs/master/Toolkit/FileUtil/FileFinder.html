@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Toolkit\FileUtil\FileFinder | Php Toolkit Classes Documentation</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Toolkit_FileUtil_FileFinder" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Php Toolkit Classes Documentation</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../Toolkit.html">Toolkit</a></li><li class="backslash">\</li><li><a href="../../Toolkit/FileUtil.html">FileUtil</a></li><li class="backslash">\</li><li>FileFinder</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            FileFinder
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>FileFinder</strong>        implements
+        <a target="_blank" href="http://php.net/IteratorAggregate">IteratorAggregate</a>, <a target="_blank" href="http://php.net/Countable">Countable</a>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Class FileFinder</p>            <p><pre><code class="php">$finder = FileFinder::create()
+     -&gt;files()
+     -&gt;name('*.php')
+     -&gt;notName('some.php')
+     -&gt;in('/path/to/project')
+;
+
+foreach($finder as $file) {
+     // something ......
+}
+</code></pre>
+</p>                    </div>
+    
+    
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td>ONLY_FILE</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>ONLY_DIR</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>IGNORE_VCS_FILES</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>IGNORE_DOT_FILES</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_create">create</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_fromArray">fromArray</a>(array $config)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $path, int $flags, bool $ignoreUnreadableDirs = false)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Toolkit\FileUtil\$this">$this</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_directories">directories</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Toolkit\FileUtil\$this">$this</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_dirs">dirs</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_files">files</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_name">name</a>(string $pattern)
+        
+                                            <p>$finder->name('*.php')
+$finder->name('test.php')</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addNames">addNames</a>(string|array $patterns)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_notName">notName</a>(string $pattern)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addNotNames">addNotNames</a>(string|array $patterns)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_path">path</a>(string $pattern)
+        
+                                            <p>$finder->path('some/special/dir')</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addPaths">addPaths</a>(string|array $patterns)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_notPath">notPath</a>(string $pattern)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addNotPaths">addNotPaths</a>(string|array $patterns)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_exclude">exclude</a>($dirs)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_ignoreVCS">ignoreVCS</a>(bool $ignoreVCS)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_ignoreDotFiles">ignoreDotFiles</a>(bool $ignoreDotFiles)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_followLinks">followLinks</a>(bool $followLinks)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_filter">filter</a>(<a target="_blank" href="http://php.net/Closure">Closure</a> $closure)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Toolkit\FileUtil\$this">$this</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_in">in</a>(string|array $dirs)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_inDir">inDir</a>(string|array $dirs)
+        
+                                            <p>alias of the <code>in()</code></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Toolkit\FileUtil\$this">$this</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_append">append</a>(mixed $iterator)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_count">count</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isFollowLinks">isFollowLinks</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a target="_blank" href="http://php.net/Iterator">Iterator</a>|<a target="_blank" href="http://php.net/SplFileInfo">SplFileInfo</a>[]
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getIterator">getIterator</a>()
+        
+                                            <p>Retrieve an external iterator</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_current">current</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getChildren">getChildren</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_rewind">rewind</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRewindable">isRewindable</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_create">
+        <div class="location">at         line 78</div>
+        <code>        static            <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>create</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_fromArray">
+        <div class="location">at         line 87</div>
+        <code>        static            <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>fromArray</strong>(array $config)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at         line 419</div>
+        <code>                    
+    <strong>__construct</strong>(string $path, int $flags, bool $ignoreUnreadableDirs = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$flags</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$ignoreUnreadableDirs</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_directories">
+        <div class="location">at         line 119</div>
+        <code>                    <abbr title="Toolkit\FileUtil\$this">$this</abbr>
+    <strong>directories</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Toolkit\FileUtil\$this">$this</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_dirs">
+        <div class="location">at         line 129</div>
+        <code>                    <abbr title="Toolkit\FileUtil\$this">$this</abbr>
+    <strong>dirs</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Toolkit\FileUtil\$this">$this</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_files">
+        <div class="location">at         line 139</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>files</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_name">
+        <div class="location">at         line 153</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>name</strong>(string $pattern)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>$finder->name('*.php')
+$finder->name('test.php')</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$pattern</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addNames">
+        <div class="location">at         line 164</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>addNames</strong>(string|array $patterns)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|array</td>
+                <td>$patterns</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_notName">
+        <div class="location">at         line 175</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>notName</strong>(string $pattern)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$pattern</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addNotNames">
+        <div class="location">at         line 186</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>addNotNames</strong>(string|array $patterns)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|array</td>
+                <td>$patterns</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_path">
+        <div class="location">at         line 199</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>path</strong>(string $pattern)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>$finder->path('some/special/dir')</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$pattern</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addPaths">
+        <div class="location">at         line 210</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>addPaths</strong>(string|array $patterns)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|array</td>
+                <td>$patterns</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_notPath">
+        <div class="location">at         line 221</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>notPath</strong>(string $pattern)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$pattern</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addNotPaths">
+        <div class="location">at         line 232</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>addNotPaths</strong>(string|array $patterns)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|array</td>
+                <td>$patterns</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_exclude">
+        <div class="location">at         line 243</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>exclude</strong>($dirs)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$dirs</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_ignoreVCS">
+        <div class="location">at         line 254</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>ignoreVCS</strong>(bool $ignoreVCS)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>bool</td>
+                <td>$ignoreVCS</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_ignoreDotFiles">
+        <div class="location">at         line 269</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>ignoreDotFiles</strong>(bool $ignoreDotFiles)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>bool</td>
+                <td>$ignoreDotFiles</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_followLinks">
+        <div class="location">at         line 283</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>followLinks</strong>(bool $followLinks)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>bool</td>
+                <td>$followLinks</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_filter">
+        <div class="location">at         line 294</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>filter</strong>(<a target="_blank" href="http://php.net/Closure">Closure</a> $closure)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/Closure">Closure</a></td>
+                <td>$closure</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_in">
+        <div class="location">at         line 305</div>
+        <code>                    <abbr title="Toolkit\FileUtil\$this">$this</abbr>
+    <strong>in</strong>(string|array $dirs)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|array</td>
+                <td>$dirs</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Toolkit\FileUtil\$this">$this</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_inDir">
+        <div class="location">at         line 317</div>
+        <code>                    <a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a>
+    <strong>inDir</strong>(string|array $dirs)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>alias of the <code>in()</code></p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|array</td>
+                <td>$dirs</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Toolkit/FileUtil/FileFinder.html"><abbr title="Toolkit\FileUtil\FileFinder">FileFinder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_append">
+        <div class="location">at         line 328</div>
+        <code>                    <abbr title="Toolkit\FileUtil\$this">$this</abbr>
+    <strong>append</strong>(mixed $iterator)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$iterator</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Toolkit\FileUtil\$this">$this</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_count">
+        <div class="location">at         line 350</div>
+        <code>                    int
+    <strong>count</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isFollowLinks">
+        <div class="location">at         line 358</div>
+        <code>                    bool
+    <strong>isFollowLinks</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getIterator">
+        <div class="location">at         line 368</div>
+        <code>                    <a target="_blank" href="http://php.net/Iterator">Iterator</a>|<a target="_blank" href="http://php.net/SplFileInfo">SplFileInfo</a>[]
+    <strong>getIterator</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Retrieve an external iterator</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a target="_blank" href="http://php.net/Iterator">Iterator</a>|<a target="_blank" href="http://php.net/SplFileInfo">SplFileInfo</a>[]</td>
+            <td>An iterator</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_current">
+        <div class="location">at         line 434</div>
+        <code>                    
+    <strong>current</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getChildren">
+        <div class="location">at         line 454</div>
+        <code>                    
+    <strong>getChildren</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_rewind">
+        <div class="location">at         line 475</div>
+        <code>                    
+    <strong>rewind</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRewindable">
+        <div class="location">at         line 484</div>
+        <code>                    
+    <strong>isRewindable</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

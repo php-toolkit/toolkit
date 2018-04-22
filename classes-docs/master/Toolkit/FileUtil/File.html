@@ -1,0 +1,2780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Toolkit\FileUtil\File | Php Toolkit Classes Documentation</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Toolkit_FileUtil_File" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Php Toolkit Classes Documentation</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../Toolkit.html">Toolkit</a></li><li class="backslash">\</li><li><a href="../../Toolkit/FileUtil.html">FileUtil</a></li><li class="backslash">\</li><li>File</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            File
+                
+        </h1>
+    </div>
+
+    <p>abstract     class
+    <strong>File</strong>        extends <a href="../../Toolkit/FileUtil/FileSystem.html"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Class File</p>                                </div>
+    
+            <h2>Traits</h2>
+
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Toolkit/FileUtil/ReadTrait.html"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    Class Read
+                </div>
+            </div>
+            </div>
+    
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td>FORMAT_JSON</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>FORMAT_PHP</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>FORMAT_INI</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>FORMAT_YML</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>FORMAT_YAML</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isAbsPath">isAbsPath</a>(string $path)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_isAbsPath"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isAbsolutePath">isAbsolutePath</a>(string $file)
+        
+                                            <p>Returns whether the file path is an absolute path.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_isAbsolutePath"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_pathFormat">pathFormat</a>(string $dirName)
+        
+                                            <p>转换为标准的路径结构</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_pathFormat"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_clearPharPath">clearPharPath</a>(string $path)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_clearPharPath"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_exists">exists</a>(string $file, null|string $type = null)
+        
+                                            <p>检查文件/夹/链接是否存在</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_exists"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_check">check</a>(string $file, null|string|array $ext = null)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_check"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_rename">rename</a>(string $origin, string $target, bool $overwrite = false)
+        
+                                            <p>Renames a file or a directory.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_rename"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isReadable">isReadable</a>(string $filename)
+        
+                                            <p>Tells whether a file exists and is readable.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_isReadable"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_mkdir">mkdir</a>(string|array|<a target="_blank" href="http://php.net/Traversable">Traversable</a> $dirs, int $mode = 0777)
+        
+                                            <p>Creates a directory recursively.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_mkdir"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_chmod">chmod</a>(string|array|<a target="_blank" href="http://php.net/Traversable">Traversable</a> $files, int $mode, int $umask = 00, bool $recursive = false)
+        
+                                            <p>Change mode for an array of files or directories.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_chmod"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_chown">chown</a>(string|array|<a target="_blank" href="http://php.net/Traversable">Traversable</a> $files, string $user, bool $recursive = false)
+        
+                                            <p>Change the owner of an array of files or directories.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_chown"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a target="_blank" href="http://php.net/RecursiveIteratorIterator">RecursiveIteratorIterator</a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getIterator">getIterator</a>(string $srcDir, callable $filter)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_getIterator"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_chmodDir">chmodDir</a>(string $path, int $mode = 0664)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_chmodDir"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_availableSpace">availableSpace</a>(string $dir = &#039;.&#039;)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_availableSpace"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_countSpace">countSpace</a>(string $dir = &#039;.&#039;)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_countSpace"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_pathModeInfo">pathModeInfo</a>(string $file_path)
+        
+                                            <p>文件或目录权限检查函数</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/FileSystem.html#method_pathModeInfo"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_load">load</a>(string $src, string $format = self::FORMAT_PHP)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_load"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_loadPhp">loadPhp</a>(string $file, bool $throwError = true)
+        
+                                            <p>load array data form file.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_loadPhp"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_loadJson">loadJson</a>(string $file)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_loadJson"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_loadIni">loadIni</a>(string $ini)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_loadIni"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_loadYml">loadYml</a>(string $yml)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_loadYml"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_readAllLine">readAllLine</a>($file, bool|<abbr title="Toolkit\FileUtil\true">true</abbr> $filter = true)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_readAllLine"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_readLines">readLines</a>(string $fileName, int $startLine = 1, int $endLine = 10, string $mode = &#039;rb&#039;)
+        
+                                            <p>getLines 获取文件一定范围内的内容</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_readLines"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_readSymmetry">readSymmetry</a>(string $fileName, integer $current = 1, integer $lineNum = 3)
+        
+                                            <p>symmetry  得到当前行对称上下几($lineNum)行的内容</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_readSymmetry"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_readRangeLines">readRangeLines</a>(string $file, int $baseLine, int $prevLines = 3, int $nextLines = 3)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_readRangeLines"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getLines5u3d">getLines5u3d</a>(string $file, int $baseLine = 1)
+        
+                                            <p>得到基准行数上5行下3行的内容， lines up and down</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_getLines5u3d"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_tail">tail</a>(resource $fp, int $n, int $base = 5)
+        
+                                            <p>读取文件的最后几行（支持大文件读取）</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Toolkit/FileUtil/ReadTrait.html#method_tail"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getName">getName</a>(string $file, bool $clearExt = false)
+        
+                                            <p>获得文件名称</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSuffix">getSuffix</a>($filename, bool $clearPoint = false)
+        
+                                            <p>获得文件扩展名、后缀名</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getExtension">getExtension</a>($path, bool $clearPoint = false)
+        
+                                            <p>获得文件扩展名、后缀名</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_mimeType">mimeType</a>(string $file)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_info">info</a>(string $filename, bool $check = true)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getStat">getStat</a>($filename)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_save">save</a>(string $filename, string $data)
+        
+                                            <p>save description</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_write">write</a>($content, $path)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;resource
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_openHandler">openHandler</a>(string $path)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_writeToFile">writeToFile</a>(resource $handler, string $content, string $path = &#039;&#039;)
+        
+                                            <p>Attempts to write $content to the file specified by $handler. $path is used for printing exceptions.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_createAndWrite">createAndWrite</a>(array $fileData = [], $append = false, $mode = 0664)
+        
+                                            <p>********************** 创建多级目录和多个文件 **********************
+结合上两个函数</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool|mixed|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getContents">getContents</a>(string $file, bool|<abbr title="Toolkit\FileUtil\false">false</abbr> $useIncludePath = false, null|resource $streamContext = null, int $curlTimeout = 5)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_move">move</a>(string $file, string $target)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_delete">delete</a>($filename)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool|int
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_copy">copy</a>($source, $destination, null $streamContext = null)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;mixed
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_combine">combine</a>($inFile, $outFile)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_stripPhpCode">stripPhpCode</a>(string $source)
+        
+                                            <p>Removes whitespace from a PHP source string while preserving line numbers.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_downBigFile">downBigFile</a>(string $file, string $as)
+        
+                                            <p>If you want to download files from a linux server with
+a filesize bigger than 2GB you can use the following</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_isAbsPath">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_isAbsPath"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 27</div>
+        <code>        static            bool
+    <strong>isAbsPath</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isAbsolutePath">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_isAbsolutePath"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 49</div>
+        <code>        static            bool
+    <strong>isAbsolutePath</strong>(string $file)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns whether the file path is an absolute path.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td>A file path</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_pathFormat">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_pathFormat"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 64</div>
+        <code>        static            string
+    <strong>pathFormat</strong>(string $dirName)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>转换为标准的路径结构</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$dirName</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_clearPharPath">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_clearPharPath"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 75</div>
+        <code>                    string
+    <strong>clearPharPath</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>e.g phar://E:/workenv/php-dockerized/www/phplang/ugirls-social/social-uem/uem.phar/web</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_exists">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_exists"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 94</div>
+        <code>        static            array|string
+    <strong>exists</strong>(string $file, null|string $type = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>检查文件/夹/链接是否存在</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td>要检查的目标</td>
+            </tr>
+                    <tr>
+                <td>null|string</td>
+                <td>$type</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_check">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_check"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 119</div>
+        <code>        static            
+    <strong>check</strong>(string $file, null|string|array $ext = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>null|string|array</td>
+                <td>$ext</td>
+                <td>eg: 'jpg|gif'</td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_rename">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_rename"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 145</div>
+        <code>        static            
+    <strong>rename</strong>(string $origin, string $target, bool $overwrite = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Renames a file or a directory.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$origin</td>
+                <td>The origin filename or directory</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$target</td>
+                <td>The new filename or directory</td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$overwrite</td>
+                <td>Whether to overwrite the target if it already exists</td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td>When target file or directory already exists</td>
+            </tr>
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td>When origin cannot be renamed</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isReadable">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_isReadable"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 164</div>
+        <code>        static            bool
+    <strong>isReadable</strong>(string $filename)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Tells whether a file exists and is readable.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$filename</td>
+                <td>Path to the file</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td>When windows path is longer than 258 characters</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_mkdir">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_mkdir"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 179</div>
+        <code>        static            
+    <strong>mkdir</strong>(string|array|<a target="_blank" href="http://php.net/Traversable">Traversable</a> $dirs, int $mode = 0777)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Creates a directory recursively.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|array|<a target="_blank" href="http://php.net/Traversable">Traversable</a></td>
+                <td>$dirs</td>
+                <td>The directory path</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$mode</td>
+                <td>The directory mode</td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td>On any directory creation failure</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_chmod">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_chmod"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 210</div>
+        <code>        static            
+    <strong>chmod</strong>(string|array|<a target="_blank" href="http://php.net/Traversable">Traversable</a> $files, int $mode, int $umask = 00, bool $recursive = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Change mode for an array of files or directories.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|array|<a target="_blank" href="http://php.net/Traversable">Traversable</a></td>
+                <td>$files</td>
+                <td>A filename, an array of files, or a \Traversable instance to change mode</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$mode</td>
+                <td>The new mode (octal)</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$umask</td>
+                <td>The mode mask (octal)</td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$recursive</td>
+                <td>Whether change the mod recursively or not</td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td>When the change fail</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_chown">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_chown"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 231</div>
+        <code>        static            
+    <strong>chown</strong>(string|array|<a target="_blank" href="http://php.net/Traversable">Traversable</a> $files, string $user, bool $recursive = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Change the owner of an array of files or directories.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|array|<a target="_blank" href="http://php.net/Traversable">Traversable</a></td>
+                <td>$files</td>
+                <td>A filename, an array of files, or a \Traversable instance to change owner</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$user</td>
+                <td>The new owner user name</td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$recursive</td>
+                <td>Whether change the owner recursively or not</td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td>When the change fail</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getIterator">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_getIterator"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 255</div>
+        <code>        static            <a target="_blank" href="http://php.net/RecursiveIteratorIterator">RecursiveIteratorIterator</a>
+    <strong>getIterator</strong>(string $srcDir, callable $filter)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$srcDir</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>callable</td>
+                <td>$filter</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a target="_blank" href="http://php.net/RecursiveIteratorIterator">RecursiveIteratorIterator</a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_chmodDir">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_chmodDir"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 272</div>
+        <code>        static            bool
+    <strong>chmodDir</strong>(string $path, int $mode = 0664)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$mode</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_availableSpace">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_availableSpace"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 305</div>
+        <code>        static            string
+    <strong>availableSpace</strong>(string $dir = &#039;.&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$dir</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_countSpace">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_countSpace"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 322</div>
+        <code>        static            string
+    <strong>countSpace</strong>(string $dir = &#039;.&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$dir</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_pathModeInfo">
+        <div class="location">in <a href="../../Toolkit/FileUtil/FileSystem.html#method_pathModeInfo"><abbr title="Toolkit\FileUtil\FileSystem">FileSystem</abbr></a> at         line 342</div>
+        <code>        static            int
+    <strong>pathModeInfo</strong>(string $file_path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>文件或目录权限检查函数</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file_path</td>
+                <td>文件路径</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td>返回值的取值范围为{0 &lt;= x &lt;= 15}，每个值表示的含义可由四位二进制数组合推出。
+                 返回值在二进制计数法中，四位由高到低分别代表
+                 可执行rename()函数权限 |可对文件追加内容权限 |可写入文件权限|可读取文件权限。</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_load">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_load"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 31</div>
+        <code>        static            array|bool
+    <strong>load</strong>(string $src, string $format = self::FORMAT_PHP)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$src</td>
+                <td>要解析的 文件 或 字符串内容。</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$format</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loadPhp">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_loadPhp"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 64</div>
+        <code>        static            array
+    <strong>loadPhp</strong>(string $file, bool $throwError = true)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>load array data form file.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$throwError</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loadJson">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_loadJson"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 85</div>
+        <code>        static            array
+    <strong>loadJson</strong>(string $file)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loadIni">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_loadIni"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 94</div>
+        <code>        static            array|bool
+    <strong>loadIni</strong>(string $ini)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$ini</td>
+                <td>要解析的 ini 文件名 或 字符串内容。</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loadYml">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_loadYml"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 103</div>
+        <code>        static            array|bool
+    <strong>loadYml</strong>(string $yml)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$yml</td>
+                <td>要解析的 yml 文件名 或 字符串内容。</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_readAllLine">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_readAllLine"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 115</div>
+        <code>        static            array|string
+    <strong>readAllLine</strong>($file, bool|<abbr title="Toolkit\FileUtil\true">true</abbr> $filter = true)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool|<abbr title="Toolkit\FileUtil\true">true</abbr></td>
+                <td>$filter</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileReadException.html"><abbr title="Toolkit\FileUtil\Exception\FileReadException">FileReadException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_readLines">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_readLines"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 137</div>
+        <code>        static            array
+    <strong>readLines</strong>(string $fileName, int $startLine = 1, int $endLine = 10, string $mode = &#039;rb&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>getLines 获取文件一定范围内的内容</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fileName</td>
+                <td>含完整路径的文件</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$startLine</td>
+                <td>开始行数 默认第1行</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$endLine</td>
+                <td>结束行数 默认第50行</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$mode</td>
+                <td>打开文件方式</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>返回内容</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_readSymmetry">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_readSymmetry"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 191</div>
+        <code>        static            array
+    <strong>readSymmetry</strong>(string $fileName, integer $current = 1, integer $lineNum = 3)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>symmetry  得到当前行对称上下几($lineNum)行的内容</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fileName</td>
+                <td>含完整路径的文件</td>
+            </tr>
+                    <tr>
+                <td>integer</td>
+                <td>$current</td>
+                <td>[当前行数]</td>
+            </tr>
+                    <tr>
+                <td>integer</td>
+                <td>$lineNum</td>
+                <td>[获取行数] = $lineNum*2+1</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_readRangeLines">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_readRangeLines"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 212</div>
+        <code>        static            array
+    <strong>readRangeLines</strong>(string $file, int $baseLine, int $prevLines = 3, int $nextLines = 3)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$baseLine</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$prevLines</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$nextLines</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getLines5u3d">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_getLines5u3d"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 227</div>
+        <code>        static            array
+    <strong>getLines5u3d</strong>(string $file, int $baseLine = 1)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>得到基准行数上5行下3行的内容， lines up and down</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$baseLine</td>
+                <td>基准行数</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_tail">
+        <div class="location">in <a href="../../Toolkit/FileUtil/ReadTrait.html#method_tail"><abbr title="Toolkit\FileUtil\ReadTrait">ReadTrait</abbr></a> at         line 240</div>
+        <code>        static            array
+    <strong>tail</strong>(resource $fp, int $n, int $base = 5)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>读取文件的最后几行（支持大文件读取）</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>resource</td>
+                <td>$fp</td>
+                <td>e.g fopen("access.log", "r+")</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$n</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$base</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getName">
+        <div class="location">at         line 38</div>
+        <code>        static            string
+    <strong>getName</strong>(string $file, bool $clearExt = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>获得文件名称</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$clearExt</td>
+                <td>是否去掉文件名中的后缀，仅保留名字</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSuffix">
+        <div class="location">at         line 51</div>
+        <code>        static            string
+    <strong>getSuffix</strong>($filename, bool $clearPoint = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>获得文件扩展名、后缀名</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$filename</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$clearPoint</td>
+                <td>是否带点</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getExtension">
+        <div class="location">at         line 64</div>
+        <code>        static            string
+    <strong>getExtension</strong>($path, bool $clearPoint = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>获得文件扩展名、后缀名</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$path</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$clearPoint</td>
+                <td>是否带点</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_mimeType">
+        <div class="location">at         line 75</div>
+        <code>        static            string
+    <strong>mimeType</strong>(string $file)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>eg: image/gif</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_info">
+        <div class="location">at         line 87</div>
+        <code>        static            array
+    <strong>info</strong>(string $filename, bool $check = true)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$filename</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$check</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getStat">
+        <div class="location">at         line 106</div>
+        <code>        static            array
+    <strong>getStat</strong>($filename)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$filename</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_save">
+        <div class="location">at         line 117</div>
+        <code>        static            bool
+    <strong>save</strong>(string $filename, string $data)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>save description</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$filename</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$data</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_write">
+        <div class="location">at         line 127</div>
+        <code>        static            
+    <strong>write</strong>($content, $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$content</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td></td>
+                <td>$path</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_openHandler">
+        <div class="location">at         line 141</div>
+        <code>        static            resource
+    <strong>openHandler</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>resource</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_writeToFile">
+        <div class="location">at         line 157</div>
+        <code>        static            
+    <strong>writeToFile</strong>(resource $handler, string $content, string $path = &#039;&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Attempts to write $content to the file specified by $handler. $path is used for printing exceptions.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>resource</td>
+                <td>$handler</td>
+                <td>The resource to write to.</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$content</td>
+                <td>The content to write.</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>The path to the file (for exception printing only).</td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_createAndWrite">
+        <div class="location">at         line 175</div>
+        <code>        static            
+    <strong>createAndWrite</strong>(array $fileData = [], $append = false, $mode = 0664)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>********************** 创建多级目录和多个文件 **********************
+结合上两个函数</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$fileData</td>
+                <td><ul>
+<li>数组：要创建的多个文件名组成,含文件的完整路径</li>
+</ul>
+</td>
+            </tr>
+                    <tr>
+                <td></td>
+                <td>$append</td>
+                <td><ul>
+<li>是否以追加的方式写入数据 默认false</li>
+</ul>
+</td>
+            </tr>
+                    <tr>
+                <td></td>
+                <td>$mode</td>
+                <td>=0777 - 权限，默认0775
+ eg: $fileData = array(
+     'file_name'   => 'content',
+     'case.html'   => 'content' ,
+ );</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getContents">
+        <div class="location">at         line 203</div>
+        <code>        static            bool|mixed|string
+    <strong>getContents</strong>(string $file, bool|<abbr title="Toolkit\FileUtil\false">false</abbr> $useIncludePath = false, null|resource $streamContext = null, int $curlTimeout = 5)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td>a file path or url path</td>
+            </tr>
+                    <tr>
+                <td>bool|<abbr title="Toolkit\FileUtil\false">false</abbr></td>
+                <td>$useIncludePath</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>null|resource</td>
+                <td>$streamContext</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$curlTimeout</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool|mixed|string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileReadException.html"><abbr title="Toolkit\FileUtil\Exception\FileReadException">FileReadException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_move">
+        <div class="location">at         line 261</div>
+        <code>        static            
+    <strong>move</strong>(string $file, string $target)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$target</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/IOException.html"><abbr title="Toolkit\FileUtil\Exception\IOException">IOException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_delete">
+        <div class="location">at         line 276</div>
+        <code>        static            bool
+    <strong>delete</strong>($filename)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$filename</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_copy">
+        <div class="location">at         line 289</div>
+        <code>        static            bool|int
+    <strong>copy</strong>($source, $destination, null $streamContext = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$source</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td></td>
+                <td>$destination</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>null</td>
+                <td>$streamContext</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool|int</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileSystemException.html"><abbr title="Toolkit\FileUtil\Exception\FileSystemException">FileSystemException</abbr></a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_combine">
+        <div class="location">at         line 309</div>
+        <code>        static            mixed
+    <strong>combine</strong>($inFile, $outFile)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$inFile</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td></td>
+                <td>$outFile</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Toolkit/FileUtil/Exception/FileNotFoundException.html"><abbr title="Toolkit\FileUtil\Exception\FileNotFoundException">FileNotFoundException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_stripPhpCode">
+        <div class="location">at         line 353</div>
+        <code>        static            string
+    <strong>stripPhpCode</strong>(string $source)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Removes whitespace from a PHP source string while preserving line numbers.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$source</td>
+                <td>A PHP string</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>The PHP string with the whitespace removed</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_downBigFile">
+        <div class="location">at         line 387</div>
+        <code>        static            
+    <strong>downBigFile</strong>(string $file, string $as)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>If you want to download files from a linux server with
+a filesize bigger than 2GB you can use the following</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$as</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

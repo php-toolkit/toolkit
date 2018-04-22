@@ -1,6 +1,7 @@
 .idea/
 .phpintel/
 vendor/
+caches/
 !README.md
 !.gitkeep
 composer.lock
