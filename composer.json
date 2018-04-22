@@ -39,6 +39,11 @@
       "Toolkit\\StrUtil\\": "libs/str-utils/src/"
     }
   },
+  "suggest": {
+    "inhere/simple-print-tool": "Very lightweight data printing tools",
+    "inhere/php-validate": "Very lightweight data validate tool",
+    "inhere/console": "a lightweight php console application library."
+  },
   "repositories": {
     "packagist": {
       "type": "composer",

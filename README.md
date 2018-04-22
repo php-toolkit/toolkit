@@ -6,6 +6,13 @@
 composer require toolkit/toolkit
 ```
 
+## development
+
+```bash
+composer install
+php toolkit dev -h
+```
+
 ## git subtree
 
 - add a lib repo
