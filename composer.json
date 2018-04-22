@@ -1,0 +1,48 @@
+{
+  "name": "toolkit/toolkit",
+  "type": "library",
+  "keywords": [
+    "php",
+    "library",
+    "tools"
+  ],
+  "homepage": "https://github.com/php-toolkit/toolkit",
+  "description": "some useful library of the php",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inhere",
+      "email": "in.798@qq.com",
+      "homepage": "http://www.yzone.net/"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "psr/http-message": "^1.0",
+    "psr/http-server-middleware": "^1.0",
+    "zendframework/zend-mime": "^2.7",
+    "psr/simple-cache": "^1.0.0"
+  },
+  "require-dev": {
+    "inhere/console": "dev-master"
+  },
+  "replace": {
+    "toolkit/di": "self.version"
+  },
+  "autoload": {
+    "psr-4": {
+      "Toolkit\\Dev\\": "libs/dev-helper/",
+      "Toolkit\\SysUtil\\": "libs/sys-utils/src/",
+      "Toolkit\\PhpUtil\\": "libs/php-utils/src/",
+      "Toolkit\\ArrUtil\\": "libs/art-utils/src/",
+      "Toolkit\\ObjUtil\\": "libs/obj-utils/src/",
+      "Toolkit\\StrUtil\\": "libs/str-utils/src/"
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  }
+}

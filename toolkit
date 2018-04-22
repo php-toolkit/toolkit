@@ -1,0 +1,32 @@
+#!/usr/bin/env php
+<?php
+/**
+ * entry file for CLI
+ */
+
+define('BASE_PATH', __DIR__);
+define('TOOLKIT_DIR', __DIR__);
+
+require __DIR__ . '/vendor/autoload.php';
+
+// create app instance
+$app = new \Inhere\Console\Application([
+  'name' => 'php toolkit',
+  'debug' => true,
+  'version' => '1.0.0',
+  'rootPath' => __DIR__,
+]);
+$app->setLogo("
+           __                __              ____   _ __
+    ____  / /_  ____        / /_____  ____  / / /__(_) /_
+   / __ \/ __ \/ __ \______/ __/ __ \/ __ \/ / //_/ / __/
+  / /_/ / / / / /_/ /_____/ /_/ /_/ / /_/ / / ,< / / /_
+ / .___/_/ /_/ .___/      \__/\____/\____/_/_/|_/_/\__/
+/_/         /_/
+", 'success');
+
+// add commands
+$app->addController(\Toolkit\Dev\Console\DevController::class);
+
+// run
+$app->run();
