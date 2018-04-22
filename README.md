@@ -6,6 +6,10 @@
 composer require toolkit/toolkit
 ```
 
+## docs
+
+- classes api https://php-toolkit.github.io/toolkit/classes-docs/master
+
 ## development
 
 ```bash

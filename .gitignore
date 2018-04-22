@@ -1,5 +1,6 @@
 .idea/
 .phpintel/
+libs/
 vendor/
 caches/
 !README.md
