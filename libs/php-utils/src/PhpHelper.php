@@ -3,13 +3,13 @@
  *
  */
 
-namespace MyLib\PhpUtil;
+namespace Toolkit\PhpUtil;
 
 use Inhere\Exceptions\ExtensionMissException;
 
 /**
  * Class PhpHelper
- * @package MyLib\PhpUtil
+ * @package Toolkit\PhpUtil
  */
 class PhpHelper
 {

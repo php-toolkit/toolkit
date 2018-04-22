@@ -6,11 +6,11 @@
  * Time: 22:58
  */
 
-namespace MyLib\FileUtil\Exception;
+namespace Toolkit\FileUtil\Exception;
 
 /**
  * Class FileNotFoundException
- * @package MyLib\FileUtil\Exception
+ * @package Toolkit\FileUtil\Exception
  */
 class FileNotFoundException extends \Exception
 {

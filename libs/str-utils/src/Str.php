@@ -6,12 +6,12 @@
  * Time: 21:12
  */
 
-namespace MyLib\StrUtil;
+namespace Toolkit\StrUtil;
 
 /**
  * Class Str
  *  alias of the StringHelper
- * @package MyLib\StrUtil
+ * @package Toolkit\StrUtil
  */
 class Str extends StringHelper
 {

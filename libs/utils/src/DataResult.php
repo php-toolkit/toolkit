@@ -6,11 +6,11 @@
  * Time: 17:27
  */
 
-namespace MyLib\Utils;
+namespace Toolkit\Util ;
 
 /**
  * Class DeferredResult
- * @package MyLib\Utils
+ * @package Toolkit\Util
  */
 class DataResult
 {

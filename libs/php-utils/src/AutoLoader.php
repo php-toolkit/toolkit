@@ -7,11 +7,11 @@
  * 参考并提取自 composer, 简单的文件 class 加载器
  */
 
-namespace MyLib\PhpUtil;
+namespace Toolkit\PhpUtil;
 
 /**
  * Class AutoLoader
- * @package MyLib\PhpUtil
+ * @package Toolkit\PhpUtil
  * ```php
  * AutoLoader::addFiles([
  *  // file

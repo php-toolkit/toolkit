@@ -3,7 +3,7 @@
 ## install
 
 ```bash
-composer require mylib/obj-utils
+composer require toolkit/obj-utils
 ```
 
 ## license

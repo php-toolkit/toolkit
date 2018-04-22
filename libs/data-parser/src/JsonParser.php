@@ -6,11 +6,11 @@
  * Time: 19:07
  */
 
-namespace MyLib\DataParser;
+namespace Toolkit\DataParser;
 
 /**
  * Class JsonParser
- * @package MyLib\DataParser
+ * @package Toolkit\DataParser
  */
 class JsonParser implements ParserInterface
 {

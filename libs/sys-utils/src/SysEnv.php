@@ -6,11 +6,11 @@
  * Time: 下午10:06
  */
 
-namespace MyLib\SysUtil;
+namespace Toolkit\SysUtil;
 
 /**
  * Class EnvHelper
- * @package MyLib\SysUtil
+ * @package Toolkit\SysUtil
  */
 class SysEnv
 {

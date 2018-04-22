@@ -6,9 +6,9 @@
  * Time: 19:44
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
-use MyLib\StrUtil\Str;
+use Toolkit\StrUtil\Str;
 use RuntimeException;
 
 /**

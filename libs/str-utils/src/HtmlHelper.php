@@ -6,11 +6,11 @@
  * Time: 00:44
  */
 
-namespace MyLib\StrUtil;
+namespace Toolkit\StrUtil;
 
 /**
  * Class HtmlHelper
- * @package MyLib\StrUtil
+ * @package Toolkit\StrUtil
  */
 class HtmlHelper
 {

@@ -1,9 +1,9 @@
 {
-  "name": "mylib/obj-utils",
+  "name": "toolkit/obj-utils",
   "type": "library",
   "description": "some object tool library of the php",
   "keywords": ["library","tool","php"],
-  "homepage": "https://github.com/php-mylib/obj-utils",
+  "homepage": "https://github.com/php-toolkit/obj-utils",
   "license": "MIT",
   "authors": [
     {
@@ -17,7 +17,7 @@
   },
   "autoload": {
     "psr-4": {
-      "MyLib\\ObjUtil\\" : "src/"
+      "Toolkit\\ObjUtil\\" : "src/"
     }
   },
   "suggest": {

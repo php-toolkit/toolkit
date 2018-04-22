@@ -5,11 +5,11 @@
  * Date : 2014-7-10
  */
 
-namespace MyLib\DI;
+namespace Toolkit\DI;
 
 /**
  * Class DIManager - Container Manager
- * @package MyLib\DI
+ * @package Toolkit\DI
  */
 final class DIManager
 {

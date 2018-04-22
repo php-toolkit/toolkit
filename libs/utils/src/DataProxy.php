@@ -6,11 +6,11 @@
  * Time: 下午9:39
  */
 
-namespace MyLib\Utils;
+namespace Toolkit\Util ;
 
 /**
  * Class DataProxy
- * @package MyLib\Utils
+ * @package Toolkit\Util
  */
 class DataProxy
 {

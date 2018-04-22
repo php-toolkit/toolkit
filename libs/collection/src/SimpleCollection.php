@@ -3,7 +3,7 @@
  * Simple data Collection
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
 /**
  * Collection

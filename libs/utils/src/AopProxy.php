@@ -6,13 +6,13 @@
  * Time: 14:20
  */
 
-namespace MyLib\Utils;
+namespace Toolkit\Util ;
 
-use MyLib\Utils\Traits\AopProxyAwareTrait;
+use Toolkit\Util \Traits\AopProxyAwareTrait;
 
 /**
  * Class AopProxy
- * @package MyLib\Utils
+ * @package Toolkit\Util
  * $aop = new AopProxy();
  * $aop->addProxy('FileLogger::log', function() {
  *      echo 'before add log';

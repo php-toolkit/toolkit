@@ -1,9 +1,9 @@
 {
-  "name": "mylib/collection",
+  "name": "toolkit/collection",
   "type": "library",
   "description": "some data collection tool library of the php",
   "keywords": ["library","tool","php"],
-  "homepage": "https://github.com/php-mylib/collection",
+  "homepage": "https://github.com/php-toolkit/collection",
   "license": "MIT",
   "authors": [
     {
@@ -14,14 +14,14 @@
   ],
   "require": {
     "php": ">7.0.0",
-    "mylib/arr-utils": "~1.0",
-    "mylib/str-utils": "~1.0",
-    "mylib/obj-utils": "~1.0",
-    "mylib/file-parse": "~1.0"
+    "toolkit/arr-utils": "~1.0",
+    "toolkit/str-utils": "~1.0",
+    "toolkit/obj-utils": "~1.0",
+    "toolkit/file-parse": "~1.0"
   },
   "autoload": {
     "psr-4": {
-      "MyLib\\Collection\\" : "src/"
+      "Toolkit\\Collection\\" : "src/"
     }
   }
 }

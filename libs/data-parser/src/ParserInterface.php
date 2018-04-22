@@ -6,11 +6,11 @@
  * Time: 19:07
  */
 
-namespace MyLib\DataParser;
+namespace Toolkit\DataParser;
 
 /**
  * Interface ParserInterface
- * @package MyLib\DataParser
+ * @package Toolkit\DataParser
  */
 interface ParserInterface
 {

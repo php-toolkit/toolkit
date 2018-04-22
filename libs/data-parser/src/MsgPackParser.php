@@ -6,11 +6,11 @@
  * Time: 21:23
  */
 
-namespace MyLib\DataParser;
+namespace Toolkit\DataParser;
 
 /**
  * Class MsgPackParser
- * @package MyLib\DataParser
+ * @package Toolkit\DataParser
  */
 class MsgPackParser implements ParserInterface
 {

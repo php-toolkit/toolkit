@@ -6,7 +6,7 @@
  * Time: 19:25
  */
 
-use MyLib\DataParser\JsonParser;
+use Toolkit\DataParser\JsonParser;
 use PHPUnit\Framework\TestCase;
 
 /**

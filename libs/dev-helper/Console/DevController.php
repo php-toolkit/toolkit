@@ -255,12 +255,13 @@ class DevController extends Controller
                     throw new \RuntimeException("Exec command failed. command: $command error: $err \nreturn: \n$ret");
                 }
 
+                $output->color($doneOne, 'success');
+
                 if ($input->getOpt('show-result')) {
                     $output->writeln(\PHP_EOL . $ret);
                 }
             }
 
-            $output->color($doneOne, 'success');
         }
 
         $output->color(\sprintf($config['done'], \count($names)), 'success');

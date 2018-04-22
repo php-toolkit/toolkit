@@ -10,16 +10,16 @@
  * File: Container.php
  */
 
-namespace MyLib\DI;
+namespace Toolkit\DI;
 
-use MyLib\ObjUtil\Obj;
-use MyLib\DI\Exception\NotFoundException;
-use MyLib\DI\Exception\DependencyResolutionException;
+use Toolkit\ObjUtil\Obj;
+use Toolkit\DI\Exception\NotFoundException;
+use Toolkit\DI\Exception\DependencyResolutionException;
 use Psr\Container\ContainerInterface;
 
 /**
  * Class Container
- * @package MyLib\DI
+ * @package Toolkit\DI
  */
 class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate, \Countable
 {

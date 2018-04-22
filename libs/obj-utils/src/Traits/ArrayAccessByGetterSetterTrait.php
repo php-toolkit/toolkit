@@ -6,11 +6,11 @@
  * Time: 22:03
  */
 
-namespace MyLib\ObjUtil\Traits;
+namespace Toolkit\ObjUtil\Traits;
 
 /**
  * Class TraitArrayAccess
- * @package MyLib\ObjUtil\Traits
+ * @package Toolkit\ObjUtil\Traits
  * ```
  * class A implements \ArrayAccess
  * {

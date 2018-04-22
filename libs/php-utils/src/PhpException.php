@@ -6,11 +6,11 @@
  * Time: 下午11:15
  */
 
-namespace MyLib\PhpUtil;
+namespace Toolkit\PhpUtil;
 
 /**
  * Class PhpException
- * @package MyLib\PhpUtil
+ * @package Toolkit\PhpUtil
  */
 class PhpException
 {

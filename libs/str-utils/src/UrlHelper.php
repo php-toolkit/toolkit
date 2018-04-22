@@ -6,11 +6,11 @@
  * Use : ...
  */
 
-namespace MyLib\StrUtil;
+namespace Toolkit\StrUtil;
 
 /**
  * Class UrlHelper
- * @package MyLib\StrUtil
+ * @package Toolkit\StrUtil
  */
 class UrlHelper
 {

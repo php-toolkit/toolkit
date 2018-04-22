@@ -7,13 +7,13 @@
  * Uesd: 主要功能是 数组处理
  */
 
-namespace MyLib\ArrUtil;
+namespace Toolkit\ArrUtil;
 
 use Inhere\Library\Collections\CollectionInterface;
 
 /**
  * Class ArrayHelper
- * @package MyLib\ArrUtil
+ * @package Toolkit\ArrUtil
  */
 class ArrayHelper
 {

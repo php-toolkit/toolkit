@@ -6,7 +6,7 @@
  * Time: 20:56
  */
 
-namespace MyLib\FileUtil;
+namespace Toolkit\FileUtil;
 
 use Inhere\Library\Helpers\Sys;
 

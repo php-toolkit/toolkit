@@ -4,7 +4,7 @@
  * @license   MIT
  */
 
-namespace MyLib\DI;
+namespace Toolkit\DI;
 
 use Inhere\Middleware\CallableResolverInterface;
 use Psr\Container\ContainerInterface;

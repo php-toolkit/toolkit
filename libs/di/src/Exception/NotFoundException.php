@@ -6,11 +6,11 @@
  * Time: 10:51
  */
 
-namespace MyLib\DI\Exception;
+namespace Toolkit\DI\Exception;
 
 /**
  * Class NotFoundException
- * @package MyLib\DI\Exception
+ * @package Toolkit\DI\Exception
  */
 class NotFoundException extends \RuntimeException
 {

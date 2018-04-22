@@ -6,11 +6,11 @@
  * Time: 19:20
  */
 
-namespace MyLib\PhpUtil;
+namespace Toolkit\PhpUtil;
 
 /**
  * Class PhpEnv
- * @package MyLib\PhpUtil
+ * @package Toolkit\PhpUtil
  */
 final class PhpEnv
 {

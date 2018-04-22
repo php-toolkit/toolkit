@@ -6,11 +6,11 @@
  * Time: 22:58
  */
 
-namespace MyLib\FileUtil\Exception;
+namespace Toolkit\FileUtil\Exception;
 
 /**
  * Class FileSystemException
- * @package MyLib\FileUtil\Exception
+ * @package Toolkit\FileUtil\Exception
  */
 class FileSystemException extends \Exception
 {

@@ -6,19 +6,19 @@
  * Time: 19:44
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
-use MyLib\FileParse\IniParser;
-use MyLib\FileParse\JsonParser;
-use MyLib\FileParse\YmlParser;
-use MyLib\ArrUtil\Arr;
-use MyLib\FileUtil\File;
-use MyLib\ObjUtil\Obj;
+use Toolkit\FileParse\IniParser;
+use Toolkit\FileParse\JsonParser;
+use Toolkit\FileParse\YmlParser;
+use Toolkit\ArrUtil\Arr;
+use Toolkit\FileUtil\File;
+use Toolkit\ObjUtil\Obj;
 use RuntimeException;
 
 /**
  * Class DataCollector - 数据收集器 (数据存储器 - DataStorage) complex deep
- * @package MyLib\Collection
+ * @package Toolkit\Collection
  * 支持 链式的子节点 设置 和 值获取
  * e.g:
  * ```

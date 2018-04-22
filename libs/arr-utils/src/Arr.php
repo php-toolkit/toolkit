@@ -6,12 +6,12 @@
  * Time: 下午9:40
  */
 
-namespace MyLib\ArrUtil;
+namespace Toolkit\ArrUtil;
 
 /**
  * Class Arr
  *  alias of the StringHelper
- * @package MyLib\ArrUtil
+ * @package Toolkit\ArrUtil
  */
 class Arr extends ArrayHelper
 {

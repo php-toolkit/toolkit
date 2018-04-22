@@ -6,11 +6,11 @@
  * Time: 19:37
  */
 
-namespace MyLib\DataParser;
+namespace Toolkit\DataParser;
 
 /**
  * Class DataParserAwareTrait
- * @package MyLib\DataParser
+ * @package Toolkit\DataParser
  */
 trait DataParserAwareTrait
 {

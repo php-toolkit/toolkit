@@ -3,7 +3,7 @@
 ## install
 
 ```bash
-composer require mylib/php-utils
+composer require toolkit/php-utils
 ```
 
 ## license

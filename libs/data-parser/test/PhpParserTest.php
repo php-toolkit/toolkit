@@ -6,7 +6,7 @@
  * Time: 19:25
  */
 
-use MyLib\DataParser\PhpParser;
+use Toolkit\DataParser\PhpParser;
 use PHPUnit\Framework\TestCase;
 
 /**

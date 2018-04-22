@@ -6,11 +6,11 @@
  * Time: 上午10:04
  */
 
-namespace MyLib\PhpUtil;
+namespace Toolkit\PhpUtil;
 
 /**
  * Class PhpError
- * @package MyLib\PhpUtil
+ * @package Toolkit\PhpUtil
  */
 class PhpError
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace MyLib\StrUtil;
+namespace Toolkit\StrUtil;
 
 
 /**
  * Class StringHelper
- * @package MyLib\StrUtil
+ * @package Toolkit\StrUtil
  */
 abstract class StringHelper
 {

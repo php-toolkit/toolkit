@@ -8,11 +8,11 @@
  * File: ActiveData.php
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
 /**
  * Class ActiveData
- * @package MyLib\Collection
+ * @package Toolkit\Collection
  */
 class ActiveData implements \ArrayAccess, \IteratorAggregate
 {

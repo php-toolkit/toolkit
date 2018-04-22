@@ -6,14 +6,14 @@
  * Time: 15:04
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
-use MyLib\FileUtil\FileSystem;
-use MyLib\StrUtil\Str;
+use Toolkit\FileUtil\FileSystem;
+use Toolkit\StrUtil\Str;
 
 /**
  * Class Language
- * @package MyLib\Utils
+ * @package Toolkit\Utils
  */
 class Language implements \ArrayAccess, \Countable, \IteratorAggregate
 {

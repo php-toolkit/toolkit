@@ -6,7 +6,7 @@
  * Time: 下午2:04
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
 /**
  * Class LiteCollection

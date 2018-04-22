@@ -6,11 +6,11 @@
  * Time: 17:02
  */
 
-namespace MyLib\ObjUtil\Traits;
+namespace Toolkit\ObjUtil\Traits;
 
 /**
  * Class ObjectPoolTrait
- * @package MyLib\ObjUtil\Traits
+ * @package Toolkit\ObjUtil\Traits
  */
 trait ObjectPoolTrait
 {

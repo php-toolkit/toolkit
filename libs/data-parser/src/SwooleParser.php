@@ -6,7 +6,7 @@
  * Time: 19:22
  */
 
-namespace MyLib\DataParser;
+namespace Toolkit\DataParser;
 
 use Swoole\Serialize;
 

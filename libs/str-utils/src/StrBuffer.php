@@ -6,11 +6,11 @@
  * Time: 9:17
  */
 
-namespace MyLib\StrUtil;
+namespace Toolkit\StrUtil;
 
 /**
  * Class StrBuffer
- * @package MyLib\StrUtil
+ * @package Toolkit\StrUtil
  */
 final class StrBuffer
 {

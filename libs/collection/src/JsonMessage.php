@@ -6,7 +6,7 @@
  * Time: 上午11:49
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
 /**
  * Class JsonMessage

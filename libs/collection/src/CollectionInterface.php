@@ -1,6 +1,6 @@
 <?php
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
 /**
  * Collection Interface

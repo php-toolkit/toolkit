@@ -14,7 +14,7 @@ driver
 - composer command
 
 ```bash
-composer require mylib/data-parser
+composer require toolkit/data-parser
 ```
 
 ## Usage

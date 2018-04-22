@@ -6,15 +6,15 @@
  * Time: 11:46
  */
 
-namespace MyLib\DI\Test;
+namespace Toolkit\DI\Test;
 
-use MyLib\DI\Container;
+use Toolkit\DI\Container;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ContainerTest
- * @package MyLib\DI\Test
- * @covers \MyLib\DI\Container
+ * @package Toolkit\DI\Test
+ * @covers \Toolkit\DI\Container
  */
 class ContainerTest extends TestCase
 {

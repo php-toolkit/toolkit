@@ -6,14 +6,14 @@
  * Time: 11:56
  */
 
-namespace MyLib\Utils\Traits;
+namespace Toolkit\Util \Traits;
 
-use MyLib\SysUtil\Helper\PhpHelper;
+use Toolkit\PhpUtil\PhpHelper;
 
 /**
  * Class AopProxyAwareTrait
  * - AOP 切面编程
- * @package MyLib\Helpers\Traits
+ * @package Toolkit\Helpers\Traits
  * @property array $proxyMap 要经过AOP代理的方法配置
  * e.g:
  * [
