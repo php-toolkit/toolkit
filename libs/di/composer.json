@@ -1,0 +1,30 @@
+{
+  "name": "toolkit/di",
+  "type": "library",
+  "description": "some di tool library of the php",
+  "keywords": ["library","tool","php"],
+  "homepage": "https://github.com/php-toolkit/di",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inhere",
+      "email": "in.798@qq.com",
+      "homepage": "http://www.yzone.net/"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "toolkit/obj-utils": "^1.0",
+    "psr/container": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Toolkit\\DI\\" : "src/"
+    }
+  },
+  "suggest": {
+    "inhere/simple-print-tool": "Very lightweight data printing tools",
+    "inhere/php-validate": "Very lightweight data validate tool",
+    "inhere/console": "a lightweight php console application library."
+  }
+}
