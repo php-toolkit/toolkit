@@ -29,11 +29,12 @@
     "toolkit/data-parser": "self.version",
     "toolkit/di": "self.version",
     "toolkit/file-utils": "self.version",
+    "toolkit/file-parse": "self.version",
     "toolkit/obj-utils": "self.version",
     "toolkit/php-utils": "self.version",
     "toolkit/str-utils": "self.version",
     "toolkit/sys-utils": "self.version",
-    "toolkit/utils": "self.version"
+    "toolkit/helper-utils": "self.version"
   },
   "autoload": {
     "psr-4": {
@@ -48,7 +49,9 @@
       "Toolkit\\PhpUtil\\": "libs/php-utils/src/",
       "Toolkit\\StrUtil\\": "libs/str-utils/src/",
       "Toolkit\\Sys\\": "libs/sys-utils/src/",
-      "Toolkit\\Util\\": "libs/utils/src/"
+      "Toolkit\\Util\\": "libs/helper-utils/src/Util",
+      "Toolkit\\Helper\\": "libs/helper-utils/src/Helper",
+      "Toolkit\\Traits\\": "libs/helper-utils/src/Traits"
     }
   },
   "suggest": {
