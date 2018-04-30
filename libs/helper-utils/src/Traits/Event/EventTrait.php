@@ -6,13 +6,13 @@
  * Time: 16:17
  */
 
-namespace Toolkit\SimpleEvent;
+namespace Toolkit\Triats\Event;
 
 use Toolkit\SysUtil\PhpHelper;
 
 /**
  * Class EventTrait
- * @package Toolkit\SimpleEvent
+ * @package Toolkit\Triats\Event
  */
 trait EventTrait
 {

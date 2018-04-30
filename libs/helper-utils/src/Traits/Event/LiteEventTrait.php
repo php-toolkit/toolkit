@@ -6,13 +6,13 @@
  * Time: 17:03
  */
 
-namespace Toolkit\SimpleEvent;
+namespace Toolkit\Triats\Event;
 
 use Toolkit\SysUtil\Php;
 
 /**
  * Trait LiteEventTrait - 简洁版的事件处理trait，一个事件只允许一个回调
- * @package Toolkit\SimpleEvent
+ * @package Toolkit\Triats\Event
  */
 trait LiteEventTrait
 {
