@@ -6,11 +6,11 @@
  * Time: 13:37
  */
 
-namespace MyLib\SysUtil;
+namespace Toolkit\SysUtil;
 
 /**
  * Class ProcessUtil
- * @package MyLib\SysUtil
+ * @package Toolkit\SysUtil
  */
 class ProcessUtil
 {

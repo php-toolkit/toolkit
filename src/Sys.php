@@ -6,11 +6,11 @@
  * Time: 下午8:18
  */
 
-namespace MyLib\SysUtil;
+namespace Toolkit\SysUtil;
 
 /**
  * Class Sys
- * @package MyLib\SysUtil
+ * @package Toolkit\SysUtil
  */
 class Sys extends SysEnv
 {
@@ -67,7 +67,7 @@ class Sys extends SysEnv
      * @param bool $returnStatus
      * @return array
      */
-    public static function runCommand($command, $returnStatus = true)
+    public static function runCommand($command, $returnStatus = true): array
     {
         $return_var = 1;
 
