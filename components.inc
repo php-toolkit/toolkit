@@ -7,9 +7,9 @@ return [
   'di',
   'file-utils',
   'file-parse',
+  'helper-utils',
   'obj-utils',
   'php-utils',
   'str-utils',
   'sys-utils',
-  'utils',
 ];
