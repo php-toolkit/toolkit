@@ -6,7 +6,7 @@
  * Time: 21:57
  */
 
-namespace MyLib\FileUtil;
+namespace Toolkit\FileUtil;
 
 /**
  * Class FileFinder
@@ -23,7 +23,7 @@ namespace MyLib\FileUtil;
  *      // something ......
  * }
  * ```
- * @package MyLib\FileUtil
+ * @package Toolkit\FileUtil
  * @ref \Symfony\Component\Finder\Finder
  */
 final class FileFinder implements \IteratorAggregate, \Countable

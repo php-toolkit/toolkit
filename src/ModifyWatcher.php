@@ -6,7 +6,7 @@
  * Time: 20:56
  */
 
-namespace MyLib\FileUtil;
+namespace Toolkit\FileUtil;
 
 use Inhere\Library\Helpers\Sys;
 
@@ -70,7 +70,7 @@ final class ModifyWatcher
      * @param string $idFile
      * @return $this
      */
-    public function setIdFile(string $idFile)
+    public function setIdFile(string $idFile): self
     {
         $this->idFile = $idFile;
 
@@ -147,7 +147,7 @@ final class ModifyWatcher
      * @param string|array $dirs
      * @return $this
      */
-    public function watchDir($dirs)
+    public function watchDir($dirs): self
     {
         $this->watchDirs = array_merge($this->watchDirs, (array)$dirs);
 

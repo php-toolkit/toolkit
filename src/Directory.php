@@ -7,15 +7,15 @@
  * Uesd: 主要功能是 hi
  */
 
-namespace MyLib\FileUtil;
+namespace Toolkit\FileUtil;
 
 use DirectoryIterator;
-use MyLib\FileUtil\Exception\FileSystemException;
-use MyLib\FileUtil\Exception\FileNotFoundException;
+use Toolkit\FileUtil\Exception\FileSystemException;
+use Toolkit\FileUtil\Exception\FileNotFoundException;
 
 /**
  * Class Directory
- * @package MyLib\FileUtil
+ * @package Toolkit\FileUtil
  */
 class Directory extends FileSystem
 {
@@ -147,7 +147,7 @@ class Directory extends FileSystem
      * @return array
      * @throws FileNotFoundException
      */
-    public static function getDirs($path, $loop = false, $parent = null, array $list = [])
+    public static function getDirs($path, $loop = false, $parent = null, array $list = []): array
     {
         $path = self::pathFormat($path);
 

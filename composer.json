@@ -1,9 +1,9 @@
 {
-  "name": "mylib/file-utils",
+  "name": "toolkit/file-utils",
   "type": "library",
   "description": "some file tool library of the php",
   "keywords": ["library","tool","php"],
-  "homepage": "https://github.com/php-mylib/file-utils",
+  "homepage": "https://github.com/php-toolkit/file-utils",
   "license": "MIT",
   "authors": [
     {
@@ -17,7 +17,7 @@
   },
   "autoload": {
     "psr-4": {
-      "MyLib\\FileUtil\\" : "src/"
+      "Toolkit\\FileUtil\\" : "src/"
     }
   },
   "suggest": {
