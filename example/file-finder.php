@@ -11,7 +11,7 @@ require dirname(__DIR__) . '/test/boot.php';
 // var_dump(fnmatch('.*', ".gitkeep"));die;
 // var_dump(glob(__DIR__ . '/{t,T}ests', GLOB_BRACE | GLOB_ONLYDIR));
 
-$finder = \Toolkit\FileUtil\FileFinder::create()
+$finder = \Toolkit\File\FileFinder::create()
     ->files()
     ->name('*.php')
     // ->ignoreVCS(false)

@@ -7,15 +7,15 @@
  * Uesd: 主要功能是 hi
  */
 
-namespace Toolkit\FileUtil;
+namespace Toolkit\File;
 
 use DirectoryIterator;
-use Toolkit\FileUtil\Exception\FileSystemException;
-use Toolkit\FileUtil\Exception\FileNotFoundException;
+use Toolkit\File\Exception\FileSystemException;
+use Toolkit\File\Exception\FileNotFoundException;
 
 /**
  * Class Directory
- * @package Toolkit\FileUtil
+ * @package Toolkit\File
  */
 class Directory extends FileSystem
 {

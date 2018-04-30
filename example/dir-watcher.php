@@ -8,7 +8,7 @@
 
 require dirname(__DIR__) . '/test/boot.php';
 
-$mw = new \Toolkit\FileUtil\ModifyWatcher();
+$mw = new \Toolkit\File\ModifyWatcher();
 $ret = $mw
     // ->setIdFile(__DIR__ . '/tmp/dir.id')
     ->watch(dirname(__DIR__))

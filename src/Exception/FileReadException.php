@@ -6,11 +6,11 @@
  * Time: 23:03
  */
 
-namespace Toolkit\FileUtil\Exception;
+namespace Toolkit\File\Exception;
 
 /**
  * Class FileReadException
- * @package Toolkit\FileUtil\Exception
+ * @package Toolkit\File\Exception
  */
 class FileReadException extends FileSystemException
 {

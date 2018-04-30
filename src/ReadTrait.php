@@ -7,18 +7,18 @@
  * Time: 10:35
  */
 
-namespace Toolkit\FileUtil;
+namespace Toolkit\File;
 
-use Toolkit\FileUtil\Exception\FileNotFoundException;
-use Toolkit\FileUtil\Exception\FileSystemException;
-use Toolkit\FileUtil\Exception\FileReadException;
-use Toolkit\FileUtil\Parsers\IniParser;
-use Toolkit\FileUtil\Parsers\JsonParser;
-use Toolkit\FileUtil\Parsers\YmlParser;
+use Toolkit\File\Exception\FileNotFoundException;
+use Toolkit\File\Exception\FileSystemException;
+use Toolkit\File\Exception\FileReadException;
+use Toolkit\File\Parser\IniParser;
+use Toolkit\File\Parser\JsonParser;
+use Toolkit\File\Parser\YmlParser;
 
 /**
  * Class Read
- * @package Toolkit\FileUtil
+ * @package Toolkit\File
  */
 trait ReadTrait
 {

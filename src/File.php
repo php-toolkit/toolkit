@@ -8,16 +8,16 @@
  * Uesd: 主要功能是 文件相关信息获取
  */
 
-namespace Toolkit\FileUtil;
+namespace Toolkit\File;
 
-use Toolkit\FileUtil\Exception\FileNotFoundException;
-use Toolkit\FileUtil\Exception\FileReadException;
-use Toolkit\FileUtil\Exception\FileSystemException;
-use Toolkit\FileUtil\Exception\IOException;
+use Toolkit\File\Exception\FileNotFoundException;
+use Toolkit\File\Exception\FileReadException;
+use Toolkit\File\Exception\FileSystemException;
+use Toolkit\File\Exception\IOException;
 
 /**
  * Class File
- * @package Toolkit\FileUtil
+ * @package Toolkit\File
  */
 abstract class File extends FileSystem
 {

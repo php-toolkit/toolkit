@@ -6,11 +6,11 @@
  * Time: 23:04
  */
 
-namespace Toolkit\FileUtil\Exception;
+namespace Toolkit\File\Exception;
 
 /**
  * Class IOException
- * @package Toolkit\FileUtil\Exception
+ * @package Toolkit\File\Exception
  */
 class IOException extends FileSystemException
 {
