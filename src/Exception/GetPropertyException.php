@@ -6,11 +6,11 @@
  * Time: 23:25
  */
 
-namespace MyLib\ObjUtil\Exception;
+namespace Toolkit\ObjUtil\Exception;
 
 /**
  * Class GetPropertyException
- * @package MyLib\ObjUtil\Exception
+ * @package Toolkit\ObjUtil\Exception
  */
 class GetPropertyException extends \RuntimeException
 {

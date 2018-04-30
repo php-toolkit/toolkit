@@ -7,13 +7,13 @@
  * Uesd: 主要功能是 hi
  */
 
-namespace MyLib\ObjUtil;
+namespace Toolkit\ObjUtil;
 
 use Inhere\Exceptions\DependencyResolutionException;
 
 /**
  * Class ObjectHelper
- * @package MyLib\ObjUtil
+ * @package Toolkit\ObjUtil
  */
 class ObjectHelper
 {

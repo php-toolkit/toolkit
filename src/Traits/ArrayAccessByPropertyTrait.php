@@ -6,11 +6,11 @@
  * Time: 22:03
  */
 
-namespace MyLib\ObjUtil\Traits;
+namespace Toolkit\ObjUtil\Traits;
 
 /**
  * Class TraitArrayAccess
- * @package MyLib\ObjUtil\Traits
+ * @package Toolkit\ObjUtil\Traits
  * ```
  * class A implements \ArrayAccess
  * {
@@ -25,7 +25,7 @@ trait ArrayAccessByPropertyTrait
      * @param   mixed $offset The array offset.
      * @return  boolean  True if the offset exists, false otherwise.
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return property_exists($this, $offset);
     }

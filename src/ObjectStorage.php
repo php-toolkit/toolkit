@@ -6,12 +6,12 @@
  * Time: 14:56
  */
 
-namespace MyLib\ObjUtil;
+namespace Toolkit\ObjUtil;
 
 /**
  * Class ObjectStorage
  *  - 允许使用非对象作为key，会自动使用 \stdClass 转成对象
- * @package MyLib\ObjUtil
+ * @package Toolkit\ObjUtil
  */
 class ObjectStorage extends \SplObjectStorage
 {

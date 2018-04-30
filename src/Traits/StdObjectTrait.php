@@ -6,14 +6,14 @@
  * Time: 下午2:25
  */
 
-namespace MyLib\ObjUtil\Traits;
+namespace Toolkit\ObjUtil\Traits;
 
 use Inhere\Exceptions\UnknownCalledException;
-use MyLib\ObjUtil\Obj;
+use Toolkit\ObjUtil\Obj;
 
 /**
  * Class StdObjectTrait
- * @package MyLib\ObjUtil\Traits
+ * @package Toolkit\ObjUtil\Traits
  */
 trait StdObjectTrait
 {

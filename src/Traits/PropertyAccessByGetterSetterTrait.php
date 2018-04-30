@@ -6,7 +6,7 @@
  * Time: 22:03
  */
 
-namespace MyLib\ObjUtil\Traits;
+namespace Toolkit\ObjUtil\Traits;
 
 use Inhere\Exceptions\GetPropertyException;
 use Inhere\Exceptions\NotFoundException;
@@ -14,7 +14,7 @@ use Inhere\Exceptions\SetPropertyException;
 
 /**
  * trait PropertyAccessByGetterSetterTrait
- * @package MyLib\ObjUtil\Traits
+ * @package Toolkit\ObjUtil\Traits
  * ```
  * class A
  * {

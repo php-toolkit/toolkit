@@ -6,13 +6,13 @@
  * Time: 下午7:31
  */
 
-namespace MyLib\ObjUtil\Traits;
+namespace Toolkit\ObjUtil\Traits;
 
-use MyLib\ObjUtil\Obj;
+use Toolkit\ObjUtil\Obj;
 
 /**
  * Trait SingletonTrait
- * @package MyLib\ObjUtil\Traits
+ * @package Toolkit\ObjUtil\Traits
  */
 trait SingletonTrait
 {
