@@ -8,7 +8,7 @@
 
 namespace Toolkit\Collection;
 
-use Toolkit\FileUtil\FileSystem;
+use Toolkit\File\FileSystem;
 use Toolkit\StrUtil\Str;
 
 /**

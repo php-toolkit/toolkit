@@ -12,7 +12,7 @@ use Toolkit\FileParse\IniParser;
 use Toolkit\FileParse\JsonParser;
 use Toolkit\FileParse\YmlParser;
 use Toolkit\ArrUtil\Arr;
-use Toolkit\FileUtil\File;
+use Toolkit\File\File;
 use Toolkit\ObjUtil\Obj;
 use RuntimeException;
 
@@ -249,7 +249,11 @@ class Collection extends SimpleCollection
      * @param $file
      * @param string $format
      * @return array|mixed
+<<<<<<< HEAD
+     * @throws \Toolkit\File\Exception\FileNotFoundException
+=======
      * @throws \Toolkit\FileUtil\Exception\FileNotFoundException
+>>>>>>> 34544cc5438e3a86bf11d4dd520b2be25413ffe2
      */
     public static function read($file, $format = self::FORMAT_PHP)
     {
