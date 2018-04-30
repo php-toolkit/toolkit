@@ -6,11 +6,11 @@
  * Time: 上午12:09
  */
 
-namespace MyLib\PhpUtil;
+namespace Toolkit\PhpUtil;
 
 /**
  * Class Php - alias of the class PhpHelper
- * @package MyLib\PhpUtil
+ * @package Toolkit\PhpUtil
  */
 class Php extends PhpHelper
 {

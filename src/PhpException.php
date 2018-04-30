@@ -6,11 +6,11 @@
  * Time: 下午11:15
  */
 
-namespace MyLib\PhpUtil;
+namespace Toolkit\PhpUtil;
 
 /**
  * Class PhpException
- * @package MyLib\PhpUtil
+ * @package Toolkit\PhpUtil
  */
 class PhpException
 {
@@ -58,7 +58,7 @@ class PhpException
      * @param null|string $catcher
      * @return array
      */
-    public static function toArray($e, $getTrace = true, $catcher = null)
+    public static function toArray($e, $getTrace = true, $catcher = null): array
     {
         $data = [
             'class' => \get_class($e),
@@ -85,7 +85,7 @@ class PhpException
      * @param null|string $catcher
      * @return string the string representation of the exception.
      */
-    public static function toJson($e, $getTrace = true, $catcher = null)
+    public static function toJson($e, $getTrace = true, $catcher = null): string
     {
         if (!$getTrace) {
             $message = json_encode(['msg' => "Error: {$e->getMessage()}"]);

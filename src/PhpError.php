@@ -6,11 +6,11 @@
  * Time: 上午10:04
  */
 
-namespace MyLib\PhpUtil;
+namespace Toolkit\PhpUtil;
 
 /**
  * Class PhpError
- * @package MyLib\PhpUtil
+ * @package Toolkit\PhpUtil
  */
 class PhpError
 {
@@ -23,7 +23,7 @@ class PhpError
      * @param null|string $catcher
      * @return array
      */
-    public static function toArray(array $lastError, $catcher = null)
+    public static function toArray(array $lastError, $catcher = null): array
     {
         $digest = 'Fatal Error (' . self::codeToString($lastError['type']) . '): ' . $lastError['message'];
         $data = [
@@ -45,7 +45,7 @@ class PhpError
      * @param int $code
      * @return string
      */
-    public static function codeToString(int $code)
+    public static function codeToString(int $code): string
     {
         switch ($code) {
             case E_ERROR:

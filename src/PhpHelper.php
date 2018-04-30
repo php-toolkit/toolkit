@@ -3,13 +3,13 @@
  *
  */
 
-namespace MyLib\PhpUtil;
+namespace Toolkit\PhpUtil;
 
 use Inhere\Exceptions\ExtensionMissException;
 
 /**
  * Class PhpHelper
- * @package MyLib\PhpUtil
+ * @package Toolkit\PhpUtil
  */
 class PhpHelper
 {
@@ -59,7 +59,7 @@ class PhpHelper
      * @param bool $realUsage
      * @return array
      */
-    public static function runtime($startTime, $startMem, array $info = [], $realUsage = false)
+    public static function runtime($startTime, $startMem, array $info = [], $realUsage = false): array
     {
         $info['startTime'] = $startTime;
         $info['endTime'] = microtime(true);
