@@ -6,17 +6,15 @@
  * Time: 9:17
  */
 
-namespace MyLib\ArrUtil;
+namespace Toolkit\ArrUtil;
 
 /**
  * Class ArrBuffer
- * @package MyLib\ArrUtil
+ * @package Toolkit\ArrUtil
  */
-final class AryBuffer
+final class ArrBuffer
 {
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $body = [];
 
     /** @var string */
