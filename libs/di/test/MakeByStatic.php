@@ -6,11 +6,11 @@
  * Time: 11:53
  */
 
-namespace Toolkit\DI\Test;
+namespace Toolkit\DITest;
 
 /**
  * Class SomeClass
- * @package Toolkit\DI\Test
+ * @package Toolkit\DITest
  */
 class MakeByStatic
 {

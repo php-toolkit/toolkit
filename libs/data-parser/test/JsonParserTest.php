@@ -6,12 +6,14 @@
  * Time: 19:25
  */
 
+namespace Toolkit\DataParserTest;
+
 use Toolkit\DataParser\JsonParser;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class JsonParserTest
- * @covers JsonParser
+ * @covers \Toolkit\DataParser\JsonParser
  */
 class JsonParserTest extends TestCase
 {

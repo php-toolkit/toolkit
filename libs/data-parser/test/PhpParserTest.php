@@ -6,12 +6,14 @@
  * Time: 19:25
  */
 
+namespace Toolkit\DataParserTest;
+
 use Toolkit\DataParser\PhpParser;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class PhpParserTest
- * @covers PhpParser
+ * @covers \Toolkit\DataParser\PhpParser
  */
 class PhpParserTest extends TestCase
 {

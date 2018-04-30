@@ -12,20 +12,24 @@ use Swoole\Serialize;
 
 /**
  * Class SwooleParser
+ * @package Toolkit\DataParser
  * @author inhere <in.798@qq.com>
  * @link https://wiki.swoole.com/wiki/page/p-serialize.html
  */
-class SwooleParser implements ParserInterface
+class SwooleParser extends AbstractDataParser
 {
     /**
      * class constructor.
+     * @param array $encodeOpts
      * @throws \RuntimeException
      */
-    public function __construct()
+    public function __construct(array $encodeOpts = [])
     {
         if (!\class_exists(Serialize::class, false)) {
             throw new \RuntimeException("The php extension 'swoole_serialize' is required!");
         }
+
+        parent::__construct($encodeOpts);
     }
 
     /**
@@ -34,7 +38,7 @@ class SwooleParser implements ParserInterface
      */
     public function encode($data): string
     {
-        return (string)Serialize::pack($data);
+        return (string)Serialize::pack($data, ...$this->encodeOpts);
     }
 
     /**
@@ -43,6 +47,6 @@ class SwooleParser implements ParserInterface
      */
     public function decode(string $data)
     {
-        return Serialize::unpack($data);
+        return Serialize::unpack($data, ...$this->decodeOpts);
     }
 }

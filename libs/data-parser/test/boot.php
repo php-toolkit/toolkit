@@ -13,8 +13,8 @@ spl_autoload_register(function ($class) {
     if (0 === strpos($class,'Toolkit\DataParser\Example\\')) {
         $path = str_replace('\\', '/', substr($class, strlen('Toolkit\DataParser\Example\\')));
         $file = dirname(__DIR__) . "/example/{$path}.php";
-    } elseif (0 === strpos($class,'Toolkit\DataParser\Test\\')) {
-        $path = str_replace('\\', '/', substr($class, strlen('Toolkit\DataParser\Test\\')));
+    } elseif (0 === strpos($class,'Toolkit\DataParserTest\\')) {
+        $path = str_replace('\\', '/', substr($class, strlen('Toolkit\DataParserTest\\')));
         $file = __DIR__ . "/{$path}.php";
     } elseif (0 === strpos($class,'Toolkit\DataParser\\')) {
         $path = str_replace('\\', '/', substr($class, strlen('Toolkit\DataParser\\')));

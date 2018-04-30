@@ -6,11 +6,11 @@
  * Time: 下午8:18
  */
 
-namespace Toolkit\SysUtil;
+namespace Toolkit\Sys;
 
 /**
  * Class Sys
- * @package Toolkit\SysUtil
+ * @package Toolkit\Sys
  */
 class Sys extends SysEnv
 {

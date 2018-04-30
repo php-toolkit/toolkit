@@ -6,7 +6,7 @@
  * Time: 11:46
  */
 
-namespace Toolkit\DI\Test;
+namespace Toolkit\DITest;
 
 use Toolkit\DI\Container;
 use PHPUnit\Framework\TestCase;
@@ -40,7 +40,7 @@ class ContainerTest extends TestCase
             ]
         ]);
 
-        $this->assertCount(3, $di->count());
+        $this->assertCount(3, $di);
         $this->assertTrue($di->has('s1'));
     }
 }

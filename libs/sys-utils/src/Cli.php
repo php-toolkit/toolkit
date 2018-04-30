@@ -6,11 +6,11 @@
  * Time: 下午5:33
  */
 
-namespace Toolkit\SysUtil;
+namespace Toolkit\Sys;
 
 /**
  * Class Cli
- * @package Toolkit\SysUtil
+ * @package Toolkit\Sys
  */
 class Cli
 {

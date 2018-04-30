@@ -11,32 +11,18 @@ namespace Toolkit\DataParser;
 /**
  * Class JsonParser
  * @package Toolkit\DataParser
+ * @author inhere <in.798@qq.com>
  */
-class JsonParser implements ParserInterface
+class JsonParser extends AbstractDataParser
 {
     /**
-     * @var bool
+     * class constructor.
+     * @param array $encodeOpts
+     * @param array $decodeOpts
      */
-    protected $assoc = true;
-
-    /**
-     * JsonParser constructor.
-     * @param null $assoc
-     */
-    public function __construct($assoc = null)
+    public function __construct(array $encodeOpts = [], array $decodeOpts = [])
     {
-        if ($assoc !== null) {
-            $this->setAssoc($assoc);
-        }
-    }
-
-    /**
-     * @param string $data
-     * @return mixed
-     */
-    public function decode(string $data)
-    {
-        return \json_decode($data, $this->assoc);
+        parent::__construct($encodeOpts, $decodeOpts ?: [true]);
     }
 
     /**
@@ -45,22 +31,15 @@ class JsonParser implements ParserInterface
      */
     public function encode($data): string
     {
-        return \json_encode($data);
+        return \json_encode($data, ...$this->encodeOpts);
     }
 
     /**
-     * @return bool
+     * @param string $data
+     * @return mixed
      */
-    public function isAssoc(): bool
+    public function decode(string $data)
     {
-        return $this->assoc;
-    }
-
-    /**
-     * @param bool $assoc
-     */
-    public function setAssoc($assoc)
-    {
-        $this->assoc = (bool)$assoc;
+        return \json_decode($data, ...$this->decodeOpts);
     }
 }
