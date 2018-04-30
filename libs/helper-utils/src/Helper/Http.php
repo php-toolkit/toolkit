@@ -6,13 +6,13 @@
  * Time: 14:35
  */
 
-namespace MyLib\Helpers\Helper;
+namespace Toolkit\Helper;
 
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Http
- * @package MyLib\Helpers\Helper
+ * @package Toolkit\Helper
  */
 class Http
 {

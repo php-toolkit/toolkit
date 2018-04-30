@@ -7,11 +7,11 @@
  * Uesd: 主要功能是 hi
  */
 
-namespace MyLib\Helpers\Helper;
+namespace Toolkit\Helper;
 
 /**
  * Class DateHelper
- * @package MyLib\Helpers\Helper
+ * @package Toolkit\Helper
  */
 class DateHelper
 {

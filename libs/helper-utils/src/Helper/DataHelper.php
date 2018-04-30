@@ -7,11 +7,11 @@
  *  数据操作 转码 序列化
  */
 
-namespace MyLib\Helpers\Helper;
+namespace Toolkit\Helper;
 
 /**
  * Class DataHelper
- * @package MyLib\Helpers\Helper
+ * @package Toolkit\Helper
  */
 class DataHelper
 {

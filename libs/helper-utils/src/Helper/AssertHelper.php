@@ -6,11 +6,11 @@
  * Time: 12:51
  */
 
-namespace MyLib\Helpers\Helper;
+namespace Toolkit\Helper;
 
 /**
  * Class AssertHelper
- * @package MyLib\Helpers\Helper
+ * @package Toolkit\Helper
  */
 class AssertHelper
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace MyLib\Helpers\Helper;
+namespace Toolkit\Helper;
 
 /**
  * Class UtilHelper
- * @package MyLib\Helpers\Helper
+ * @package Toolkit\Helper
  */
 abstract class UtilHelper
 {

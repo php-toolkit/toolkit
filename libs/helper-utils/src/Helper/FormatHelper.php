@@ -7,11 +7,11 @@
  * File: FormatHelper.php
  */
 
-namespace MyLib\Helpers\Helper;
+namespace Toolkit\Helper;
 
 /**
  * Class FormatHelper
- * @package MyLib\Helpers\Helper
+ * @package Toolkit\Helper
  */
 class FormatHelper
 {
