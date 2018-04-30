@@ -1,0 +1,28 @@
+{
+  "name": "mylib/file-parse",
+  "type": "library",
+  "description": "some file parse tool library of the php",
+  "keywords": ["library","tool","php"],
+  "homepage": "https://github.com/php-mylib/file-parse",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inhere",
+      "email": "in.798@qq.com",
+      "homepage": "http://www.yzone.net/"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "mylib/str-utils": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MyLib\\FileParse\\" : "src/"
+    }
+  },
+  "suggest": {
+    "inhere/php-validate": "Very lightweight data validate tool",
+    "inhere/console": "a lightweight php console application library."
+  }
+}
