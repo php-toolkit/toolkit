@@ -6,9 +6,9 @@
  * Time: 19:44
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
-use MyLib\StrUtil\Str;
+use Toolkit\StrUtil\Str;
 use RuntimeException;
 
 /**
@@ -124,7 +124,7 @@ final class Configuration extends Collection
      * get Mode
      * @return string
      */
-    public function getMode()
+    public function getMode(): string
     {
         return $this->mode;
     }
@@ -149,7 +149,7 @@ final class Configuration extends Collection
      * data is Readonly
      * @return boolean
      */
-    public function isReadonly()
+    public function isReadonly(): bool
     {
         return $this->readonly;
     }

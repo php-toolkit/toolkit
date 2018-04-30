@@ -6,13 +6,13 @@
  * Time: 9:18
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
 /**
  * Class FixedArray
  *  fixed size array implements, and support string key.
  *  `SplFixedArray` only allow int key.
- * @package MyLib\Collection
+ * @package Toolkit\Collection
  */
 class FixedArray implements \ArrayAccess, \IteratorAggregate
 {

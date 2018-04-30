@@ -10,14 +10,14 @@ date_default_timezone_set('Asia/Shanghai');
 spl_autoload_register(function ($class) {
     $file = null;
 
-    if (0 === strpos($class,'MyLib\Collection\Example\\')) {
-        $path = str_replace('\\', '/', substr($class, strlen('MyLib\Collection\Example\\')));
+    if (0 === strpos($class,'Toolkit\Collection\Example\\')) {
+        $path = str_replace('\\', '/', substr($class, strlen('Toolkit\Collection\Example\\')));
         $file = dirname(__DIR__) . "/example/{$path}.php";
-    } elseif (0 === strpos($class,'MyLib\Collection\Test\\')) {
-        $path = str_replace('\\', '/', substr($class, strlen('MyLib\Collection\Test\\')));
+    } elseif (0 === strpos($class,'Toolkit\Collection\Test\\')) {
+        $path = str_replace('\\', '/', substr($class, strlen('Toolkit\Collection\Test\\')));
         $file = __DIR__ . "/{$path}.php";
-    } elseif (0 === strpos($class,'MyLib\Collection\\')) {
-        $path = str_replace('\\', '/', substr($class, strlen('MyLib\Collection\\')));
+    } elseif (0 === strpos($class,'Toolkit\Collection\\')) {
+        $path = str_replace('\\', '/', substr($class, strlen('Toolkit\Collection\\')));
         $file = dirname(__DIR__) . "/src/{$path}.php";
     }
 

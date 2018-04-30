@@ -6,7 +6,7 @@
  * Time: 下午2:04
  */
 
-namespace MyLib\Collection;
+namespace Toolkit\Collection;
 
 /**
  * Class LiteCollection
@@ -119,7 +119,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
      * @param string $char
      * @return string
      */
-    public function implode($char = ',')
+    public function implode($char = ','): string
     {
 //        $string = '';
 //
@@ -134,7 +134,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
     /**
      * {@inheritDoc}
      */
-    public function all()
+    public function all(): array
     {
         return $this->getArrayCopy();
     }
