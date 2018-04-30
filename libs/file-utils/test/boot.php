@@ -18,6 +18,7 @@ spl_autoload_register(function ($class) {
         $file = __DIR__ . "/{$path}.php";
     } elseif (0 === strpos($class,'Toolkit\File\\')) {
         $path = str_replace('\\', '/', substr($class, strlen('Toolkit\File\\')));
+
         $file = dirname(__DIR__) . "/src/{$path}.php";
     }
 

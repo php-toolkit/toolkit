@@ -12,9 +12,9 @@ namespace Toolkit\File;
 use Toolkit\File\Exception\FileNotFoundException;
 use Toolkit\File\Exception\FileSystemException;
 use Toolkit\File\Exception\FileReadException;
-use Toolkit\File\Parsers\IniParser;
-use Toolkit\File\Parsers\JsonParser;
-use Toolkit\File\Parsers\YmlParser;
+use Toolkit\File\Parser\IniParser;
+use Toolkit\File\Parser\JsonParser;
+use Toolkit\File\Parser\YmlParser;
 
 /**
  * Class Read
