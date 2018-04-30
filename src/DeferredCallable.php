@@ -6,13 +6,13 @@
  * Time: 14:20
  */
 
-namespace MyLib\Utils;
+namespace Toolkit\Util ;
 
 use Inhere\Library\Helpers\PhpHelper;
 
 /**
  * Class DeferredCallable
- * @package MyLib\Utils
+ * @package Toolkit\Util
  */
 class DeferredCallable
 {

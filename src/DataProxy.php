@@ -6,11 +6,11 @@
  * Time: 下午9:39
  */
 
-namespace MyLib\Utils;
+namespace Toolkit\Util ;
 
 /**
  * Class DataProxy
- * @package MyLib\Utils
+ * @package Toolkit\Util
  */
 class DataProxy
 {
@@ -92,7 +92,7 @@ class DataProxy
      * @param string $name
      * @return bool
      */
-    public function hasName(string $name)
+    public function hasName(string $name): bool
     {
         return isset($this->proxies[$name]);
     }

@@ -3,7 +3,7 @@
 ## install 
 
 ```bash
-composer require mylib/utils
+composer require toolkit/utils
 ```
 
 ## license

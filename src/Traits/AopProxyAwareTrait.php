@@ -6,14 +6,14 @@
  * Time: 11:56
  */
 
-namespace MyLib\Utils\Traits;
+namespace Toolkit\Util \Traits;
 
-use MyLib\SysUtil\Helper\PhpHelper;
+use Toolkit\PhpUtil\PhpHelper;
 
 /**
  * Class AopProxyAwareTrait
  * - AOP 切面编程
- * @package MyLib\Helpers\Traits
+ * @package Toolkit\Helpers\Traits
  * @property array $proxyMap 要经过AOP代理的方法配置
  * e.g:
  * [
@@ -137,7 +137,7 @@ trait AopProxyAwareTrait
      * @param string $position
      * @return $this
      */
-    public function register($key, $handler, $position = 'before')
+    public function register($key, $handler, $position = 'before'): self
     {
         return $this->addProxy($key, $handler, $position);
     }
@@ -148,7 +148,7 @@ trait AopProxyAwareTrait
      * @param string $position 'before' 'after'
      * @return $this
      */
-    public function addProxy($key, $handler, $position = 'before')
+    public function addProxy($key, $handler, $position = 'before'): self
     {
         if (!\in_array($position, self::$proxyPoints, true)) {
             return $this;
@@ -164,7 +164,7 @@ trait AopProxyAwareTrait
      * @param array $map
      * @return $this
      */
-    public function addProxies(array $map)
+    public function addProxies(array $map): self
     {
         foreach ($map as $key => $handler) {
             $position = 'before';
