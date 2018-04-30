@@ -8,11 +8,11 @@
  * Service.php
  */
 
-namespace MyLib\DI;
+namespace Toolkit\DI;
 
 /**
  * Class Service
- * @package MyLib\DI
+ * @package Toolkit\DI
  */
 final class Service
 {

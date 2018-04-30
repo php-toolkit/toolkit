@@ -6,11 +6,11 @@
  * Time: 9:20
  */
 
-namespace MyLib\DI;
+namespace Toolkit\DI;
 
 /**
  * Class NameAliasTrait
- * @package MyLib\DI
+ * @package Toolkit\DI
  * @property array $aliases path alias array
  */
 trait NameAliasTrait
@@ -86,7 +86,7 @@ trait NameAliasTrait
      * @param array $aliases
      * @return $this
      */
-    public function setAliases(array $aliases)
+    public function setAliases(array $aliases): self
     {
         $this->aliases = $aliases;
 

@@ -6,11 +6,11 @@
  * Time: 11:17
  */
 
-namespace MyLib\DI\Exception;
+namespace Toolkit\DI\Exception;
 
 /**
  * Class DependencyResolutionException
- * @package MyLib\DI\Exception
+ * @package Toolkit\DI\Exception
  */
 class DependencyResolutionException extends \RuntimeException
 {

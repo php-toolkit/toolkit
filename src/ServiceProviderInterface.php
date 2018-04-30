@@ -6,11 +6,11 @@
  * Date : 2014-7-10
  */
 
-namespace MyLib\DI;
+namespace Toolkit\DI;
 
 /**
  * Interface InterfaceServiceProvider
- * @package MyLib\DI
+ * @package Toolkit\DI
  */
 interface ServiceProviderInterface
 {

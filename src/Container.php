@@ -10,16 +10,16 @@
  * File: Container.php
  */
 
-namespace MyLib\DI;
+namespace Toolkit\DI;
 
-use MyLib\ObjUtil\Obj;
-use MyLib\DI\Exception\NotFoundException;
-use MyLib\DI\Exception\DependencyResolutionException;
+use Toolkit\ObjUtil\Obj;
+use Toolkit\DI\Exception\NotFoundException;
+use Toolkit\DI\Exception\DependencyResolutionException;
 use Psr\Container\ContainerInterface;
 
 /**
  * Class Container
- * @package MyLib\DI
+ * @package Toolkit\DI
  */
 class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate, \Countable
 {
@@ -100,7 +100,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * @return $this
      * @throws DependencyResolutionException
      */
-    public function set(string $id, $definition, array $opts = [])
+    public function set(string $id, $definition, array $opts = []): self
     {
         $id = $this->_checkServiceId($id);
 
@@ -180,7 +180,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * @throws \InvalidArgumentException
      * @throws DependencyResolutionException
      */
-    public function sets(array $services)
+    public function sets(array $services): self
     {
         foreach ($services as $id => $definition) {
             if (!$definition) {
@@ -212,7 +212,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * @throws \InvalidArgumentException
      * @throws DependencyResolutionException
      */
-    public function protect(string $id, $definition, $share = false)
+    public function protect(string $id, $definition, $share = false): self
     {
         return $this->lock($id, $definition, $share);
     }
@@ -226,7 +226,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * @throws DependencyResolutionException
      * @throws \InvalidArgumentException
      */
-    public function lock(string $id, $definition, $share = false)
+    public function lock(string $id, $definition, $share = false): self
     {
         return $this->set($id, $definition, [
             'shared' => $share,
@@ -239,7 +239,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * @param  ServiceProviderInterface $provider 在提供者内添加需要的服务到容器
      * @return $this
      */
-    public function registerServiceProvider(ServiceProviderInterface $provider)
+    public function registerServiceProvider(ServiceProviderInterface $provider): self
     {
         $provider->register($this);
 
@@ -250,7 +250,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * @param array $providers
      * @return $this
      */
-    public function registerServiceProviders(array $providers)
+    public function registerServiceProviders(array $providers): self
     {
         /** @var ServiceProviderInterface $provider */
         foreach ($providers as $provider) {

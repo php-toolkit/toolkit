@@ -6,11 +6,11 @@
  * Time: 11:53
  */
 
-namespace MyLib\DI\Test;
+namespace Toolkit\DI\Test;
 
 /**
  * Class SomeClass
- * @package MyLib\DI\Test
+ * @package Toolkit\DI\Test
  */
 class SomeClass
 {

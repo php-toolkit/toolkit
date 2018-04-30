@@ -4,7 +4,7 @@
  * @license   MIT
  */
 
-namespace MyLib\DI;
+namespace Toolkit\DI;
 
 use Inhere\Middleware\CallableResolverInterface;
 use RuntimeException;
@@ -44,7 +44,7 @@ final class CallableResolver implements CallableResolverInterface
      * @throws RuntimeException if the callable does not exist
      * @throws RuntimeException if the callable is not resolvable
      */
-    public function resolve($toResolve)
+    public function resolve($toResolve): callable
     {
         if (\is_callable($toResolve)) {
             return $toResolve;
@@ -79,7 +79,7 @@ final class CallableResolver implements CallableResolverInterface
      * @throws \InvalidArgumentException
      * @throws \RuntimeException if the callable does not exist
      */
-    private function resolveCallable($class, $method = '__invoke')
+    private function resolveCallable($class, $method = '__invoke'): callable
     {
         if ($cb = $this->container->getIfExist($class)) {
             return [$cb, $method];
