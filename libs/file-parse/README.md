@@ -5,7 +5,7 @@ parse ini,json,yml file.
 ## install
 
 ```bash
-composer require mylib/file-parse
+composer require toolkit/file-parse
 ```
 
 ## license

@@ -6,13 +6,13 @@
  * Time: 上午11:41
  */
 
-namespace MyLib\FileParse;
+namespace Toolkit\File\Parse;
 
 use Symfony\Component\Yaml\Parser;
 
 /**
  * Class YmlParser
- * @package MyLib\FileParse
+ * @package Toolkit\File\Parse
  */
 class YmlParser extends BaseParser
 {
@@ -36,7 +36,7 @@ class YmlParser extends BaseParser
             throw new \InvalidArgumentException('param type error! must is string.');
         }
 
-        if (!class_exists(Parser::class)) {
+        if (!\class_exists(Parser::class)) {
             throw new \UnexpectedValueException('yml format parser Class ' . Parser::class . " don't exists! please install package 'symfony/yaml'.");
         }
 
@@ -60,14 +60,14 @@ class YmlParser extends BaseParser
                 }
 
                 // if $importFile is not exists AND $importFile is not a absolute path AND have $parentFile
-                if ($fileDir && !file_exists($extendFile) && $extendFile[0] !== '/') {
+                if ($fileDir && !\file_exists($extendFile) && $extendFile[0] !== '/') {
                     $extendFile = $fileDir . '/' . trim($extendFile, './');
                 }
 
                 // $importFile is file
-                if (is_file($extendFile)) {
-                    $data = file_get_contents($extendFile);
-                    $array = array_merge($parser->parse(trim($data)), $array);
+                if (\is_file($extendFile)) {
+                    $data = \file_get_contents($extendFile);
+                    $array = \array_merge($parser->parse(trim($data)), $array);
                 } else {
                     throw new \UnexpectedValueException("needed extended file $extendFile don't exists!");
                 }
@@ -78,8 +78,8 @@ class YmlParser extends BaseParser
                     continue;
                 }
 
-                if (0 === strpos($item, self::IMPORT_KEY . '#')) {
-                    $importFile = trim(substr($item, 6));
+                if (0 === \strpos($item, self::IMPORT_KEY . '#')) {
+                    $importFile = \trim(\substr($item, 6));
 
                     // if needed custom handle $importFile path. e.g: Maybe it uses custom alias path
                     if ($pathHandler && \is_callable($pathHandler)) {
@@ -87,13 +87,13 @@ class YmlParser extends BaseParser
                     }
 
                     // if $importFile is not exists AND $importFile is not a absolute path AND have $parentFile
-                    if ($fileDir && !file_exists($importFile) && $importFile[0] !== '/') {
+                    if ($fileDir && !\file_exists($importFile) && $importFile[0] !== '/') {
                         $importFile = $fileDir . '/' . trim($importFile, './');
                     }
 
                     // $importFile is file
-                    if (is_file($importFile)) {
-                        $data = file_get_contents($importFile);
+                    if (\is_file($importFile)) {
+                        $data = \file_get_contents($importFile);
                         $array[$key] = $parser->parse(trim($data));
                     } else {
                         throw new \UnexpectedValueException("needed imported file $importFile don't exists!");

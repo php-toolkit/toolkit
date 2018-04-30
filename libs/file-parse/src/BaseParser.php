@@ -6,11 +6,11 @@
  * Time: 上午11:43
  */
 
-namespace MyLib\FileParse;
+namespace Toolkit\File\Parse;
 
 /**
  * Class BaseParser
- * @package MyLib\FileParse
+ * @package Toolkit\File\Parse
  */
 abstract class BaseParser
 {
@@ -42,7 +42,7 @@ abstract class BaseParser
      */
     public static function parse($string, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
-        if (is_file($string)) {
+        if (\is_file($string)) {
             return self::parseFile($string, $enhancement, $pathHandler, $fileDir);
         }
 
@@ -59,12 +59,12 @@ abstract class BaseParser
      */
     public static function parseFile($file, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
-        if (!is_file($file)) {
+        if (!\is_file($file)) {
             throw new \InvalidArgumentException("Target file [$file] not exists");
         }
 
         $fileDir = $fileDir ?: \dirname($file);
-        $data = file_get_contents($file);
+        $data = \file_get_contents($file);
 
         return static::doParse($data, $enhancement, $pathHandler, $fileDir);
     }

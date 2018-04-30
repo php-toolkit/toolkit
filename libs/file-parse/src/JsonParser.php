@@ -6,13 +6,13 @@
  * Time: 上午11:41
  */
 
-namespace MyLib\FileParse;
+namespace Toolkit\File\Parse;
 
-use MyLib\StrUtil\JsonHelper;
+use Toolkit\StrUtil\JsonHelper;
 
 /**
  * Class JsonParser
- * @package MyLib\FileParse
+ * @package Toolkit\File\Parse
  */
 class JsonParser extends BaseParser
 {
@@ -55,14 +55,14 @@ class JsonParser extends BaseParser
                 }
 
                 // if $importFile is not exists AND $importFile is not a absolute path AND have $parentFile
-                if ($fileDir && !file_exists($extendFile) && $extendFile[0] !== '/') {
+                if ($fileDir && !\file_exists($extendFile) && $extendFile[0] !== '/') {
                     $extendFile = $fileDir . '/' . trim($extendFile, './');
                 }
 
                 // $importFile is file
-                if (is_file($extendFile)) {
-                    $data = file_get_contents($extendFile);
-                    $array = array_merge(JsonHelper::parse($data), $array);
+                if (\is_file($extendFile)) {
+                    $data = \file_get_contents($extendFile);
+                    $array = \array_merge(JsonHelper::parse($data), $array);
                 } else {
                     throw new \UnexpectedValueException("needed extended file [$extendFile] don't exists!");
                 }
@@ -73,8 +73,8 @@ class JsonParser extends BaseParser
                     continue;
                 }
 
-                if (0 === strpos($item, self::IMPORT_KEY . '#')) {
-                    $importFile = trim(substr($item, 6));
+                if (0 === \strpos($item, self::IMPORT_KEY . '#')) {
+                    $importFile = \trim(\substr($item, 6));
 
                     // if needed custom handle $importFile path. e.g: Maybe it uses custom alias path
                     if ($pathHandler && \is_callable($pathHandler)) {
@@ -82,13 +82,13 @@ class JsonParser extends BaseParser
                     }
 
                     // if $importFile is not exists AND $importFile is not a absolute path AND have $parentFile
-                    if ($fileDir && !file_exists($importFile) && $importFile[0] !== '/') {
+                    if ($fileDir && !\file_exists($importFile) && $importFile[0] !== '/') {
                         $importFile = $fileDir . '/' . trim($importFile, './');
                     }
 
                     // $importFile is file
-                    if (is_file($importFile)) {
-                        $data = file_get_contents($importFile);
+                    if (\is_file($importFile)) {
+                        $data = \file_get_contents($importFile);
                         $array[$key] = JsonHelper::parse($data);
                     } else {
                         throw new \UnexpectedValueException("needed imported file [$importFile] don't exists!");

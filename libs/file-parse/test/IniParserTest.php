@@ -6,14 +6,14 @@
  * Time: 20:25
  */
 
-namespace MyLib\FileParse\Test;
+namespace Toolkit\File\Parse\Test;
 
-use MyLib\FileParse\IniParser;
+use Toolkit\File\Parse\IniParser;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class IniParserTest
- * @package MyLib\FileParse\Test
+ * @package Toolkit\File\Parse\Test
  */
 class IniParserTest extends TestCase
 {
