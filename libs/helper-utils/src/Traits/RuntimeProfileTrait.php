@@ -8,7 +8,6 @@
 
 namespace MyLib\Helpers\Traits;
 
-use MyLib\Helpers\Helper\PhpHelper;
 
 /**
  * Trait RuntimeProfileTrait
