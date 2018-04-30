@@ -6,12 +6,12 @@
  * Time: 13:10
  */
 
-namespace MyLib\Helpers\Traits;
+namespace Toolkit\Traits;
 
 
 /**
  * Trait RuntimeProfileTrait
- * @package MyLib\Helpers\Traits
+ * @package Toolkit\Traits
  */
 trait RuntimeProfileTrait
 {

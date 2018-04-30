@@ -8,11 +8,11 @@
  * File: TraitUseOption.php
  */
 
-namespace Toolkit\Triats\Config;
+namespace Toolkit\Traits\Config;
 
 /**
  * Class LiteOptionsTrait
- * @package Toolkit\Triats\Config
+ * @package Toolkit\Traits\Config
  * @property array $options 必须在使用的类定义此属性, 在 Trait 中已定义的属性，在使用 Trait 的类中不能再次定义
  */
 trait LiteOptionsTrait

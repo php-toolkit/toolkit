@@ -6,7 +6,7 @@
  * Time: 下午11:26
  */
 
-namespace MyLib\Helpers\Traits;
+namespace Toolkit\Traits;
 
 use MyLib\Helpers\Helper\PhpHelper;
 use MyLib\Helpers\Helper\Req;

@@ -6,11 +6,11 @@
  * Time: 9:20
  */
 
-namespace MyLib\Helpers\Traits;
+namespace Toolkit\Traits;
 
 /**
  * Class NameAliasTrait
- * @package MyLib\Helpers\Traits
+ * @package Toolkit\Traits
  * @property array $aliases path alias array
  */
 trait NameAliasTrait

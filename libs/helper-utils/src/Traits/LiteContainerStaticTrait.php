@@ -6,11 +6,11 @@
  * Time: 9:22
  */
 
-namespace MyLib\Helpers\Traits;
+namespace Toolkit\Traits;
 
 /**
  * Class LiteContainerStaticTrait
- * @package MyLib\Helpers\Traits
+ * @package Toolkit\Traits
  */
 trait LiteContainerStaticTrait
 {

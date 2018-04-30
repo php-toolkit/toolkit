@@ -6,7 +6,7 @@
  * Time: 11:56
  */
 
-namespace Toolkit\Util\Traits;
+namespace Toolkit\Traits;
 
 use Toolkit\PhpUtil\PhpHelper;
 

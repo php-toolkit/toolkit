@@ -6,14 +6,14 @@
  * Time: 13:10
  */
 
-namespace MyLib\Helpers\Traits;
+namespace Toolkit\Traits;
 
 use MyLib\Helpers\Helper\PhpHelper;
 use Monolog\Logger;
 
 /**
  * Trait LogProfileTrait
- * @package MyLib\Helpers\Traits
+ * @package Toolkit\Traits
  *
  * @method log(int $level, string $message, array $context = [])
  */
