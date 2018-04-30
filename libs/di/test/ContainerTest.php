@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ContainerTest
- * @package Toolkit\DI\Test
+ * @package Toolkit\DITest
  * @covers \Toolkit\DI\Container
  */
 class ContainerTest extends TestCase
