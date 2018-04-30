@@ -8,15 +8,15 @@
  * Uesd: 主要功能是 hi
  */
 
-namespace Toolkit\FileUtil;
+namespace Toolkit\File;
 
-use Toolkit\FileUtil\Exception\IOException;
-use Toolkit\FileUtil\Exception\FileNotFoundException;
+use Toolkit\File\Exception\IOException;
+use Toolkit\File\Exception\FileNotFoundException;
 use Toolkit\ArrUtil\Arr;
 
 /**
  * Class FileSystem
- * @package Toolkit\FileUtil
+ * @package Toolkit\File
  */
 abstract class FileSystem
 {

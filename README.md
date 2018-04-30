@@ -1,5 +1,12 @@
 # toolkit for php
 
+php的一些有用的基础工具库实现。 
+
+- 数据收集器(in `toolkit/libs`)
+- 依赖注入容器(in `toolkit/libs`)
+- 基础文件系统工具(in `toolkit/libs`)
+- 各种帮助类库(in `toolkit/libs`)
+
 ## install
 
 ```bash
