@@ -42,11 +42,12 @@
       "Toolkit\\Collection\\": "libs/collection/src/",
       "Toolkit\\DI\\": "libs/di/src/",
       "Toolkit\\DataParser\\": "libs/data-parser/src/",
-      "Toolkit\\FileUtil\\": "libs/file-utils/src/",
+      "Toolkit\\File\\": "libs/file-utils/src/",
+      "Toolkit\\File\\Parse": "libs/file-parse/src/",
       "Toolkit\\ObjUtil\\": "libs/obj-utils/src/",
       "Toolkit\\PhpUtil\\": "libs/php-utils/src/",
       "Toolkit\\StrUtil\\": "libs/str-utils/src/",
-      "Toolkit\\SysUtil\\": "libs/sys-utils/src/",
+      "Toolkit\\Sys\\": "libs/sys-utils/src/",
       "Toolkit\\Util\\": "libs/utils/src/"
     }
   },

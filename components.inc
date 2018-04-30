@@ -1,14 +1,15 @@
 <?php
 
 return [
-  'di',
-  'collection',
-  'utils',
-  'data-parser',
   'arr-utils',
-  'obj-utils',
-  'str-utils',
-  'php-utils',
-  'sys-utils',
+  'collection',
+  'data-parser',
+  'di',
   'file-utils',
+  'file-parse',
+  'obj-utils',
+  'php-utils',
+  'str-utils',
+  'sys-utils',
+  'utils',
 ];
