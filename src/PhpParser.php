@@ -6,13 +6,14 @@
  * Time: 19:07
  */
 
-namespace MyLib\DataParser;
+namespace Toolkit\DataParser;
 
 /**
  * Class PhpParser
- * @package MyLib\DataParser
+ * @package Toolkit\DataParser
+ * @author inhere <in.798@qq.com>
  */
-class PhpParser implements ParserInterface
+class PhpParser implements DataParserInterface
 {
     /**
      * @param mixed $data

@@ -6,23 +6,24 @@
  * Time: 19:37
  */
 
-namespace MyLib\DataParser;
+namespace Toolkit\DataParser;
 
 /**
  * Class DataParserAwareTrait
- * @package MyLib\DataParser
+ * @package Toolkit\DataParser
+ * @author inhere <in.798@qq.com>
  */
 trait DataParserAwareTrait
 {
     /**
-     * @var ParserInterface
+     * @var DataParserInterface
      */
     private $parser;
 
     /**
-     * @return ParserInterface
+     * @return DataParserInterface
      */
-    public function getParser(): ParserInterface
+    public function getParser(): DataParserInterface
     {
         if (!$this->parser) {
             $this->parser = new PhpParser();
@@ -32,10 +33,13 @@ trait DataParserAwareTrait
     }
 
     /**
-     * @param ParserInterface $parser
+     * @param DataParserInterface $parser
+     * @return DataParserAwareTrait
      */
-    public function setParser(ParserInterface $parser)
+    public function setParser(DataParserInterface $parser): self
     {
         $this->parser = $parser;
+
+        return $this;
     }
 }

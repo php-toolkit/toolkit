@@ -6,13 +6,14 @@
  * Time: 19:07
  */
 
-namespace MyLib\DataParser;
+namespace Toolkit\DataParser;
 
 /**
  * Interface ParserInterface
- * @package MyLib\DataParser
+ * @package Toolkit\DataParser
+ * @author inhere <in.798@qq.com>
  */
-interface ParserInterface
+interface DataParserInterface
 {
     /**
      * @param mixed $data
