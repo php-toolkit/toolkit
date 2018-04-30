@@ -6,12 +6,12 @@
  * Time: 21:12
  */
 
-namespace MyLib\StrUtil;
+namespace Toolkit\StrUtil;
 
 /**
  * Class Str
  *  alias of the StringHelper
- * @package MyLib\StrUtil
+ * @package Toolkit\StrUtil
  */
 class Str extends StringHelper
 {
@@ -35,7 +35,7 @@ class Str extends StringHelper
      * @param string|array $needle
      * @return bool
      */
-    public static function contains(string $string, $needle)
+    public static function contains(string $string, $needle): bool
     {
         return self::has($string, $needle);
     }
@@ -45,7 +45,7 @@ class Str extends StringHelper
      * @param string|array $needle
      * @return bool
      */
-    public static function has(string $string, $needle)
+    public static function has(string $string, $needle): bool
     {
         if (\is_string($needle)) {
             return stripos($string, $needle) !== false;

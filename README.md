@@ -3,7 +3,7 @@
 ## install
 
 ```bash
-composer require mylib/str-utils
+composer require toolkit/str-utils
 ```
 
 ## license

@@ -6,11 +6,11 @@
  * Time: 00:41
  */
 
-namespace MyLib\StrUtil;
+namespace Toolkit\StrUtil;
 
 /**
  * Class JsonHelper
- * @package MyLib\StrUtil
+ * @package Toolkit\StrUtil
  */
 class JsonHelper
 {
