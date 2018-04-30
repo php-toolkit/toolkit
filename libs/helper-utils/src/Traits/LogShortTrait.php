@@ -8,13 +8,12 @@
 
 namespace Toolkit\Traits;
 
-use MyLib\Helpers\Helper\PhpHelper;
-use MyLib\Helpers\Helper\Req;
+use Toolkit\PhpUtil\PhpHelper;
 use Monolog\Logger;
 
 /**
  * Class LogShortTrait
- * @package Sws\Components
+ * @package Toolkit\Traits
  */
 trait LogShortTrait
 {

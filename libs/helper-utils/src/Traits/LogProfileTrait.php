@@ -8,7 +8,7 @@
 
 namespace Toolkit\Traits;
 
-use MyLib\Helpers\Helper\PhpHelper;
+use Toolkit\Helpers\Helper\PhpHelper;
 use Monolog\Logger;
 
 /**
