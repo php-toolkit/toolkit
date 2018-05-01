@@ -6,15 +6,15 @@
  * Time: 上午10:11
  */
 
-namespace Toolkit\Util;
+namespace Toolkit\PhpUtil;
 
 /**
  * Class PhpDotEnv - local env read
- * @package Inhere\Library\Utils
+ * @package Toolkit\PhpUtil
  *
  * in local config file `.env` (must is 'ini' format):
  * ```ini
- * ENV=dev
+ * APP_ENV=dev
  * DEBUG=true
  * ... ...
  * ```
@@ -24,7 +24,7 @@ namespace Toolkit\Util;
  * ```php
  * PhpDotEnv::load(__DIE__);
  * env('DEBUG', false);
- * env('ENV', 'pdt');
+ * env('APP_ENV', 'pdt');
  * ```
  */
 final class PhpDotEnv
@@ -58,8 +58,8 @@ final class PhpDotEnv
      */
     public function add(string $file)
     {
-        if (is_file($file) && is_readable($file)) {
-            $this->settingEnv(parse_ini_file($file));
+        if (\is_file($file) && \is_readable($file)) {
+            $this->settingEnv(\parse_ini_file($file));
         }
     }
 
@@ -69,7 +69,7 @@ final class PhpDotEnv
      */
     private function settingEnv(array $data)
     {
-        $loadedVars = array_flip(explode(',', getenv(self::FULL_KEY)));
+        $loadedVars = \array_flip(\explode(',', \getenv(self::FULL_KEY)));
         unset($loadedVars['']);
 
         foreach ($data as $name => $value) {
@@ -77,8 +77,8 @@ final class PhpDotEnv
                 continue;
             }
 
-            $name = strtoupper($name);
-            $notHttpName = 0 !== strpos($name, 'HTTP_');
+            $name = \strtoupper($name);
+            $notHttpName = 0 !== \strpos($name, 'HTTP_');
 
             // don't check existence with getenv() because of thread safety issues
             if ((isset($_ENV[$name]) || (isset($_SERVER[$name]) && $notHttpName)) && !isset($loadedVars[$name])) {
@@ -91,7 +91,7 @@ final class PhpDotEnv
             }
 
             // eg: "FOO=BAR"
-            putenv("$name=$value");
+            \putenv("$name=$value");
             $_ENV[$name] = $value;
 
             if ($notHttpName) {
@@ -102,8 +102,8 @@ final class PhpDotEnv
         }
 
         if ($loadedVars) {
-            $loadedVars = implode(',', array_keys($loadedVars));
-            putenv(self::FULL_KEY . "=$loadedVars");
+            $loadedVars = \implode(',', \array_keys($loadedVars));
+            \putenv(self::FULL_KEY . "=$loadedVars");
             $_ENV[self::FULL_KEY] = $loadedVars;
             $_SERVER[self::FULL_KEY] = $loadedVars;
         }
