@@ -92,6 +92,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
             'notNames' => 'addNotNames',
             'paths' => 'addNotPaths',
             'notPaths' => 'addNotPaths',
+            'exclude' => 'exclude',
             'excludes' => 'exclude',
         ];
 
@@ -163,7 +164,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function addNames($patterns): self
     {
-        $this->names = array_merge($this->names, $patterns);
+        $this->names = \array_merge($this->names, (array)$patterns);
 
         return $this;
     }
@@ -231,7 +232,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function addNotPaths($patterns): self
     {
-        $this->notPaths = array_merge($this->notPaths, $patterns);
+        $this->notPaths = array_merge($this->notPaths, (array)$patterns);
 
         return $this;
     }
@@ -324,6 +325,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
     /**
      * @param mixed $iterator
      * @return $this
+     * @throws \InvalidArgumentException
      */
     public function append($iterator): self
     {
@@ -349,7 +351,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function count(): int
     {
-        return iterator_count($this->getIterator());
+        return \iterator_count($this->getIterator());
     }
 
     /**
@@ -364,6 +366,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
      * Retrieve an external iterator
      * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
      * @return \Iterator|\SplFileInfo[] An iterator
+     * @throws \LogicException
      */
     public function getIterator(): \Traversable
     {
@@ -521,7 +524,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
                     return !($this->current()->isDir() && isset($this->excludes[$name]));
                 }
 
-                public function hasChildren()
+                public function hasChildren(): bool
                 {
                     return $this->iterator->hasChildren();
                 }
