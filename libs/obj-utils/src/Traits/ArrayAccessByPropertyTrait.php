@@ -27,7 +27,7 @@ trait ArrayAccessByPropertyTrait
      */
     public function offsetExists($offset): bool
     {
-        return property_exists($this, $offset);
+        return \property_exists($this, $offset);
     }
 
     /**

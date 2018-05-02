@@ -8,7 +8,7 @@
 
 namespace Toolkit\Traits\Event;
 
-use Toolkit\SysUtil\PhpHelper;
+use Toolkit\PhpUtil\PhpHelper;
 
 /**
  * Class FixedEventStaticTrait

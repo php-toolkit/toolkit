@@ -8,7 +8,7 @@
 
 namespace Toolkit\Traits\Event;
 
-use Toolkit\SysUtil\Php;
+use Toolkit\PhpUtil\Php;
 
 /**
  * Trait LiteEventTrait - 简洁版的事件处理trait，一个事件只允许一个回调
