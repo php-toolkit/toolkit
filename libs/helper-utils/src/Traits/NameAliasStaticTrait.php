@@ -11,11 +11,10 @@ namespace Toolkit\Traits;
 /**
  * Class NameAliasStaticTrait
  * @package Toolkit\Traits
- * @property array $aliases path alias array
  */
 trait NameAliasStaticTrait
 {
-    // protected static $aliases = [];
+    protected static $aliases = [];
 
     /**
      * set/get name alias

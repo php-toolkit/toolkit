@@ -9,7 +9,6 @@
 namespace Toolkit\Collection;
 
 use Toolkit\StrUtil\Str;
-use RuntimeException;
 
 /**
  * Class Configuration - 配置数据管理
@@ -56,7 +55,7 @@ final class Configuration extends Collection
      * @param mixed $data If mode is 'folder', $data is config folder path
      * @param string $format
      * @param string $name
-     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
      */
     public function __construct($data = null, string $format = self::FORMAT_PHP, $name = 'config')
     {
@@ -69,7 +68,7 @@ final class Configuration extends Collection
         }
 
         if ($this->mode === self::MODE_FOLDER && !is_dir($this->folderPath)) {
-            throw new RuntimeException("Config mode is 'folder'. the property 'folderPath' must is a folder path!");
+            throw new \InvalidArgumentException("Config mode is 'folder'. the property 'folderPath' must is a folder path!");
         }
 
         parent::__construct($data, $this->format, $name);
@@ -80,13 +79,13 @@ final class Configuration extends Collection
      * @param string $path
      * @param mixed $value
      * @return mixed
-     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
      */
     public function set($path, $value)
     {
         // if is readonly
         if ($this->readonly && $this->has($path)) {
-            throw new RuntimeException("Config data have been setting readonly. don't allow change.");
+            throw new \InvalidArgumentException("Config data have been setting readonly. don't allow change.");
         }
 
         return parent::set($path, $value);
@@ -97,20 +96,20 @@ final class Configuration extends Collection
      * @param string $path
      * @param string $default
      * @return mixed
-     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
      */
     public function get(string $path, $default = null)
     {
         if ($this->mode === self::MODE_FOLDER) {
             $nodes = Str::toArray($path, $this->separator);
-            $name = array_shift($nodes);// config file name
+            $name = \array_shift($nodes);// config file name
 
             // if config file not load. load it.
             if (!isset($this->data[$name])) {
                 $file = $this->folderPath . "/{$name}.{$this->format}";
 
                 if (!is_file($file)) {
-                    throw new \RuntimeException("The want get config file not exist, Name: $name, File: $file");
+                    throw new \InvalidArgumentException("The want get config file not exist, Name: $name, File: $file");
                 }
 
                 $this->data[$name] = self::read($file, $this->format);
@@ -184,7 +183,7 @@ final class Configuration extends Collection
      */
     public function setFolderPath(string $folderPath)
     {
-        if (!is_dir($folderPath)) {
+        if (!\is_dir($folderPath)) {
             throw new \InvalidArgumentException("The config files folder path is not exists! Path: $folderPath");
         }
 

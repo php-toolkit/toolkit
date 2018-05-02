@@ -11,73 +11,81 @@ namespace Toolkit\Traits;
 /**
  * Class PathAliasTrait
  * @package Toolkit\Traits
- * @property array $aliases path alias array
  */
 trait PathAliasTrait
 {
-    // protected static $aliases = [];
+    /**
+     * @var array
+     */
+    protected static $aliases = [];
 
     /**
-     * set/get path alias
-     * @param array|string $path
-     * @param string|null $value
-     * @return bool|string
+     * get real value by alias
+     * @param string $alias
+     * @return string|mixed
+     * @throws \InvalidArgumentException
      */
-    public static function alias($path, $value = null)
+    public static function alias(string $alias)
     {
-        // get path by alias
-        if (\is_string($path) && !$value) {
-            // don't use alias
-            if ($path[0] !== '@') {
-                return $path;
-            }
+        // Not an alias
+        if (!$alias || $alias[0] !== '@') {
+            return $alias;
+        }
 
-            $sep = '/';
-            $path = str_replace(['/', '\\'], $sep, $path);
+        $sep = '/';
+        $other = '';
+        $alias = \str_replace('\\', $sep, $alias);
 
-            // only a alias. e.g. @project
-            if (!strpos($path, $sep)) {
-                return self::$aliases[$path] ?? $path;
-            }
-
+        if (\strpos($alias, $sep)) {
             // have other partial. e.g: @project/temp/logs
-            $realPath = $path;
-            list($alias, $other) = explode($sep, $path, 2);
+            list($alias, $other) = \explode($sep, $alias, 2);
+        }
 
-            if (isset(self::$aliases[$alias])) {
-                $realPath = self::$aliases[$alias] . $sep . $other;
+        if (!isset(self::$aliases[$alias])) {
+            throw new \InvalidArgumentException("The alias name '$alias' is not registered!");
+        }
+
+        return self::$aliases[$alias] . ($other ? $sep . $other : '');
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public static function hasAlias(string $name): bool
+    {
+        return isset(self::$aliases[$name]);
+    }
+
+    /**
+     * @param string $alias
+     * @param $value
+     * @throws \InvalidArgumentException
+     */
+    public static function setAlias(string $alias, $value)
+    {
+        self::$aliases[$alias] = self::alias($value);
+    }
+
+    /**
+     * @param array $aliases
+     */
+    public static function setAliases(array $aliases)
+    {
+        foreach ($aliases as $alias => $realPath) {
+            // 1th char must is '@'
+            if (!$alias || $alias[0] !== '@') {
+                continue;
             }
 
-            return $realPath;
+            self::$aliases[$alias] = self::alias($realPath);
         }
-
-        if ($path && $value && \is_string($path) && \is_string($value)) {
-            $path = [$path => $value];
-        }
-
-        // custom set path's alias. e.g: Slim::alias([ 'alias' => 'path' ]);
-        if (\is_array($path)) {
-            /**
-             * @var string $alias
-             * @var string $realPath
-             */
-            foreach ($path as $alias => $realPath) {
-                // 1th char must is '@'
-                if ($alias[0] !== '@') {
-                    continue;
-                }
-
-                self::$aliases[$alias] = self::alias($realPath);
-            }
-        }
-
-        return true;
     }
 
     /**
      * @return array
      */
-    public static function getAliases()
+    public static function getAliases(): array
     {
         return self::$aliases;
     }

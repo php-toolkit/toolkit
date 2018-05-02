@@ -14,7 +14,6 @@ use Toolkit\File\Parse\YmlParser;
 use Toolkit\ArrUtil\Arr;
 use Toolkit\File\File;
 use Toolkit\ObjUtil\Obj;
-use RuntimeException;
 
 /**
  * Class DataCollector - 数据收集器 (数据存储器 - DataStorage) complex deep
@@ -90,6 +89,7 @@ class Collection extends SimpleCollection
      * @param string $format
      * @param string $name
      * @return static
+     * @throws \RangeException
      */
     public static function make($data = null, $format = 'php', $name = 'box1')
     {
@@ -151,10 +151,10 @@ class Collection extends SimpleCollection
     }
 
     /**
-     * @param $class
+     * @param string $class
      * @return mixed
      */
-    public function toObject($class = \stdClass::class)
+    public function toObject(string $class = \stdClass::class)
     {
         return Arr::toObject($this->data, $class);
     }
@@ -209,7 +209,7 @@ class Collection extends SimpleCollection
      * @param string|array|mixed $data
      * @param string $format = 'php'
      * @return static
-     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
      * @throws \RangeException
      */
     public function load($data, $format = 'php')
@@ -249,11 +249,7 @@ class Collection extends SimpleCollection
      * @param $file
      * @param string $format
      * @return array|mixed
-<<<<<<< HEAD
      * @throws \Toolkit\File\Exception\FileNotFoundException
-=======
-     * @throws \Toolkit\FileUtil\Exception\FileNotFoundException
->>>>>>> 34544cc5438e3a86bf11d4dd520b2be25413ffe2
      */
     public static function read($file, $format = self::FORMAT_PHP)
     {
@@ -263,7 +259,6 @@ class Collection extends SimpleCollection
     /**
      * load data form yml file
      * @param $data
-     * @throws RuntimeException
      * @return static
      */
     public function loadYaml($data)
@@ -319,7 +314,6 @@ class Collection extends SimpleCollection
      * load data form json file
      * @param $data
      * @return Collection
-     * @throws RuntimeException
      */
     public function loadJson($data): Collection
     {
