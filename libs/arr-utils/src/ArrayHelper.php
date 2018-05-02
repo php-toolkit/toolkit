@@ -9,7 +9,7 @@
 
 namespace Toolkit\ArrUtil;
 
-use Inhere\Library\Collections\CollectionInterface;
+use Toolkit\Collection\CollectionInterface;
 
 /**
  * Class ArrayHelper

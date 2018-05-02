@@ -6,13 +6,13 @@
  * Time: 11:41
  */
 
-namespace MyLib\Helpers\Traits;
+namespace Toolkit\Traits;
 
-use MyLib\Helpers\Helper\Php;
+use Toolkit\PhpUtil\Php;
 
 /**
  * Trait PathResolver
- * @package MyLib\Helpers\Traits
+ * @package Toolkit\Traits
  */
 trait PathResolverTrait
 {

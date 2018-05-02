@@ -8,7 +8,7 @@
 
 namespace Toolkit\Util;
 
-use Inhere\Library\Helpers\PhpHelper;
+use Toolkit\PhpUtil\PhpHelper;
 
 /**
  * Class DeferredCallable

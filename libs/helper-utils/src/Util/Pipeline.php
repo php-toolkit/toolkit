@@ -9,8 +9,6 @@
 
 namespace Toolkit\Util;
 
-use Inhere\Library\Interfaces\PipelineInterface;
-
 /**
  * Class Pipeline
  * @package Toolkit\Util

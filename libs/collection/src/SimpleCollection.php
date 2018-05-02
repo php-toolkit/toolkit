@@ -6,10 +6,7 @@
 namespace Toolkit\Collection;
 
 /**
- * Collection
- * This class provides a common interface used by many other
- * classes in a Inhere\Library application that manage "collections"
- * of data that must be inspected and/or manipulated
+ * Class Collection
  */
 class SimpleCollection implements CollectionInterface
 {
