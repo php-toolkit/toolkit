@@ -98,6 +98,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * @param $definition
      * @param array $opts
      * @return $this
+     * @throws \InvalidArgumentException
      * @throws DependencyResolutionException
      */
     public function set(string $id, $definition, array $opts = []): self
@@ -109,9 +110,9 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
         }
 
         $args = $props = [];
-        $opts = $opts ? array_merge(self::DEFAULT_OPTIONS, $opts) : self::DEFAULT_OPTIONS;
+        $opts = $opts ? \array_merge(self::DEFAULT_OPTIONS, $opts) : self::DEFAULT_OPTIONS;
 
-        // 已经是个服务实例 object 不是闭包 closure
+        // 已经是个服务实例 object
         if (\is_object($definition)) {
             $this->ids[$id] = (bool)$opts['locked'];
             $this->services[$id] = new Service($definition, $args, $opts['shared'], $opts['locked']);
@@ -126,7 +127,10 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
             // a Array
         } elseif (\is_array($definition)) {
             if (empty($definition['class'])) {
-                throw new \InvalidArgumentException("Configuration errors, the 'class' is must be defined! ID: $id");
+                throw new \InvalidArgumentException(
+                    "Configuration errors, the 'class' is must be defined! ID: $id, Def: " .
+                    \json_encode($definition, \JSON_UNESCAPED_SLASHES)
+                );
             }
 
             $target = $definition['class'];
@@ -254,6 +258,11 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
     {
         /** @var ServiceProviderInterface $provider */
         foreach ($providers as $provider) {
+            // is class name
+            if (\is_string($provider)) {
+                $provider = new $provider;
+            }
+
             $provider->register($this);
         }
 
