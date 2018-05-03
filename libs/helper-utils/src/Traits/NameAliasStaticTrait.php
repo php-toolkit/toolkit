@@ -51,7 +51,7 @@ trait NameAliasStaticTrait
      * @param $alias
      * @return bool
      */
-    public static function hasAlias($alias)
+    public static function hasAlias($alias): bool
     {
         return isset(self::$aliases[$alias]);
     }
@@ -59,7 +59,7 @@ trait NameAliasStaticTrait
     /**
      * @return array
      */
-    public static function getAliases()
+    public static function getAliases(): array
     {
         return self::$aliases;
     }

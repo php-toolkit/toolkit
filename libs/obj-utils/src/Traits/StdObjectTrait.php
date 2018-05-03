@@ -8,7 +8,6 @@
 
 namespace Toolkit\ObjUtil\Traits;
 
-use Inhere\Exceptions\UnknownCalledException;
 use Toolkit\ObjUtil\Obj;
 
 /**
@@ -34,9 +33,9 @@ trait StdObjectTrait
     final public static function spaceName(string $fullName = null): string
     {
         $fullName = $fullName ?: self::fullName();
-        $fullName = str_replace('\\', '/', $fullName);
+        $fullName = \str_replace('\\', '/', $fullName);
 
-        return strpos($fullName, '/') ? \dirname($fullName) : null;
+        return \strpos($fullName, '/') ? \dirname($fullName) : null;
     }
 
     /**
@@ -47,9 +46,9 @@ trait StdObjectTrait
     final public static function className(string $fullName = null): string
     {
         $fullName = $fullName ?: self::fullName();
-        $fullName = str_replace('\\', '/', $fullName);
+        $fullName = \str_replace('\\', '/', $fullName);
 
-        return basename($fullName);
+        return \basename($fullName);
     }
 
     /**
@@ -58,7 +57,7 @@ trait StdObjectTrait
      */
     public function __construct(array $config = [])
     {
-        Obj::configure($this, $config);
+        Obj::init($this, $config);
 
         $this->init();
     }

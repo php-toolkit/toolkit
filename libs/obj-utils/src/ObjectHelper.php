@@ -9,8 +9,6 @@
 
 namespace Toolkit\ObjUtil;
 
-use Inhere\Exceptions\DependencyResolutionException;
-
 /**
  * Class ObjectHelper
  * @package Toolkit\ObjUtil
@@ -38,14 +36,14 @@ class ObjectHelper
     public static function init($object, array $options)
     {
         foreach ($options as $property => $value) {
-            if (is_numeric($property)) {
+            if (\is_numeric($property)) {
                 continue;
             }
 
-            $setter = 'set' . ucfirst($property);
+            $setter = 'set' . \ucfirst($property);
 
             // has setter
-            if (method_exists($object, $setter)) {
+            if (\method_exists($object, $setter)) {
                 $object->$setter($value);
             } else {
                 $object->$property = $value;
@@ -84,7 +82,7 @@ class ObjectHelper
      */
     public static function encode($obj): string
     {
-        return base64_encode(gzcompress(serialize($obj)));
+        return \base64_encode(\gzcompress(\serialize($obj)));
     }
 
     /**
@@ -95,7 +93,7 @@ class ObjectHelper
      */
     public static function decode(string $txt, $allowedClasses = false)
     {
-        return unserialize(gzuncompress(base64_decode($txt)), ['allowed_classes' => $allowedClasses]);
+        return \unserialize(\gzuncompress(\base64_decode($txt)), ['allowed_classes' => $allowedClasses]);
     }
 
     /**
@@ -111,8 +109,8 @@ class ObjectHelper
         // Ensure the input data is an array.
         if (\is_object($data)) {
             if ($data instanceof \Traversable) {
-                $arr = iterator_to_array($data);
-            } elseif (method_exists($data, 'toArray')) {
+                $arr = \iterator_to_array($data);
+            } elseif (\method_exists($data, 'toArray')) {
                 $arr = $data->toArray();
             }
         } else {
@@ -138,17 +136,17 @@ class ObjectHelper
     public static function hash($object, $unique = true): string
     {
         if (\is_object($object)) {
-            $hash = spl_object_hash($object);
+            $hash = \spl_object_hash($object);
 
             if ($unique) {
-                $hash = md5($hash);
+                $hash = \md5($hash);
             }
 
             return $hash;
         }
 
         // a class
-        return \is_string($object) ? md5($object) : '';
+        return \is_string($object) ? \md5($object) : '';
     }
 
     /**
@@ -157,7 +155,7 @@ class ObjectHelper
      * @param \ReflectionMethod $method Method for which to build the argument array.
      * @param array $extraArgs
      * @return array
-     * @throws DependencyResolutionException
+     * @throws \RuntimeException
      */
     public static function getMethodArgs(\ReflectionMethod $method, array $extraArgs = []): array
     {
@@ -191,7 +189,7 @@ class ObjectHelper
 
             // $dependencyVarName = $param->getName();
             // Couldn't resolve dependency, and no default was provided.
-            throw new DependencyResolutionException(sprintf(
+            throw new \RuntimeException(sprintf(
                 'Could not resolve dependency: %s for the %dth parameter',
                 $param->getPosition(),
                 $param->getName()
@@ -205,8 +203,8 @@ class ObjectHelper
      * 从类名创建服务实例对象，会尽可能自动补完构造函数依赖
      * @from windWalker https://github.com/ventoviro/windwalker
      * @param string $class a className
-     * @throws DependencyResolutionException
      * @return mixed
+     * @throws \RuntimeException
      */
     public static function create(string $class)
     {

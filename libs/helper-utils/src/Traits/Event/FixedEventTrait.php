@@ -43,7 +43,7 @@ trait FixedEventTrait
      * @param $event
      * @return bool
      */
-    public function hasEventHandler($event)
+    public function hasEventHandler($event): bool
     {
         if (false === ($key = array_search($event, $this->getSupportedEvents(), true))) {
             return false;
@@ -63,7 +63,7 @@ trait FixedEventTrait
     /**
      * @return int
      */
-    public function getEventCount()
+    public function getEventCount(): int
     {
         return $this->eventHandlers->count();
     }
@@ -72,7 +72,7 @@ trait FixedEventTrait
      * @param string $event
      * @return callable
      */
-    public function getEventHandler(string $event)
+    public function getEventHandler(string $event): callable
     {
         if (false === ($key = array_search($event, $this->getSupportedEvents(), true))) {
             return null;
@@ -121,7 +121,7 @@ trait FixedEventTrait
      * @param string $event
      * @return bool
      */
-    public function off(string $event)
+    public function off(string $event): bool
     {
         if (false === ($key = array_search($event, $this->getSupportedEvents(), true))) {
             return null;

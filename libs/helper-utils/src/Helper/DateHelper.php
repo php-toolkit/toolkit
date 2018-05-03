@@ -34,7 +34,7 @@ class DateHelper
      * @param string $date 日期
      * @return boolean
      */
-    public static function isDate($date)
+    public static function isDate($date): bool
     {
         // strtotime转换不对，日期格式显然不对。
         return strtotime($date) ? true : false;
@@ -46,7 +46,7 @@ class DateHelper
      * @param string $format 需要检验的格式数组
      * @return boolean
      */
-    public static function isDateFormat($date, $format = 'Y-m-d')
+    public static function isDateFormat($date, $format = 'Y-m-d'): bool
     {
         if (!$unixTime = strtotime($date)) {
             return false;
@@ -63,7 +63,7 @@ class DateHelper
     /**
      * @return int
      */
-    public static function todayStart()
+    public static function todayStart(): int
     {
 //        return strtotime(date('Y-m-d 00:00:00'));
         return strtotime('today 00:00:00');
@@ -72,7 +72,7 @@ class DateHelper
     /**
      * @return int
      */
-    public static function todayEnd()
+    public static function todayEnd(): int
     {
 //        return strtotime(date('Y-m-d 23:59:59'));
         return strtotime('today 23:59:59');
@@ -89,7 +89,7 @@ class DateHelper
     /**
      * @return int
      */
-    public static function tomorrowStart()
+    public static function tomorrowStart(): int
     {
         return strtotime('+1 day 00:00:00');
     }
@@ -97,7 +97,7 @@ class DateHelper
     /**
      * @return int
      */
-    public static function tomorrowEnd()
+    public static function tomorrowEnd(): int
     {
         return strtotime('+1 day 23:59:59');
     }
@@ -111,7 +111,7 @@ class DateHelper
     }
 
     //获取指定日期所在月的第一天和最后一天
-    public static function getTheMonth($date)
+    public static function getTheMonth($date): array
     {
         $firstDay = date('Y-m-01', strtotime($date));
         $lastDay = date('Y-m-d', strtotime("$firstDay +1 month -1 day"));
@@ -120,7 +120,7 @@ class DateHelper
     }
 
     //获取指定日期上个月的第一天和最后一天
-    public static function getPurMonth($date)
+    public static function getPurMonth($date): array
     {
         $time = strtotime($date);
         $firstDay = date('Y-m-01', strtotime(date('Y', $time) . '-' . (date('m', $time) - 1) . '-01'));
@@ -130,7 +130,7 @@ class DateHelper
     }
 
     //获取指定日期下个月的第一天和最后一天
-    public static function getNextMonth($date)
+    public static function getNextMonth($date): array
     {
         $arr = getdate();
 

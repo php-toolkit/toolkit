@@ -37,18 +37,27 @@ trait ArrayAccessByGetterSetterTrait
      */
     public function offsetGet($offset)
     {
-        return $this->$offset;
+        $getter = 'get' . ucfirst($offset);
+
+        if (\method_exists($this, $getter)) {
+            $this->$getter();
+        }
+
+        return null;
     }
 
     /**
      * Sets an offset in the iterator.
      * @param   mixed $offset The array offset.
      * @param   mixed $value The array value.
-     * @return  void
      */
     public function offsetSet($offset, $value)
     {
-        $this->$offset = $value;
+        $setter = 'set' . ucfirst($offset);
+
+        if (\method_exists($this, $setter)) {
+            $this->$setter($value);
+        }
     }
 
     /**

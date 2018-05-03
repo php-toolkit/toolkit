@@ -52,7 +52,7 @@ trait LiteContainerTrait
      * @return bool
      * @throws \LogicException
      */
-    public function set($name, $service, $replace = false)
+    public function set($name, $service, $replace = false): bool
     {
         // have been used.
         if (isset(self::$instances[$name])) {
@@ -134,7 +134,7 @@ trait LiteContainerTrait
      * @param $name
      * @return bool
      */
-    public function has($name)
+    public function has($name): bool
     {
         return isset(self::$services[$name]);
     }
@@ -142,7 +142,7 @@ trait LiteContainerTrait
     /**
      * @return array
      */
-    public function getServiceNames()
+    public function getServiceNames(): array
     {
         return array_keys(self::$services);
     }

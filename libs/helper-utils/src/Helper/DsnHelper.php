@@ -26,7 +26,7 @@ class DsnHelper
      * @param   string $dsn
      * @return  array
      */
-    public static function extractDsn($dsn)
+    public static function extractDsn($dsn): array
     {
         // Parse DSN to array
         $dsn = str_replace(';', "\n", $dsn);
@@ -42,7 +42,7 @@ class DsnHelper
      * @throws  \RuntimeException
      * @return  string
      */
-    public static function getDsn(array $options = [], $driver = null)
+    public static function getDsn(array $options = [], $driver = null): string
     {
         if (!empty($options['dsn'])) {
             return $options['dsn'];
@@ -75,7 +75,7 @@ class DsnHelper
      * mysql
      * @return  array
      */
-    protected static function mysql()
+    protected static function mysql(): array
     {
         return [
             'mysql:host={HOST};port={PORT};dbname={DBNAME};charset={CHARSET}',
@@ -92,7 +92,7 @@ class DsnHelper
      * cubrid
      * @return  array
      */
-    protected static function cubrid()
+    protected static function cubrid(): array
     {
         return [
             'cubrid:host={HOST};port={PORT};dbname={DBNAME}',
@@ -108,7 +108,7 @@ class DsnHelper
      * dblib
      * @return  array
      */
-    protected static function dblib()
+    protected static function dblib(): array
     {
         return [
             'dblib:host={HOST};port={PORT};dbname={DBNAME}',
@@ -124,7 +124,7 @@ class DsnHelper
      * firebird
      * @return  array
      */
-    protected static function firebird()
+    protected static function firebird(): array
     {
         return [
             'firebird:dbname={DBNAME}',
@@ -138,7 +138,7 @@ class DsnHelper
      * ibm
      * @return  array
      */
-    protected static function ibm()
+    protected static function ibm(): array
     {
         if ($dsn = static::getOption('dsn')) {
             return [
@@ -163,7 +163,7 @@ class DsnHelper
      * dblib
      * @return  array
      */
-    protected static function informix()
+    protected static function informix(): array
     {
         if ($dsn = static::getOption('dsn')) {
             return [
@@ -190,7 +190,7 @@ class DsnHelper
      * mssql
      * @return  array
      */
-    protected static function mssql()
+    protected static function mssql(): array
     {
         return [
             'mssql:host={HOST};port={PORT};dbname={DBNAME}',
@@ -206,7 +206,7 @@ class DsnHelper
      * oci
      * @return  array
      */
-    protected static function oci()
+    protected static function oci(): array
     {
         if ($dsn = static::getOption('dsn')) {
             return [
@@ -233,7 +233,7 @@ class DsnHelper
      * odbc
      * @return  array
      */
-    protected static function odbc()
+    protected static function odbc(): array
     {
         return [
             'odbc:DSN={DSN};UID:#USER};PWD={PASSWORD}',
@@ -249,7 +249,7 @@ class DsnHelper
      * pgsql
      * @return  array
      */
-    protected static function pgsql()
+    protected static function pgsql(): array
     {
         return [
             'pgsql:host={HOST};port={PORT};dbname={DBNAME}',
@@ -265,7 +265,7 @@ class DsnHelper
      * Alias of pgsql
      * @return  array
      */
-    protected static function postgresql()
+    protected static function postgresql(): array
     {
         return static::pgsql();
     }
@@ -274,7 +274,7 @@ class DsnHelper
      * sqlite
      * @return  array
      */
-    protected static function sqlite()
+    protected static function sqlite(): array
     {
         $version = (int)static::getOption('version');
 
@@ -292,7 +292,7 @@ class DsnHelper
      * sybase
      * @return  array
      */
-    protected static function sybase()
+    protected static function sybase(): array
     {
         return [
             'pgsql:host={HOST};port={PORT};dbname={DBNAME}',
@@ -308,7 +308,7 @@ class DsnHelper
      * sybase
      * @return  array
      */
-    protected static function fourd()
+    protected static function fourd(): array
     {
         return [
             '4D:host={HOST};charset=UTF-8',

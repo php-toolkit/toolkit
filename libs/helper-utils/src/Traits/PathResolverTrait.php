@@ -25,7 +25,7 @@ trait PathResolverTrait
      * @param string $path
      * @return string
      */
-    public function resolverPath($path)
+    public function resolverPath(string $path): string
     {
         if (!$this->pathResolver) {
             return $path;

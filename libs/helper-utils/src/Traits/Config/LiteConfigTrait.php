@@ -21,7 +21,7 @@ trait LiteConfigTrait
      * @param $name
      * @return bool
      */
-    public function hasConfig($name)
+    public function hasConfig($name): bool
     {
         return array_key_exists($name, $this->config);
     }
@@ -79,7 +79,7 @@ trait LiteConfigTrait
      * @param string|null $key
      * @return array
      */
-    public function getConfig($key = null)
+    public function getConfig($key = null): array
     {
         if ($key) {
             return $this->getValue($key);

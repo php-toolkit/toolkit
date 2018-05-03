@@ -23,7 +23,7 @@ trait OptionsTrait
      * @param $name
      * @return bool
      */
-    public function hasOption($name)
+    public function hasOption($name): bool
     {
         return array_key_exists($name, $this->options);
     }
@@ -80,7 +80,7 @@ trait OptionsTrait
      * Method to get property Options
      * @return  array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }

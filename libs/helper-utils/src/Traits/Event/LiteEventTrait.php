@@ -86,7 +86,7 @@ trait LiteEventTrait
     /**
      * @return array
      */
-    public function getEvents()
+    public function getEvents(): array
     {
         return $this->_events;
     }
@@ -94,7 +94,7 @@ trait LiteEventTrait
     /**
      * @return int
      */
-    public function getEventCount()
+    public function getEventCount(): int
     {
         return \count($this->_events);
     }

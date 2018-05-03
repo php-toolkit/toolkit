@@ -37,7 +37,7 @@ trait LiteContainerStaticTrait
      * @param bool $replace replace exists service
      * @return bool
      */
-    public static function register($name, $service, $replace = false)
+    public static function register($name, $service, $replace = false): bool
     {
         return static::set($name, $service, $replace);
     }
@@ -50,7 +50,7 @@ trait LiteContainerStaticTrait
      * @return bool
      * @throws \LogicException
      */
-    public static function set($name, $service, $replace = false)
+    public static function set($name, $service, $replace = false): bool
     {
         // have been used.
         if (isset(self::$instances[$name])) {
@@ -132,7 +132,7 @@ trait LiteContainerStaticTrait
      * @param $name
      * @return bool
      */
-    public static function has($name)
+    public static function has($name): bool
     {
         return isset(self::$services[$name]);
     }
@@ -140,7 +140,7 @@ trait LiteContainerStaticTrait
     /**
      * @return array
      */
-    public static function getServiceNames()
+    public static function getServiceNames(): array
     {
         return array_keys(self::$services);
     }

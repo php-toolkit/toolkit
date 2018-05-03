@@ -98,7 +98,7 @@ trait RuntimeProfileTrait
      * @param string $category
      * @return array
      */
-    public static function getProfileData($name = null, $category = 'application')
+    public static function getProfileData($name = null, $category = 'application'): array
     {
         if ($name) {
             return self::$profiles[$category][$name] ?? [];

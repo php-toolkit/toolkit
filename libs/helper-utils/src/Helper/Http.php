@@ -93,7 +93,7 @@ class Http
      * @param ResponseInterface $response
      * @return bool
      */
-    public static function isEmptyResponse(ResponseInterface $response)
+    public static function isEmptyResponse(ResponseInterface $response): bool
     {
         if (method_exists($response, 'isEmpty')) {
             return $response->isEmpty();

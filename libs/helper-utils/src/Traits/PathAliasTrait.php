@@ -69,6 +69,7 @@ trait PathAliasTrait
 
     /**
      * @param array $aliases
+     * @throws \InvalidArgumentException
      */
     public static function setAliases(array $aliases)
     {

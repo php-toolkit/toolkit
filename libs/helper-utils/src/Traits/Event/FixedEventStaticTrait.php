@@ -71,7 +71,7 @@ trait FixedEventStaticTrait
      * @param array $args
      * @return bool
      */
-    public static function fire($event, array $args = [])
+    public static function fire($event, array $args = []): bool
     {
         if (!isset(self::$events[$event])) {
             return false;
@@ -98,7 +98,7 @@ trait FixedEventStaticTrait
      * @param $event
      * @return bool
      */
-    public static function off($event)
+    public static function off($event): bool
     {
         if (self::hasEvent($event)) {
             unset(self::$events[$event], self::$eventHandlers[$event]);
@@ -113,7 +113,7 @@ trait FixedEventStaticTrait
      * @param $event
      * @return bool
      */
-    public static function hasEvent($event)
+    public static function hasEvent($event): bool
     {
         return isset(self::$events[$event]);
     }
@@ -122,7 +122,7 @@ trait FixedEventStaticTrait
      * @param $event
      * @return bool
      */
-    public static function isOnce($event)
+    public static function isOnce($event): bool
     {
         if (self::hasEvent($event)) {
             return self::$events[$event];
@@ -136,7 +136,7 @@ trait FixedEventStaticTrait
      * @param $event
      * @return bool
      */
-    public static function isSupportedEvent($event)
+    public static function isSupportedEvent($event): bool
     {
         if (!$event || !preg_match('/[a-zA-z][\w-]+/', $event)) {
             return false;
@@ -152,7 +152,7 @@ trait FixedEventStaticTrait
     /**
      * @return array
      */
-    public static function getSupportEvents()
+    public static function getSupportEvents(): array
     {
         return self::$supportedEvents;
     }
@@ -168,7 +168,7 @@ trait FixedEventStaticTrait
     /**
      * @return array
      */
-    public static function getEvents()
+    public static function getEvents(): array
     {
         return self::$events;
     }
@@ -176,7 +176,7 @@ trait FixedEventStaticTrait
     /**
      * @return int
      */
-    public static function countEvents()
+    public static function countEvents(): int
     {
         return \count(self::$events);
     }

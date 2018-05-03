@@ -67,7 +67,7 @@ trait EventTrait
      * @param array $args
      * @return bool
      */
-    public function fire($event, array $args = [])
+    public function fire($event, array $args = []): bool
     {
         if (!isset($this->events[$event])) {
             return false;
@@ -119,7 +119,7 @@ trait EventTrait
      * @param $event
      * @return bool
      */
-    public function hasEvent($event)
+    public function hasEvent($event): bool
     {
         return isset($this->events[$event]);
     }
@@ -128,7 +128,7 @@ trait EventTrait
      * @param $event
      * @return bool
      */
-    public function isOnce($event)
+    public function isOnce($event): bool
     {
         if ($this->hasEvent($event)) {
             return $this->events[$event];
@@ -142,7 +142,7 @@ trait EventTrait
      * @param $event
      * @return bool
      */
-    public function isSupportedEvent($event)
+    public function isSupportedEvent($event): bool
     {
         if (!$event || !preg_match('/[a-zA-z][\w-]+/', $event)) {
             return false;
@@ -158,7 +158,7 @@ trait EventTrait
     /**
      * @return array
      */
-    public function getSupportEvents()
+    public function getSupportEvents(): array
     {
         return $this->supportedEvents;
     }
@@ -174,7 +174,7 @@ trait EventTrait
     /**
      * @return array
      */
-    public function getEvents()
+    public function getEvents(): array
     {
         return $this->events;
     }
@@ -182,7 +182,7 @@ trait EventTrait
     /**
      * @return int
      */
-    public function getEventCount()
+    public function getEventCount(): int
     {
         return \count($this->events);
     }

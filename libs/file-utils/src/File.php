@@ -391,13 +391,13 @@ abstract class File extends FileSystem
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         header('Content-Description: File Download');
         header('Content-Type: application/octet-stream');
-        header('Content-Length: ' . trim(`stat -c%s "$file"`));
+        header('Content-Length: ' . trim(shell_exec('stat -c%s "$file"')));
         header('Content-Disposition: attachment; filename="' . $as . '"');
         header('Content-Transfer-Encoding: binary');
         //@readfile( $file );
 
         flush();
-        $fp = popen('tail -c ' . trim(`stat -c%s "$file"`) . ' ' . $file . ' 2>&1', 'r');
+        $fp = popen('tail -c ' . trim(shell_exec('stat -c%s "$file"')) . ' ' . $file . ' 2>&1', 'r');
 
         while (!feof($fp)) {
             // send the current file part to the browser

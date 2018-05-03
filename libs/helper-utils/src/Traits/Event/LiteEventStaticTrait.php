@@ -86,7 +86,7 @@ trait LiteEventStaticTrait
     /**
      * @return array
      */
-    public static function getEvents()
+    public static function getEvents(): array
     {
         return self::$_events;
     }
@@ -94,7 +94,7 @@ trait LiteEventStaticTrait
     /**
      * @return int
      */
-    public static function getEventCount()
+    public static function getEventCount(): int
     {
         return \count(self::$_events);
     }

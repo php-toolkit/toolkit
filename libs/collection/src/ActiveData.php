@@ -67,6 +67,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
     /**
      * @param bool $toArray
      * @return array|\ArrayIterator
+     * @throws \ReflectionException
      */
     public function all($toArray = false)
     {

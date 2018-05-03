@@ -20,7 +20,7 @@ class DataHelper
      * @param mixed $obj
      * @return string
      */
-    public static function encode($obj)
+    public static function encode($obj): string
     {
         return base64_encode(gzcompress(serialize($obj)));
     }
@@ -95,7 +95,7 @@ class DataHelper
      * @param bool $clearTag clear html tag
      * @return string Sanitized string
      */
-    public static function safeOutput($string, $clearTag = false)
+    public static function safeOutput($string, $clearTag = false): string
     {
         if (!$clearTag) {
             $string = strip_tags($string);
@@ -122,7 +122,7 @@ class DataHelper
      * @param $string
      * @return string
      */
-    public static function htmlentitiesDecodeUTF8($string)
+    public static function htmlentitiesDecodeUTF8($string): string
     {
         if (\is_array($string)) {
             $string = array_map([__CLASS__, 'htmlentitiesDecodeUTF8'], $string);
@@ -230,7 +230,7 @@ class DataHelper
         return $data;
     }
 
-    public static function escape_query($str)
+    public static function escape_query($str): string
     {
         return strtr($str, array(
             "\0" => '',

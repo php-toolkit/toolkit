@@ -52,7 +52,7 @@ trait NameAliasTrait
      * @param $alias
      * @return bool
      */
-    public function hasAlias($alias)
+    public function hasAlias($alias): bool
     {
         return isset($this->aliases[$alias]);
     }
@@ -60,7 +60,7 @@ trait NameAliasTrait
     /**
      * @return array
      */
-    public function getAliases()
+    public function getAliases(): array
     {
         return $this->aliases;
     }
