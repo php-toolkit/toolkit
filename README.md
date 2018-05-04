@@ -81,17 +81,17 @@ php的一些有用的基础工具库实现和收集整理。
 - 独立包名 [toolkit/helper-utils](https://github.com/php-toolkit/helper-utils)
 - 在本仓库的 [libs/helper-utils](libs/helper-utils) 
 
-## install
+## 安装
 
 ```bash
 composer require toolkit/toolkit
 ```
 
-## docs
+## 文档
 
 - classes docs https://php-toolkit.github.io/toolkit/classes-docs/master/
 
-## development
+## 开发
 
 ```bash
 composer install
@@ -99,6 +99,8 @@ php toolkit dev -h
 ```
 
 ### git subtree
+
+git subtree usage example:
 
 - add a lib repo
 
@@ -124,34 +126,16 @@ MIT
 
 ## 我的其他项目
 
-**`inhere/console`**
+- **`inhere/console`** 功能丰富的命令行应用，命令行工具库
+  - git repo [github](https://github.com/inhere/php-console) [gitee](https://gitee.com/inhere/php-console)
+- **`inhere/php-validate`** 一个简洁小巧且功能完善的php验证库。仅有几个文件，无依赖。
+  - git repo [github](https://github.com/inhere/php-validate)  [gitee](https://gitee.com/inhere/php-validate)
+- **`inhere/sroute`** 轻量且快速的路由库
+  - git repo [github](https://github.com/inhere/php-srouter)  [gitee](https://gitee.com/inhere/php-srouter)
+- **`inhere/event-manager`** psr-14 的事件管理实现
+  - git repo [github](https://github.com/inhere/php-event-manager)  [gitee](https://gitee.com/inhere/php-event-manager)
+- **`inhere/middleware`** psr-15 HTTP中间件的实现
+  - git repo [github](https://github.com/inhere/php-middleware)  [gitee](https://gitee.com/inhere/php-middleware)
 
-- git repo [github](https://github.com/inhere/php-console) [gitee](https://gitee.com/inhere/php-console)
-
-功能丰富的命令行应用，命令行工具库
-
-**`inhere/php-validate`**
-
-- git repo [github](https://github.com/inhere/php-validate)  [gitee](https://gitee.com/inhere/php-validate)
- 
-一个简洁小巧且功能完善的php验证库。仅有几个文件，无依赖。
-
-**`inhere/sroute`**
-
-- git repo [github](https://github.com/inhere/php-srouter)  [gitee](https://gitee.com/inhere/php-srouter)
-
-轻量且快速的路由库
-
-**`inhere/middleware`**
-
-- git repo [github](https://github.com/inhere/php-event-manager)  [gitee](https://gitee.com/inhere/php-event-manager)
-
-psr-14 的事件管理实现
-
-**`inhere/middleware`**
-
-- git repo [github](https://github.com/inhere/php-middleware)  [gitee](https://gitee.com/inhere/php-middleware)
-
-psr-15 HTTP中间件的实现
 
 > 更多请查看我的 [github](https://github.com/inhere)
