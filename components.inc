@@ -3,6 +3,7 @@
 return [
   'arr-utils',
   'collection',
+  'cli-utils',
   'data-parser',
   'di',
   'file-utils',

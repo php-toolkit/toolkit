@@ -45,6 +45,7 @@ class ProcessUtil
      * @param string $command
      * @param string|null $cwd
      * @return array
+     * @throws \RuntimeException
      */
     public static function run(string $command, string $cwd = null): array
     {
@@ -55,7 +56,7 @@ class ProcessUtil
             3 => ['pipe', 'r'], // stdin - This is the pipe we can feed the password into
         ];
 
-        $process = proc_open($command, $descriptors, $pipes, $cwd);
+        $process = \proc_open($command, $descriptors, $pipes, $cwd);
 
         if (!\is_resource($process)) {
             throw new \RuntimeException("Can't open resource with proc_open.");
@@ -83,6 +84,7 @@ class ProcessUtil
      * Daemon, detach and run in the background
      * @param \Closure|null $beforeQuit
      * @return int Return new process PID
+     * @throws \RuntimeException
      */
     public static function daemonRun(\Closure $beforeQuit = null): int
     {
@@ -193,6 +195,7 @@ class ProcessUtil
      * @param callable|null $onError
      * @param int $id The process index number. will use `forks()`
      * @return array|false
+     * @throws \RuntimeException
      */
     public static function fork(callable $onStart = null, callable $onError = null, $id = 0)
     {
@@ -229,7 +232,7 @@ class ProcessUtil
 
     /**
      * wait child exit.
-     * @param  callable $onExit
+     * @param callable $onExit Exit callback. will received args: (pid, exitCode, status)
      * @return bool
      */
     public static function wait(callable $onExit): bool
@@ -243,10 +246,10 @@ class ProcessUtil
         // pid < 0：子进程都没了
         // pid > 0：捕获到一个子进程退出的情况
         // pid = 0：没有捕获到退出的子进程
-        while (($pid = pcntl_waitpid(-1, $status, WNOHANG)) >= 0) {
+        while (($pid = \pcntl_waitpid(-1, $status, WNOHANG)) >= 0) {
             if ($pid) {
                 // handler(pid, exitCode, status)
-                $onExit($pid, pcntl_wexitstatus($status), $status);
+                $onExit($pid, \pcntl_wexitstatus($status), $status);
             } else {
                 usleep(50000);
             }
@@ -276,7 +279,7 @@ class ProcessUtil
      * ]
      * @return bool
      */
-    public static function stopWorkers(array $children, int $signal = SIGTERM, array $events = []): bool
+    public static function stopWorkers(array $children, int $signal = \SIGTERM, array $events = []): bool
     {
         if (!$children) {
             return false;
@@ -286,7 +289,7 @@ class ProcessUtil
             return false;
         }
 
-        $events = array_merge([
+        $events = \array_merge([
             'beforeStops' => null,
             'beforeStop' => null,
         ], $events);
@@ -350,7 +353,7 @@ class ProcessUtil
             return true;
         }
 
-        $startTime = time();
+        $startTime = \time();
         echo 'Stopping .';
 
         // wait exit
@@ -359,7 +362,7 @@ class ProcessUtil
                 break;
             }
 
-            if (time() - $startTime > $waitTime) {
+            if (\time() - $startTime > $waitTime) {
                 $error = "Stop the $name(PID:$pid) failed(timeout)!";
                 break;
             }
@@ -470,7 +473,7 @@ class ProcessUtil
             return false;
         }
 
-        return pcntl_signal($signal, $handler, false);
+        return \pcntl_signal($signal, $handler, false);
     }
 
     /**
@@ -484,7 +487,18 @@ class ProcessUtil
         }
 
         // receive and dispatch sig
-        return pcntl_signal_dispatch();
+        return \pcntl_signal_dispatch();
+    }
+
+    /**
+     * get signal handler
+     * @param int $signal
+     * @return bool|string|mixed
+     * @since 7.1
+     */
+    public static function getSignalHandler(int $signal)
+    {
+        return \pcntl_signal_get_handler($signal);
     }
 
     /**************************************************************************************

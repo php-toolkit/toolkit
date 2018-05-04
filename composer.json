@@ -26,6 +26,7 @@
   "replace": {
     "toolkit/arr-utils": "self.version",
     "toolkit/collection": "self.version",
+    "toolkit/cli-utils": "self.version",
     "toolkit/data-parser": "self.version",
     "toolkit/di": "self.version",
     "toolkit/file-utils": "self.version",
@@ -41,6 +42,7 @@
       "Toolkit\\Dev\\": "libs/dev-helper/",
       "Toolkit\\ArrUtil\\": "libs/arr-utils/src/",
       "Toolkit\\Collection\\": "libs/collection/src/",
+      "Toolkit\\Cli\\": "libs/cli-utils/src/",
       "Toolkit\\DI\\": "libs/di/src/",
       "Toolkit\\DataParser\\": "libs/data-parser/src/",
       "Toolkit\\File\\": "libs/file-utils/src/",
