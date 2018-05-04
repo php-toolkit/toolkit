@@ -121,12 +121,12 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
      */
     public function implode($char = ','): string
     {
-//        $string = '';
-//
-//        foreach ($this as $key => $value) {
-//            $string .= is_array($value) ? $this->implode($char, $value) : implode($char, $value);
-//            $string .= implode($char, $value);
-//        }
+        // $string = '';
+        //
+        // foreach ($this as $key => $value) {
+        //     $string .= is_array($value) ? $this->implode($char, $value) : implode($char, $value);
+        //     $string .= implode($char, $value);
+        // }
 
         return implode($char, $this->all());
     }
@@ -144,7 +144,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
      */
     public function has(string $key): bool
     {
-        return array_key_exists($key, $this->data);
+        return \array_key_exists($key, $this->data);
     }
 
     /**

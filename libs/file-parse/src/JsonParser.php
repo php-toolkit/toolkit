@@ -17,7 +17,7 @@ use Toolkit\StrUtil\JsonHelper;
 class JsonParser extends BaseParser
 {
     /**
-     * parse INI
+     * parse JSON
      * @param string $string Waiting for the parse data
      * @param bool $enhancement 启用增强功能，支持通过关键字 继承、导入、参考
      * @param callable $pathHandler When the second param is true, this param is valid.
@@ -42,8 +42,8 @@ class JsonParser extends BaseParser
         /*
          * Parse special keywords
          *
-         * extend = ../parent.yml
-         * db = import#../db.yml
+         * extend = ../parent.json
+         * db = import#../db.json
          * [cache]
          * debug = reference#debug
          */

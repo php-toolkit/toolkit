@@ -172,7 +172,9 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
         $index = $this->getSize();
 
         // change size.
-        $this->values->setSize($index + 1);
+        if ($index <= \count($this->keys)) {
+            $this->values->setSize($index + 10);
+        }
 
         $this->values[$index] = $value;
         $this->keys[$offset] = $index;

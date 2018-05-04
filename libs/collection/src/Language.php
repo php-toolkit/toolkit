@@ -97,6 +97,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
 
     /**
      * {@inheritDoc}
+     * @throws \InvalidArgumentException
      * @throws \RangeException
      */
     protected function init()
@@ -116,7 +117,6 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * {@inheritdoc}
      * @see self::translate()
      * @throws \InvalidArgumentException
-     * @throws \Inhere\Exceptions\NotFoundException
      */
     public function t($key, array $args = [], $lang = '')
     {
@@ -127,7 +127,6 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * {@inheritdoc}
      * @see self::translate()
      * @throws \InvalidArgumentException
-     * @throws \Inhere\Exceptions\NotFoundException
      */
     public function tl($key, array $args = [], $lang = null)
     {
@@ -138,7 +137,6 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * {@inheritdoc}
      * @see self::translate()
      * @throws \InvalidArgumentException
-     * @throws \Inhere\Exceptions\NotFoundException
      */
     public function trans($key, array $args = [], $lang = null)
     {
@@ -151,6 +149,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param array $args
      * @param string $lang
      * @return string|array
+     * @throws \RangeException
      * @throws \InvalidArgumentException
      */
     public function translate($key, array $args = [], $lang = null)
@@ -239,6 +238,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * @param string $key
      * @return string|mixed
+     * @throws \InvalidArgumentException
      * @throws \RangeException
      */
     protected function transByFallbackLang(string $key)

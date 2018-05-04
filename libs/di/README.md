@@ -1,5 +1,13 @@
 # Dependency injection container
 
+简单的容器管理实现
+
+## Install
+
+```bash
+composer require toolkit/di
+```
+
 ## 注册服务
 
 ```php
@@ -71,7 +79,7 @@ mixed(string|array|object|callback) `$definition` 服务实例对象|服务信�
    'shared' => (bool), 是否共享,单例
    'locked' => (bool), 是否锁定服务
    'aliases' => (array), 别名
-   'init' => (bool), 立即激活
+   'init' => (bool), 立即初始化
   ]
 ```
 

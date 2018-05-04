@@ -35,7 +35,7 @@ class IniParser extends BaseParser
         }
 
         /** @var array $array */
-        $array = parse_ini_string(trim($string), true);
+        $array = \parse_ini_string(trim($string), true);
 
         /*
          * Parse special keywords
@@ -60,7 +60,7 @@ class IniParser extends BaseParser
                 // $importFile is file
                 if (\is_file($extendFile)) {
                     $data = \file_get_contents($extendFile);
-                    $array = \array_merge(parse_ini_string(trim($data), true), $array);
+                    $array = \array_merge(\parse_ini_string(trim($data), true), $array);
                 } else {
                     throw new \UnexpectedValueException("needed extended file [$extendFile] don't exists!");
                 }
