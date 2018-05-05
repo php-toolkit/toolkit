@@ -24,3 +24,7 @@ return new Sami($iterator, [
   'default_opened_level' => 1,
   // 'store'                => new MyArrayStore,
 ]);
+
+/**
+ * usage: php sami.phar update --force sami.doc.inc
+ */

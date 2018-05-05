@@ -15,19 +15,6 @@ namespace Toolkit\Sys;
 class Sys extends SysEnv
 {
     /**
-     * run a command in background
-     * @param string $cmd
-     */
-    public static function execInBackground($cmd)
-    {
-        if (self::isWindows()) {
-            pclose(popen('start /B ' . $cmd, 'r'));
-        } else {
-            exec($cmd . ' > /dev/null &');
-        }
-    }
-
-    /**
      * @param string $command
      * @param null|string $logfile
      * @param null|string $user
@@ -57,55 +44,142 @@ class Sys extends SysEnv
     }
 
     /**
+     * run a command. it is support windows
+     * @param string $command
+     * @param string|null $cwd
+     * @return array
+     * @throws \RuntimeException
+     */
+    public static function run(string $command, string $cwd = null): array
+    {
+        $descriptors = [
+            0 => ['pipe', 'r'], // stdin - read channel
+            1 => ['pipe', 'w'], // stdout - write channel
+            2 => ['pipe', 'w'], // stdout - error channel
+            3 => ['pipe', 'r'], // stdin - This is the pipe we can feed the password into
+        ];
+
+        $process = \proc_open($command, $descriptors, $pipes, $cwd);
+
+        if (!\is_resource($process)) {
+            throw new \RuntimeException("Can't open resource with proc_open.");
+        }
+
+        // Nothing to push to input.
+        \fclose($pipes[0]);
+
+        $output = stream_get_contents($pipes[1]);
+        \fclose($pipes[1]);
+
+        $error = stream_get_contents($pipes[2]);
+        \fclose($pipes[2]);
+
+        // TODO: Write passphrase in pipes[3].
+        \fclose($pipes[3]);
+
+        // Close all pipes before proc_close! $code === 0 is success.
+        $code = \proc_close($process);
+
+        return [$code, $output, $error];
+    }
+
+    /**
      * Method to execute a command in the sys
      * Uses :
      * 1. system
      * 2. passthru
      * 3. exec
      * 4. shell_exec
-     * @param $command
+     * @param string $command
+     * @param string|null $cwd
      * @param bool $returnStatus
-     * @return array
+     * @return array|string
      */
-    public static function runCommand($command, $returnStatus = true): array
+    public static function runCommand($command, string $cwd = null, bool $returnStatus = true)
     {
-        $return_var = 1;
+        $exitStatus = 1;
+
+        if ($cwd) {
+            \chdir($cwd);
+        }
 
         //system
         if (\function_exists('system')) {
-            ob_start();
-            system($command, $return_var);
-            $output = ob_get_contents();
-            ob_end_clean();
+            \ob_start();
+            \system($command, $exitStatus);
+            $output = \ob_get_contents();
+            \ob_end_clean();
 
             // passthru
         } elseif (\function_exists('passthru')) {
-            ob_start();
-            passthru($command, $return_var);
-            $output = ob_get_contents();
-            ob_end_clean();
+            \ob_start();
+            \passthru($command, $exitStatus);
+            $output = \ob_get_contents();
+            \ob_end_clean();
             //exec
         } else {
             if (\function_exists('exec')) {
-                exec($command, $output, $return_var);
-                $output = implode("\n", $output);
+                \exec($command, $output, $exitStatus);
+                $output = \implode("\n", $output);
 
                 //shell_exec
             } else {
                 if (\function_exists('shell_exec')) {
-                    $output = shell_exec($command);
+                    $output = \shell_exec($command);
                 } else {
                     $output = 'Command execution not possible on this system';
-                    $return_var = 0;
+                    $exitStatus = 0;
                 }
             }
         }
 
         if ($returnStatus) {
-            return ['output' => trim($output), 'status' => $return_var];
+            return [
+                'output' => \trim($output),
+                'status' => $exitStatus
+            ];
         }
 
-        return trim($output);
+        return \trim($output);
+    }
+
+    /**
+     * run a command in background
+     * @param string $cmd
+     */
+    public static function bgExec(string $cmd)
+    {
+        self::execInBackground($cmd);
+    }
+
+    /**
+     * run a command in background
+     * @param string $cmd
+     */
+    public static function execInBackground(string $cmd)
+    {
+        if (self::isWindows()) {
+            \pclose(\popen('start /B ' . $cmd, 'r'));
+        } else {
+            \exec($cmd . ' > /dev/null &');
+        }
+    }
+
+    /**
+     * Get unix user of current process.
+     * @return array
+     */
+    public static function getCurrentUser(): array
+    {
+        return \posix_getpwuid(\posix_getuid());
+    }
+
+    /**
+     * @return string
+     */
+    public static function tempDir(): string
+    {
+        return self::getTempDir();
     }
 
     /**
@@ -115,7 +189,7 @@ class Sys extends SysEnv
     {
         // @codeCoverageIgnoreStart
         if (\function_exists('sys_get_temp_dir')) {
-            $tmp = sys_get_temp_dir();
+            $tmp = \sys_get_temp_dir();
         } elseif (!empty($_SERVER['TMP'])) {
             $tmp = $_SERVER['TMP'];
         } elseif (!empty($_SERVER['TEMP'])) {
@@ -123,7 +197,7 @@ class Sys extends SysEnv
         } elseif (!empty($_SERVER['TMPDIR'])) {
             $tmp = $_SERVER['TMPDIR'];
         } else {
-            $tmp = getcwd();
+            $tmp = \getcwd();
         }
         // @codeCoverageIgnoreEnd
 
@@ -140,7 +214,7 @@ class Sys extends SysEnv
             return -1;
         }
 
-        $info = exec('ps aux | grep ' . $program . ' | grep -v grep | grep -v su | awk {"print $3"}');
+        $info = \exec('ps aux | grep ' . $program . ' | grep -v grep | grep -v su | awk {"print $3"}');
 
         return $info;
     }
@@ -155,41 +229,8 @@ class Sys extends SysEnv
             return -1;
         }
 
-        $info = exec('ps aux | grep ' . $program . ' | grep -v grep | grep -v su | awk {"print $4"}');
+        $info = \exec('ps aux | grep ' . $program . ' | grep -v grep | grep -v su | awk {"print $4"}');
 
         return $info;
-    }
-
-
-    /**
-     * 支持查看指定目录，默认当前目录
-     * CLI:
-     *     php test.php -d=path
-     *     php test.php --dir=path
-     * WEB:
-     *    /test.php?dir=path
-     */
-    public static function gitCheck()
-    {
-        if (PHP_SAPI === 'cli') {
-            $_GET = getopt('d::', ['dir::']);
-        }
-
-        // 获取要查看的目录，没有则检测当前目录
-        $dir = $_GET['d'] ?? ($_GET['dir'] ?? __DIR__);
-
-        if (!is_dir($dir)) {
-            trigger_error($dir);
-        }
-
-        ob_start();
-        system("cd $dir && git branch -v");
-        $c = ob_get_clean();
-
-        $result = preg_match('#\* (?<brName>[\S]+)(?:\s+)(?<logNum>[0-9a-z]{7})(?<ciText>.*)#i', $c, $data);
-        $data['projectName'] = basename($dir);
-
-        // var_dump($c,$result, $data);
-        return ($result === 1) ? $data : null;
     }
 }
