@@ -189,10 +189,11 @@ abstract class StringHelper
      * @param array|string $param -
      * @internal param string $chars
      * @return string
+     * @throws \Exception
      */
     public static function random($length, array $param = []): string
     {
-        $param = array_merge([
+        $param = \array_merge([
             'prefix' => '',
             'suffix' => '',
             'chars' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
@@ -211,24 +212,28 @@ abstract class StringHelper
 
     /**
      * @param int $length
-     * @return bool|string
+     * @return string
      */
-    public static function genSalt($length = 32)
+    public static function genSalt(int $length = 32): string
     {
-        return substr(str_replace('+', '.', base64_encode(hex2bin(random_token($length)))), 0, 44);
+        return \substr(
+            \str_replace('+', '.', \base64_encode(\hex2bin(\random_token($length)))),
+            0,
+            44
+        );
     }
 
     /**
      * @param int $length
      * @return bool|string
      */
-    public static function genUid($length = 7)
+    public static function genUid(int $length = 7): string
     {
         if (!\is_int($length) || $length > 32 || $length < 1) {
             $length = 7;
         }
 
-        return substr(hash('md5', uniqid('', true)), 0, $length);
+        return \substr(\hash('md5', \uniqid('', true)), 0, $length);
     }
 
     /**
@@ -268,7 +273,7 @@ abstract class StringHelper
             return $str;
         }
 
-        return \function_exists('mb_strtolower') ? mb_strtolower($str, 'utf-8') : strtolower($str);
+        return \function_exists('mb_strtolower') ? \mb_strtolower($str, 'utf-8') : \strtolower($str);
     }
 
     /**
@@ -281,7 +286,7 @@ abstract class StringHelper
             return $str;
         }
 
-        return \function_exists('mb_strtoupper') ? mb_strtoupper($str, 'utf-8') : strtoupper($str);
+        return \function_exists('mb_strtoupper') ? \mb_strtoupper($str, 'utf-8') : \strtoupper($str);
     }
 
     /**
@@ -291,13 +296,13 @@ abstract class StringHelper
      * @param string $encoding
      * @return bool|string
      */
-    public static function substr($str, $start, $length = false, $encoding = 'utf-8')
+    public static function substr(string $str, int $start, int $length = null, string $encoding = 'utf-8')
     {
         if (\function_exists('mb_substr')) {
-            return mb_substr($str, (int)$start, ($length === false ? self::strlen($str) : (int)$length), $encoding);
+            return mb_substr($str, $start, ($length === null ? self::strlen($str) : (int)$length), $encoding);
         }
 
-        return substr($str, $start, ($length === false ? self::strlen($str) : (int)$length));
+        return substr($str, $start, ($length === null ? self::strlen($str) : (int)$length));
     }
 
     /**
@@ -307,23 +312,25 @@ abstract class StringHelper
      * @param string $encoding
      * @return bool|int
      */
-    public static function strpos($str, $find, $offset = 0, $encoding = 'UTF-8')
+    public static function strpos(string $str, string $find, int $offset = 0, string $encoding = 'UTF-8')
     {
-        return \function_exists('mb_strpos') ? mb_strpos($str, $find, $offset, $encoding) : strpos($str, $find,
-            $offset);
+        return \function_exists('mb_strpos') ?
+            mb_strpos($str, $find, $offset, $encoding) :
+            strpos($str, $find, $offset);
     }
 
     /**
-     * @param $str
-     * @param $find
+     * @param string $str
+     * @param string $find
      * @param int $offset
      * @param string $encoding
      * @return bool|int
      */
-    public static function strrpos($str, $find, $offset = 0, $encoding = 'utf-8')
+    public static function strrpos(string $str, string $find, int $offset = 0, string $encoding = 'utf-8')
     {
-        return \function_exists('mb_strrpos') ? mb_strrpos($str, $find, $offset, $encoding) : strrpos($str, $find,
-            $offset);
+        return \function_exists('mb_strrpos') ?
+            mb_strrpos($str, $find, $offset, $encoding) :
+            strrpos($str, $find, $offset);
     }
 
     /**
@@ -350,7 +357,7 @@ abstract class StringHelper
      * @param  string $sep
      * @return array
      */
-    public static function toArray($str, $sep = ','): array
+    public static function toArray(string $str, string $sep = ','): array
     {
         $array = [];
 
@@ -373,7 +380,7 @@ abstract class StringHelper
      * @param string $sep
      * @return array
      */
-    public static function str2array($str, $sep = ','): array
+    public static function str2array(string $str, string $sep = ','): array
     {
         $str = trim($str, "$sep ");
 
@@ -381,7 +388,7 @@ abstract class StringHelper
             return [];
         }
 
-        return preg_split("/\s*$sep\s*/", $str, -1, PREG_SPLIT_NO_EMPTY);
+        return \preg_split("/\s*$sep\s*/", $str, -1, PREG_SPLIT_NO_EMPTY);
     }
 
     /**
@@ -389,7 +396,7 @@ abstract class StringHelper
      * @param string $separator
      * @return  array
      */
-    public static function split2Array($path, $separator = '.'): array
+    public static function split2Array(string $path, string $separator = '.'): array
     {
         return array_values(array_filter(explode($separator, $path), '\strlen'));
     }
@@ -421,7 +428,7 @@ abstract class StringHelper
      * @param null|int $length
      * @return string
      */
-    public static function truncate_two($str, $start, $length = null): string
+    public static function truncate2(string $str, int $start, int $length = null): string
     {
         if (!$length) {
             $length = $start;
@@ -448,7 +455,7 @@ abstract class StringHelper
      * @param array $options
      * @return bool|string
      */
-    public static function truncateString($text, $length = 120, array $options = array())
+    public static function truncate3(string $text, int $length = 120, array $options = array())
     {
         $default = [
             'ellipsis' => '...',
@@ -575,7 +582,12 @@ abstract class StringHelper
         return $truncate;
     }
 
-    public static function toCamel($str, $upperFirstChar = false)
+    /**
+     * @param $str
+     * @param bool $upperFirstChar
+     * @return mixed
+     */
+    public static function toCamel(string $str, bool $upperFirstChar = false): string
     {
         return self::toCamelCase($str, $upperFirstChar);
     }
@@ -587,9 +599,9 @@ abstract class StringHelper
      * @param bool $upperFirstChar
      * @return mixed
      */
-    public static function toCamelCase($str, $upperFirstChar = false)
+    public static function toCamelCase(string $str, bool $upperFirstChar = false): string
     {
-        $str = self::strtolower($str);
+        $str = (string)self::strtolower($str);
 
         if ($upperFirstChar) {
             $str = self::ucfirst($str);
@@ -600,7 +612,7 @@ abstract class StringHelper
         }, $str);
     }
 
-    public static function toSnake($str, $sep = '_'): string
+    public static function toSnake(string $str, string $sep = '_'): string
     {
         return self::toSnakeCase($str, $sep);
     }
@@ -611,7 +623,7 @@ abstract class StringHelper
      * @param string $sep
      * @return string
      */
-    public static function toSnakeCase($str, $sep = '_'): string
+    public static function toSnakeCase(string $str, string $sep = '_'): string
     {
         // 'CMSCategories' => 'cms_categories'
         // 'RangePrice' => 'range_price'
@@ -620,18 +632,18 @@ abstract class StringHelper
 
     /**
      * 驼峰式 <=> 下划线式
-     * @param  [type]  $str [description]
+     * @param  string  $str [description]
      * @param  bool $toCamelCase
      * true : 驼峰式 => 下划线式
      * false : 驼峰式 <= 下划线式
-     * @return mixed|string
+     * @return string
      */
-    public static function nameChange($str, $toCamelCase = true)
+    public static function nameChange(string $str, bool $toCamelCase = true): string
     {
         $str = trim($str);
 
         // 默认 ：下划线式 =>驼峰式
-        if ((bool)$toCamelCase) {
+        if ($toCamelCase) {
             if (strpos($str, '_') === false) {
                 return $str;
             }
@@ -647,7 +659,7 @@ abstract class StringHelper
         }
 
         // 驼峰式 => 下划线式
-        return strtolower(preg_replace('/((?<=[a-z])(?=[A-Z]))/', '_', $str));
+        return \strtolower(preg_replace('/((?<=[a-z])(?=[A-Z]))/', '_', $str));
     }
 
     /**

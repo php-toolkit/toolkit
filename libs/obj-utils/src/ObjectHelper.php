@@ -16,16 +16,6 @@ namespace Toolkit\ObjUtil;
 class ObjectHelper
 {
     /**
-     * @param mixed $object An object instance
-     * @param array $options
-     * @return mixed
-     */
-    public static function smartConfigure($object, array $options)
-    {
-        return self::init($object, $options);
-    }
-
-    /**
      * 给对象设置属性值
      * - 会先尝试用 setter 方法设置属性
      * - 再尝试直接设置属性
@@ -45,7 +35,7 @@ class ObjectHelper
             // has setter
             if (\method_exists($object, $setter)) {
                 $object->$setter($value);
-            } else {
+            } elseif (\property_exists($object, $property)) {
                 $object->$property = $value;
             }
         }
@@ -61,7 +51,9 @@ class ObjectHelper
     public static function configure($object, array $options)
     {
         foreach ($options as $property => $value) {
-            $object->$property = $value;
+            if (\property_exists($object, $property)) {
+                $object->$property = $value;
+            }
         }
     }
 

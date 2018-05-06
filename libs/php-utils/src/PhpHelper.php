@@ -64,6 +64,34 @@ class PhpHelper
     }
 
     /**
+     * 给对象设置属性值
+     * - 会先尝试用 setter 方法设置属性
+     * - 再尝试直接设置属性
+     * @param mixed $object An object instance
+     * @param array $options
+     * @return mixed
+     */
+    public static function initObject($object, array $options)
+    {
+        foreach ($options as $property => $value) {
+            if (\is_numeric($property)) {
+                continue;
+            }
+
+            $setter = 'set' . \ucfirst($property);
+
+            // has setter
+            if (\method_exists($object, $setter)) {
+                $object->$setter($value);
+            } elseif (\property_exists($object, $property)) {
+                $object->$property = $value;
+            }
+        }
+
+        return $object;
+    }
+
+    /**
      * 获取资源消耗
      * @param int $startTime
      * @param int|float $startMem

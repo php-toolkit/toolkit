@@ -49,7 +49,7 @@ class ProcessUtil
                 'startTime' => \time(),
             ];
         } elseif ($pid === 0) { // at child
-            $pid = \getmypid();
+            $pid = self::getPid();
 
             if ($onStart) {
                 $onStart($pid, $id);
@@ -419,7 +419,7 @@ class ProcessUtil
             return false;
         }
 
-        // receive and dispatch sig
+        // receive and dispatch signal
         return \pcntl_signal_dispatch();
     }
 
@@ -434,6 +434,19 @@ class ProcessUtil
         return \pcntl_signal_get_handler($signal);
     }
 
+    /**
+     * Enable/disable asynchronous signal handling or return the old setting
+     * @param bool|null $on
+     *  - bool Enable or disable.
+     *  - null Return old setting.
+     * @return bool
+     * @since 7.1
+     */
+    public static function asyncSignal(bool $on = null): bool
+    {
+        return \pcntl_async_signals($on);
+    }
+
     /**************************************************************************************
      * some help method
      *************************************************************************************/
@@ -445,29 +458,29 @@ class ProcessUtil
     public static function getPid(): int
     {
         if (\function_exists('posix_getpid')) {
-            return posix_getpid();
+            return \posix_getpid();
         }
 
-        return \getmypid();// or use posix_getpid()
+        return \getmypid();
     }
 
     /**
-     * get Pid from File
+     * get PID by pid File
      * @param string $file
      * @param bool $checkLive
      * @return int
      */
-    public static function getPidByFile(string $file, $checkLive = false): int
+    public static function getPidByFile(string $file, bool $checkLive = false): int
     {
-        if ($file && file_exists($file)) {
-            $pid = (int)file_get_contents($file);
+        if ($file && \file_exists($file)) {
+            $pid = (int)\file_get_contents($file);
 
             // check live
             if ($checkLive && self::isRunning($pid)) {
                 return $pid;
             }
 
-            unlink($file);
+            \unlink($file);
         }
 
         return 0;
@@ -553,7 +566,7 @@ class ProcessUtil
             return \cli_set_process_title($title);
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -564,7 +577,7 @@ class ProcessUtil
      */
     public static function changeScriptOwner(string $user, string $group = '')
     {
-        $uInfo = posix_getpwnam($user);
+        $uInfo = \posix_getpwnam($user);
 
         if (!$uInfo || !isset($uInfo['uid'])) {
             throw new \RuntimeException("User ({$user}) not found.");
@@ -589,13 +602,13 @@ class ProcessUtil
 
         \posix_setgid($gid);
 
-        if (posix_geteuid() !== $gid) {
+        if (\posix_geteuid() !== $gid) {
             throw new \RuntimeException("Unable to change group to {$user} (UID: {$gid}).", -300);
         }
 
         \posix_setuid($uid);
 
-        if (posix_geteuid() !== $uid) {
+        if (\posix_geteuid() !== $uid) {
             throw new \RuntimeException("Unable to change user to {$user} (UID: {$uid}).", -300);
         }
     }
