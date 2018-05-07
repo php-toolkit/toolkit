@@ -205,6 +205,102 @@ class Sys extends SysEnv
     }
 
     /**
+     * get bash is available
+     * @return bool
+     */
+    public static function shIsAvailable(): bool
+    {
+        // $checkCmd = "/usr/bin/env bash -c 'echo OK'";
+        // $shell = 'echo $0';
+        $checkCmd = "sh -c 'echo OK'";
+
+        return self::runCommand($checkCmd, '', false) === 'OK';
+    }
+
+    /**
+     * get bash is available
+     * @return bool
+     */
+    public static function bashIsAvailable(): bool
+    {
+        // $checkCmd = "/usr/bin/env bash -c 'echo OK'";
+        // $shell = 'echo $0';
+        $checkCmd = "bash -c 'echo OK'";
+
+        return self::runCommand($checkCmd, '', false) === 'OK';
+    }
+
+    /**
+     * @return string
+     */
+    public static function getOutsideIP(): string
+    {
+        list($code, $output) = self::run('ip addr | grep eth0');
+
+        if ($code === 0 && $output && preg_match('#inet (.*)\/#', $output, $ms)) {
+            return $ms[1];
+        }
+
+        return 'unknown';
+    }
+
+    /**
+     * get screen size
+     *
+     * ```php
+     * list($width, $height) = Sys::getScreenSize();
+     * ```
+     * @from Yii2
+     * @param boolean $refresh whether to force checking and not re-use cached size value.
+     * This is useful to detect changing window size while the application is running but may
+     * not get up to date values on every terminal.
+     * @return array|boolean An array of ($width, $height) or false when it was not able to determine size.
+     */
+    public static function getScreenSize($refresh = false)
+    {
+        static $size;
+        if ($size !== null && !$refresh) {
+            return $size;
+        }
+
+        if (self::shIsAvailable()) {
+            // try stty if available
+            $stty = [];
+
+            if (
+                exec('stty -a 2>&1', $stty) &&
+                preg_match('/rows\s+(\d+);\s*columns\s+(\d+);/mi', implode(' ', $stty), $matches)
+            ) {
+                return ($size = [$matches[2], $matches[1]]);
+            }
+
+            // fallback to tput, which may not be updated on terminal resize
+            if (($width = (int)exec('tput cols 2>&1')) > 0 && ($height = (int)exec('tput lines 2>&1')) > 0) {
+                return ($size = [$width, $height]);
+            }
+
+            // fallback to ENV variables, which may not be updated on terminal resize
+            if (($width = (int)getenv('COLUMNS')) > 0 && ($height = (int)getenv('LINES')) > 0) {
+                return ($size = [$width, $height]);
+            }
+        }
+
+        if (self::isWindows()) {
+            $output = [];
+            exec('mode con', $output);
+
+            if (isset($output[1]) && strpos($output[1], 'CON') !== false) {
+                return ($size = [
+                    (int)preg_replace('~\D~', '', $output[3]),
+                    (int)preg_replace('~\D~', '', $output[4])
+                ]);
+            }
+        }
+
+        return ($size = false);
+    }
+
+    /**
      * @param string $program
      * @return int|string
      */

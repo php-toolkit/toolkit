@@ -77,7 +77,7 @@ class SysEnv
      */
     public static function getHostname(): string
     {
-        return php_uname('n');
+        return \php_uname('n');
     }
 
     /**

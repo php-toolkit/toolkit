@@ -11,7 +11,7 @@ namespace Toolkit\Dev\Console;
 use Inhere\Console\Controller;
 use Inhere\Console\IO\Input;
 use Inhere\Console\IO\Output;
-use Inhere\Console\Utils\ProcessUtil;
+use Toolkit\Sys\Sys;
 
 /**
  * Internal tool for toolkit development
@@ -250,7 +250,7 @@ class DevController extends Controller
 
             // if '--dry-run' is true. do not exec.
             if (!$tryRun) {
-                list($code, $ret, $err) = ProcessUtil::run($command, $workDir);
+                list($code, $ret, $err) = Sys::run($command, $workDir);
 
                 if ($code !== 0) {
                     throw new \RuntimeException("Exec command failed. command: $command error: $err \nreturn: \n$ret");
@@ -326,7 +326,7 @@ class DevController extends Controller
 
         // if '--dry-run' is true. do not exec.
         if (!$tryRun) {
-            list($code, $ret,) = ProcessUtil::run($command, $workDir);
+            list($code, $ret,) = Sys::run($command, $workDir);
 
             if ($code !== 0) {
                 throw new \RuntimeException("Exec command failed. command: $command return: \n$ret");
