@@ -91,11 +91,11 @@ class Sys extends SysEnv
      * 3. exec
      * 4. shell_exec
      * @param string $command
-     * @param string|null $cwd
      * @param bool $returnStatus
+     * @param string|null $cwd
      * @return array|string
      */
-    public static function runCommand($command, string $cwd = null, bool $returnStatus = true)
+    public static function execute($command, bool $returnStatus = true, string $cwd = null)
     {
         $exitStatus = 1;
 
@@ -214,7 +214,7 @@ class Sys extends SysEnv
         // $shell = 'echo $0';
         $checkCmd = "sh -c 'echo OK'";
 
-        return self::runCommand($checkCmd, '', false) === 'OK';
+        return self::execute($checkCmd, false) === 'OK';
     }
 
     /**
@@ -227,7 +227,7 @@ class Sys extends SysEnv
         // $shell = 'echo $0';
         $checkCmd = "bash -c 'echo OK'";
 
-        return self::runCommand($checkCmd, '', false) === 'OK';
+        return self::execute($checkCmd, false) === 'OK';
     }
 
     /**
