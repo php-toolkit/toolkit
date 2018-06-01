@@ -10,7 +10,7 @@ namespace Toolkit\PhpUtil;
  * Class PhpHelper
  * @package Toolkit\PhpUtil
  */
-class PhpHelper
+class PhpHelper extends PhpEnv
 {
     /**
      * get $_SERVER value

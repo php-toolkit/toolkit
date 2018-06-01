@@ -12,7 +12,7 @@ namespace Toolkit\PhpUtil;
  * Class PhpEnv
  * @package Toolkit\PhpUtil
  */
-final class PhpEnv
+class PhpEnv
 {
     /**************************************************************************
      * php env
