@@ -97,7 +97,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
         ];
 
         foreach ($config as $prop => $values) {
-            if (isset($allowed[$prop])) {
+            if ($values && isset($allowed[$prop])) {
                 $method = $allowed[$prop];
                 $finder->$method($values);
             }
@@ -164,7 +164,9 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function addNames($patterns): self
     {
-        $this->names = \array_merge($this->names, (array)$patterns);
+        if ($patterns) {
+            $this->names = \array_merge($this->names, (array)$patterns);
+        }
 
         return $this;
     }
@@ -186,7 +188,9 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function addNotNames($patterns): self
     {
-        $this->notNames = array_merge($this->notNames, $patterns);
+        if ($patterns) {
+            $this->notNames = \array_merge($this->notNames, (array)$patterns);
+        }
 
         return $this;
     }
@@ -210,7 +214,9 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function addPaths($patterns): self
     {
-        $this->paths = array_merge($this->paths, $patterns);
+        if ($patterns) {
+            $this->paths = \array_merge($this->paths, (array)$patterns);
+        }
 
         return $this;
     }
@@ -232,7 +238,9 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function addNotPaths($patterns): self
     {
-        $this->notPaths = array_merge($this->notPaths, (array)$patterns);
+        if ($patterns) {
+            $this->notPaths = \array_merge($this->notPaths, (array)$patterns);
+        }
 
         return $this;
     }
@@ -243,7 +251,9 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function exclude($dirs): self
     {
-        $this->excludes = array_merge($this->excludes, (array)$dirs);
+        if ($dirs) {
+            $this->excludes = \array_merge($this->excludes, (array)$dirs);
+        }
 
         return $this;
     }
@@ -281,7 +291,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
      * @param bool $followLinks
      * @return FileFinder
      */
-    public function followLinks($followLinks): self
+    public function followLinks($followLinks = true): self
     {
         $this->followLinks = (bool)$followLinks;
 
@@ -305,9 +315,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function in($dirs): self
     {
-        $this->dirs = array_merge($this->dirs, (array)$dirs);
-
-        return $this;
+        return $this->inDir($dirs);
     }
 
     /**
@@ -317,7 +325,9 @@ final class FileFinder implements \IteratorAggregate, \Countable
      */
     public function inDir($dirs): self
     {
-        $this->dirs = array_merge($this->dirs, (array)$dirs);
+        if ($dirs) {
+            $this->dirs = \array_merge($this->dirs, (array)$dirs);
+        }
 
         return $this;
     }
