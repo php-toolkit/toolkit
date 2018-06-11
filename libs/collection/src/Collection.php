@@ -363,7 +363,7 @@ class Collection extends SimpleCollection
     /**
      * @return \RecursiveArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \RecursiveArrayIterator($this->data);
     }
@@ -380,7 +380,7 @@ class Collection extends SimpleCollection
 
     public function __clone()
     {
-        $this->data = unserialize(serialize($this->data), ['allowed_classes' => self::class]);
+        $this->data = \unserialize(\serialize($this->data), ['allowed_classes' => self::class]);
     }
 
 //////
