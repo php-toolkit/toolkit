@@ -6,13 +6,13 @@
  * Time: 9:18
  */
 
-namespace Toolkit\Collection;
+namespace Toolkit\ArrUtil;
 
 /**
  * Class FixedArray
  *  fixed size array implements, and support string key.
  *  `SplFixedArray` only allow int key.
- * @package Toolkit\Collection
+ * @package Toolkit\ArrUtil
  */
 class FixedArray implements \ArrayAccess, \IteratorAggregate
 {
@@ -130,7 +130,7 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
      * Returns an iterator for this object, for use with foreach
      * @return \SplFixedArray
      */
-    public function getIterator()
+    public function getIterator(): \SplFixedArray
     {
         return $this->values;
     }
@@ -140,7 +140,7 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
      * @param   mixed $offset The array offset.
      * @return  boolean  True if the offset exists, false otherwise.
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->keys[$offset]);
     }
