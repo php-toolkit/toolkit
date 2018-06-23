@@ -45,16 +45,6 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
     protected $parent;
 
     /**
-     * 服务别名
-     * @var array
-     * [
-     *  'alias name' => 'id',
-     *  'alias name2' => 'id'
-     * ]
-     */
-    protected $aliases = [];
-
-    /**
      * @var array The service ID list.
      */
     private $ids = [];
@@ -136,10 +126,13 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
             $target = $definition['class'];
             unset($definition['class']);
 
+            // always add a class name alias.
+            $this->setAlias($id, $target);
+
             // some options
             if (isset($definition['_options'])) {
                 $opts = array_merge($opts, $definition['_options']);
-                $this->alias($opts['aliases'], $id);
+                $this->setAlias($id, $opts['aliases']);
                 unset($definition['_options']);
             }
 
@@ -192,9 +185,8 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
             }
 
             // string. is a Service Provider class name
-            if (\is_string($definition) && is_subclass_of($definition, ServiceProviderInterface::class)) {
+            if (\is_string($definition) && \is_subclass_of($definition, ServiceProviderInterface::class)) {
                 $this->registerServiceProvider(new $definition);
-
                 continue;
             }
 
@@ -289,7 +281,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
         /** @see $this->set() $definition is array */
         $target = trim($target);
 
-        if (($pos = strpos($target, '::')) !== false) {
+        if (($pos = \strpos($target, '::')) !== false) {
             $callback = function (self $self) use ($target, $arguments) {
                 if ($arguments) {
                     return $target(...$arguments);
@@ -297,9 +289,9 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
 
                 return $target($self);
             };
-        } elseif (($pos = strpos($target, '->')) !== false) {
-            $class = substr($target, 0, $pos);
-            $method = substr($target, $pos + 2);
+        } elseif (($pos = \strpos($target, '->')) !== false) {
+            $class = \substr($target, 0, $pos);
+            $method = \substr($target, $pos + 2);
 
             $callback = function (self $self) use ($class, $method, $arguments, $props) {
                 $object = new $class;

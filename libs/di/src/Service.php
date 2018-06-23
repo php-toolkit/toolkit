@@ -111,9 +111,8 @@ final class Service
      */
     public function setCallback($callback)
     {
-        if (!method_exists($callback, '__invoke')) {
+        if (!\method_exists($callback, '__invoke')) {
             $this->instance = $callback;
-
             $callback = function () use ($callback) {
                 return $callback;
             };

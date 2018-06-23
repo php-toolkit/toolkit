@@ -11,49 +11,40 @@ namespace Toolkit\DI;
 /**
  * Class NameAliasTrait
  * @package Toolkit\DI
- * @property array $aliases path alias array
  */
 trait NameAliasTrait
 {
-    // protected $aliases = [];
+    /**
+     * 别名
+     * @var array
+     * [
+     *  'alias name' => 'id',
+     *  'alias name2' => 'id'
+     * ]
+     */
+    private $aliases = [];
 
     /**
-     * set/get name alias
-     * @param array|string $name
-     * @param array|string|null $alias
-     * @return bool|string
+     * set name alias
+     * @param string $name
+     * @param array|string $alias
      */
-    public function alias($name, $alias = null)
+    public function setAlias(string $name, $alias)
     {
         if (!$name) {
-            return false;
+            return;
         }
-
-        if (\is_string($name)) {
-                // get real name for $name
-            if (!$alias) {
-                return $this->resolveAlias($name);
-            }
-
-            // setting
-            if (\is_array($alias)) {
-                foreach ($alias as $aliasName) {
-                    if (!isset($this->aliases[$aliasName])) {
-                        $this->aliases[$aliasName] = $name;
-                    }
-                }
-            } else {
-                $this->aliases[$alias] = $name;
-            }
 
         // setting
-        } elseif (\is_array($name)) {
-            foreach ($name as $a => $n) {
-                $this->aliases[$a] = $n;
+        if (\is_array($alias)) {
+            foreach ($alias as $aliasName) {
+                if (!isset($this->aliases[$aliasName])) {
+                    $this->aliases[$aliasName] = $name;
+                }
             }
+        } else {
+            $this->aliases[$alias] = $name;
         }
-
-        return true;
     }
 
     /**
@@ -69,7 +60,7 @@ trait NameAliasTrait
      * @param $alias
      * @return bool
      */
-    public function hasAlias(string $alias): bool
+    public function isAlias(string $alias): bool
     {
         return isset($this->aliases[$alias]);
     }
@@ -89,6 +80,17 @@ trait NameAliasTrait
     public function setAliases(array $aliases): self
     {
         $this->aliases = $aliases;
+
+        return $this;
+    }
+
+    /**
+     * @param array $aliases
+     * @return $this
+     */
+    public function addAliases(array $aliases): self
+    {
+        $this->aliases = \array_merge($this->aliases, $aliases);
 
         return $this;
     }
