@@ -31,7 +31,7 @@ trait NameAliasTrait
      */
     public function setAlias(string $name, $alias)
     {
-        if (!$name) {
+        if (!$name || !$alias) {
             return;
         }
 

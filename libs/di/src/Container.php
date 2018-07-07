@@ -93,7 +93,9 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      */
     public function set(string $id, $definition, array $opts = []): self
     {
-        $id = $this->_checkServiceId($id);
+        if (!$id = \trim($id)) {
+            throw new \InvalidArgumentException('You must set up the service Id name!');
+        }
 
         if ($this->isLocked($id)) {
             throw new \InvalidArgumentException(sprintf('Cannot override frozen service "%s".', $id));
@@ -106,6 +108,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
         if (\is_object($definition)) {
             $this->ids[$id] = (bool)$opts['locked'];
             $this->services[$id] = new Service($definition, $args, $opts['shared'], $opts['locked']);
+            $this->setAlias($id, $opts['aliases']);
 
             return $this;
         }
@@ -132,7 +135,6 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
             // some options
             if (isset($definition['_options'])) {
                 $opts = array_merge($opts, $definition['_options']);
-                $this->setAlias($id, $opts['aliases']);
                 unset($definition['_options']);
             }
 
@@ -151,6 +153,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
 
         $this->ids[$id] = (bool)$opts['locked'];
         $this->services[$id] = new Service($callback, $args, $opts['shared'], $opts['locked']);
+        $this->setAlias($id, $opts['aliases']);
 
         // active service
         if ($opts['init']) {
@@ -588,24 +591,6 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
         $id = $this->resolveAlias($id);
 
         return isset($this->services[$id]);
-    }
-
-    /**
-     * @param $id
-     * @return string
-     * @throws \InvalidArgumentException
-     */
-    private function _checkServiceId(string $id): string
-    {
-        if (!\is_string($id)) {
-            throw new \InvalidArgumentException('Set up the service Id can be a string!');
-        }
-
-        if (!$id = trim($id)) {
-            throw new \InvalidArgumentException('You must set up the service Id name!');
-        }
-
-        return $id;
     }
 
     /**
