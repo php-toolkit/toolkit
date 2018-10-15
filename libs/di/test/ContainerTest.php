@@ -8,8 +8,8 @@
 
 namespace Toolkit\DITest;
 
-use Toolkit\DI\Container;
 use PHPUnit\Framework\TestCase;
+use Toolkit\DI\Container;
 
 /**
  * Class ContainerTest

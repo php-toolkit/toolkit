@@ -6,8 +6,8 @@
  * Time: 11:57
  */
 
-use Toolkit\DI\Container;
 use Inhere\Library\Utils\LiteLogger;
+use Toolkit\DI\Container;
 
 require dirname(__DIR__) . '/test/boot.php';
 

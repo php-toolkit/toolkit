@@ -8,9 +8,9 @@
 
 namespace Toolkit\DataParserTest;
 
-use Toolkit\DataParser\SwooleParser;
 use PHPUnit\Framework\TestCase;
 use Swoole\Serialize;
+use Toolkit\DataParser\SwooleParser;
 
 /**
  * Class SwooleParserTest

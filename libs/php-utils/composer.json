@@ -2,7 +2,11 @@
   "name": "toolkit/php-utils",
   "type": "library",
   "description": "some php tool library of the php",
-  "keywords": ["library","tool","php"],
+  "keywords": [
+    "library",
+    "tool",
+    "php"
+  ],
   "homepage": "https://github.com/php-toolkit/php-utils",
   "license": "MIT",
   "authors": [
@@ -17,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Toolkit\\PhpUtil\\" : "src/"
+      "Toolkit\\PhpUtil\\": "src/"
     }
   },
   "suggest": {

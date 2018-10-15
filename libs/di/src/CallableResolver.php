@@ -7,8 +7,8 @@
 namespace Toolkit\DI;
 
 use Inhere\Middleware\CallableResolverInterface;
-use RuntimeException;
 use Psr\Container\ContainerInterface;
+use RuntimeException;
 
 /**
  * This class resolves a string of the format 'class:method' into a closure

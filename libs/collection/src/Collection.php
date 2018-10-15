@@ -8,11 +8,11 @@
 
 namespace Toolkit\Collection;
 
+use Toolkit\ArrUtil\Arr;
+use Toolkit\File\File;
 use Toolkit\File\Parse\IniParser;
 use Toolkit\File\Parse\JsonParser;
 use Toolkit\File\Parse\YmlParser;
-use Toolkit\ArrUtil\Arr;
-use Toolkit\File\File;
 use Toolkit\ObjUtil\Obj;
 
 /**

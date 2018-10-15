@@ -10,8 +10,8 @@
 namespace Toolkit\File;
 
 use DirectoryIterator;
-use Toolkit\File\Exception\FileSystemException;
 use Toolkit\File\Exception\FileNotFoundException;
+use Toolkit\File\Exception\FileSystemException;
 
 /**
  * Class Directory

@@ -105,7 +105,7 @@ class DevController extends Controller
             'done' => "\nOK, A total of 【%s】 components were successfully added"
         ];
 
-        $config['onExec'] = function (string $name) use($output) {
+        $config['onExec'] = function (string $name) use ($output) {
             $libPath = $this->componentDir . '/libs/' . $name;
 
             if (\is_dir($libPath)) {

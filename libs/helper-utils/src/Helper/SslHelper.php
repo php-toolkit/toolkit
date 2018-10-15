@@ -40,7 +40,8 @@ class SslHelper
         string $organizational_unit_name,
         string $common_name,
         string $email_address
-    ): bool {
+    ): bool
+    {
         // Generate PEM file
         $dn = [
             'countryName' => $country_name,

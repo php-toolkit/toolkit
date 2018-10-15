@@ -877,7 +877,8 @@ class ArrayHelper
         $addMark = false,
         $separator = ', ',
         $string = ''
-    ): string {
+    ): string
+    {
         if (!\is_array($array) || empty($array)) {
             return '';
         }
@@ -922,7 +923,8 @@ class ArrayHelper
         $showKey = false,
         $addMark = true,
         $separator = ', '
-    ): string {
+    ): string
+    {
         return static::toString($array, $length, $cycles, $showKey, $addMark, $separator);
     }
 

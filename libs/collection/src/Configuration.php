@@ -48,7 +48,7 @@ final class Configuration extends Collection
     /**
      * @var bool
      */
-   // private $advanced = false;
+    // private $advanced = false;
 
     /**
      * __construct

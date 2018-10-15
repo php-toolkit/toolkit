@@ -10,9 +10,9 @@
 
 namespace Toolkit\File;
 
-use Toolkit\File\Exception\IOException;
-use Toolkit\File\Exception\FileNotFoundException;
 use Toolkit\ArrUtil\Arr;
+use Toolkit\File\Exception\FileNotFoundException;
+use Toolkit\File\Exception\IOException;
 
 /**
  * Class FileSystem

@@ -8,8 +8,8 @@
 
 namespace Toolkit\DataParserTest;
 
-use Toolkit\DataParser\PhpParser;
 use PHPUnit\Framework\TestCase;
+use Toolkit\DataParser\PhpParser;
 
 /**
  * Class PhpParserTest

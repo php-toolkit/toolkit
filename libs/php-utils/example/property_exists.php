@@ -6,7 +6,8 @@
  * Time: 12:45
  */
 
-class Some {
+class Some
+{
     public $prop0;
     private $prop1;
     protected $prop2;
@@ -23,14 +24,14 @@ class Some {
 
 echo "use class:\n";
 
-echo 'public: ' . (property_exists(Some::class, 'prop0') ? 'Y':'N') . PHP_EOL;
-echo 'private: ' . (property_exists(Some::class, 'prop1') ? 'Y':'N') . PHP_EOL;
-echo 'protected: ' . (property_exists(Some::class, 'prop2') ? 'Y':'N') . PHP_EOL;
+echo 'public: ' . (property_exists(Some::class, 'prop0') ? 'Y' : 'N') . PHP_EOL;
+echo 'private: ' . (property_exists(Some::class, 'prop1') ? 'Y' : 'N') . PHP_EOL;
+echo 'protected: ' . (property_exists(Some::class, 'prop2') ? 'Y' : 'N') . PHP_EOL;
 
 echo "use object:\n";
 
 $object = new Some();
 
-echo 'public: ' . (property_exists($object, 'prop0') ? 'Y':'N') . PHP_EOL;
-echo 'private: ' . (property_exists($object, 'prop1') ? 'Y':'N') . PHP_EOL;
-echo 'protected: ' . (property_exists($object, 'prop2') ? 'Y':'N') . PHP_EOL;
+echo 'public: ' . (property_exists($object, 'prop0') ? 'Y' : 'N') . PHP_EOL;
+echo 'private: ' . (property_exists($object, 'prop1') ? 'Y' : 'N') . PHP_EOL;
+echo 'protected: ' . (property_exists($object, 'prop2') ? 'Y' : 'N') . PHP_EOL;

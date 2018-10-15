@@ -18,8 +18,7 @@ $finder = \Toolkit\File\FileFinder::create()
     // ->ignoreDotFiles(false)
     // ->exclude('tmp')
     ->notPath('tmp')
-    ->inDir(dirname(__DIR__))
-;
+    ->inDir(dirname(__DIR__));
 
 foreach ($finder as $file) {
     // var_dump($file);die;

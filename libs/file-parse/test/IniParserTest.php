@@ -8,8 +8,8 @@
 
 namespace Toolkit\File\Parse\Test;
 
-use Toolkit\File\Parse\IniParser;
 use PHPUnit\Framework\TestCase;
+use Toolkit\File\Parse\IniParser;
 
 /**
  * Class IniParserTest

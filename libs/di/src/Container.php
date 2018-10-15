@@ -12,10 +12,10 @@
 
 namespace Toolkit\DI;
 
-use Toolkit\ObjUtil\Obj;
-use Toolkit\DI\Exception\NotFoundException;
-use Toolkit\DI\Exception\DependencyResolutionException;
 use Psr\Container\ContainerInterface;
+use Toolkit\DI\Exception\DependencyResolutionException;
+use Toolkit\DI\Exception\NotFoundException;
+use Toolkit\ObjUtil\Obj;
 
 /**
  * Class Container

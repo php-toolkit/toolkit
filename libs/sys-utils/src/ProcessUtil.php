@@ -272,7 +272,8 @@ class ProcessUtil
         $name = 'process',
         bool $force = false,
         int $waitTime = 10
-    ): bool {
+    ): bool
+    {
         // do stop
         if (!self::kill($pid, $force)) {
             $error = "Send stop signal to the $name(PID:$pid) failed!";

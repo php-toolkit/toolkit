@@ -10,10 +10,11 @@ date_default_timezone_set('Asia/Shanghai');
 spl_autoload_register(function ($class) {
     $file = null;
 
-    if (0 === strpos($class,'Toolkit\DI\Example\\')) {
+    if (0 === strpos($class, 'Toolkit\DI\Example\\')) {
         $path = str_replace('\\', '/', substr($class, strlen('Toolkit\DI\Example\\')));
         $file = dirname(__DIR__) . "/example/{$path}.php";
-<<<<<<< HEAD
+        <<<<
+        <<< HEAD
     } elseif (0 === strpos($class,'Toolkit\DITest\\')) {
         $path = str_replace('\\', '/', substr($class, strlen('Toolkit\DITest\\')));
 =======

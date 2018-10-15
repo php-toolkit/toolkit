@@ -632,7 +632,7 @@ abstract class StringHelper
 
     /**
      * 驼峰式 <=> 下划线式
-     * @param  string  $str [description]
+     * @param  string $str [description]
      * @param  bool $toCamelCase
      * true : 驼峰式 => 下划线式
      * false : 驼峰式 <= 下划线式

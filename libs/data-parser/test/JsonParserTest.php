@@ -8,8 +8,8 @@
 
 namespace Toolkit\DataParserTest;
 
-use Toolkit\DataParser\JsonParser;
 use PHPUnit\Framework\TestCase;
+use Toolkit\DataParser\JsonParser;
 
 /**
  * Class JsonParserTest

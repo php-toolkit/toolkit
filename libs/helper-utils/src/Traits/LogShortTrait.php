@@ -8,8 +8,8 @@
 
 namespace Toolkit\Traits;
 
-use Toolkit\PhpUtil\PhpHelper;
 use Monolog\Logger;
+use Toolkit\PhpUtil\PhpHelper;
 
 /**
  * Class LogShortTrait

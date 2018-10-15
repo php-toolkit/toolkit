@@ -134,7 +134,7 @@ abstract class File extends FileSystem
     }
 
     /**
-     * @param string$path
+     * @param string $path
      * @return resource
      * @throws IOException
      */

@@ -9,7 +9,6 @@
 namespace Toolkit\Collection\Test;
 
 use PHPUnit\Framework\TestCase;
-use Toolkit\ArrUtil\ArrayHelper;
 use Toolkit\Collection\Language;
 
 /**
