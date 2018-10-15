@@ -314,12 +314,12 @@ class ArrayHelper
         } else {
 
             #以逗号分隔的会被拆开，组成数组
-            if (strpos($need, ',') !== false) {
-                $need = explode(',', $need);
+            if (\strpos($need, ',') !== false) {
+                $need = \explode(',', $need);
                 self::existsAll($need, $arr, $type);
             } else {
                 $arr = self::valueToLower($arr);//小写
-                $need = strtolower(trim($need));//小写
+                $need = \strtolower(trim($need));//小写
 
                 if (!\in_array($need, $arr, $type)) {
                     return $need;
@@ -355,7 +355,7 @@ class ArrayHelper
             }
 
             $arr = self::changeValueCase($arr);//小写
-            $need = strtolower($need);//小写
+            $need = \strtolower($need);//小写
 
             if (\in_array($need, $arr, $type)) {
                 return true;
@@ -406,7 +406,9 @@ class ArrayHelper
             return $data[$path];
         }
 
-        if (!$nodes = array_filter(explode($separator, $path))) {
+        // Error: will clear '0'. eg 'some-key.0'
+        // if (!$nodes = array_filter(explode($separator, $path))) {
+        if (!$nodes = \explode($separator, $path)) {
             return $default;
         }
 
@@ -486,7 +488,7 @@ class ArrayHelper
                 continue;
             }
 
-            $results = array_merge($results, $values);
+            $results = \array_merge($results, $values);
         }
 
         return $results;
@@ -499,10 +501,10 @@ class ArrayHelper
      */
     public static function crossJoin(...$arrays): array
     {
-        return array_reduce($arrays, function ($results, $array) {
-            return static::collapse(array_map(function ($parent) use ($array) {
-                return array_map(function ($item) use ($parent) {
-                    return array_merge($parent, [$item]);
+        return \array_reduce($arrays, function ($results, $array) {
+            return static::collapse(\array_map(function ($parent) use ($array) {
+                return \array_map(function ($item) use ($parent) {
+                    return \array_merge($parent, [$item]);
                 }, $array);
             }, $results));
         }, [[]]);
@@ -530,7 +532,7 @@ class ArrayHelper
 
         foreach ($array as $key => $value) {
             if (\is_array($value) && !empty($value)) {
-                $results = array_merge($results, static::dot($value, $prepend . $key . '.'));
+                $results = \array_merge($results, static::dot($value, $prepend . $key . '.'));
             } else {
                 $results[$prepend . $key] = $value;
             }
@@ -677,7 +679,7 @@ class ArrayHelper
      * @param  array|string $keys
      * @return void
      */
-    public static function forget(&$array, $keys): void
+    public static function forget(&$array, $keys)
     {
         $original = &$array;
         $keys = (array)$keys;

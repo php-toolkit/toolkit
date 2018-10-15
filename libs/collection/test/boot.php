@@ -7,21 +7,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 date_default_timezone_set('Asia/Shanghai');
 
-spl_autoload_register(function ($class) {
-    $file = null;
+$files = [
+    dirname(__DIR__) . '/vendor/autoload.php',
+    dirname(__DIR__, 2) . '/autoload.php',
+    dirname(__DIR__, 6) . '/vendor/autoload.php',
+];
 
-    if (0 === strpos($class,'Toolkit\Collection\Example\\')) {
-        $path = str_replace('\\', '/', substr($class, strlen('Toolkit\Collection\Example\\')));
-        $file = dirname(__DIR__) . "/example/{$path}.php";
-    } elseif (0 === strpos($class,'Toolkit\Collection\Test\\')) {
-        $path = str_replace('\\', '/', substr($class, strlen('Toolkit\Collection\Test\\')));
-        $file = __DIR__ . "/{$path}.php";
-    } elseif (0 === strpos($class,'Toolkit\Collection\\')) {
-        $path = str_replace('\\', '/', substr($class, strlen('Toolkit\Collection\\')));
-        $file = dirname(__DIR__) . "/src/{$path}.php";
+foreach ($files as $file) {
+    if (file_exists($file)) {
+        require $file;
     }
-
-    if ($file && is_file($file)) {
-        include $file;
-    }
-});
+}

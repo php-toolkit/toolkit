@@ -161,7 +161,8 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
             throw new \InvalidArgumentException('The translate key must be a string.');
         }
 
-        if (!$key = \trim($key, ' ' . $this->separator)) {
+        $key = \trim($key, ' ' . $this->separator);
+        if ($key === '') { // '0' is equals False
             throw new \InvalidArgumentException('Cannot translate the empty key');
         }
 
@@ -227,7 +228,6 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
         if ($file = $this->getLangFile($fileKey)) {
             $this->loadedFiles[] = $file;
             $this->data->set($fileKey, Collection::read($file, $this->format));
-
             return $this->data->get($key);
         }
 
@@ -303,8 +303,10 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
             return [$lang, $key];
         }
 
-        if (\strpos($key, $this->separator)) {
-            $info = \explode($this->separator, $key, 2);
+        $langSep = ':';
+
+        if (\strpos($key, $langSep)) {
+            $info = \explode($langSep, $key, 2);
 
             if ($this->isLang($info[0])) {
                 return $info;
