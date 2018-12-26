@@ -10,7 +10,7 @@ namespace Toolkit\Collection;
 
 /**
  * Class LiteCollection
- * @package Inhere\Http
+ * @package Toolkit\Collection
  */
 class LiteCollection extends \ArrayObject implements CollectionInterface
 {
