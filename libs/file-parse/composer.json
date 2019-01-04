@@ -22,13 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      <<<<<<<
-      HEAD
       "Toolkit\\File\\Parse\\": "src/"
-      =======
-      "Toolkit\\File\\Parse\\": "src/"
-      >>>>>>>
-      54f70647d1f38987bffbff758f41cb542c0d8212
     }
   },
   "suggest": {

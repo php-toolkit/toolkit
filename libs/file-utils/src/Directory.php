@@ -257,7 +257,7 @@ class Directory extends FileSystem
      * @throws \InvalidArgumentException
      * @throws FileNotFoundException
      */
-    public static function getFilesInfo($path, $ext = null, $recursive = 0, &$list): array
+    public static function getFilesInfo($path, $ext = null, $recursive = 0, &$list = []): array
     {
         $path = self::pathFormat($path);
 

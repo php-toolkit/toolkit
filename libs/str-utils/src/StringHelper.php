@@ -153,7 +153,7 @@ abstract class StringHelper
      * @param bool   $suffix 是否加尾缀
      * @return string
      */
-    public static function zhSubStr($str, $start = 0, $length, $charset = 'utf-8', $suffix = true): string
+    public static function zhSubStr($str, $start = 0, $length = 0, $charset = 'utf-8', $suffix = true): string
     {
         if (\function_exists('mb_substr')) {
             if (mb_strlen($str, $charset) <= $length) {

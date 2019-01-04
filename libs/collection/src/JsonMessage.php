@@ -151,7 +151,7 @@ class JsonMessage
      */
     public function __toString()
     {
-        return json_encode($this->all());
+        return (string)\json_encode($this->all());
     }
 
     /**

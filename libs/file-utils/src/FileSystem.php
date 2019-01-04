@@ -65,7 +65,7 @@ abstract class FileSystem
     {
         $dirName = str_ireplace('\\', '/', trim($dirName));
 
-        return substr($dirName, -1) === '/' ? $dirName : $dirName . '/';
+        return substr((string)$dirName, -1) === '/' ? $dirName : $dirName . '/';
     }
 
     /**
