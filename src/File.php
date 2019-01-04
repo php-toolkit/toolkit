@@ -105,7 +105,7 @@ abstract class File extends FileSystem
      */
     public static function getStat($filename): array
     {
-        return stat($filename);
+        return \stat($filename);
     }
 
     /**
@@ -116,7 +116,7 @@ abstract class File extends FileSystem
      */
     public static function save(string $filename, string $data): bool
     {
-        return file_put_contents($filename, $data) !== false;
+        return \file_put_contents($filename, $data) !== false;
     }
 
     /**
@@ -124,7 +124,7 @@ abstract class File extends FileSystem
      * @param $path
      * @throws IOException
      */
-    public static function write($content, $path): void
+    public static function write($content, $path)
     {
         $handler = static::openHandler($path);
 
@@ -154,7 +154,7 @@ abstract class File extends FileSystem
      * @param string $path The path to the file (for exception printing only).
      * @throws IOException
      */
-    public static function writeToFile($handler, string $content, string $path = ''): void
+    public static function writeToFile($handler, string $content, string $path = '')
     {
         if (($result = @fwrite($handler, $content)) === false || ($result < \strlen($content))) {
             throw new IOException('The file "' . $path . '" could not be written to. Check your disk space and file permissions.');
@@ -172,7 +172,7 @@ abstract class File extends FileSystem
      *      'case.html'   => 'content' ,
      *  );
      **/
-    public static function createAndWrite(array $fileData = [], $append = false, $mode = 0664): void
+    public static function createAndWrite(array $fileData = [], $append = false, $mode = 0664)
     {
         foreach ($fileData as $file => $content) {
             //检查目录是否存在，不存在就先创建（多级）目录
@@ -391,13 +391,13 @@ abstract class File extends FileSystem
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         header('Content-Description: File Download');
         header('Content-Type: application/octet-stream');
-        header('Content-Length: ' . trim(`stat -c%s "$file"`));
+        header('Content-Length: ' . trim(shell_exec('stat -c%s "$file"')));
         header('Content-Disposition: attachment; filename="' . $as . '"');
         header('Content-Transfer-Encoding: binary');
         //@readfile( $file );
 
         flush();
-        $fp = popen('tail -c ' . trim(`stat -c%s "$file"`) . ' ' . $file . ' 2>&1', 'r');
+        $fp = popen('tail -c ' . trim(shell_exec('stat -c%s "$file"')) . ' ' . $file . ' 2>&1', 'r');
 
         while (!feof($fp)) {
             // send the current file part to the browser

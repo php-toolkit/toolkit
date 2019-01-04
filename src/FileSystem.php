@@ -69,7 +69,7 @@ abstract class FileSystem
     }
 
     /**
-     * @param string $path e.g phar://E:/workenv/php-dockerized/www/phplang/ugirls-social/social-uem/uem.phar/web
+     * @param string $path e.g phar://E:/workenv/xxx/yyy/app.phar/web
      * @return string
      */
     public function clearPharPath(string $path): string
@@ -116,7 +116,7 @@ abstract class FileSystem
      * @throws FileNotFoundException
      * @throws \InvalidArgumentException
      */
-    public static function check(string $file, $ext = null): void
+    public static function check(string $file, $ext = null)
     {
         if (!$file || !file_exists($file)) {
             throw new FileNotFoundException("File {$file} not exists！");
@@ -142,7 +142,7 @@ abstract class FileSystem
      * @throws IOException When target file or directory already exists
      * @throws IOException When origin cannot be renamed
      */
-    public static function rename(string $origin, string $target, bool $overwrite = false): void
+    public static function rename(string $origin, string $target, bool $overwrite = false)
     {
         // we check that target does not exist
         if (!$overwrite && static::isReadable($target)) {
@@ -176,7 +176,7 @@ abstract class FileSystem
      * @param int $mode The directory mode
      * @throws IOException On any directory creation failure
      */
-    public static function mkdir($dirs, $mode = 0777): void
+    public static function mkdir($dirs, $mode = 0777)
     {
         foreach (Arr::toIterator($dirs) as $dir) {
             if (is_dir($dir)) {
@@ -207,7 +207,7 @@ abstract class FileSystem
      * @param bool $recursive Whether change the mod recursively or not
      * @throws IOException When the change fail
      */
-    public static function chmod($files, $mode, $umask = 0000, $recursive = false): void
+    public static function chmod($files, $mode, $umask = 0000, $recursive = false)
     {
         foreach (Arr::toIterator($files) as $file) {
             if (true !== @chmod($file, $mode & ~$umask)) {
@@ -228,7 +228,7 @@ abstract class FileSystem
      * @param bool $recursive Whether change the owner recursively or not
      * @throws IOException When the change fail
      */
-    public static function chown($files, string $user, $recursive = false): void
+    public static function chown($files, string $user, $recursive = false)
     {
         foreach (Arr::toIterator($files) as $file) {
             if ($recursive && is_dir($file) && !is_link($file)) {
@@ -251,11 +251,12 @@ abstract class FileSystem
      * @param string $srcDir
      * @param callable $filter
      * @return \RecursiveIteratorIterator
+     * @throws \InvalidArgumentException
      */
     public static function getIterator(string $srcDir, callable $filter): \RecursiveIteratorIterator
     {
         if (!$srcDir || !file_exists($srcDir)) {
-            throw new \LogicException('Please provide a exists source directory.');
+            throw new \InvalidArgumentException('Please provide a exists source directory.');
         }
 
         $directory = new \RecursiveDirectoryIterator($srcDir);
