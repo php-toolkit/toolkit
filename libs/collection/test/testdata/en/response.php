@@ -7,7 +7,7 @@
  */
 
 return [
-    0 => 'successful',
-    2 => 'error',
+    0     => 'successful',
+    2     => 'error',
     'key' => 'message',
 ];

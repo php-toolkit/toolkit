@@ -29,7 +29,7 @@ trait LiteOptionsTrait
     /**
      * Method to get property Options
      * @param   string $name
-     * @param   mixed $default
+     * @param   mixed  $default
      * @return  mixed
      */
     public function getOption(string $name, $default = null)
@@ -46,7 +46,7 @@ trait LiteOptionsTrait
     /**
      * Method to set property options
      * @param   string $name
-     * @param   mixed $value
+     * @param   mixed  $value
      * @return  static  Return self to support chaining.
      */
     public function setOption($name, $value)
@@ -86,7 +86,7 @@ trait LiteOptionsTrait
     /**
      * Method to set property options
      * @param  array $options
-     * @param  bool $merge
+     * @param  bool  $merge
      * @return static Return self to support chaining.
      */
     public function setOptions(array $options, $merge = true)

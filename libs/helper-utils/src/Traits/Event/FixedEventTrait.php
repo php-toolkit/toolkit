@@ -91,9 +91,9 @@ trait FixedEventTrait
 
     /**
      * register a event callback
-     * @param string $event event name
+     * @param string   $event event name
      * @param callable $cb event callback
-     * @param bool $replace replace exists's event cb
+     * @param bool     $replace replace exists's event cb
      * @throws \InvalidArgumentException
      */
     public function on(string $event, callable $cb, bool $replace = false)
@@ -138,7 +138,7 @@ trait FixedEventTrait
 
     /**
      * @param string $event
-     * @param array $args
+     * @param array  $args
      * @return mixed
      * @throws \InvalidArgumentException
      */

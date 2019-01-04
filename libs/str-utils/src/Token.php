@@ -62,7 +62,7 @@ class Token
     /**
      * @param string $pwd
      * @param string $algo
-     * @param array $opts
+     * @param array  $opts
      * @return bool|string
      */
     public static function pwdHash(string $pwd, string $algo, array $opts = [])
@@ -108,7 +108,7 @@ class Token
     /**
      * 2 生成
      * @todo from php.net
-     * @param $password
+     * @param     $password
      * @param int $cost
      * @return string
      * @throws \RuntimeException

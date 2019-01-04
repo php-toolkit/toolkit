@@ -60,7 +60,7 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function __set(string $key, $value)
     {

@@ -21,15 +21,15 @@ trait LiteEventTrait
      */
     private $_events = [];
 
-//////////////////////////////////////////////////////////////////////
-/// events method
-//////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
+    /// events method
+    //////////////////////////////////////////////////////////////////////
 
     /**
      * register a event callback
-     * @param string $name event name
+     * @param string   $name event name
      * @param callable $cb event callback
-     * @param bool $replace replace exists's event cb
+     * @param bool     $replace replace exists's event cb
      */
     public function on($name, callable $cb, $replace = false)
     {
@@ -40,7 +40,7 @@ trait LiteEventTrait
 
     /**
      * @param string $name
-     * @param array $args
+     * @param array  $args
      * @return mixed
      */
     protected function fire($name, array $args = [])

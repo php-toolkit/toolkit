@@ -21,8 +21,7 @@ $map = [
     'Toolkit\DITest\\' => $baseDir . '/libs/di/test',
 ];
 
-spl_autoload_register(function($class) use ($map)
-{
+spl_autoload_register(function ($class) use ($map) {
     foreach ($map as $np => $dir) {
         if (0 === strpos($class, $np)) {
             $path = str_replace('\\', '/', substr($class, strlen($np)));
@@ -35,6 +34,7 @@ spl_autoload_register(function($class) use ($map)
     }
 });
 
-function __include_file($file) {
+function __include_file($file)
+{
     include $file;
 }

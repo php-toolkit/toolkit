@@ -20,7 +20,7 @@ trait NameAliasTrait
     /**
      * set/get name alias
      * @param array|string $name
-     * @param string|null $alias
+     * @param string|null  $alias
      * @return bool|string
      */
     public function alias($name, $alias = null)

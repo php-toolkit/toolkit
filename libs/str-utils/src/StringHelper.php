@@ -19,19 +19,19 @@ abstract class StringHelper
     public static function regexVerify($value, $rule): bool
     {
         $value = trim($value);
-        $validate = array(
-            'require' => '/\S+/',
-            'email' => '/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/',
+        $validate = [
+            'require'  => '/\S+/',
+            'email'    => '/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/',
             // 'url'       =>  '/^http(s?):\/\/(?:[A-za-z0-9-]+\.)+[A-za-z]{2,4}(?:[\/\?#][\/=\?%\-&~`@[\]\':+!\.#\w]*)?$/',
-            'url' => '/^(http|https|ftp):\/\/([A-Z0-9][A-Z0-9_-]*(?:\.[A-Z0-9][A-Z0-9_-]*)+):?(\d+)?\/?/i',
+            'url'      => '/^(http|https|ftp):\/\/([A-Z0-9][A-Z0-9_-]*(?:\.[A-Z0-9][A-Z0-9_-]*)+):?(\d+)?\/?/i',
             'currency' => '/^\d+(\.\d+)?$/',
             # 货币
-            'number' => '/^\d+$/',
-            'zip' => '/^\d{6}$/',
-            'integer' => '/^[-\+]?\d+$/',
-            'double' => '/^[-\+]?\d+(\.\d+)?$/',
-            'english' => '/^[A-Za-z]+$/',
-        );
+            'number'   => '/^\d+$/',
+            'zip'      => '/^\d{6}$/',
+            'integer'  => '/^[-\+]?\d+$/',
+            'double'   => '/^[-\+]?\d+(\.\d+)?$/',
+            'english'  => '/^[A-Za-z]+$/',
+        ];
 
         // 检查是否有内置的正则表达式
         if (isset($validate[strtolower($rule)])) {
@@ -42,7 +42,7 @@ abstract class StringHelper
     }
 
     /**
-     * @param $str
+     * @param        $str
      * @param string $encoding
      * @return bool|int
      */
@@ -107,8 +107,8 @@ abstract class StringHelper
      * @from web
      *  utf-8编码下截取中文字符串,参数可以参照substr函数
      * @param string $str 要进行截取的字符串
-     * @param int $start 要进行截取的开始位置，负数为反向截取
-     * @param int $end 要进行截取的长度
+     * @param int    $start 要进行截取的开始位置，负数为反向截取
+     * @param int    $end 要进行截取的长度
      * @return string
      */
     public static function utf8SubStr($str, $start = 0, $end = null): string
@@ -147,10 +147,10 @@ abstract class StringHelper
      * @from web
      * 中文截取，支持gb2312,gbk,utf-8,big5   *
      * @param string $str 要截取的字串
-     * @param int $start 截取起始位置
-     * @param int $length 截取长度
+     * @param int    $start 截取起始位置
+     * @param int    $length 截取长度
      * @param string $charset utf-8|gb2312|gbk|big5 编码
-     * @param bool $suffix 是否加尾缀
+     * @param bool   $suffix 是否加尾缀
      * @return string
      */
     public static function zhSubStr($str, $start = 0, $length, $charset = 'utf-8', $suffix = true): string
@@ -185,7 +185,7 @@ abstract class StringHelper
 
     /**
      * ********************** 生成一定长度的随机字符串函数 **********************
-     * @param $length - 随机字符串长度
+     * @param              $length - 随机字符串长度
      * @param array|string $param -
      * @internal param string $chars
      * @return string
@@ -196,7 +196,7 @@ abstract class StringHelper
         $param = \array_merge([
             'prefix' => '',
             'suffix' => '',
-            'chars' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+            'chars'  => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
         ], $param);
 
         $chars = $param['chars'];
@@ -238,7 +238,7 @@ abstract class StringHelper
 
     /**
      * gen UUID
-     * @param int $version
+     * @param int  $version
      * @param null $node
      * @param null $ns
      * @return UUID
@@ -290,10 +290,10 @@ abstract class StringHelper
     }
 
     /**
-     * @param $str
-     * @param $start
+     * @param            $str
+     * @param            $start
      * @param bool|false $length
-     * @param string $encoding
+     * @param string     $encoding
      * @return bool|string
      */
     public static function substr(string $str, int $start, int $length = null, string $encoding = 'utf-8')
@@ -306,9 +306,9 @@ abstract class StringHelper
     }
 
     /**
-     * @param $str
-     * @param $find
-     * @param int $offset
+     * @param        $str
+     * @param        $find
+     * @param int    $offset
      * @param string $encoding
      * @return bool|int
      */
@@ -322,7 +322,7 @@ abstract class StringHelper
     /**
      * @param string $str
      * @param string $find
-     * @param int $offset
+     * @param int    $offset
      * @param string $encoding
      * @return bool|int
      */
@@ -404,7 +404,7 @@ abstract class StringHelper
     /**
      * Truncate strings
      * @param string $str
-     * @param int $max_length Max length
+     * @param int    $max_length Max length
      * @param string $suffix Suffix optional
      * @return string $str truncated
      */
@@ -423,8 +423,8 @@ abstract class StringHelper
 
     /**
      * 字符截断输出
-     * @param string $str
-     * @param int $start
+     * @param string   $str
+     * @param int      $start
      * @param null|int $length
      * @return string
      */
@@ -451,16 +451,16 @@ abstract class StringHelper
     /**
      * Copied from CakePHP String utility file
      * @param string $text
-     * @param int $length
-     * @param array $options
+     * @param int    $length
+     * @param array  $options
      * @return bool|string
      */
-    public static function truncate3(string $text, int $length = 120, array $options = array())
+    public static function truncate3(string $text, int $length = 120, array $options = [])
     {
         $default = [
             'ellipsis' => '...',
-            'exact' => true,
-            'html' => true
+            'exact'    => true,
+            'html'     => true
         ];
 
         $options = array_merge($default, $options);
@@ -470,8 +470,8 @@ abstract class StringHelper
 
         /**
          * @var string $ellipsis
-         * @var bool $exact
-         * @var bool $html
+         * @var bool   $exact
+         * @var bool   $html
          */
 
         if ($html) {
@@ -583,7 +583,7 @@ abstract class StringHelper
     }
 
     /**
-     * @param $str
+     * @param      $str
      * @param bool $upperFirstChar
      * @return mixed
      */
@@ -595,7 +595,7 @@ abstract class StringHelper
     /**
      * Translates a string with underscores into camel case (e.g. first_name -> firstName)
      * @prototype string public static function toCamelCase(string $str[, bool $capitalise_first_char = false])
-     * @param $str
+     * @param      $str
      * @param bool $upperFirstChar
      * @return mixed
      */
@@ -633,7 +633,7 @@ abstract class StringHelper
     /**
      * 驼峰式 <=> 下划线式
      * @param  string $str [description]
-     * @param  bool $toCamelCase
+     * @param  bool   $toCamelCase
      * true : 驼峰式 => 下划线式
      * false : 驼峰式 <= 下划线式
      * @return string
@@ -664,7 +664,7 @@ abstract class StringHelper
 
     /**
      * [format description]
-     * @param $str
+     * @param       $str
      * @param array $replaceParams 用于 str_replace('search','replace',$str )
      * @example
      *   $replaceParams = [
@@ -726,7 +726,7 @@ abstract class StringHelper
 
     /**
      * 缩进格式化内容，去空白/注释
-     * @param $fileName
+     * @param     $fileName
      * @param int $type
      * @return mixed
      */

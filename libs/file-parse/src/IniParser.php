@@ -24,8 +24,12 @@ class IniParser extends BaseParser
      * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
      */
-    protected static function doParse($string, $enhancement = false, callable $pathHandler = null, string $fileDir = ''): array
-    {
+    protected static function doParse(
+        $string,
+        $enhancement = false,
+        callable $pathHandler = null,
+        string $fileDir = ''
+    ): array {
         if (!$string) {
             return [];
         }

@@ -28,7 +28,7 @@ namespace Toolkit\StrUtil;
  */
 class UUID
 {
-    const MD5 = 3;
+    const MD5  = 3;
     const SHA1 = 5;
 
     /** @var int 00001111  Clears all bits of version byte with AND */
@@ -96,7 +96,7 @@ class UUID
     const VALID_UUID_REGEX = '^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$';
 
     /**
-     * @param int $ver
+     * @param int         $ver
      * @param string|null $node
      * @param string|null $ns
      * @return UUID
@@ -108,7 +108,7 @@ class UUID
     }
 
     /**
-     * @param int $ver
+     * @param int    $ver
      * @param string $node
      * @param string $ns
      * @return UUID
@@ -227,7 +227,7 @@ class UUID
      * Returns binary representation, or false on failure.
      *
      * @param string|self $str
-     * @param integer $len
+     * @param integer     $len
      * @return string|null
      */
     protected static function makeBin($str, $len)
@@ -258,8 +258,8 @@ class UUID
      * Generates a Version 3 or Version 5 UUID.
      * These are derived from a hash of a name and its namespace, in binary form.
      *
-     * @param int $ver
-     * @param string $node
+     * @param int         $ver
+     * @param string      $node
      * @param string|null $ns
      * @return string
      * @throws \InvalidArgumentException

@@ -45,7 +45,7 @@ class UrlHelper
 
     /**
      * @param string $url
-     * @param mixed $data
+     * @param mixed  $data
      * @return string
      */
     public static function build($url, $data = null): string
@@ -96,7 +96,7 @@ class UrlHelper
     }
 
     // Build arrays of values we need to decode before parsing
-    protected static $entities = array(
+    protected static $entities = [
         '%21',
         '%2A',
         '%27',
@@ -114,9 +114,9 @@ class UrlHelper
         '%23',
         '%5B',
         '%5D'
-    );
+    ];
 
-    protected static $replacements = array(
+    protected static $replacements = [
         '!',
         '*',
         "'",
@@ -134,7 +134,7 @@ class UrlHelper
         '#',
         '[',
         ']'
-    );
+    ];
 
     public static function parseUrl($url): array
     {

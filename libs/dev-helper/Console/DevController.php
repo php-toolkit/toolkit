@@ -20,7 +20,7 @@ use Toolkit\Sys\Sys;
  */
 class DevController extends Controller
 {
-    const TYPE_SSL = 'git@github.com:';
+    const TYPE_SSL   = 'git@github.com:';
     const TYPE_HTTPS = 'https://github.com/';
 
     protected static $name = 'dev';
@@ -46,7 +46,7 @@ class DevController extends Controller
      * @example
      *  {fullCommand}
      *  {fullCommand} --show-repo
-     * @param Input $input
+     * @param Input  $input
      * @param Output $output
      * @return int
      */
@@ -90,7 +90,7 @@ class DevController extends Controller
      * @example
      *  {fullCommand} collection         Pull the collection from it's git repo
      *  {fullCommand} collection di      Pull multi component
-     * @param Input $input
+     * @param Input  $input
      * @param Output $output
      * @return int
      * @throws \RuntimeException
@@ -98,11 +98,11 @@ class DevController extends Controller
     public function addCommand(Input $input, Output $output): int
     {
         $config = [
-            'operate' => 'add',
+            'operate'       => 'add',
             'operatedNames' => 'Will added components',
-            'begin' => 'Execute the add command',
-            'doing' => 'Adding',
-            'done' => "\nOK, A total of 【%s】 components were successfully added"
+            'begin'         => 'Execute the add command',
+            'doing'         => 'Adding',
+            'done'          => "\nOK, A total of 【%s】 components were successfully added"
         ];
 
         $config['onExec'] = function (string $name) use ($output) {
@@ -135,7 +135,7 @@ class DevController extends Controller
      * @example
      *  {fullCommand} collection              Pull the collection from it's git repo
      *  {fullCommand} collection console      Pull multi component
-     * @param Input $input
+     * @param Input  $input
      * @param Output $output
      * @return int
      * @throws \RuntimeException
@@ -143,11 +143,11 @@ class DevController extends Controller
     public function pullCommand(Input $input, Output $output): int
     {
         $config = [
-            'operate' => 'pull',
+            'operate'       => 'pull',
             'operatedNames' => 'Will pulled components',
-            'begin' => 'Execute the pull command',
-            'doing' => 'Pulling',
-            'done' => "\nOK, A total of 【%s】 components were successfully pulled"
+            'begin'         => 'Execute the pull command',
+            'doing'         => 'Pulling',
+            'done'          => "\nOK, A total of 【%s】 components were successfully pulled"
         ];
 
         return $this->runGitSubtree($input, $output, $config);
@@ -171,7 +171,7 @@ class DevController extends Controller
      *  {fullCommand} collection console      Push multi component. collection and console
      *  {fullCommand} --all                Push all components
      *  {fullCommand} --all --dry-run      Push all components, but do not execute.
-     * @param Input $input
+     * @param Input  $input
      * @param Output $output
      * @return int
      * @throws \RuntimeException
@@ -179,20 +179,20 @@ class DevController extends Controller
     public function pushCommand(Input $input, Output $output): int
     {
         $config = [
-            'operate' => 'push',
+            'operate'       => 'push',
             'operatedNames' => 'Will pushed components',
-            'begin' => 'Execute the push command',
-            'doing' => 'Pushing',
-            'done' => "\nOK, A total of 【%s】 components are pushed to their respective git repositories",
+            'begin'         => 'Execute the push command',
+            'doing'         => 'Pushing',
+            'done'          => "\nOK, A total of 【%s】 components are pushed to their respective git repositories",
         ];
 
         return $this->runGitSubtree($input, $output, $config);
     }
 
     /**
-     * @param Input $input
+     * @param Input  $input
      * @param Output $output
-     * @param array $config
+     * @param array  $config
      * @return int
      * @throws \RuntimeException
      */
@@ -283,7 +283,7 @@ class DevController extends Controller
      *   - An API documentation generator
      *   - github https://github.com/FriendsOfPHP/Sami
      *   - download `curl -O http://get.sensiolabs.org/sami.phar`
-     * @param Input $input
+     * @param Input  $input
      * @param Output $output
      * @return int
      * @throws \RuntimeException

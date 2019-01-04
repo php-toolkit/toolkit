@@ -39,7 +39,7 @@ class HtmlHelper
 
     /**
      * @form yii1
-     * @param array $data data to be encoded
+     * @param array  $data data to be encoded
      * @param string $charset
      * @return array the encoded data
      * @see http://www.php.net/manual/en/function.htmlspecialchars.php
@@ -74,8 +74,8 @@ class HtmlHelper
      *  htmlentities() <--> html_entity_decode() — 将特殊的 HTML 实体转换回普通字符
      *  htmlspecialchars() <--> htmlspecialchars_decode() — 将特殊的 HTML 实体转换回普通字符
      * ENT_COMPAT ENT_QUOTES ENT_NOQUOTES ENT_HTML401 ENT_XML1 ENT_XHTML ENT_HTML5
-     * @param $data
-     * @param int $type
+     * @param        $data
+     * @param int    $type
      * @param string $encoding
      * @return array|mixed|string
      */
@@ -106,8 +106,8 @@ class HtmlHelper
 
     /**
      * 去掉html转义
-     * @param $data
-     * @param int $type
+     * @param        $data
+     * @param int    $type
      * @param string $encoding
      * @return array|string
      */
@@ -170,7 +170,7 @@ class HtmlHelper
     }
 
     /**
-     * @param string $html
+     * @param string    $html
      * @param bool|true $onlySrc
      * @return array
      */

@@ -29,8 +29,8 @@ trait LogProfileTrait
 
     /**
      * mark data analysis start
-     * @param $name
-     * @param array $context
+     * @param        $name
+     * @param array  $context
      * @param string $category
      */
     public function profile($name, array $context = [], $category = 'application')
@@ -38,10 +38,10 @@ trait LogProfileTrait
         $data = [
             '_profile_stats' => [
                 'startTime' => microtime(true),
-                'startMem' => memory_get_usage(),
+                'startMem'  => memory_get_usage(),
             ],
             '_profile_start' => $context,
-            '_profile_end' => null,
+            '_profile_end'   => null,
         ];
 
         $this->activeKey = $category . '|' . $name;
@@ -51,7 +51,7 @@ trait LogProfileTrait
     /**
      * mark data analysis end
      * @param string|null $title
-     * @param array $context
+     * @param array       $context
      */
     public function profileEnd($title = null, array $context = [])
     {

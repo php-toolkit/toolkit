@@ -26,7 +26,7 @@ trait NameAliasTrait
 
     /**
      * set name alias
-     * @param string $name
+     * @param string       $name
      * @param array|string $alias
      */
     public function setAlias(string $name, $alias)

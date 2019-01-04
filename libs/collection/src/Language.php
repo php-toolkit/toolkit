@@ -149,7 +149,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * how to use language translate ? please see '/doc/language.md'
      * @param string $key
-     * @param array $args
+     * @param array  $args
      * @param string $lang
      * @return string|array
      * @throws \RangeException
@@ -191,7 +191,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      * @return mixed
      */
     public function set(string $key, $value)
@@ -441,7 +441,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * Allow quick access default file translate by `$lang->key()`,
      * is equals to `$lang->tl('key')`.
      * @param string $name
-     * @param array $args
+     * @param array  $args
      * @return mixed|string
      * @throws \InvalidArgumentException
      */

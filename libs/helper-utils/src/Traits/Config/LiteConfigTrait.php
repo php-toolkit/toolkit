@@ -29,7 +29,7 @@ trait LiteConfigTrait
     /**
      * Method to get property Options
      * @param   string $name
-     * @param   mixed $default
+     * @param   mixed  $default
      * @return  mixed
      */
     public function getValue($name, $default = null)
@@ -46,7 +46,7 @@ trait LiteConfigTrait
     /**
      * Method to set property config
      * @param   string $name
-     * @param   mixed $value
+     * @param   mixed  $value
      * @return  static  Return self to support chaining.
      */
     public function setValue($name, $value)
@@ -91,7 +91,7 @@ trait LiteConfigTrait
     /**
      * Method to set property config
      * @param  array $config
-     * @param  bool $merge
+     * @param  bool  $merge
      * @return static Return self to support chaining.
      */
     public function setConfig(array $config, $merge = true)

@@ -27,7 +27,7 @@ class PhpHelper extends PhpEnv
 
     /**
      * @param callable|mixed $cb
-     * @param array ...$args
+     * @param array          ...$args
      * @return mixed
      */
     public static function call($cb, ...$args)
@@ -55,7 +55,7 @@ class PhpHelper extends PhpEnv
 
     /**
      * @param callable $cb
-     * @param array $args
+     * @param array    $args
      * @return mixed
      */
     public static function callByArray(callable $cb, array $args)
@@ -93,10 +93,10 @@ class PhpHelper extends PhpEnv
 
     /**
      * 获取资源消耗
-     * @param int $startTime
+     * @param int       $startTime
      * @param int|float $startMem
-     * @param array $info
-     * @param bool $realUsage
+     * @param array     $info
+     * @param bool      $realUsage
      * @return array
      */
     public static function runtime($startTime, $startMem, array $info = [], $realUsage = false): array

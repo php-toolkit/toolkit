@@ -47,7 +47,7 @@ trait ObjectPoolTrait
     }
 
     /**
-     * @param string $class
+     * @param string   $class
      * @param \Closure $handler
      * @return mixed
      */

@@ -35,7 +35,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
     }
 
     /**
-     * @param string $name
+     * @param string     $name
      * @param null|mixed $default
      * @return mixed|null
      */
@@ -46,7 +46,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
 
     /**
      * @param string $name
-     * @param mixed $value
+     * @param mixed  $value
      * @return mixed|null
      */
     public function add($name, $value)
@@ -62,7 +62,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
 
     /**
      * @param string $name
-     * @param mixed $value
+     * @param mixed  $value
      * @return mixed|null
      */
     public function set($name, $value)

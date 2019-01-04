@@ -159,7 +159,7 @@ class PhpEnv
     }
 
     /**
-     * @param $name
+     * @param            $name
      * @param bool|false $throwException
      * @return bool
      * @throws \RuntimeException
@@ -180,7 +180,7 @@ class PhpEnv
      * @param array $extensions
      * @return array|bool
      */
-    public static function checkExtList(array $extensions = array())
+    public static function checkExtList(array $extensions = [])
     {
         $allTotal = [];
 

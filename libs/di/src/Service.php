@@ -45,10 +45,10 @@ final class Service
 
     /**
      * Service constructor.
-     * @param $callback
+     * @param       $callback
      * @param array $arguments
-     * @param bool $shared
-     * @param bool $locked
+     * @param bool  $shared
+     * @param bool  $locked
      */
     public function __construct($callback, array $arguments = [], $shared = false, $locked = false)
     {
@@ -77,7 +77,7 @@ final class Service
 
     /**
      * @param Container $container
-     * @param bool $forceNew
+     * @param bool      $forceNew
      * @return mixed|null
      */
     public function get(Container $container, $forceNew = false)

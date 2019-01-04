@@ -25,7 +25,7 @@ final class DIManager
      */
     private static $containers = [
         'di' => [
-            'root' => null,// 'container name'=> a base Container instance
+            'root'     => null,// 'container name'=> a base Container instance
             'children' => []
         ]
     ];
@@ -88,7 +88,7 @@ final class DIManager
 
         if (!isset(static::$containers[$group])) {
             static::$containers[$group] = [
-                'root' => null,
+                'root'     => null,
                 'children' => []
             ];
         }

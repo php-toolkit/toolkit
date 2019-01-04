@@ -12,7 +12,7 @@ use Toolkit\DI\Container;
 require dirname(__DIR__) . '/test/boot.php';
 
 $di = new Container([
-    'logger' => LiteLogger::make(['name' => 'test']),
+    'logger'  => LiteLogger::make(['name' => 'test']),
     'logger2' => [
         'target' => LiteLogger::class . '::make',
         ['name' => 'test2']// first arg

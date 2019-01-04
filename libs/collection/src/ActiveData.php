@@ -18,7 +18,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
 {
     /**
      * @param array|\ArrayAccess $data
-     * @param bool|false $recursive
+     * @param bool|false         $recursive
      * @return static
      */
     public static function create(array $data = [], $recursive = false)
@@ -29,7 +29,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
     /**
      * ActiveData constructor.
      * @param array $data
-     * @param bool $recursive
+     * @param bool  $recursive
      */
     public function __construct(array $data = [], $recursive = false)
     {
@@ -41,7 +41,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
     /**
      * 初始化，载入数据
      * @param array $data
-     * @param bool $recursive
+     * @param bool  $recursive
      * @return $this
      */
     public function load($data, $recursive = false): self

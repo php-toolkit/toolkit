@@ -65,7 +65,7 @@ class DateHelper
      */
     public static function todayStart(): int
     {
-//        return strtotime(date('Y-m-d 00:00:00'));
+        //        return strtotime(date('Y-m-d 00:00:00'));
         return strtotime('today 00:00:00');
     }
 
@@ -74,7 +74,7 @@ class DateHelper
      */
     public static function todayEnd(): int
     {
-//        return strtotime(date('Y-m-d 23:59:59'));
+        //        return strtotime(date('Y-m-d 23:59:59'));
         return strtotime('today 23:59:59');
     }
 
@@ -116,7 +116,7 @@ class DateHelper
         $firstDay = date('Y-m-01', strtotime($date));
         $lastDay = date('Y-m-d', strtotime("$firstDay +1 month -1 day"));
 
-        return array($firstDay, $lastDay);
+        return [$firstDay, $lastDay];
     }
 
     //获取指定日期上个月的第一天和最后一天
@@ -126,7 +126,7 @@ class DateHelper
         $firstDay = date('Y-m-01', strtotime(date('Y', $time) . '-' . (date('m', $time) - 1) . '-01'));
         $lastDay = date('Y-m-d', strtotime("$firstDay +1 month -1 day"));
 
-        return array($firstDay, $lastDay);
+        return [$firstDay, $lastDay];
     }
 
     //获取指定日期下个月的第一天和最后一天
@@ -154,7 +154,7 @@ class DateHelper
 
     /**
      * 获得几天前，几小时前，几月前
-     * @param $time
+     * @param            $time
      * @param null|array $unit
      * @return string
      */

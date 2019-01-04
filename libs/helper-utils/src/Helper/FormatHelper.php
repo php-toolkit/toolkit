@@ -128,7 +128,7 @@ class FormatHelper
         }
 
         $base = log($size) / log(1024);
-        $suffixes = array('b', 'k', 'M', 'G', 'T');
+        $suffixes = ['b', 'k', 'M', 'G', 'T'];
         $floorBase = floor($base);
 
         return round(1024 ** ($base - $floorBase), $precision) . $suffixes[(int)$floorBase];
@@ -220,7 +220,7 @@ class FormatHelper
     public static function phpCode(string $src): string
     {
         // Whitespaces left and right from this signs can be ignored
-        static $IW = array(
+        static $IW = [
             T_CONCAT_EQUAL, // .=
             T_DOUBLE_ARROW, // =>
             T_BOOLEAN_AND, // &&
@@ -249,7 +249,7 @@ class FormatHelper
             T_SR, // >>
             T_SL_EQUAL, // <<=
             T_SR_EQUAL, // >>=
-        );
+        ];
 
         if (!$src) {
             return false;

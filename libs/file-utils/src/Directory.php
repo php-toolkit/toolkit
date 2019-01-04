@@ -40,7 +40,7 @@ class Directory extends FileSystem
      *    // $info->getFilename(); ...
      * }
      * ```
-     * @param string $srcDir
+     * @param string   $srcDir
      * @param callable $filter
      * @return \RecursiveIteratorIterator
      * @throws \LogicException
@@ -103,9 +103,9 @@ class Directory extends FileSystem
 
     /**
      * 只获得目录结构
-     * @param $path
-     * @param int $pid
-     * @param int $son
+     * @param       $path
+     * @param int   $pid
+     * @param int   $son
      * @param array $list
      * @return array
      * @throws FileNotFoundException
@@ -140,9 +140,9 @@ class Directory extends FileSystem
     }
 
     /**
-     * @param $path
-     * @param bool $loop
-     * @param null $parent
+     * @param       $path
+     * @param bool  $loop
+     * @param null  $parent
      * @param array $list
      * @return array
      * @throws FileNotFoundException
@@ -174,9 +174,9 @@ class Directory extends FileSystem
 
     /**
      * 获得目录下的文件，可选择类型、是否遍历子文件夹
-     * @param string $dir string 目标目录
+     * @param string       $dir string 目标目录
      * @param string|array $ext array('css','html','php') css|html|php
-     * @param bool $recursive int|bool 是否包含子目录
+     * @param bool         $recursive int|bool 是否包含子目录
      * @return array
      * @throws FileNotFoundException
      */
@@ -213,11 +213,11 @@ class Directory extends FileSystem
 
     /**
      * 获得目录下的文件，可选择类型、是否遍历子文件夹
-     * @param string $path string 目标目录
+     * @param string       $path string 目标目录
      * @param array|string $ext array('css','html','php') css|html|php
-     * @param bool $recursive 是否包含子目录
-     * @param null|string $parent
-     * @param array $list
+     * @param bool         $recursive 是否包含子目录
+     * @param null|string  $parent
+     * @param array        $list
      * @return array
      * @throws FileNotFoundException
      */
@@ -249,10 +249,10 @@ class Directory extends FileSystem
 
     /**
      * 获得目录下的文件以及详细信息，可选择类型、是否遍历子文件夹
-     * @param $path string 目标目录
+     * @param              $path string 目标目录
      * @param array|string $ext array('css','html','php') css|html|php
-     * @param $recursive int|bool 是否包含子目录
-     * @param array $list
+     * @param              $recursive int|bool 是否包含子目录
+     * @param array        $list
      * @return array
      * @throws \InvalidArgumentException
      * @throws FileNotFoundException
@@ -288,9 +288,9 @@ class Directory extends FileSystem
 
     /**
      * 支持层级目录的创建
-     * @param $path
+     * @param            $path
      * @param int|string $mode
-     * @param bool $recursive
+     * @param bool       $recursive
      * @return bool
      */
     public static function create($path, $mode = 0775, $recursive = true): bool
@@ -337,7 +337,7 @@ class Directory extends FileSystem
 
     /**
      * 删除目录及里面的文件
-     * @param $path
+     * @param          $path
      * @param  boolean $delSelf 默认最后删掉自己
      * @return bool
      */

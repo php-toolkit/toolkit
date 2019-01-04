@@ -46,7 +46,7 @@ class SimpleCollection implements CollectionInterface
     /**
      * Set collection item
      * @param string $key The data key
-     * @param mixed $value The data value
+     * @param mixed  $value The data value
      * @return $this
      */
     public function set($key, $value)
@@ -73,7 +73,7 @@ class SimpleCollection implements CollectionInterface
     /**
      * Get collection item for key
      * @param string $key The data key
-     * @param mixed $default The default value to return if data key does not exist
+     * @param mixed  $default The default value to return if data key does not exist
      * @return mixed The key's value, or the default value
      */
     public function get(string $key, $default = null)
@@ -252,7 +252,7 @@ class SimpleCollection implements CollectionInterface
     /**
      * Set collection item
      * @param string $key The data key
-     * @param mixed $value The data value
+     * @param mixed  $value The data value
      */
     public function offsetSet($key, $value)
     {
@@ -307,7 +307,7 @@ class SimpleCollection implements CollectionInterface
     }
 
     /**
-     * @param string $serialized
+     * @param string     $serialized
      * @param bool|array $allowedClasses
      */
     public function unserialize($serialized, $allowedClasses = false)

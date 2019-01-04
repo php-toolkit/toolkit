@@ -16,7 +16,7 @@ use Toolkit\StrUtil\Str;
  */
 final class Configuration extends Collection
 {
-    const MODE_DATA = 'data';
+    const MODE_DATA   = 'data';
     const MODE_FOLDER = 'folder';
 
     /**
@@ -52,7 +52,7 @@ final class Configuration extends Collection
 
     /**
      * __construct
-     * @param mixed $data If mode is 'folder', $data is config folder path
+     * @param mixed  $data If mode is 'folder', $data is config folder path
      * @param string $format
      * @param string $name
      * @throws \InvalidArgumentException
@@ -77,7 +77,7 @@ final class Configuration extends Collection
     /**
      * set config value by path
      * @param string $path
-     * @param mixed $value
+     * @param mixed  $value
      * @return mixed
      * @throws \InvalidArgumentException
      */

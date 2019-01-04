@@ -40,17 +40,16 @@ class SslHelper
         string $organizational_unit_name,
         string $common_name,
         string $email_address
-    ): bool
-    {
+    ): bool {
         // Generate PEM file
         $dn = [
-            'countryName' => $country_name,
-            'stateOrProvinceName' => $state_or_province_name,
-            'localityName' => $locality_name,
-            'organizationName' => $organization_name,
+            'countryName'            => $country_name,
+            'stateOrProvinceName'    => $state_or_province_name,
+            'localityName'           => $locality_name,
+            'organizationName'       => $organization_name,
             'organizationalUnitName' => $organizational_unit_name,
-            'commonName' => $common_name,
-            'emailAddress' => $email_address,
+            'commonName'             => $common_name,
+            'emailAddress'           => $email_address,
         ];
 
         // private key

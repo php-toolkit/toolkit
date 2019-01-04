@@ -72,7 +72,7 @@ trait StdObjectTrait
 
     /**
      * @param string $method
-     * @param $args
+     * @param        $args
      * @throws \InvalidArgumentException
      * @return mixed
      */
@@ -87,7 +87,7 @@ trait StdObjectTrait
 
     /**
      * @param string $method
-     * @param $args
+     * @param        $args
      * @return mixed
      * @throws \InvalidArgumentException
      */

@@ -21,13 +21,13 @@ class Http
     /**
      * Send the response the client
      * @param ResponseInterface $response
-     * @param array $options
+     * @param array             $options
      * @throws \RuntimeException
      */
     public static function respond(ResponseInterface $response, array $options = [])
     {
         $options = array_merge([
-            'chunkSize' => 4096,
+            'chunkSize'              => 4096,
             'addContentLengthHeader' => false,
         ], $options);
 

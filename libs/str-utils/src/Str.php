@@ -31,7 +31,7 @@ class Str extends StringHelper
     }
 
     /**
-     * @param string $string
+     * @param string       $string
      * @param string|array $needle
      * @return bool
      */
@@ -41,7 +41,7 @@ class Str extends StringHelper
     }
 
     /**
-     * @param string $string
+     * @param string       $string
      * @param string|array $needle
      * @return bool
      */

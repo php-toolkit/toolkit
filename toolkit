@@ -15,9 +15,9 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 
 // create app instance
 $app = new \Inhere\Console\Application([
-  'name' => 'php toolkit',
-  'debug' => true,
-  'version' => '1.0.0',
+  'name'     => 'php toolkit',
+  'debug'    => true,
+  'version'  => '1.0.0',
   'rootPath' => __DIR__,
 ]);
 $app->setLogo("

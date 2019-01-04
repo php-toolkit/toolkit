@@ -63,13 +63,13 @@ class Collection extends SimpleCollection
     protected static $formats = ['json', 'php', 'ini', 'yml'];
 
     const FORMAT_JSON = 'json';
-    const FORMAT_PHP = 'php';
-    const FORMAT_INI = 'ini';
-    const FORMAT_YML = 'yml';
+    const FORMAT_PHP  = 'php';
+    const FORMAT_INI  = 'ini';
+    const FORMAT_YML  = 'yml';
 
     /**
      * __construct
-     * @param mixed $data
+     * @param mixed  $data
      * @param string $format
      * @param string $name
      * @throws \RangeException
@@ -85,7 +85,7 @@ class Collection extends SimpleCollection
     }
 
     /**
-     * @param mixed $data
+     * @param mixed  $data
      * @param string $format
      * @param string $name
      * @return static
@@ -99,7 +99,7 @@ class Collection extends SimpleCollection
     /**
      * set config value by path
      * @param string $path
-     * @param mixed $value
+     * @param mixed  $value
      * @return mixed
      */
     public function set($path, $value)
@@ -207,7 +207,7 @@ class Collection extends SimpleCollection
     /**
      * load
      * @param string|array|mixed $data
-     * @param string $format = 'php'
+     * @param string             $format = 'php'
      * @return static
      * @throws \InvalidArgumentException
      * @throws \RangeException
@@ -246,7 +246,7 @@ class Collection extends SimpleCollection
     }
 
     /**
-     * @param $file
+     * @param        $file
      * @param string $format
      * @return array|mixed
      * @throws \Toolkit\File\Exception\FileNotFoundException
@@ -321,8 +321,8 @@ class Collection extends SimpleCollection
     }
 
     /**
-     * @param $parent
-     * @param $data
+     * @param            $parent
+     * @param            $data
      * @param bool|false $raw
      * @return $this
      */
@@ -340,7 +340,7 @@ class Collection extends SimpleCollection
 
             if (\is_array($value)) {
                 if (!isset($parent[$key])) {
-                    $parent[$key] = array();
+                    $parent[$key] = [];
                 }
 
                 $this->bindData($parent[$key], $value);
@@ -383,15 +383,15 @@ class Collection extends SimpleCollection
         $this->data = \unserialize(\serialize($this->data), ['allowed_classes' => self::class]);
     }
 
-//////
-///////////////////////////// helper /////////////////////////
-//////
+    //////
+    ///////////////////////////// helper /////////////////////////
+    //////
 
     /**
-     * @param $string
-     * @param bool $enhancement
+     * @param               $string
+     * @param bool          $enhancement
      * @param callable|null $pathHandler
-     * @param string $fileDir
+     * @param string        $fileDir
      * @return array
      */
     public static function parseIni($string, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
@@ -400,10 +400,10 @@ class Collection extends SimpleCollection
     }
 
     /**
-     * @param $data
-     * @param bool $enhancement
+     * @param               $data
+     * @param bool          $enhancement
      * @param callable|null $pathHandler
-     * @param string $fileDir
+     * @param string        $fileDir
      * @return array
      */
     public static function parseJson($data, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
@@ -414,9 +414,9 @@ class Collection extends SimpleCollection
     /**
      * parse YAML
      * @param string|bool $data Waiting for the parse data
-     * @param bool $enhancement Simple support import other config by tag 'import'. must is bool.
-     * @param callable $pathHandler When the second param is true, this param is valid.
-     * @param string $fileDir When the second param is true, this param is valid.
+     * @param bool        $enhancement Simple support import other config by tag 'import'. must is bool.
+     * @param callable    $pathHandler When the second param is true, this param is valid.
+     * @param string      $fileDir When the second param is true, this param is valid.
      * @return array
      */
     public static function parseYaml($data, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array

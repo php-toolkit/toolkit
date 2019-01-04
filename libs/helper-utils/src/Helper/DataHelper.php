@@ -27,7 +27,7 @@ class DataHelper
 
     /**
      * 反序列化
-     * @param $txt
+     * @param            $txt
      * @param bool|array $allowedClasses
      * @return mixed
      */
@@ -39,7 +39,7 @@ class DataHelper
     /**
      * php对象转换成为数组
      * @param iterable|array|\Traversable $data
-     * @param bool $recursive
+     * @param bool                        $recursive
      * @return array|bool
      */
     public static function toArray($data, $recursive = false)
@@ -69,7 +69,7 @@ class DataHelper
     /**
      * data to array
      * @param array|\Traversable $array
-     * @param string $class
+     * @param string             $class
      * @return mixed
      */
     public static function toObject($array, $class = \stdClass::class)
@@ -92,7 +92,7 @@ class DataHelper
     /**
      * Sanitize a string
      * @param string $string String to sanitize
-     * @param bool $clearTag clear html tag
+     * @param bool   $clearTag clear html tag
      * @return string Sanitized string
      */
     public static function safeOutput($string, $clearTag = false): string
@@ -105,7 +105,7 @@ class DataHelper
     }
 
     /**
-     * @param $string
+     * @param     $string
      * @param int $type
      * @return array|string
      */
@@ -200,8 +200,8 @@ class DataHelper
      * 对数组或字符串进行加斜杠\转义处理 去除转义
      * 去除转义返回一个去除反斜线后的字符串（\' 转换为 ' 等等）。双反斜线（\\）被转换为单个反斜线（\）。
      * @param array|string $data 数据可以是字符串或数组
-     * @param int $escape 进行转义 true 转义处理 false 去除转义
-     * @param int $level 增强
+     * @param int          $escape 进行转义 true 转义处理 false 去除转义
+     * @param int          $level 增强
      * @return array|string
      */
     public static function slashes($data, $escape = 1, $level = 0)
@@ -232,22 +232,22 @@ class DataHelper
 
     public static function escape_query($str): string
     {
-        return strtr($str, array(
+        return strtr($str, [
             "\0" => '',
-            "'" => '&#39;',
-            '"' => '&#34;',
+            "'"  => '&#39;',
+            '"'  => '&#34;',
             "\\" => '&#92;',
             // more secure
-            '<' => '&lt;',
-            '>' => '&gt;',
-        ));
+            '<'  => '&lt;',
+            '>'  => '&gt;',
+        ]);
     }
 
     /**
      * 对数据进行字符集转换处理，数据可以是字符串或数组及对象
      * @param array|string $data
-     * @param $in_charset
-     * @param $out_charset
+     * @param              $in_charset
+     * @param              $out_charset
      * @return array|string
      */
     public static function changeEncode($data, $in_charset = 'GBK', $out_charset = 'UTF-8')

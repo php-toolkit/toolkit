@@ -14,16 +14,16 @@ namespace Toolkit\File\Parse;
  */
 abstract class BaseParser
 {
-    const EXTEND_KEY = 'extend';
-    const IMPORT_KEY = 'import';
+    const EXTEND_KEY    = 'extend';
+    const IMPORT_KEY    = 'import';
     const REFERENCE_KEY = 'reference';
 
     /**
      * parse data
-     * @param string $string Waiting for the parse data
-     * @param bool $enhancement 启用增强功能，支持通过关键字 继承、导入、参考
+     * @param string   $string Waiting for the parse data
+     * @param bool     $enhancement 启用增强功能，支持通过关键字 继承、导入、参考
      * @param callable $pathHandler When the second param is true, this param is valid.
-     * @param string $fileDir When the second param is true, this param is valid.
+     * @param string   $fileDir When the second param is true, this param is valid.
      * @return array
      */
     abstract protected static function doParse(
@@ -34,10 +34,10 @@ abstract class BaseParser
     ): array;
 
     /**
-     * @param $string
-     * @param bool $enhancement
+     * @param               $string
+     * @param bool          $enhancement
      * @param callable|null $pathHandler
-     * @param string $fileDir
+     * @param string        $fileDir
      * @return array
      */
     public static function parse($string, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
@@ -50,10 +50,10 @@ abstract class BaseParser
     }
 
     /**
-     * @param $file
-     * @param bool $enhancement
+     * @param               $file
+     * @param bool          $enhancement
      * @param callable|null $pathHandler
-     * @param string $fileDir
+     * @param string        $fileDir
      * @return array
      * @throws \InvalidArgumentException
      */
@@ -70,14 +70,18 @@ abstract class BaseParser
     }
 
     /**
-     * @param $string
-     * @param bool $enhancement
+     * @param               $string
+     * @param bool          $enhancement
      * @param callable|null $pathHandler
-     * @param string $fileDir
+     * @param string        $fileDir
      * @return array
      */
-    public static function parseString($string, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
-    {
+    public static function parseString(
+        $string,
+        $enhancement = false,
+        callable $pathHandler = null,
+        $fileDir = ''
+    ): array {
         return static::doParse($string, $enhancement, $pathHandler, $fileDir);
     }
 }

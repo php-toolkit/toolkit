@@ -37,7 +37,7 @@ class DsnHelper
     /**
      * getDsn
      * @param string $driver
-     * @param array $options
+     * @param array  $options
      * @throws \LogicException
      * @throws  \RuntimeException
      * @return  string
@@ -80,9 +80,9 @@ class DsnHelper
         return [
             'mysql:host={HOST};port={PORT};dbname={DBNAME};charset={CHARSET}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{PORT}' => static::getOption('port', 3306),
-                '{DBNAME}' => static::getOption('database'),
+                '{HOST}'    => static::getOption('host', 'localhost'),
+                '{PORT}'    => static::getOption('port', 3306),
+                '{DBNAME}'  => static::getOption('database'),
                 '{CHARSET}' => static::getOption('charset', 'utf8')
             ]
         ];
@@ -97,8 +97,8 @@ class DsnHelper
         return [
             'cubrid:host={HOST};port={PORT};dbname={DBNAME}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{PORT}' => static::getOption('port', 33000),
+                '{HOST}'   => static::getOption('host', 'localhost'),
+                '{PORT}'   => static::getOption('port', 33000),
                 '{DBNAME}' => static::getOption('database')
             ]
         ];
@@ -113,8 +113,8 @@ class DsnHelper
         return [
             'dblib:host={HOST};port={PORT};dbname={DBNAME}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{PORT}' => static::getOption('port', 1433),
+                '{HOST}'   => static::getOption('host', 'localhost'),
+                '{PORT}'   => static::getOption('port', 1433),
                 '{DBNAME}' => static::getOption('database')
             ]
         ];
@@ -152,8 +152,8 @@ class DsnHelper
         return [
             'ibm:hostname={HOST};port={PORT};database={DBNAME}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{PORT}' => static::getOption('port', 56789),
+                '{HOST}'   => static::getOption('host', 'localhost'),
+                '{PORT}'   => static::getOption('port', 56789),
                 '{DBNAME}' => static::getOption('database')
             ]
         ];
@@ -177,10 +177,10 @@ class DsnHelper
         return [
             'informix:host={HOST};service={PORT};database={DBNAME};server={SERVER};protocol={PROTOCOL}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{PORT}' => static::getOption('port', 1526),
-                '{DBNAME}' => static::getOption('database'),
-                '{SERVER}' => static::getOption('server'),
+                '{HOST}'     => static::getOption('host', 'localhost'),
+                '{PORT}'     => static::getOption('port', 1526),
+                '{DBNAME}'   => static::getOption('database'),
+                '{SERVER}'   => static::getOption('server'),
                 '{PROTOCOL}' => static::getOption('protocol')
             ]
         ];
@@ -195,8 +195,8 @@ class DsnHelper
         return [
             'mssql:host={HOST};port={PORT};dbname={DBNAME}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{PORT}' => static::getOption('port', 1433),
+                '{HOST}'   => static::getOption('host', 'localhost'),
+                '{PORT}'   => static::getOption('port', 1433),
                 '{DBNAME}' => static::getOption('database')
             ]
         ];
@@ -212,7 +212,7 @@ class DsnHelper
             return [
                 'oci:dbname={DSN};charset={CHARSET}',
                 [
-                    '{DSN}' => $dsn,
+                    '{DSN}'     => $dsn,
                     '{CHARSET}' => static::getOption('charset', 'AL32UTF8')
                 ]
             ];
@@ -221,9 +221,9 @@ class DsnHelper
         return [
             'oci:dbname=//#HOST#:#PORT#/#DBNAME};charset={CHARSET}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{PORT}' => static::getOption('port', 56789),
-                '{DBNAME}' => static::getOption('database'),
+                '{HOST}'    => static::getOption('host', 'localhost'),
+                '{PORT}'    => static::getOption('port', 56789),
+                '{DBNAME}'  => static::getOption('database'),
                 '{CHARSET}' => static::getOption('charset', 'AL32UTF8')
             ]
         ];
@@ -238,8 +238,8 @@ class DsnHelper
         return [
             'odbc:DSN={DSN};UID:#USER};PWD={PASSWORD}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{USER}' => static::getOption('user', 1433),
+                '{HOST}'     => static::getOption('host', 'localhost'),
+                '{USER}'     => static::getOption('user', 1433),
                 '{PASSWORD}' => static::getOption('password')
             ]
         ];
@@ -254,8 +254,8 @@ class DsnHelper
         return [
             'pgsql:host={HOST};port={PORT};dbname={DBNAME}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{PORT}' => static::getOption('port', 5432),
+                '{HOST}'   => static::getOption('host', 'localhost'),
+                '{PORT}'   => static::getOption('port', 5432),
                 '{DBNAME}' => static::getOption('database', 'postgres')
             ]
         ];
@@ -297,8 +297,8 @@ class DsnHelper
         return [
             'pgsql:host={HOST};port={PORT};dbname={DBNAME}',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
-                '{PORT}' => static::getOption('port', 1433),
+                '{HOST}'   => static::getOption('host', 'localhost'),
+                '{PORT}'   => static::getOption('port', 1433),
                 '{DBNAME}' => static::getOption('database')
             ]
         ];
@@ -313,7 +313,7 @@ class DsnHelper
         return [
             '4D:host={HOST};charset=UTF-8',
             [
-                '{HOST}' => static::getOption('host', 'localhost'),
+                '{HOST}'    => static::getOption('host', 'localhost'),
                 '{CHARSET}' => static::getOption('charset', 'UTF-8')
             ]
         ];

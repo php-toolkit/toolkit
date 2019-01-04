@@ -45,7 +45,7 @@ class ObjectHelper
 
     /**
      * 给对象设置属性值
-     * @param $object
+     * @param       $object
      * @param array $options
      */
     public static function configure($object, array $options)
@@ -59,7 +59,7 @@ class ObjectHelper
 
     /**
      * 给对象设置属性值
-     * @param $object
+     * @param       $object
      * @param array $options
      */
     public static function setAttrs($object, array $options)
@@ -79,7 +79,7 @@ class ObjectHelper
 
     /**
      * 反序列化
-     * @param string $txt
+     * @param string     $txt
      * @param bool|array $allowedClasses
      * @return mixed
      */
@@ -91,7 +91,7 @@ class ObjectHelper
     /**
      * php对象转换成为数组
      * @param iterable|array|\Traversable $data
-     * @param bool $recursive
+     * @param bool                        $recursive
      * @return array|bool
      */
     public static function toArray($data, bool $recursive = false)
@@ -122,7 +122,7 @@ class ObjectHelper
 
     /**
      * @param mixed $object
-     * @param bool $unique
+     * @param bool  $unique
      * @return string
      */
     public static function hash($object, $unique = true): string
@@ -145,7 +145,7 @@ class ObjectHelper
      * @from https://github.com/ventoviro/windwalker
      * Build an array of constructor parameters.
      * @param \ReflectionMethod $method Method for which to build the argument array.
-     * @param array $extraArgs
+     * @param array             $extraArgs
      * @return array
      * @throws \RuntimeException
      */

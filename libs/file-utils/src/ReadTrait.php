@@ -57,7 +57,7 @@ trait ReadTrait
     /**
      * load array data form file.
      * @param string $file
-     * @param bool $throwError
+     * @param bool   $throwError
      * @return array
      * @throws FileNotFoundException
      */
@@ -106,7 +106,7 @@ trait ReadTrait
     }
 
     /**
-     * @param $file
+     * @param           $file
      * @param bool|true $filter
      * @return array|string
      * @throws FileNotFoundException
@@ -127,10 +127,10 @@ trait ReadTrait
 
     /**
      * getLines 获取文件一定范围内的内容
-     * @param  string $fileName 含完整路径的文件
+     * @param  string  $fileName 含完整路径的文件
      * @param  integer $startLine 开始行数 默认第1行
      * @param  integer $endLine 结束行数 默认第50行
-     * @param  string $mode 打开文件方式
+     * @param  string  $mode 打开文件方式
      * @throws FileSystemException
      * @return array  返回内容
      */
@@ -182,7 +182,7 @@ trait ReadTrait
 
     /**
      * symmetry  得到当前行对称上下几($lineNum)行的内容
-     * @param string $fileName 含完整路径的文件
+     * @param string   $fileName 含完整路径的文件
      * @param  integer $current [当前行数]
      * @param  integer $lineNum [获取行数] = $lineNum*2+1
      * @throws FileSystemException
@@ -203,9 +203,9 @@ trait ReadTrait
 
     /**
      * @param string $file
-     * @param int $baseLine
-     * @param int $prevLines
-     * @param int $nextLines
+     * @param int    $baseLine
+     * @param int    $prevLines
+     * @param int    $nextLines
      * @return array
      * @throws FileSystemException
      */
@@ -220,7 +220,7 @@ trait ReadTrait
     /**
      * 得到基准行数上5行下3行的内容， lines up and down
      * @param string $file
-     * @param int $baseLine 基准行数
+     * @param int    $baseLine 基准行数
      * @return array
      * @throws FileSystemException
      */
@@ -233,8 +233,8 @@ trait ReadTrait
      * 读取文件的最后几行（支持大文件读取）
      * @link http://www.jb51.net/article/81909.htm
      * @param resource $fp e.g fopen("access.log", "r+")
-     * @param int $n
-     * @param int $base
+     * @param int      $n
+     * @param int      $base
      * @return array
      */
     public static function tail($fp, int $n, int $base = 5): array

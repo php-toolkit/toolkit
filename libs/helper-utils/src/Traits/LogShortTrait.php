@@ -21,11 +21,11 @@ trait LogShortTrait
      * System is unusable.
      *
      * @param string $message
-     * @param array $context
+     * @param array  $context
      *
      * @return void
      */
-    public static function emergency($message, array $context = array())
+    public static function emergency($message, array $context = [])
     {
         self::log(Logger::EMERGENCY, $message, $context);
     }
@@ -37,11 +37,11 @@ trait LogShortTrait
      * trigger the SMS alerts and wake you up.
      *
      * @param string $message
-     * @param array $context
+     * @param array  $context
      *
      * @return void
      */
-    public static function alert($message, array $context = array())
+    public static function alert($message, array $context = [])
     {
         self::log(Logger::ALERT, $message, $context);
     }
@@ -52,11 +52,11 @@ trait LogShortTrait
      * Example: Application component unavailable, unexpected exception.
      *
      * @param string $message
-     * @param array $context
+     * @param array  $context
      *
      * @return void
      */
-    public static function critical($message, array $context = array())
+    public static function critical($message, array $context = [])
     {
         self::log(Logger::CRITICAL, $message, $context);
     }
@@ -66,11 +66,11 @@ trait LogShortTrait
      * be logged and monitored.
      *
      * @param string $message
-     * @param array $context
+     * @param array  $context
      *
      * @return void
      */
-    public static function error($message, array $context = array())
+    public static function error($message, array $context = [])
     {
         self::log(Logger::ERROR, $message, $context);
     }
@@ -82,11 +82,11 @@ trait LogShortTrait
      * that are not necessarily wrong.
      *
      * @param string $message
-     * @param array $context
+     * @param array  $context
      *
      * @return void
      */
-    public static function warning($message, array $context = array())
+    public static function warning($message, array $context = [])
     {
         self::log(Logger::WARNING, $message, $context);
     }
@@ -95,11 +95,11 @@ trait LogShortTrait
      * Normal but significant events.
      *
      * @param string $message
-     * @param array $context
+     * @param array  $context
      *
      * @return void
      */
-    public static function notice($message, array $context = array())
+    public static function notice($message, array $context = [])
     {
         self::log(Logger::NOTICE, $message, $context);
     }
@@ -110,11 +110,11 @@ trait LogShortTrait
      * Example: User logs in, SQL logs.
      *
      * @param string $message
-     * @param array $context
+     * @param array  $context
      *
      * @return void
      */
-    public static function info($message, array $context = array())
+    public static function info($message, array $context = [])
     {
         self::log(Logger::INFO, $message, $context);
     }
@@ -123,20 +123,20 @@ trait LogShortTrait
      * Detailed debug information.
      *
      * @param string $message
-     * @param array $context
+     * @param array  $context
      *
      * @return void
      */
-    public static function debug($message, array $context = array())
+    public static function debug($message, array $context = [])
     {
         self::log(Logger::DEBUG, $message, $context);
     }
 
     /**
      * @param string $message
-     * @param array $context
+     * @param array  $context
      */
-    public static function trace($message, array $context = array())
+    public static function trace($message, array $context = [])
     {
         if (!isset($context['_called_at'])) {
             $tce = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
@@ -154,11 +154,11 @@ trait LogShortTrait
     /**
      * Logs with an arbitrary level.
      *
-     * @param mixed $level
+     * @param mixed  $level
      * @param string $message
-     * @param array $context
+     * @param array  $context
      *
      * @return void
      */
-    abstract public static function log($level, $message, array $context = array());
+    abstract public static function log($level, $message, array $context = []);
 }

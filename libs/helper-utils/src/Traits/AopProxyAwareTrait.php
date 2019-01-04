@@ -46,7 +46,7 @@ trait AopProxyAwareTrait
 
     /**
      * @param string $method
-     * @param array $args
+     * @param array  $args
      * @return mixed
      * @throws \LogicException
      */
@@ -81,7 +81,7 @@ trait AopProxyAwareTrait
 
     /**
      * @param string $method
-     * @param array $args
+     * @param array  $args
      * @return mixed
      */
     public function __call($method, array $args = [])
@@ -115,7 +115,7 @@ trait AopProxyAwareTrait
     }
 
     /**
-     * @param $target
+     * @param        $target
      * @param string $method
      * @param string $prefix
      * @return null|array
@@ -132,8 +132,8 @@ trait AopProxyAwareTrait
 
     /**
      * @see addProxy()
-     * @param $key
-     * @param $handler
+     * @param        $key
+     * @param        $handler
      * @param string $position
      * @return $this
      */
@@ -143,9 +143,9 @@ trait AopProxyAwareTrait
     }
 
     /**
-     * @param string $key eg 'XyzClass::method'
+     * @param string   $key eg 'XyzClass::method'
      * @param callable $handler
-     * @param string $position 'before' 'after'
+     * @param string   $position 'before' 'after'
      * @return $this
      */
     public function addProxy($key, $handler, $position = 'before'): self

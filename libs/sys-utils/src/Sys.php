@@ -15,7 +15,7 @@ namespace Toolkit\Sys;
 class Sys extends SysEnv
 {
     /**
-     * @param string $command
+     * @param string      $command
      * @param null|string $logfile
      * @param null|string $user
      * @return mixed
@@ -45,7 +45,7 @@ class Sys extends SysEnv
 
     /**
      * run a command. it is support windows
-     * @param string $command
+     * @param string      $command
      * @param string|null $cwd
      * @return array
      * @throws \RuntimeException
@@ -90,8 +90,8 @@ class Sys extends SysEnv
      * 2. passthru
      * 3. exec
      * 4. shell_exec
-     * @param string $command
-     * @param bool $returnStatus
+     * @param string      $command
+     * @param bool        $returnStatus
      * @param string|null $cwd
      * @return array|string
      */

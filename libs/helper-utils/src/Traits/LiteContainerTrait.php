@@ -33,8 +33,8 @@ trait LiteContainerTrait
     /**
      * register a app service
      * @param string $name the service name
-     * @param mixed $service service
-     * @param bool $replace replace exists service
+     * @param mixed  $service service
+     * @param bool   $replace replace exists service
      * @return static
      */
     public function register($name, $service, $replace = false)
@@ -47,8 +47,8 @@ trait LiteContainerTrait
     /**
      * register a app service
      * @param string $name
-     * @param mixed $service service
-     * @param bool $replace replace exists service
+     * @param mixed  $service service
+     * @param bool   $replace replace exists service
      * @return bool
      * @throws \LogicException
      */
@@ -71,7 +71,7 @@ trait LiteContainerTrait
      * get a app service by name
      * if is a closure, only run once.
      * @param string $name
-     * @param bool $call if service is 'Closure', call it.
+     * @param bool   $call if service is 'Closure', call it.
      * @return mixed
      * @throws \RuntimeException
      */
@@ -164,7 +164,7 @@ trait LiteContainerTrait
      * };
      * ```
      * @param string $name
-     * @param mixed $service
+     * @param mixed  $service
      * @return bool
      */
     public function __set($name, $service)

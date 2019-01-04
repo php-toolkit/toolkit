@@ -22,17 +22,17 @@ class LanguageTest extends TestCase
     public function testTranslate()
     {
         $l = new Language([
-            'lang' => 'en',
-            'allowed' => ['en', 'zh-CN'],
-            'basePath' => __DIR__ . '/testdata',
+            'lang'      => 'en',
+            'allowed'   => ['en', 'zh-CN'],
+            'basePath'  => __DIR__ . '/testdata',
             'langFiles' => [
                 'response.php'
             ],
         ]);
 
         $arr = [
-            0 => 'a',
-            1 => 'b',
+            0   => 'a',
+            1   => 'b',
             'k' => 'c',
         ];
 

@@ -10,12 +10,12 @@ abstract class UtilHelper
 {
     /**
      * Display a var dump in firebug console
-     * @param mixed $object Object to display
+     * @param mixed  $object Object to display
      * @param string $type
      */
     public static function fd($object, $type = 'log')
     {
-        $types = array('log', 'debug', 'info', 'warn', 'error', 'assert');
+        $types = ['log', 'debug', 'info', 'warn', 'error', 'assert'];
 
         if (!\in_array($type, $types, true)) {
             $type = 'log';
@@ -27,7 +27,7 @@ abstract class UtilHelper
     }
 
     /**
-     * @param string $pathname
+     * @param string     $pathname
      * @param int|string $projectId This must be a one character
      * @return int|string
      * @throws \LogicException

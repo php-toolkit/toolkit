@@ -52,9 +52,9 @@ class JsonMessage
 
     /**
      * JsonMessage constructor.
-     * @param null $data
+     * @param null   $data
      * @param string $msg
-     * @param int $code
+     * @param int    $code
      */
     public function __construct($data = null, $msg = 'success', $code = 0)
     {
@@ -103,7 +103,7 @@ class JsonMessage
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function add($key, $value)
     {
@@ -133,7 +133,7 @@ class JsonMessage
         // add a new alert message
         return [
             'code' => (int)$this->code,
-            'msg' => $this->msg,
+            'msg'  => $this->msg,
             'data' => (array)$this->data
         ];
     }
@@ -165,7 +165,7 @@ class JsonMessage
 
     /**
      * @param string $name
-     * @param $value
+     * @param        $value
      */
     public function __set(string $name, $value)
     {

@@ -18,7 +18,7 @@ class ProcessUtil
      * @var array
      */
     public static $signalMap = [
-        SIGINT => 'SIGINT(Ctrl+C)',
+        SIGINT  => 'SIGINT(Ctrl+C)',
         SIGTERM => 'SIGTERM',
         SIGKILL => 'SIGKILL',
         SIGSTOP => 'SIGSTOP',
@@ -28,7 +28,7 @@ class ProcessUtil
      * fork/create a child process.
      * @param callable|null $onStart Will running on the child process start.
      * @param callable|null $onError
-     * @param int $id The process index number. will use `forks()`
+     * @param int           $id The process index number. will use `forks()`
      * @return array|false
      * @throws \RuntimeException
      */
@@ -44,8 +44,8 @@ class ProcessUtil
         // at parent, get forked child info
         if ($pid > 0) {
             $info = [
-                'id' => $id,
-                'pid' => $pid,
+                'id'        => $id,
+                'pid'       => $pid,
                 'startTime' => \time(),
             ];
         } elseif ($pid === 0) { // at child
@@ -69,7 +69,7 @@ class ProcessUtil
      * @see ProcessUtil::fork()
      * @param callable|null $onStart
      * @param callable|null $onError
-     * @param int $id
+     * @param int           $id
      * @return array|false
      * @throws \RuntimeException
      */
@@ -122,7 +122,7 @@ class ProcessUtil
 
     /**
      * @see ProcessUtil::forks()
-     * @param int $number
+     * @param int           $number
      * @param callable|null $onStart
      * @param callable|null $onError
      * @return array|false
@@ -135,7 +135,7 @@ class ProcessUtil
 
     /**
      * fork/create multi child processes.
-     * @param int $number
+     * @param int           $number
      * @param callable|null $onStart Will running on the child processes.
      * @param callable|null $onError
      * @return array|false
@@ -198,7 +198,7 @@ class ProcessUtil
      *  ],
      *  ... ...
      * ]
-     * @param int $signal
+     * @param int   $signal
      * @param array $events
      * [
      *   'beforeStops' => function ($sigText) {
@@ -222,7 +222,7 @@ class ProcessUtil
 
         $events = \array_merge([
             'beforeStops' => null,
-            'beforeStop' => null,
+            'beforeStop'  => null,
         ], $events);
 
         if ($cb = $events['beforeStops']) {
@@ -247,9 +247,9 @@ class ProcessUtil
 
     /**
      * send kill signal to the process
-     * @param int $pid
+     * @param int  $pid
      * @param bool $force
-     * @param int $timeout
+     * @param int  $timeout
      * @return bool
      */
     public static function kill(int $pid, bool $force = false, int $timeout = 3): bool
@@ -259,10 +259,10 @@ class ProcessUtil
 
     /**
      * Do shutdown process and wait it exit.
-     * @param int $pid Master Pid
-     * @param bool $force
-     * @param int $waitTime
-     * @param null $error
+     * @param int    $pid Master Pid
+     * @param bool   $force
+     * @param int    $waitTime
+     * @param null   $error
      * @param string $name
      * @return bool
      */
@@ -272,8 +272,7 @@ class ProcessUtil
         $name = 'process',
         bool $force = false,
         int $waitTime = 10
-    ): bool
-    {
+    ): bool {
         // do stop
         if (!self::kill($pid, $force)) {
             $error = "Send stop signal to the $name(PID:$pid) failed!";
@@ -333,7 +332,7 @@ class ProcessUtil
 
     /**
      * 杀死所有进程
-     * @param $name
+     * @param     $name
      * @param int $sigNo
      * @return string
      */
@@ -397,7 +396,7 @@ class ProcessUtil
 
     /**
      * install signal
-     * @param  int $signal e.g: SIGTERM SIGINT(Ctrl+C) SIGUSR1 SIGUSR2 SIGHUP
+     * @param  int      $signal e.g: SIGTERM SIGINT(Ctrl+C) SIGUSR1 SIGUSR2 SIGHUP
      * @param  callable $handler
      * @return bool
      */
@@ -468,7 +467,7 @@ class ProcessUtil
     /**
      * get PID by pid File
      * @param string $file
-     * @param bool $checkLive
+     * @param bool   $checkLive
      * @return int
      */
     public static function getPidByFile(string $file, bool $checkLive = false): int
@@ -506,7 +505,7 @@ class ProcessUtil
      *          ProcessUtil::clearAlarm(); // close
      *      }
      *  });
-     * @param int $seconds
+     * @param int      $seconds
      * @param callable $handler
      * @return bool|int
      */
@@ -531,7 +530,7 @@ class ProcessUtil
 
     /**
      * run a command. it is support windows
-     * @param string $command
+     * @param string      $command
      * @param string|null $cwd
      * @return array
      * @throws \RuntimeException

@@ -30,7 +30,7 @@ class JsonHelper
 
     /**
      * @param string $data
-     * @param bool $toArray
+     * @param bool   $toArray
      * @return array|mixed|null|\stdClass|string
      * @throws \InvalidArgumentException
      */
@@ -44,7 +44,7 @@ class JsonHelper
     }
 
     /**
-     * @param $file
+     * @param           $file
      * @param bool|true $toArray
      * @return mixed|null|string
      * @throws \InvalidArgumentException
@@ -62,7 +62,7 @@ class JsonHelper
 
     /**
      * @param string $string
-     * @param bool $toArray
+     * @param bool   $toArray
      * @return array|mixed|\stdClass
      */
     public static function parseString(string $string, bool $toArray = true)
@@ -86,8 +86,8 @@ class JsonHelper
 
     /**
      * @param string $input 文件 或 数据
-     * @param bool $output 是否输出到文件， 默认返回格式化的数据
-     * @param array $options 当 $output=true,此选项有效
+     * @param bool   $output 是否输出到文件， 默认返回格式化的数据
+     * @param array  $options 当 $output=true,此选项有效
      * $options = [
      *      'type'      => 'min' // 输出数据类型 min 压缩过的 raw 正常的
      *      'file'      => 'xx.json' // 输出文件路径;仅是文件名，则会取输入路径
@@ -141,7 +141,7 @@ class JsonHelper
     /**
      * @param string $data
      * @param string $output
-     * @param array $options
+     * @param array  $options
      * @return bool|int
      */
     public static function saveAs(string $data, string $output, array $options = [])

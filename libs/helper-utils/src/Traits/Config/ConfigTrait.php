@@ -31,7 +31,7 @@ trait ConfigTrait
     /**
      * Method to get property Options
      * @param   string $name
-     * @param   mixed $default
+     * @param   mixed  $default
      * @return  mixed
      */
     public function getValue(string $name, $default = null)
@@ -48,7 +48,7 @@ trait ConfigTrait
     /**
      * Method to set property config
      * @param   string $name
-     * @param   mixed $value
+     * @param   mixed  $value
      * @return  static  Return self to support chaining.
      */
     public function setValue($name, $value)
@@ -93,7 +93,7 @@ trait ConfigTrait
     /**
      * Method to set property config
      * @param  array $config
-     * @param  bool $loopMerge
+     * @param  bool  $loopMerge
      * @return static Return self to support chaining.
      */
     public function setConfig(array $config, $loopMerge = true)

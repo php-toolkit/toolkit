@@ -19,7 +19,7 @@ class PhpError
 
     /**
      * $lastError = error_get_last();
-     * @param array $lastError
+     * @param array       $lastError
      * @param null|string $catcher
      * @return array
      */
@@ -27,10 +27,10 @@ class PhpError
     {
         $digest = 'Fatal Error (' . self::codeToString($lastError['type']) . '): ' . $lastError['message'];
         $data = [
-            'code' => $lastError['type'],
+            'code'    => $lastError['type'],
             'message' => $lastError['message'],
-            'file' => $lastError['file'],
-            'line' => $lastError['line'],
+            'file'    => $lastError['file'],
+            'line'    => $lastError['line'],
             'catcher' => __METHOD__,
         ];
 

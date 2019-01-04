@@ -19,7 +19,7 @@ trait NameAliasStaticTrait
     /**
      * set/get name alias
      * @param array|string $name
-     * @param string|null $alias
+     * @param string|null  $alias
      * @return bool|string
      */
     public static function alias($name, $alias = null)

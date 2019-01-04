@@ -27,9 +27,9 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
 
     const DEFAULT_OPTIONS = [
         'aliases' => null,
-        'shared' => true,
-        'locked' => false,
-        'init' => false,
+        'shared'  => true,
+        'locked'  => false,
+        'init'    => false,
     ];
 
     /**
@@ -61,7 +61,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
 
     /**
      * Container constructor.
-     * @param array $services
+     * @param array          $services
      * @param Container|null $parent
      * @throws \InvalidArgumentException
      * @throws DependencyResolutionException
@@ -85,8 +85,8 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
     /**
      * 在容器注册服务(详细的参数信息请查看README.md)
      * @param string $id 服务组件注册id
-     * @param $definition
-     * @param array $opts
+     * @param        $definition
+     * @param array  $opts
      * @return $this
      * @throws \InvalidArgumentException
      * @throws DependencyResolutionException
@@ -205,8 +205,8 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
     /**
      * 注册受保护的服务 alias of the lock()
      * @param  string $id [description]
-     * @param $definition
-     * @param $share
+     * @param         $definition
+     * @param         $share
      * @return $this
      * @throws \InvalidArgumentException
      * @throws DependencyResolutionException
@@ -219,8 +219,8 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
     /**
      * (注册)锁定的服务，也可在注册后锁定,防止 getNew() 强制重载
      * @param  string $id description
-     * @param $definition
-     * @param $share
+     * @param         $definition
+     * @param         $share
      * @return $this
      * @throws DependencyResolutionException
      * @throws \InvalidArgumentException
@@ -436,7 +436,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
 
     /**
      * get 获取已注册的服务组件实例
-     * @param $id
+     * @param      $id
      * @param bool $thrErr
      * @param bool $forceNew 强制获取服务的新实例
      * @return mixed|null
@@ -462,7 +462,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
 
     /**
      * 获取某一个服务的信息
-     * @param $id
+     * @param      $id
      * @param bool $thrErr
      * @return Service|null
      * @throws \InvalidArgumentException

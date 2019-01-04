@@ -87,7 +87,7 @@ abstract class FileSystem
 
     /**
      * 检查文件/夹/链接是否存在
-     * @param string $file 要检查的目标
+     * @param string      $file 要检查的目标
      * @param null|string $type
      * @return array|string
      */
@@ -111,7 +111,7 @@ abstract class FileSystem
     }
 
     /**
-     * @param string $file
+     * @param string            $file
      * @param null|string|array $ext eg: 'jpg|gif'
      * @throws FileNotFoundException
      * @throws \InvalidArgumentException
@@ -138,7 +138,7 @@ abstract class FileSystem
      * @from Symfony-filesystem
      * @param string $origin The origin filename or directory
      * @param string $target The new filename or directory
-     * @param bool $overwrite Whether to overwrite the target if it already exists
+     * @param bool   $overwrite Whether to overwrite the target if it already exists
      * @throws IOException When target file or directory already exists
      * @throws IOException When origin cannot be renamed
      */
@@ -173,7 +173,7 @@ abstract class FileSystem
     /**
      * Creates a directory recursively.
      * @param string|array|\Traversable $dirs The directory path
-     * @param int $mode The directory mode
+     * @param int                       $mode The directory mode
      * @throws IOException On any directory creation failure
      */
     public static function mkdir($dirs, $mode = 0777)
@@ -202,9 +202,9 @@ abstract class FileSystem
      * Change mode for an array of files or directories.
      * @from Symfony-filesystem
      * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to change mode
-     * @param int $mode The new mode (octal)
-     * @param int $umask The mode mask (octal)
-     * @param bool $recursive Whether change the mod recursively or not
+     * @param int                       $mode The new mode (octal)
+     * @param int                       $umask The mode mask (octal)
+     * @param bool                      $recursive Whether change the mod recursively or not
      * @throws IOException When the change fail
      */
     public static function chmod($files, $mode, $umask = 0000, $recursive = false)
@@ -224,8 +224,8 @@ abstract class FileSystem
      * Change the owner of an array of files or directories.
      * @from Symfony-filesystem
      * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to change owner
-     * @param string $user The new owner user name
-     * @param bool $recursive Whether change the owner recursively or not
+     * @param string                    $user The new owner user name
+     * @param bool                      $recursive Whether change the owner recursively or not
      * @throws IOException When the change fail
      */
     public static function chown($files, string $user, $recursive = false)
@@ -248,7 +248,7 @@ abstract class FileSystem
     }
 
     /**
-     * @param string $srcDir
+     * @param string   $srcDir
      * @param callable $filter
      * @return \RecursiveIteratorIterator
      * @throws \InvalidArgumentException
@@ -266,7 +266,7 @@ abstract class FileSystem
     }
 
     /**
-     * @param $path
+     * @param     $path
      * @param int $mode
      * @return bool
      */

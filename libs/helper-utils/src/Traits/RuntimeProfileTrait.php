@@ -34,8 +34,8 @@ trait RuntimeProfileTrait
 
     /**
      * mark data analysis start
-     * @param $name
-     * @param array $context
+     * @param        $name
+     * @param array  $context
      * @param string $category
      */
     public static function profile($name, array $context = [], $category = 'application')
@@ -43,11 +43,11 @@ trait RuntimeProfileTrait
         $data = [
             '_profile_stats' => [
                 'startTime' => microtime(true),
-                'startMem' => memory_get_usage(),
+                'startMem'  => memory_get_usage(),
             ],
             '_profile_start' => $context,
-            '_profile_end' => null,
-            '_profile_msg' => null,
+            '_profile_end'   => null,
+            '_profile_msg'   => null,
         ];
 
         $profileKey = $category . '|' . $name;
@@ -63,7 +63,7 @@ trait RuntimeProfileTrait
     /**
      * mark data analysis end
      * @param string|null $msg
-     * @param array $context
+     * @param array       $context
      * @return bool|array
      */
     public static function profileEnd($msg = null, array $context = [])
@@ -95,7 +95,7 @@ trait RuntimeProfileTrait
 
     /**
      * @param null|string $name
-     * @param string $category
+     * @param string      $category
      * @return array
      */
     public static function getProfileData($name = null, $category = 'application'): array

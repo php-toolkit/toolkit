@@ -28,8 +28,8 @@ namespace Toolkit\File;
  */
 final class FileFinder implements \IteratorAggregate, \Countable
 {
-    const ONLY_FILE = 1;
-    const ONLY_DIR = 2;
+    const ONLY_FILE        = 1;
+    const ONLY_DIR         = 2;
     const IGNORE_VCS_FILES = 1;
     const IGNORE_DOT_FILES = 2;
 
@@ -88,11 +88,11 @@ final class FileFinder implements \IteratorAggregate, \Countable
     {
         $finder = new self();
         $allowed = [
-            'names' => 'addNames',
+            'names'    => 'addNames',
             'notNames' => 'addNotNames',
-            'paths' => 'addNotPaths',
+            'paths'    => 'addNotPaths',
             'notPaths' => 'addNotPaths',
-            'exclude' => 'exclude',
+            'exclude'  => 'exclude',
             'excludes' => 'exclude',
         ];
 

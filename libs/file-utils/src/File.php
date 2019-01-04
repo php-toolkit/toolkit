@@ -24,15 +24,15 @@ abstract class File extends FileSystem
     use ReadTrait;
 
     const FORMAT_JSON = 'json';
-    const FORMAT_PHP = 'php';
-    const FORMAT_INI = 'ini';
-    const FORMAT_YML = 'yml';
+    const FORMAT_PHP  = 'php';
+    const FORMAT_INI  = 'ini';
+    const FORMAT_YML  = 'yml';
     const FORMAT_YAML = 'yml';
 
     /**
      * 获得文件名称
      * @param string $file
-     * @param bool $clearExt 是否去掉文件名中的后缀，仅保留名字
+     * @param bool   $clearExt 是否去掉文件名中的后缀，仅保留名字
      * @return string
      */
     public static function getName($file, $clearExt = false): string
@@ -44,7 +44,7 @@ abstract class File extends FileSystem
 
     /**
      * 获得文件扩展名、后缀名
-     * @param $filename
+     * @param      $filename
      * @param bool $clearPoint 是否带点
      * @return string
      */
@@ -57,7 +57,7 @@ abstract class File extends FileSystem
 
     /**
      * 获得文件扩展名、后缀名
-     * @param $path
+     * @param      $path
      * @param bool $clearPoint 是否带点
      * @return string
      */
@@ -79,7 +79,7 @@ abstract class File extends FileSystem
 
     /**
      * @param string $filename
-     * @param bool $check
+     * @param bool   $check
      * @return array
      * @throws FileNotFoundException
      * @throws \InvalidArgumentException
@@ -89,12 +89,12 @@ abstract class File extends FileSystem
         $check && self::check($filename);
 
         return [
-            'name' => basename($filename), //文件名
-            'type' => filetype($filename), //类型
-            'size' => (filesize($filename) / 1000) . ' Kb', //大小
-            'is_write' => is_writable($filename) ? 'true' : 'false', //可写
-            'is_read' => is_readable($filename) ? 'true' : 'false',//可读
-            'update_time' => filectime($filename), //修改时间
+            'name'            => basename($filename), //文件名
+            'type'            => filetype($filename), //类型
+            'size'            => (filesize($filename) / 1000) . ' Kb', //大小
+            'is_write'        => is_writable($filename) ? 'true' : 'false', //可写
+            'is_read'         => is_readable($filename) ? 'true' : 'false',//可读
+            'update_time'     => filectime($filename), //修改时间
             'last_visit_time' => fileatime($filename), //文件的上次访问时间
         ];
     }
@@ -110,7 +110,7 @@ abstract class File extends FileSystem
 
     /**
      * save description
-     * @param  mixed $data string array(仅一维数组) 或者是 stream  资源
+     * @param  mixed  $data string array(仅一维数组) 或者是 stream  资源
      * @param  string $filename [description], LOCK_EX
      * @return bool
      */
@@ -150,8 +150,8 @@ abstract class File extends FileSystem
     /**
      * Attempts to write $content to the file specified by $handler. $path is used for printing exceptions.
      * @param resource $handler The resource to write to.
-     * @param string $content The content to write.
-     * @param string $path The path to the file (for exception printing only).
+     * @param string   $content The content to write.
+     * @param string   $path The path to the file (for exception printing only).
      * @throws IOException
      */
     public static function writeToFile($handler, string $content, string $path = '')
@@ -192,16 +192,20 @@ abstract class File extends FileSystem
     }
 
     /**
-     * @param string $file a file path or url path
-     * @param bool|false $useIncludePath
+     * @param string        $file a file path or url path
+     * @param bool|false    $useIncludePath
      * @param null|resource $streamContext
-     * @param int $curlTimeout
+     * @param int           $curlTimeout
      * @return bool|mixed|string
      * @throws FileNotFoundException
      * @throws FileReadException
      */
-    public static function getContents(string $file, $useIncludePath = false, $streamContext = null, int $curlTimeout = 5)
-    {
+    public static function getContents(
+        string $file,
+        $useIncludePath = false,
+        $streamContext = null,
+        int $curlTimeout = 5
+    ) {
         $isUrl = preg_match('/^https?:\/\//', $file);
 
         if (null === $streamContext && $isUrl) {
@@ -227,7 +231,7 @@ abstract class File extends FileSystem
             curl_setopt($curl, CURLOPT_URL, $file);
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
             curl_setopt($curl, CURLOPT_TIMEOUT, $curlTimeout);
-//            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            //            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 
             if (null !== $streamContext) {
                 $opts = stream_context_get_options($streamContext);
@@ -279,8 +283,8 @@ abstract class File extends FileSystem
     }
 
     /**
-     * @param $source
-     * @param $destination
+     * @param      $source
+     * @param      $destination
      * @param null $streamContext
      * @return bool|int
      * @throws FileSystemException
@@ -336,9 +340,9 @@ abstract class File extends FileSystem
         $data = preg_replace($preg_arr, '', $data);
         // $outFile  = $outDir . Data::getRandStr(8) . '.' . $fileType;
 
-        $fileData = array(
+        $fileData = [
             $outFile => $data
-        );
+        ];
 
         self::createAndWrite($fileData);
 

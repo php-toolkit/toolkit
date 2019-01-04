@@ -59,7 +59,7 @@ trait PathAliasTrait
 
     /**
      * @param string $alias
-     * @param $value
+     * @param        $value
      * @throws \InvalidArgumentException
      */
     public static function setAlias(string $alias, $value)

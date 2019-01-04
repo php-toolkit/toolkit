@@ -219,7 +219,7 @@ class AutoLoader
      */
     public function register(bool $prepend = false)
     {
-        \spl_autoload_register(array($this, 'loadClass'), true, $prepend);
+        \spl_autoload_register([$this, 'loadClass'], true, $prepend);
     }
 
     /**
@@ -227,7 +227,7 @@ class AutoLoader
      */
     public function unRegister()
     {
-        \spl_autoload_unregister(array($this, 'loadClass'));
+        \spl_autoload_unregister([$this, 'loadClass']);
     }
 
     /**

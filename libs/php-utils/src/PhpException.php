@@ -26,9 +26,9 @@ class PhpException
     /**
      * Converts an exception into a simple string.
      * @param \Exception|\Throwable $e the exception being converted
-     * @param bool $clearHtml
-     * @param bool $getTrace
-     * @param null|string $catcher
+     * @param bool                  $clearHtml
+     * @param bool                  $getTrace
+     * @param null|string           $catcher
      * @return string the string representation of the exception.
      */
     public static function toHtml($e, $getTrace = true, $catcher = null, $clearHtml = false): string
@@ -54,17 +54,17 @@ class PhpException
     /**
      * Converts an exception into a simple array.
      * @param \Exception|\Throwable $e the exception being converted
-     * @param bool $getTrace
-     * @param null|string $catcher
+     * @param bool                  $getTrace
+     * @param null|string           $catcher
      * @return array
      */
     public static function toArray($e, $getTrace = true, $catcher = null): array
     {
         $data = [
-            'class' => \get_class($e),
+            'class'   => \get_class($e),
             'message' => $e->getMessage(),
-            'code' => $e->getCode(),
-            'file' => $e->getFile() . ':' . $e->getLine(),
+            'code'    => $e->getCode(),
+            'file'    => $e->getFile() . ':' . $e->getLine(),
         ];
 
         if ($catcher) {
@@ -81,8 +81,8 @@ class PhpException
     /**
      * Converts an exception into a json string.
      * @param \Exception|\Throwable $e the exception being converted
-     * @param bool $getTrace
-     * @param null|string $catcher
+     * @param bool                  $getTrace
+     * @param null|string           $catcher
      * @return string the string representation of the exception.
      */
     public static function toJson($e, $getTrace = true, $catcher = null): string
@@ -92,7 +92,7 @@ class PhpException
         } else {
             $map = [
                 'code' => $e->getCode() ?: 500,
-                'msg' => sprintf(
+                'msg'  => sprintf(
                     '%s(%d): %s, File: %s(Line %d)',
                     \get_class($e),
                     $e->getCode(),

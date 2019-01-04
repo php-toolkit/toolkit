@@ -56,7 +56,7 @@ class ArrayHelper
     /**
      * array data to object
      * @param array|\Traversable $array
-     * @param string $class
+     * @param string             $class
      * @return mixed
      */
     public static function toObject($array, $class = \stdClass::class)
@@ -78,8 +78,8 @@ class ArrayHelper
 
     /**
      * Get Multi - 获取多个, 可以设置默认值
-     * @param array $data array data
-     * @param array $needKeys
+     * @param array      $data array data
+     * @param array      $needKeys
      * $needKeys = [
      *     'name',
      *     'password',
@@ -125,7 +125,7 @@ class ArrayHelper
     /**
      * 递归合并两个多维数组,后面的值将会递归覆盖原来的值
      * @param  array|null $src
-     * @param  array $new
+     * @param  array      $new
      * @return array
      */
     public static function merge($src, array $new): array
@@ -210,7 +210,7 @@ class ArrayHelper
     /**
      * 不区分大小写检测数据键名是否存在
      * @param int|string $key
-     * @param array $arr
+     * @param array      $arr
      * @return bool
      */
     public static function keyExists($key, array $arr): bool
@@ -239,13 +239,13 @@ class ArrayHelper
     /**
      * 将数组中的值全部转为大写或小写
      * @param array $arr
-     * @param int $toUpper 1 值大写 0 值小写
+     * @param int   $toUpper 1 值大写 0 值小写
      * @return array
      */
     public static function changeValueCase($arr, $toUpper = 1): array
     {
         $function = $toUpper ? 'strtoupper' : 'strtolower';
-        $newArr = array(); //格式化后的数组
+        $newArr = []; //格式化后的数组
 
         foreach ($arr as $k => $v) {
             if (\is_array($v)) {
@@ -263,7 +263,7 @@ class ArrayHelper
      * ******* 检查 一个或多个值是否全部存在数组中 *******
      * 有一个不存在即返回 false
      * @param string|array $check
-     * @param array $sampleArr 只能检查一维数组
+     * @param array        $sampleArr 只能检查一维数组
      * 注： 不分类型， 区分大小写  2 == '2' ‘a' != 'A'
      * @return bool
      */
@@ -272,7 +272,7 @@ class ArrayHelper
         // 以逗号分隔的会被拆开，组成数组
         if (\is_string($check)) {
             $check = trim($check, ', ');
-            $check = strpos($check, ',') !== false ? explode(',', $check) : array($check);
+            $check = strpos($check, ',') !== false ? explode(',', $check) : [$check];
         }
 
         return !array_diff((array)$check, $sampleArr);
@@ -282,7 +282,7 @@ class ArrayHelper
      * ******* 检查 一个或多个值是否存在数组中 *******
      * 有一个存在就返回 true 都不存在 return false
      * @param string|array $check
-     * @param array $sampleArr 只能检查一维数组
+     * @param array        $sampleArr 只能检查一维数组
      * @return bool
      */
     public static function valueExistsOne($check, array $sampleArr): bool
@@ -290,7 +290,7 @@ class ArrayHelper
         // 以逗号分隔的会被拆开，组成数组
         if (\is_string($check)) {
             $check = trim($check, ', ');
-            $check = strpos($check, ',') !== false ? explode(',', $check) : array($check);
+            $check = strpos($check, ',') !== false ? explode(',', $check) : [$check];
         }
 
         return (bool)array_intersect((array)$check, $sampleArr);
@@ -300,8 +300,8 @@ class ArrayHelper
      * ******* 不区分大小写，检查 一个或多个值是否 全存在数组中 *******
      * 有一个不存在即返回 false
      * @param string|array $need
-     * @param array $arr 只能检查一维数组
-     * @param bool $type 是否同时验证类型
+     * @param array        $arr 只能检查一维数组
+     * @param bool         $type 是否同时验证类型
      * @return bool | string 不存在的会返回 检查到的 字段，判断时 请使用 ArrHelper::existsAll($need,$arr)===true 来验证是否全存在
      */
     public static function existsAll($need, $arr, $type = false)
@@ -334,8 +334,8 @@ class ArrayHelper
      * ******* 不区分大小写，检查 一个或多个值是否存在数组中 *******
      * 有一个存在就返回 true 都不存在 return false
      * @param string|array $need
-     * @param array $arr 只能检查一维数组
-     * @param bool $type 是否同时验证类型
+     * @param array        $arr 只能检查一维数组
+     * @param bool         $type 是否同时验证类型
      * @return bool
      */
     public static function existsOne($need, $arr, $type = false): bool
@@ -372,7 +372,7 @@ class ArrayHelper
      *     'key1'      => 'value1',
      *     'key2-test' => 'value2',
      * ]
-     * @param bool $expectInt
+     * @param bool   $expectInt
      * @return int
      */
     public static function getKeyMaxWidth(array $data, $expectInt = true): int
@@ -395,9 +395,9 @@ class ArrayHelper
      * Get data from array or object by path.
      * Example: `DataCollector::getByPath($array, 'foo.bar.yoo')` equals to $array['foo']['bar']['yoo'].
      * @param array|\ArrayAccess $data An array or object to get value.
-     * @param mixed $path The key path.
-     * @param mixed $default
-     * @param string $separator Separator of paths.
+     * @param mixed              $path The key path.
+     * @param mixed              $default
+     * @param string             $separator Separator of paths.
      * @return mixed Found value, null if not exists.
      */
     public static function getByPath($data, string $path, $default = null, string $separator = '.')
@@ -433,9 +433,9 @@ class ArrayHelper
     /**
      * setByPath
      * @param array|\ArrayAccess &$data
-     * @param string $path
-     * @param mixed $value
-     * @param string $separator
+     * @param string              $path
+     * @param mixed               $value
+     * @param string              $separator
      */
     public static function setByPath(&$data, string $path, $value, string $separator = '.')
     {
@@ -460,7 +460,7 @@ class ArrayHelper
             } else {
                 // If a node is value but path is not go to the end, we replace this value as a new store.
                 // Then next node can insert new value to this store.
-                $dataTmp = array();
+                $dataTmp = [];
             }
         }
 
@@ -522,7 +522,7 @@ class ArrayHelper
 
     /**
      * Flatten a multi-dimensional associative array with dots.
-     * @param  array $array
+     * @param  array  $array
      * @param  string $prepend
      * @return array
      */
@@ -543,7 +543,7 @@ class ArrayHelper
 
     /**
      * Get all of the given array except for a specified array of items.
-     * @param  array $array
+     * @param  array        $array
      * @param  array|string $keys
      * @return array
      */
@@ -557,7 +557,7 @@ class ArrayHelper
     /**
      * Determine if the given key exists in the provided array.
      * @param  \ArrayAccess|array $array
-     * @param  string|int $key
+     * @param  string|int         $key
      * @return bool
      */
     public static function exists($array, $key): bool
@@ -571,9 +571,9 @@ class ArrayHelper
 
     /**
      * Add an element to an array using "dot" notation if it doesn't exist.
-     * @param  array $array
+     * @param  array  $array
      * @param  string $key
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return array
      */
     public static function add($array, $key, $value): array
@@ -588,8 +588,8 @@ class ArrayHelper
     /**
      * Get an item from an array using "dot" notation.
      * @param  \ArrayAccess|array $array
-     * @param  string $key
-     * @param  mixed $default
+     * @param  string             $key
+     * @param  mixed              $default
      * @return mixed
      */
     public static function get($array, $key, $default = null)
@@ -620,9 +620,9 @@ class ArrayHelper
     /**
      * Set an array item to a given value using "dot" notation.
      * If no key is given to the method, the entire array will be replaced.
-     * @param  array $array
+     * @param  array  $array
      * @param  string $key
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return array
      */
     public static function set(&$array, $key, $value): array
@@ -653,7 +653,7 @@ class ArrayHelper
     /**
      * Flatten a multi-dimensional array into a single level.
      * @param  array $array
-     * @param  int $depth
+     * @param  int   $depth
      * @return array
      */
     public static function flatten($array, $depth = INF): array
@@ -675,7 +675,7 @@ class ArrayHelper
 
     /**
      * Remove one or many array items from a given array using "dot" notation.
-     * @param  array $array
+     * @param  array        $array
      * @param  array|string $keys
      * @return void
      */
@@ -718,7 +718,7 @@ class ArrayHelper
     /**
      * Check if an item or items exist in an array using "dot" notation.
      * @param  \ArrayAccess|array $array
-     * @param  string|array $keys
+     * @param  string|array       $keys
      * @return bool
      */
     public static function has($array, $keys): bool
@@ -778,8 +778,8 @@ class ArrayHelper
     /**
      * remove the $key of the $arr, and return value.
      * @param string $key
-     * @param array $arr
-     * @param mixed $default
+     * @param array  $arr
+     * @param mixed  $default
      * @return mixed
      */
     public static function remove(&$arr, $key, $default = null)
@@ -796,9 +796,9 @@ class ArrayHelper
 
     /**
      * Get a value from the array, and remove it.
-     * @param  array $array
+     * @param  array  $array
      * @param  string $key
-     * @param  mixed $default
+     * @param  mixed  $default
      * @return mixed
      */
     public static function pull(&$array, $key, $default = null)
@@ -812,7 +812,7 @@ class ArrayHelper
 
     /**
      * Get a subset of the items from the given array.
-     * @param  array $array
+     * @param  array        $array
      * @param  array|string $keys
      * @return array
      */
@@ -835,7 +835,7 @@ class ArrayHelper
 
     /**
      * Filter the array using the given callback.
-     * @param  array $array
+     * @param  array    $array
      * @param  callable $callback
      * @return array
      */
@@ -860,13 +860,13 @@ class ArrayHelper
 
     /**
      * array 递归 转换成 字符串
-     * @param  array $array [大于1200字符 strlen($string)>1200
-     * @param int $length
+     * @param  array    $array [大于1200字符 strlen($string)>1200
+     * @param int       $length
      * @param array|int $cycles [至多循环六次 $num >= 6
-     * @param bool $showKey
-     * @param bool $addMark
-     * @param  string $separator
-     * @param string $string
+     * @param bool      $showKey
+     * @param bool      $addMark
+     * @param  string   $separator
+     * @param string    $string
      * @return string
      */
     public static function toString(
@@ -877,8 +877,7 @@ class ArrayHelper
         $addMark = false,
         $separator = ', ',
         $string = ''
-    ): string
-    {
+    ): string {
         if (!\is_array($array) || empty($array)) {
             return '';
         }
@@ -923,14 +922,13 @@ class ArrayHelper
         $showKey = false,
         $addMark = true,
         $separator = ', '
-    ): string
-    {
+    ): string {
         return static::toString($array, $length, $cycles, $showKey, $addMark, $separator);
     }
 
     /**
      * @param array $array
-     * @param int $length
+     * @param int   $length
      * @return mixed|null|string|string[]
      */
     public static function toFormatString($array, $length = 400)

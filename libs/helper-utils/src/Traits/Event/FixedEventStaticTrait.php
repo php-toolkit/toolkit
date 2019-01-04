@@ -43,9 +43,9 @@ trait FixedEventStaticTrait
 
     /**
      * register a event handler
-     * @param $event
+     * @param          $event
      * @param callable $handler
-     * @param bool $once
+     * @param bool     $once
      */
     public static function on($event, callable $handler, $once = false)
     {
@@ -57,7 +57,7 @@ trait FixedEventStaticTrait
 
     /**
      * register a once event handler
-     * @param $event
+     * @param          $event
      * @param callable $handler
      */
     public static function once($event, callable $handler)
@@ -67,7 +67,7 @@ trait FixedEventStaticTrait
 
     /**
      * trigger event
-     * @param $event
+     * @param       $event
      * @param array $args
      * @return bool
      */

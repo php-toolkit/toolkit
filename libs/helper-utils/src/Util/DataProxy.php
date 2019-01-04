@@ -31,7 +31,7 @@ class DataProxy
 
     /**
      * @param string $method
-     * @param array $args
+     * @param array  $args
      * @return mixed
      */
     public function __call($method, array $args)
@@ -41,7 +41,7 @@ class DataProxy
 
     /**
      * @param string $name
-     * @param array $args
+     * @param array  $args
      * @return mixed
      * @throws \RuntimeException
      */
@@ -56,7 +56,7 @@ class DataProxy
     }
 
     /**
-     * @param string $name
+     * @param string   $name
      * @param callable $callback
      */
     public function add(string $name, callable $callback)
@@ -67,7 +67,7 @@ class DataProxy
     }
 
     /**
-     * @param string $name
+     * @param string   $name
      * @param callable $callback
      */
     public function addProxy(string $name, callable $callback)
@@ -78,7 +78,7 @@ class DataProxy
     }
 
     /**
-     * @param string $name
+     * @param string   $name
      * @param callable $callback
      */
     public function setProxy(string $name, callable $callback)

@@ -39,9 +39,9 @@ trait EventTrait
 
     /**
      * register a event handler
-     * @param $event
+     * @param          $event
      * @param callable $handler
-     * @param bool $once
+     * @param bool     $once
      */
     public function on($event, callable $handler, $once = false)
     {
@@ -53,7 +53,7 @@ trait EventTrait
 
     /**
      * register a once event handler
-     * @param $event
+     * @param          $event
      * @param callable $handler
      */
     public function once($event, callable $handler)
@@ -63,7 +63,7 @@ trait EventTrait
 
     /**
      * trigger event
-     * @param $event
+     * @param       $event
      * @param array $args
      * @return bool
      */
