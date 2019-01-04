@@ -57,7 +57,7 @@ class SysEnv
      */
     public static function isMac(): bool
     {
-        return stripos(PHP_OS, 'Darwin') !== false;
+        return \stripos(PHP_OS, 'Darwin') !== false;
     }
 
     /**
@@ -66,10 +66,10 @@ class SysEnv
     public static function isRoot(): bool
     {
         if (\function_exists('posix_getuid')) {
-            return posix_getuid() === 0;
+            return \posix_getuid() === 0;
         }
 
-        return getmyuid() === 0;
+        return \getmyuid() === 0;
     }
 
     /**
@@ -77,7 +77,7 @@ class SysEnv
      */
     public static function getHostname(): string
     {
-        return php_uname('n');
+        return \php_uname('n');
     }
 
     /**
@@ -90,6 +90,14 @@ class SysEnv
         }
 
         return 'NUL';
+    }
+
+    /**
+     * @return bool
+     */
+    public static function supportColor(): bool
+    {
+        return self::isSupportColor();
     }
 
     /**
