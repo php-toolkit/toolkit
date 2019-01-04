@@ -103,7 +103,7 @@ class Sys extends SysEnv
             \chdir($cwd);
         }
 
-        //system
+        // system
         if (\function_exists('system')) {
             \ob_start();
             \system($command, $exitStatus);
@@ -117,20 +117,16 @@ class Sys extends SysEnv
             $output = \ob_get_contents();
             \ob_end_clean();
             //exec
-        } else {
-            if (\function_exists('exec')) {
-                \exec($command, $output, $exitStatus);
-                $output = \implode("\n", $output);
+        } elseif (\function_exists('exec')) {
+            \exec($command, $output, $exitStatus);
+            $output = \implode("\n", $output);
 
-                //shell_exec
-            } else {
-                if (\function_exists('shell_exec')) {
-                    $output = \shell_exec($command);
-                } else {
-                    $output = 'Command execution not possible on this system';
-                    $exitStatus = 0;
-                }
-            }
+            //shell_exec
+        } elseif (\function_exists('shell_exec')) {
+            $output = \shell_exec($command);
+        } else {
+            $output = 'Command execution not possible on this system';
+            $exitStatus = 0;
         }
 
         if ($returnStatus) {

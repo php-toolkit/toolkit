@@ -20,8 +20,8 @@ use Toolkit\Sys\Sys;
  */
 class DevController extends Controller
 {
-    const TYPE_SSL   = 'git@github.com:';
-    const TYPE_HTTPS = 'https://github.com/';
+    public const TYPE_SSL   = 'git@github.com:';
+    public const TYPE_HTTPS = 'https://github.com/';
 
     protected static $name = 'dev';
     protected static $description = 'Internal tool for toolkit development';
@@ -202,9 +202,7 @@ class DevController extends Controller
         $output->writeln("<comment>Component Directory</comment>:\n $this->componentDir");
 
         $operate = $config['operate'];
-        $names = \array_filter($input->getArgs(), function ($key) {
-            return \is_int($key);
-        }, ARRAY_FILTER_USE_KEY);
+        $names = \array_filter($input->getArgs(), 'is_int', ARRAY_FILTER_USE_KEY);
 
         if ($names) {
             $back = $names;

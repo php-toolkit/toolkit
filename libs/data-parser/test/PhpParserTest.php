@@ -24,7 +24,7 @@ class PhpParserTest extends TestCase
         $parser = new PhpParser();
         $ret = $parser->decode($str);
 
-        $this->assertInternalType('array', $ret);
+        $this->assertIsArray($ret);
         $this->assertArrayHasKey('name', $ret);
     }
 
@@ -37,7 +37,7 @@ class PhpParserTest extends TestCase
         $parser = new PhpParser();
         $ret = $parser->encode($data);
 
-        $this->assertInternalType('string', $ret);
+        $this->assertIsString($ret);
         $this->assertStringStartsWith('a:1:{', $ret);
     }
 }

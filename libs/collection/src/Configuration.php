@@ -16,8 +16,8 @@ use Toolkit\StrUtil\Str;
  */
 final class Configuration extends Collection
 {
-    const MODE_DATA   = 'data';
-    const MODE_FOLDER = 'folder';
+    public const MODE_DATA   = 'data';
+    public const MODE_FOLDER = 'folder';
 
     /**
      * config mode

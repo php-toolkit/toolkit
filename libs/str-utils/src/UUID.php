@@ -28,72 +28,72 @@ namespace Toolkit\StrUtil;
  */
 class UUID
 {
-    const MD5  = 3;
-    const SHA1 = 5;
+    public const MD5  = 3;
+    public const SHA1 = 5;
 
     /** @var int 00001111  Clears all bits of version byte with AND */
-    const CLEAR_VER = 15;
+    public const CLEAR_VER = 15;
 
     /** @var int 00111111  Clears all relevant bits of variant byte with AND */
-    const CLEAR_VAR = 63;
+    public const CLEAR_VAR = 63;
 
     /** @var int 11100000  Variant reserved for future use */
-    const VAR_RES = 224;
+    public const VAR_RES = 224;
 
     /** @var int 11000000  Microsoft UUID variant */
-    const VAR_MS = 192;
+    public const VAR_MS = 192;
 
     /** @var int 10000000  The RFC 4122 variant (this variant) */
-    const VAR_RFC = 128;
+    public const VAR_RFC = 128;
 
     /** @var int 00000000  The NCS compatibility variant */
-    const VAR_NCS = 0;
+    public const VAR_NCS = 0;
 
     /** @var int 00010000 */
-    const VERSION_1 = 16;
+    public const VERSION_1 = 16;
 
     /** @var int 00110000 */
-    const VERSION_3 = 48;
+    public const VERSION_3 = 48;
 
     /** @var int 01000000 */
-    const VERSION_4 = 64;
+    public const VERSION_4 = 64;
 
     /**
      * 01010000
      * @var int
      */
-    const VERSION_5 = 80;
+    public const VERSION_5 = 80;
 
     /**
      * Time (in 100ns steps) between the start of the UTC and Unix epochs
      * @var int
      */
-    const INTERVAL = 0x01b21dd213814000;
+    public const INTERVAL = 0x01b21dd213814000;
 
     /**
      * @var string
      */
-    const NS_DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
+    public const NS_DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
 
     /**
      * @var string
      */
-    const NS_URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
+    public const NS_URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
 
     /**
      * @var string
      */
-    const NS_OID = '6ba7b812-9dad-11d1-80b4-00c04fd430c8';
+    public const NS_OID = '6ba7b812-9dad-11d1-80b4-00c04fd430c8';
 
     /**
      * @var string
      */
-    const NS_X500 = '6ba7b814-9dad-11d1-80b4-00c04fd430c8';
+    public const NS_X500 = '6ba7b814-9dad-11d1-80b4-00c04fd430c8';
 
     /**
      * Regular expression for validation of UUID.
      */
-    const VALID_UUID_REGEX = '^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$';
+    public const VALID_UUID_REGEX = '^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$';
 
     /**
      * @param int         $ver
@@ -101,6 +101,7 @@ class UUID
      * @param string|null $ns
      * @return UUID
      * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public static function gen(int $ver = 1, string $node = null, string $ns = null): self
     {
@@ -113,6 +114,7 @@ class UUID
      * @param string $ns
      * @return UUID
      * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public static function generate(int $ver = 1, string $node = null, string $ns = null): self
     {

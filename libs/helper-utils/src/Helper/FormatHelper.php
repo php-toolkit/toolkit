@@ -275,69 +275,67 @@ class FormatHelper
                 if ($tn === T_INLINE_HTML) {
                     $new .= $ts;
                     $iw = false;
-                } else {
-                    if ($tn === T_OPEN_TAG) {
-                        if (strpos($ts, ' ') || strpos($ts, "\n") || strpos($ts, "\t") || strpos($ts, "\r")) {
-                            $ts = rtrim($ts);
-                        }
-                        $ts .= ' ';
-                        $new .= $ts;
-                        $ot = T_OPEN_TAG;
-                        $iw = true;
-                    } elseif ($tn === T_OPEN_TAG_WITH_ECHO) {
-                        $new .= $ts;
-                        $ot = T_OPEN_TAG_WITH_ECHO;
-                        $iw = true;
-                    } elseif ($tn === T_CLOSE_TAG) {
-                        if ($ot === T_OPEN_TAG_WITH_ECHO) {
-                            $new = rtrim($new, '; ');
-                        } else {
-                            $ts = ' ' . $ts;
-                        }
-                        $new .= $ts;
-                        $ot = null;
-                        $iw = false;
-                    } elseif (\in_array($tn, $IW, true)) {
-                        $new .= $ts;
-                        $iw = true;
-                    } elseif ($tn === T_CONSTANT_ENCAPSED_STRING || $tn === T_ENCAPSED_AND_WHITESPACE) {
-                        if ($ts[0] === '"') {
-                            $ts = addcslashes($ts, "\n\t\r");
-                        }
-                        $new .= $ts;
-                        $iw = true;
-                    } elseif ($tn === T_WHITESPACE) {
-                        $nt = @$tokens[$i + 1];
-                        if (!$iw && (!\is_string($nt) || $nt === '$') && !\in_array($nt[0], $IW, true)) {
-                            $new .= ' ';
-                        }
-                        $iw = false;
-                    } elseif ($tn === T_START_HEREDOC) {
-                        $new .= "<<<S\n";
-                        $iw = false;
-                        $ih = true; // in HEREDOC
-                    } elseif ($tn === T_END_HEREDOC) {
-                        $new .= "S;\n";
-                        $iw = true;
-                        $ih = false; // in HEREDOC
-                        for ($j = $i + 1; $j < $c; $j++) {
-                            if (\is_string($tokens[$j]) && $tokens[$j] === ';') {
-                                $i = $j;
-                                break;
-                            }
-                            if ($tokens[$j][0] === T_CLOSE_TAG) {
-                                break;
-                            }
-                        }
-                    } elseif ($tn === T_COMMENT || $tn === T_DOC_COMMENT) {
-                        $iw = true;
-                    } else {
-                        if (!$ih) {
-                            $ts = strtolower($ts);
-                        }
-                        $new .= $ts;
-                        $iw = false;
+                } elseif ($tn === T_OPEN_TAG) {
+                    if (strpos($ts, ' ') || strpos($ts, "\n") || strpos($ts, "\t") || strpos($ts, "\r")) {
+                        $ts = rtrim($ts);
                     }
+                    $ts .= ' ';
+                    $new .= $ts;
+                    $ot = T_OPEN_TAG;
+                    $iw = true;
+                } elseif ($tn === T_OPEN_TAG_WITH_ECHO) {
+                    $new .= $ts;
+                    $ot = T_OPEN_TAG_WITH_ECHO;
+                    $iw = true;
+                } elseif ($tn === T_CLOSE_TAG) {
+                    if ($ot === T_OPEN_TAG_WITH_ECHO) {
+                        $new = rtrim($new, '; ');
+                    } else {
+                        $ts = ' ' . $ts;
+                    }
+                    $new .= $ts;
+                    $ot = null;
+                    $iw = false;
+                } elseif (\in_array($tn, $IW, true)) {
+                    $new .= $ts;
+                    $iw = true;
+                } elseif ($tn === T_CONSTANT_ENCAPSED_STRING || $tn === T_ENCAPSED_AND_WHITESPACE) {
+                    if ($ts[0] === '"') {
+                        $ts = addcslashes($ts, "\n\t\r");
+                    }
+                    $new .= $ts;
+                    $iw = true;
+                } elseif ($tn === T_WHITESPACE) {
+                    $nt = @$tokens[$i + 1];
+                    if (!$iw && (!\is_string($nt) || $nt === '$') && !\in_array($nt[0], $IW, true)) {
+                        $new .= ' ';
+                    }
+                    $iw = false;
+                } elseif ($tn === T_START_HEREDOC) {
+                    $new .= "<<<S\n";
+                    $iw = false;
+                    $ih = true; // in HEREDOC
+                } elseif ($tn === T_END_HEREDOC) {
+                    $new .= "S;\n";
+                    $iw = true;
+                    $ih = false; // in HEREDOC
+                    for ($j = $i + 1; $j < $c; $j++) {
+                        if (\is_string($tokens[$j]) && $tokens[$j] === ';') {
+                            $i = $j;
+                            break;
+                        }
+                        if ($tokens[$j][0] === T_CLOSE_TAG) {
+                            break;
+                        }
+                    }
+                } elseif ($tn === T_COMMENT || $tn === T_DOC_COMMENT) {
+                    $iw = true;
+                } else {
+                    if (!$ih) {
+                        $ts = strtolower($ts);
+                    }
+                    $new .= $ts;
+                    $iw = false;
                 }
                 $ls = '';
             } else {

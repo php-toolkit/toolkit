@@ -16,7 +16,7 @@ use RuntimeException;
  */
 final class CallableResolver implements CallableResolverInterface
 {
-    const CALLABLE_PATTERN = '!^([^\:]+)\:([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)$!';
+    public const CALLABLE_PATTERN = '!^([^\:]+)\:([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)$!';
 
     /**
      * @var ContainerInterface|Container

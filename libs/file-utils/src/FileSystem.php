@@ -31,8 +31,8 @@ abstract class FileSystem
         }
 
         if (
-            $path{0} === '/' ||  // linux/mac
-            1 === preg_match('#^[a-z]:[\/|\\\]{1}.+#i', $path) // windows
+            \strpos($path, '/') === 0 ||  // linux/mac
+            1 === \preg_match('#^[a-z]:[\/|\\\]{1}.+#i', $path) // windows
         ) {
             return true;
         }
@@ -63,9 +63,9 @@ abstract class FileSystem
      */
     public static function pathFormat(string $dirName): string
     {
-        $dirName = str_ireplace('\\', '/', trim($dirName));
+        $dirName = (string)\str_ireplace('\\', '/', trim($dirName));
 
-        return substr((string)$dirName, -1) === '/' ? $dirName : $dirName . '/';
+        return \substr($dirName, -1) === '/' ? $dirName : $dirName . '/';
     }
 
     /**
@@ -239,10 +239,8 @@ abstract class FileSystem
                 if (true !== lchown($file, $user)) {
                     throw new IOException(sprintf('Failed to chown file "%s".', $file));
                 }
-            } else {
-                if (true !== chown($file, $user)) {
-                    throw new IOException(sprintf('Failed to chown file "%s".', $file));
-                }
+            } elseif (true !== chown($file, $user)) {
+                throw new IOException(sprintf('Failed to chown file "%s".', $file));
             }
         }
     }
@@ -255,7 +253,7 @@ abstract class FileSystem
      */
     public static function getIterator(string $srcDir, callable $filter): \RecursiveIteratorIterator
     {
-        if (!$srcDir || !file_exists($srcDir)) {
+        if (!$srcDir || !\file_exists($srcDir)) {
             throw new \InvalidArgumentException('Please provide a exists source directory.');
         }
 

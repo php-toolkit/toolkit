@@ -62,10 +62,10 @@ class Collection extends SimpleCollection
      */
     protected static $formats = ['json', 'php', 'ini', 'yml'];
 
-    const FORMAT_JSON = 'json';
-    const FORMAT_PHP  = 'php';
-    const FORMAT_INI  = 'ini';
-    const FORMAT_YML  = 'yml';
+    public const FORMAT_JSON = 'json';
+    public const FORMAT_PHP  = 'php';
+    public const FORMAT_INI  = 'ini';
+    public const FORMAT_YML  = 'yml';
 
     /**
      * __construct

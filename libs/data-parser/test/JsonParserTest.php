@@ -24,7 +24,6 @@ class JsonParserTest extends TestCase
         $parser = new JsonParser();
         $ret = $parser->decode($str);
 
-        $this->assertInternalType('array', $ret);
         $this->assertArrayHasKey('name', $ret);
     }
 
@@ -37,7 +36,6 @@ class JsonParserTest extends TestCase
         $parser = new JsonParser();
         $ret = $parser->encode($data);
 
-        $this->assertInternalType('string', $ret);
         $this->assertJson($ret);
     }
 }

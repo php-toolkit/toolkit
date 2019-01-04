@@ -94,7 +94,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     private $ignoreError = false;
 
-    const DEFAULT_FILE_KEY = '__default';
+    public const DEFAULT_FILE_KEY = '__default';
 
     /**
      * @param array $settings

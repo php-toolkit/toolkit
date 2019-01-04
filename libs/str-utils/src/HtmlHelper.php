@@ -118,12 +118,10 @@ class HtmlHelper
                 $data[$k] = self::unescap($data, $type, $encoding);
             }
 
+        } elseif (!$type) {//默认使用  htmlspecialchars_decode()
+            $data = htmlspecialchars_decode($data, ENT_QUOTES);
         } else {
-            if (!$type) {//默认使用  htmlspecialchars_decode()
-                $data = htmlspecialchars_decode($data, ENT_QUOTES);
-            } else {
-                $data = html_entity_decode($data, ENT_QUOTES, $encoding);
-            }
+            $data = html_entity_decode($data, ENT_QUOTES, $encoding);
         }
 
         return $data;

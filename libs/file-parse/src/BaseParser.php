@@ -14,9 +14,9 @@ namespace Toolkit\File\Parse;
  */
 abstract class BaseParser
 {
-    const EXTEND_KEY    = 'extend';
-    const IMPORT_KEY    = 'import';
-    const REFERENCE_KEY = 'reference';
+    public const EXTEND_KEY    = 'extend';
+    public const IMPORT_KEY    = 'import';
+    public const REFERENCE_KEY = 'reference';
 
     /**
      * parse data

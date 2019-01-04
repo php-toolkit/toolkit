@@ -311,19 +311,15 @@ class ArrayHelper
                 self::existsAll($v, $arr, $type);
             }
 
+        } elseif (\strpos($need, ',') !== false) {
+            $need = \explode(',', $need);
+            self::existsAll($need, $arr, $type);
         } else {
+            $arr = self::valueToLower($arr);//小写
+            $need = \strtolower(trim($need));//小写
 
-            #以逗号分隔的会被拆开，组成数组
-            if (\strpos($need, ',') !== false) {
-                $need = \explode(',', $need);
-                self::existsAll($need, $arr, $type);
-            } else {
-                $arr = self::valueToLower($arr);//小写
-                $need = \strtolower(trim($need));//小写
-
-                if (!\in_array($need, $arr, $type)) {
-                    return $need;
-                }
+            if (!\in_array($need, $arr, $type)) {
+                return $need;
             }
         }
 
@@ -898,17 +894,13 @@ class ArrayHelper
             if (\is_array($value)) {
                 $string .= $keyStr . 'Array(' . self::toString($value, $length, $cycles, $showKey, $addMark, $separator,
                         $string) . ')' . $separator;
+            } elseif (\is_object($value)) {
+                $string .= $keyStr . 'Object(' . \get_class($value) . ')' . $separator;
+            } elseif (\is_resource($value)) {
+                $string .= $keyStr . 'Resource(' . get_resource_type($value) . ')' . $separator;
             } else {
-                if (\is_object($value)) {
-                    $string .= $keyStr . 'Object(' . \get_class($value) . ')' . $separator;
-                } else {
-                    if (\is_resource($value)) {
-                        $string .= $keyStr . 'Resource(' . get_resource_type($value) . ')' . $separator;
-                    } else {
-                        $value = \strlen($value) > 150 ? substr($value, 0, 150) : $value;
-                        $string .= $mark . $keyStr . trim(htmlspecialchars($value)) . $mark . $separator;
-                    }
-                }
+                $value = \strlen($value) > 150 ? substr($value, 0, 150) : $value;
+                $string .= $mark . $keyStr . trim(htmlspecialchars($value)) . $mark . $separator;
             }
         }
 
@@ -963,12 +955,10 @@ class ArrayHelper
 
             if (\is_array($value) || \is_object($value)) {
                 $value = \gettype($value) . '(...)';
+            } elseif (\is_string($value) || is_numeric($value)) {
+                $value = \strlen(trim($value));
             } else {
-                if (\is_string($value) || is_numeric($value)) {
-                    $value = \strlen(trim($value));
-                } else {
-                    $value = \gettype($value) . "($value)";
-                }
+                $value = \gettype($value) . "($value)";
             }
 
             $array[$key] = $value;

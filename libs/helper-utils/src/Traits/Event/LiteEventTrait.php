@@ -74,13 +74,7 @@ trait LiteEventTrait
      */
     public function getEventHandler($name)
     {
-        $cb = null;
-
-        if (isset($this->_events[$name])) {
-            $cb = $this->_events[$name];
-        }
-
-        return $cb;
+        return $this->_events[$name] ?? null;
     }
 
     /**

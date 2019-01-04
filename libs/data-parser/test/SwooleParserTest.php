@@ -31,7 +31,7 @@ class SwooleParserTest extends TestCase
         $parser = new SwooleParser();
         $ret = $parser->encode($data);
 
-        $this->assertInternalType('string', $ret);
+        $this->assertIsString($ret);
     }
 
     public function testDecode()
@@ -48,7 +48,7 @@ class SwooleParserTest extends TestCase
         $str = $parser->encode($data);
         $ret = $parser->decode($str);
 
-        $this->assertInternalType('array', $ret);
+        $this->assertIsArray($ret);
         $this->assertArrayHasKey('name', $ret);
     }
 

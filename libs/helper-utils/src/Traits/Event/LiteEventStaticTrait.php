@@ -74,13 +74,7 @@ trait LiteEventStaticTrait
      */
     public static function getEventHandler($name)
     {
-        $cb = null;
-
-        if (isset(self::$_events[$name])) {
-            $cb = self::$_events[$name];
-        }
-
-        return $cb;
+        return self::$_events[$name] ?? null;
     }
 
     /**

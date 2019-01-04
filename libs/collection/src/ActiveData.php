@@ -118,6 +118,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * Defined by IteratorAggregate interface
      * Returns an iterator for this object, for use with foreach
      * @return \ArrayIterator
+     * @throws \ReflectionException
      */
     public function getIterator()
     {

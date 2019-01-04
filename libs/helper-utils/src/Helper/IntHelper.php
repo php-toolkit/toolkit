@@ -37,16 +37,12 @@ class IntHelper
         if ($endianness === true) {
             // big-endian
             $i = $f('n', $i);
-        } else {
-            if ($endianness === false) {
-                // little-endian
-                $i = $f('v', $i);
-            } else {
-                if ($endianness === null) {
-                    // machine byte order
-                    $i = $f('S', $i);
-                }
-            }
+        } elseif ($endianness === false) {
+            // little-endian
+            $i = $f('v', $i);
+        } elseif ($endianness === null) {
+            // machine byte order
+            $i = $f('S', $i);
         }
 
         return \is_array($i) ? $i[1] : $i;
@@ -64,16 +60,12 @@ class IntHelper
         if ($endianness === true) {
             // big-endian
             $i = $f('N', $i);
-        } else {
-            if ($endianness === false) {
-                // little-endian
-                $i = $f('V', $i);
-            } else {
-                if ($endianness === null) {
-                    // machine byte order
-                    $i = $f('L', $i);
-                }
-            }
+        } elseif ($endianness === false) {
+            // little-endian
+            $i = $f('V', $i);
+        } elseif ($endianness === null) {
+            // machine byte order
+            $i = $f('L', $i);
         }
 
         return \is_array($i) ? $i[1] : $i;
@@ -91,16 +83,12 @@ class IntHelper
         if ($endianness === true) {
             // big-endian
             $i = $f('J', $i);
-        } else {
-            if ($endianness === false) {
-                // little-endian
-                $i = $f('P', $i);
-            } else {
-                if ($endianness === null) {
-                    // machine byte order
-                    $i = $f('Q', $i);
-                }
-            }
+        } elseif ($endianness === false) {
+            // little-endian
+            $i = $f('P', $i);
+        } elseif ($endianness === null) {
+            // machine byte order
+            $i = $f('Q', $i);
         }
 
         return \is_array($i) ? $i[1] : $i;

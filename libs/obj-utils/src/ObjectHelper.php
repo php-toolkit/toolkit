@@ -148,6 +148,7 @@ class ObjectHelper
      * @param array             $extraArgs
      * @return array
      * @throws \RuntimeException
+     * @throws \ReflectionException
      */
     public static function getMethodArgs(\ReflectionMethod $method, array $extraArgs = []): array
     {

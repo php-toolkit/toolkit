@@ -28,10 +28,10 @@ namespace Toolkit\File;
  */
 final class FileFinder implements \IteratorAggregate, \Countable
 {
-    const ONLY_FILE        = 1;
-    const ONLY_DIR         = 2;
-    const IGNORE_VCS_FILES = 1;
-    const IGNORE_DOT_FILES = 2;
+    public const ONLY_FILE        = 1;
+    public const ONLY_DIR         = 2;
+    public const IGNORE_VCS_FILES = 1;
+    public const IGNORE_DOT_FILES = 2;
 
     /** @var array */
     private static $vcsPatterns = ['.svn', '_svn', 'CVS', '_darcs', '.arch-params', '.monotone', '.bzr', '.git', '.hg'];

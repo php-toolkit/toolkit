@@ -23,11 +23,11 @@ abstract class File extends FileSystem
 {
     use ReadTrait;
 
-    const FORMAT_JSON = 'json';
-    const FORMAT_PHP  = 'php';
-    const FORMAT_INI  = 'ini';
-    const FORMAT_YML  = 'yml';
-    const FORMAT_YAML = 'yml';
+    public const FORMAT_JSON = 'json';
+    public const FORMAT_PHP  = 'php';
+    public const FORMAT_INI  = 'ini';
+    public const FORMAT_YML  = 'yml';
+    public const FORMAT_YAML = 'yml';
 
     /**
      * 获得文件名称

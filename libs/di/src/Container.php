@@ -25,7 +25,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
 {
     use NameAliasTrait;
 
-    const DEFAULT_OPTIONS = [
+    public const DEFAULT_OPTIONS = [
         'aliases' => null,
         'shared'  => true,
         'locked'  => false,
@@ -565,11 +565,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
     {
         $id = $this->resolveAlias($id);
 
-        if (isset($this->ids[$id])) {
-            return $this->ids[$id];
-        }
-
-        return false;
+        return $this->ids[$id] ?? false;
     }
 
     /**

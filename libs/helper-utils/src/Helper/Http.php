@@ -16,7 +16,7 @@ use Psr\Http\Message\ResponseInterface;
  */
 class Http
 {
-    const FAV_ICON = '/favicon.ico';
+    public const FAV_ICON = '/favicon.ico';
 
     /**
      * Send the response the client

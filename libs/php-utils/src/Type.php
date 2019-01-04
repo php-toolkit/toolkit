@@ -15,17 +15,17 @@ namespace Toolkit\PhpUtil;
 final class Type
 {
     // php data type
-    const INT      = 'int';
-    const INTEGER  = 'integer';
-    const FLOAT    = 'float';
-    const DOUBLE   = 'double';
-    const BOOL     = 'bool';
-    const BOOLEAN  = 'boolean';
-    const STRING   = 'string';
+    public const INT      = 'int';
+    public const INTEGER  = 'integer';
+    public const FLOAT    = 'float';
+    public const DOUBLE   = 'double';
+    public const BOOL     = 'bool';
+    public const BOOLEAN  = 'boolean';
+    public const STRING   = 'string';
 
-    const ARRAY    = 'array';
-    const OBJECT   = 'object';
-    const RESOURCE = 'resource';
+    public const ARRAY    = 'array';
+    public const OBJECT   = 'object';
+    public const RESOURCE = 'resource';
 
     /**
      * @return array

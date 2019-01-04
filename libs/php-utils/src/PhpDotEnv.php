@@ -29,7 +29,7 @@ namespace Toolkit\PhpUtil;
  */
 final class PhpDotEnv
 {
-    const FULL_KEY = 'PHP_DOTENV_VARS';
+    public const FULL_KEY = 'PHP_DOTENV_VARS';
 
     /**
      * @param string $fileDir
