@@ -52,7 +52,11 @@ trait NameAliasTrait
      * @param $alias
      * @return bool
      */
+<<<<<<< HEAD
     public function hasAlias($alias): bool
+=======
+    public function hasAlias($alias)
+>>>>>>> ec7510e9cfa02de7874c2a35fe5706305f2ac069
     {
         return isset($this->aliases[$alias]);
     }
@@ -60,7 +64,11 @@ trait NameAliasTrait
     /**
      * @return array
      */
+<<<<<<< HEAD
     public function getAliases(): array
+=======
+    public function getAliases()
+>>>>>>> ec7510e9cfa02de7874c2a35fe5706305f2ac069
     {
         return $this->aliases;
     }
