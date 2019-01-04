@@ -77,15 +77,15 @@ class AutoLoader
         $loader->register(true);
 
         foreach (self::$files as $fileIdentifier => $file) {
-            globalIncludeFile($fileIdentifier, $file);
+            _globalIncludeFile($fileIdentifier, $file);
         }
 
         return $loader;
     }
 
-    //////////////////////////////////////////////////////
-    /// independent files
-    //////////////////////////////////////////////////////
+    /**************************************************************************
+     * independent files
+     *************************************************************************/
 
     /**
      * @return array
@@ -115,15 +115,15 @@ class AutoLoader
         }
     }
 
-    //////////////////////////////////////////////////////
-    /// class loader
-    //////////////////////////////////////////////////////
+    /**************************************************************************
+     * class loader
+     *************************************************************************/
 
     /**
      * @param string $prefix
      * @param string $path
      */
-    public function addPsr0($prefix, $path)
+    public function addPsr0(string $prefix, string $path)
     {
         $this->psr0Map[$prefix] = $path;
     }
@@ -145,7 +145,7 @@ class AutoLoader
      * @param string $path
      * @throws \InvalidArgumentException
      */
-    public function addPsr4($prefix, $path)
+    public function addPsr4(string $prefix, string $path)
     {
         // Register directories for a new namespace.
         $length = \strlen($prefix);
@@ -217,7 +217,7 @@ class AutoLoader
      * Registers this instance as an autoloader.
      * @param bool $prepend Whether to prepend the autoloader or not
      */
-    public function register($prepend = false)
+    public function register(bool $prepend = false)
     {
         \spl_autoload_register(array($this, 'loadClass'), true, $prepend);
     }
@@ -238,7 +238,7 @@ class AutoLoader
     public function loadClass($class)
     {
         if ($file = $this->findFile($class)) {
-            includeClassFile($file);
+            _includeClassFile($file);
 
             return true;
         }
@@ -273,7 +273,12 @@ class AutoLoader
         return $file;
     }
 
-    private function findFileWithExtension($class, $ext)
+    /**
+     * @param string $class
+     * @param string $ext
+     * @return bool|string
+     */
+    private function findFileWithExtension(string $class, string $ext)
     {
         // PSR-4 lookup
         $logicalPathPsr4 = \str_replace('\\', DIRECTORY_SEPARATOR, $class) . $ext;
@@ -294,7 +299,9 @@ class AutoLoader
 
         foreach ($this->psr0Map as $prefix => $dir) {
             if (0 === \strpos($class, $prefix)) {
-                if (\file_exists($file = $dir . DIRECTORY_SEPARATOR . $logicalPathPsr0)) {
+                $file = $dir . DIRECTORY_SEPARATOR . $logicalPathPsr0;
+
+                if (\file_exists($file)) {
                     return $file;
                 }
             }
@@ -312,7 +319,7 @@ class AutoLoader
     }
 }
 
-function globalIncludeFile($fileIdentifier, $file)
+function _globalIncludeFile($fileIdentifier, $file)
 {
     if (empty($GLOBALS['__global_autoload_files'][$fileIdentifier])) {
         require $file;
@@ -326,7 +333,7 @@ function globalIncludeFile($fileIdentifier, $file)
  * Prevents access to $this/self from included files.
  * @param $file
  */
-function includeClassFile($file)
+function _includeClassFile($file)
 {
     include $file;
 }

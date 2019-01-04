@@ -5,7 +5,6 @@
 
 namespace Toolkit\PhpUtil;
 
-use Inhere\Exceptions\ExtensionMissException;
 
 /**
  * Class PhpHelper
@@ -13,6 +12,19 @@ use Inhere\Exceptions\ExtensionMissException;
  */
 class PhpHelper
 {
+    /**
+     * get $_SERVER value
+     * @param  string $name
+     * @param  string $default
+     * @return mixed
+     */
+    public static function serverParam(string $name, $default = '')
+    {
+        $name = \strtoupper($name);
+
+        return $_SERVER[$name] ?? $default;
+    }
+
     /**
      * @param callable|mixed $cb
      * @param array ...$args
@@ -22,13 +34,13 @@ class PhpHelper
     {
         if (\is_string($cb)) {
             // function
-            if (strpos($cb, '::') === false) {
+            if (\strpos($cb, '::') === false) {
                 return $cb(...$args);
             }
 
             // ClassName::method
-            $cb = explode('::', $cb, 2);
-        } elseif (\is_object($cb) && method_exists($cb, '__invoke')) {
+            $cb = \explode('::', $cb, 2);
+        } elseif (\is_object($cb) && \method_exists($cb, '__invoke')) {
             return $cb(...$args);
         }
 
@@ -49,6 +61,34 @@ class PhpHelper
     public static function callByArray(callable $cb, array $args)
     {
         return self::call($cb, ...$args);
+    }
+
+    /**
+     * 给对象设置属性值
+     * - 会先尝试用 setter 方法设置属性
+     * - 再尝试直接设置属性
+     * @param mixed $object An object instance
+     * @param array $options
+     * @return mixed
+     */
+    public static function initObject($object, array $options)
+    {
+        foreach ($options as $property => $value) {
+            if (\is_numeric($property)) {
+                continue;
+            }
+
+            $setter = 'set' . \ucfirst($property);
+
+            // has setter
+            if (\method_exists($object, $setter)) {
+                $object->$setter($value);
+            } elseif (\property_exists($object, $property)) {
+                $object->$property = $value;
+            }
+        }
+
+        return $object;
     }
 
     /**
@@ -82,30 +122,11 @@ class PhpHelper
     }
 
     /**
-     * 根据服务器设置得到文件上传大小的最大值
-     * @param int $max_size optional max file size
-     * @return int max file size in bytes
-     */
-    public static function getMaxUploadSize($max_size = 0): int
-    {
-        $post_max_size = FormatHelper::convertBytes(ini_get('post_max_size'));
-        $upload_max_fileSize = FormatHelper::convertBytes(ini_get('upload_max_filesize'));
-
-        if ($max_size > 0) {
-            $result = min($post_max_size, $upload_max_fileSize, $max_size);
-        } else {
-            $result = min($post_max_size, $upload_max_fileSize);
-        }
-
-        return $result;
-    }
-
-    /**
      * @return array
      */
     public static function getUserConstants(): array
     {
-        $const = get_defined_constants(true);
+        $const = \get_defined_constants(true);
 
         return $const['user'] ?? [];
     }
@@ -121,7 +142,7 @@ class PhpHelper
         var_dump(...$args);
         $string = ob_get_clean();
 
-        return preg_replace("/=>\n\s+/", '=> ', $string);
+        return \preg_replace("/=>\n\s+/", '=> ', $string);
     }
 
     /**
@@ -137,7 +158,7 @@ class PhpHelper
             $string .= print_r($arg, 1) . PHP_EOL;
         }
 
-        return preg_replace("/Array\n\s+\(/", 'Array (', $string);
+        return \preg_replace("/Array\n\s+\(/", 'Array (', $string);
     }
 
     /**
@@ -146,9 +167,7 @@ class PhpHelper
      */
     public static function exportVar($var)
     {
-        return var_export($var, true);
+        return \var_export($var, true);
     }
-
-
 
 }

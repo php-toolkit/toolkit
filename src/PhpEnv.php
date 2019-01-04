@@ -110,7 +110,7 @@ final class PhpEnv
      * setStrict
      * @return  void
      */
-    public static function setStrict(): void
+    public static function setStrict()
     {
         error_reporting(32767);
     }
@@ -119,7 +119,7 @@ final class PhpEnv
      * setMuted
      * @return  void
      */
-    public static function setMuted(): void
+    public static function setMuted()
     {
         error_reporting(0);
     }
@@ -140,6 +140,22 @@ final class PhpEnv
     public static function hasXDebug(): bool
     {
         return static::isPHP() && \extension_loaded('xdebug');
+    }
+
+    /**
+     * @return bool
+     */
+    public static function hasPcntl(): bool
+    {
+        return \function_exists('pcntl_fork');
+    }
+
+    /**
+     * @return bool
+     */
+    public static function hasPosix(): bool
+    {
+        return \function_exists('posix_kill');
     }
 
     /**
@@ -187,6 +203,6 @@ final class PhpEnv
      */
     public static function getLoadedExtension($zend_extensions = false): array
     {
-        return get_loaded_extensions($zend_extensions);
+        return \get_loaded_extensions($zend_extensions);
     }
 }
