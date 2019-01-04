@@ -8,17 +8,17 @@ define('BASE_PATH', __DIR__);
 define('TOOLKIT_DIR', __DIR__);
 
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-  require __DIR__ . '/vendor/autoload.php';
+    require __DIR__ . '/vendor/autoload.php';
 } elseif (file_exists(dirname(__DIR__, 2) . '/autoload.php')) {
-  require dirname(__DIR__, 2) . '/autoload.php';
+    require dirname(__DIR__, 2) . '/autoload.php';
 }
 
 // create app instance
 $app = new \Inhere\Console\Application([
-  'name'     => 'php toolkit',
-  'debug'    => true,
-  'version'  => '1.0.0',
-  'rootPath' => __DIR__,
+    'name'     => 'php toolkit',
+    'debug'    => true,
+    'version'  => '1.0.0',
+    'rootPath' => __DIR__,
 ]);
 $app->setLogo("
     ____  __             ______            ____   _ __

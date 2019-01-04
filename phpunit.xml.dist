@@ -9,17 +9,17 @@
          convertWarningsToExceptions="true"
          stopOnFailure="false"
 >
-  <testsuites>
-    <testsuite name="Php Library Test Suite">
-      <directory suffix="Test.php">libs/data-parser/test</directory>
-      <directory suffix="Test.php">libs/di/test</directory>
-    </testsuite>
-  </testsuites>
+    <testsuites>
+        <testsuite name="Php Library Test Suite">
+            <directory suffix="Test.php">libs/data-parser/test</directory>
+            <directory suffix="Test.php">libs/di/test</directory>
+        </testsuite>
+    </testsuites>
 
-  <filter>
-    <whitelist>
-      <directory suffix=".php">libs/data-parser/src</directory>
-      <directory suffix=".php">libs/di/src</directory>
-    </whitelist>
-  </filter>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">libs/data-parser/src</directory>
+            <directory suffix=".php">libs/di/src</directory>
+        </whitelist>
+    </filter>
 </phpunit>

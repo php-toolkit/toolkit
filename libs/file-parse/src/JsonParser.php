@@ -18,10 +18,10 @@ class JsonParser extends BaseParser
 {
     /**
      * parse JSON
-     * @param string $string Waiting for the parse data
-     * @param bool $enhancement 启用增强功能，支持通过关键字 继承、导入、参考
+     * @param string   $string Waiting for the parse data
+     * @param bool     $enhancement 启用增强功能，支持通过关键字 继承、导入、参考
      * @param callable $pathHandler When the second param is true, this param is valid.
-     * @param string $fileDir When the second param is true, this param is valid.
+     * @param string   $fileDir When the second param is true, this param is valid.
      * @return array
      * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
