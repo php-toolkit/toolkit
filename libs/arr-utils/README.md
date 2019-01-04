@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-composer require toolkit/str-utils
+composer require toolkit/arr-utils
 ```
 
 ## license
