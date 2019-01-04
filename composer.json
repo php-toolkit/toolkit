@@ -1,9 +1,9 @@
 {
-  "name": "mylib/file-parse",
+  "name": "toolkit/file-parse",
   "type": "library",
   "description": "some file parse tool library of the php",
   "keywords": ["library","tool","php"],
-  "homepage": "https://github.com/php-mylib/file-parse",
+  "homepage": "https://github.com/php-toolkit/file-parse",
   "license": "MIT",
   "authors": [
     {
@@ -14,11 +14,11 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "mylib/str-utils": "~1.0"
+    "toolkit/str-utils": "~1.0"
   },
   "autoload": {
     "psr-4": {
-      "MyLib\\FileParse\\" : "src/"
+      "Toolkit\\File\\Parse\\" : "src/"
     }
   },
   "suggest": {
