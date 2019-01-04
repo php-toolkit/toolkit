@@ -8,7 +8,7 @@
 
 namespace Toolkit\Util;
 
-use Toolkit\Util\Traits\AopProxyAwareTrait;
+use Toolkit\Traits\AopProxyAwareTrait;
 
 /**
  * Class AopProxy

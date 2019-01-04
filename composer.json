@@ -1,9 +1,9 @@
 {
-  "name": "toolkit/utils",
+  "name": "toolkit/helper-utils",
   "type": "library",
   "description": "some helper tool library of the php",
   "keywords": ["library","tool","php"],
-  "homepage": "https://github.com/php-toolkit/utils",
+  "homepage": "https://github.com/php-toolkit/helper-utils",
   "license": "MIT",
   "authors": [
     {
@@ -23,7 +23,9 @@
   },
   "autoload": {
     "psr-4": {
-      "Toolkit\\Util\\" : "src/"
+      "Toolkit\\Util\\" : "src/Util",
+      "Toolkit\\Traits\\" : "src/Traits",
+      "Toolkit\\Helper\\" : "src/Helper"
     }
   },
   "suggest": {

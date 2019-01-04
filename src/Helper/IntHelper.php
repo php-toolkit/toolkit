@@ -6,12 +6,12 @@
  * Time: 10:35
  */
 
-namespace MyLib\Helpers\Helper;
+namespace Toolkit\Helper;
 
 /**
  * Class IntHelper
  * @link http://cn2.php.net/manual/zh/function.pack.php#119402
- * @package MyLib\Helpers\Helper
+ * @package Toolkit\Helper
  */
 class IntHelper
 {

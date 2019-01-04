@@ -6,7 +6,7 @@
  * Time: 22:33
  */
 
-namespace MyLib\Helpers\Helper;
+namespace Toolkit\Helper;
 
 /**
  * Class DsnHelper

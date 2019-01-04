@@ -7,11 +7,11 @@
  * File: FormatHelper.php
  */
 
-namespace MyLib\Helpers\Helper;
+namespace Toolkit\Helper;
 
 /**
  * Class FormatHelper
- * @package MyLib\Helpers\Helper
+ * @package Toolkit\Helper
  */
 class FormatHelper
 {
@@ -20,7 +20,7 @@ class FormatHelper
      * @param  int $secs
      * @return string
      */
-    public static function beforeTime($secs)
+    public static function beforeTime($secs): string
     {
         static $timeFormats = [
             [0, '< 1 sec'],
@@ -55,7 +55,7 @@ class FormatHelper
      * @param string $mTime value is microtime(1)
      * @return string
      */
-    public static function microTime($mTime = null)
+    public static function microTime($mTime = null): string
     {
         if (!$mTime) {
             $mTime = microtime(true);
@@ -73,7 +73,7 @@ class FormatHelper
      * Helper::memory(memory_get_usage(true));
      * ```
      */
-    public static function memory($memory)
+    public static function memory($memory): string
     {
         if ($memory >= 1024 * 1024 * 1024) {
             return sprintf('%.1f GiB', $memory / 1024 / 1024 / 1024);
@@ -97,7 +97,7 @@ class FormatHelper
      * Helper::size(memory_get_usage(true));
      * ```
      */
-    public static function size($size)
+    public static function size(int $size): string
     {
         if ($size >= 1024 * 1024 * 1024) {
             return sprintf('%.1f Gb', $size / 1024 / 1024 / 1024);
@@ -121,7 +121,7 @@ class FormatHelper
      * @param int $precision
      * @return string
      */
-    public static function bytes($size, $precision = 2)
+    public static function bytes($size, $precision = 2): string
     {
         if (!$size) {
             return '0';
@@ -139,7 +139,7 @@ class FormatHelper
      * @param string $value value to convert
      * @return int
      */
-    public static function convertBytes($value)
+    public static function convertBytes($value): int
     {
         if (is_numeric($value)) {
             return $value;
@@ -147,7 +147,7 @@ class FormatHelper
 
         $value_length = \strlen($value);
         $qty = (int)substr($value, 0, $value_length - 1);
-        $unit = Str::strtolower(substr($value, $value_length - 1));
+        $unit = \strtolower(\substr($value, $value_length - 1));
         switch ($unit) {
             case 'k':
                 $qty *= 1024;
@@ -168,7 +168,7 @@ class FormatHelper
      * @param   string $text Text to process
      * @return  string  Processed string.
      */
-    public static function ampReplace($text)
+    public static function ampReplace($text): string
     {
         $text = str_replace([
             '&&',
@@ -196,7 +196,7 @@ class FormatHelper
      * @param   string|null|array $text Text to clean
      * @return  string  Cleaned text.
      */
-    public static function cleanText(string $text)
+    public static function cleanText(string $text): string
     {
         $text = preg_replace('/<script[^>]*>.*?</script>/si', '', $text);
         $text = preg_replace('/<a\s+.*?href="([^"]+)"[^>]*>([^<]+)<\/a>/is', '\2 (\1)', $text);
@@ -217,7 +217,7 @@ class FormatHelper
      * @param  string|bool $src
      * @return string
      */
-    public static function phpCode($src)
+    public static function phpCode(string $src): string
     {
         // Whitespaces left and right from this signs can be ignored
         static $IW = array(
@@ -308,8 +308,8 @@ class FormatHelper
                         $iw = true;
                     } elseif ($tn === T_WHITESPACE) {
                         $nt = @$tokens[$i + 1];
-                        if (!$iw && (!\is_string($nt) || $nt === '$') && !\in_array($nt[0], $IW)) {
-                            $new .= " ";
+                        if (!$iw && (!\is_string($nt) || $nt === '$') && !\in_array($nt[0], $IW, true)) {
+                            $new .= ' ';
                         }
                         $iw = false;
                     } elseif ($tn === T_START_HEREDOC) {
