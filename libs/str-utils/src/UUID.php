@@ -149,11 +149,11 @@ class UUID
         $this->bytes = $uuid;
 
         // Optimize the most common use
-        $this->string = bin2hex(substr($uuid, 0, 4)) . '-' .
-            bin2hex(substr($uuid, 4, 2)) . '-' .
-            bin2hex(substr($uuid, 6, 2)) . '-' .
-            bin2hex(substr($uuid, 8, 2)) . '-' .
-            bin2hex(substr($uuid, 10, 6));
+        $this->string = \bin2hex(\substr($uuid, 0, 4)) . '-' .
+            \bin2hex(\substr($uuid, 4, 2)) . '-' .
+            \bin2hex(\substr($uuid, 6, 2)) . '-' .
+            \bin2hex(\substr($uuid, 8, 2)) . '-' .
+            \bin2hex(\substr($uuid, 10, 6));
     }
 
     /**
@@ -171,17 +171,17 @@ class UUID
          * integer size limits.
          * Note that this will never be more accurate than to the microsecond.
          */
-        $time = microtime(1) * 10000000 + static::INTERVAL;
+        $time = \microtime(1) * 10000000 + static::INTERVAL;
 
         // Convert to a string representation
         $time = sprintf('%F', $time);
 
         //strip decimal point
-        preg_match("/^\d+/", $time, $time);
+        \preg_match("/^\d+/", $time, $time);
 
         // And now to a 64-bit binary representation
-        $time = base_convert($time[0], 10, 16);
-        $time = pack('H*', str_pad($time, 16, '0', STR_PAD_LEFT));
+        $time = \base_convert($time[0], 10, 16);
+        $time = \pack('H*', str_pad($time, 16, '0', STR_PAD_LEFT));
 
         // Reorder bytes to their proper locations in the UUID
         $uuid = $time[4] . $time[5] . $time[6] . $time[7] . $time[2] . $time[3] . $time[0] . $time[1];
@@ -204,11 +204,10 @@ class UUID
         //  generate a random MAC address and set the multicast bit
         if (null === $node) {
             $node = static::randomBytes(6);
-            $node[0] = pack('C', \ord($node[0]) | 1);
+            $node[0] = \pack('C', \ord($node[0]) | 1);
         }
 
         $uuid .= $node;
-
         return $uuid;
     }
 
@@ -221,7 +220,7 @@ class UUID
      */
     public static function randomBytes($bytes): string
     {
-        return random_bytes($bytes);
+        return \random_bytes($bytes);
     }
 
     /**
@@ -242,7 +241,7 @@ class UUID
             return $str;
         }
 
-        $str = (string)preg_replace([
+        $str = (string)\preg_replace([
             // strip URN scheme and namespace
             '/^urn:uuid:/is',
             // strip non-hex characters
@@ -253,7 +252,7 @@ class UUID
             return null;
         }
 
-        return pack('H*', $str);
+        return \pack('H*', $str);
     }
 
     /**
@@ -283,11 +282,11 @@ class UUID
         switch ($ver) {
             case static::MD5:
                 $version = static::VERSION_3;
-                $uuid = md5($ns . $node, 1);
+                $uuid = \md5($ns . $node, 1);
                 break;
             case static::SHA1:
                 $version = static::VERSION_5;
-                $uuid = substr(sha1($ns . $node, 1), 0, 16);
+                $uuid = \substr(\sha1($ns . $node, 1), 0, 16);
                 break;
             default:
                 // no default really required here
@@ -356,7 +355,7 @@ class UUID
      */
     public static function validate(string $uuid): bool
     {
-        return (boolean)preg_match('~' . static::VALID_UUID_REGEX . '~', static::import($uuid)->string);
+        return (boolean)\preg_match('~' . static::VALID_UUID_REGEX . '~', static::import($uuid)->string);
     }
 
     public function __isset($var)
@@ -380,11 +379,11 @@ class UUID
                 return $this->bytes;
                 break;
             case 'hex':
-                return bin2hex($this->bytes);
+                return \bin2hex($this->bytes);
                 break;
             case 'node':
                 if (\ord($this->bytes[6]) >> 4 === 1) {
-                    return bin2hex(substr($this->bytes, 10));
+                    return \bin2hex(\substr($this->bytes, 10));
                 }
 
                 return null;
@@ -395,13 +394,13 @@ class UUID
             case 'time':
                 if (\ord($this->bytes[6]) >> 4 === 1) {
                     // Restore contiguous big-endian byte order
-                    $time = bin2hex($this->bytes[6] . $this->bytes[7] . $this->bytes[4] . $this->bytes[5] .
+                    $time = \bin2hex($this->bytes[6] . $this->bytes[7] . $this->bytes[4] . $this->bytes[5] .
                         $this->bytes[0] . $this->bytes[1] . $this->bytes[2] . $this->bytes[3]);
                     // Clear version flag
                     $time[0] = '0';
 
                     // Do some reverse arithmetic to get a Unix timestamp
-                    return (hexdec($time) - static::INTERVAL) / 10000000;
+                    return (\hexdec($time) - static::INTERVAL) / 10000000;
                 }
 
                 break;

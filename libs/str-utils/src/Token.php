@@ -67,7 +67,7 @@ class Token
      */
     public static function pwdHash(string $pwd, string $algo, array $opts = [])
     {
-        $opts = array_merge([
+        $opts = \array_merge([
             'cost' => 9
         ], $opts);
 
@@ -167,7 +167,7 @@ class Token
      * 生成guid
      * @return string
      */
-    public static function GUid(): string
+    public static function GUID(): string
     {
         mt_srand((double)microtime() * 10000);
 

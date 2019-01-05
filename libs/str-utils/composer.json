@@ -5,6 +5,7 @@
   "keywords": [
     "library",
     "tool",
+    "string",
     "php"
   ],
   "homepage": "https://github.com/php-toolkit/str-utils",
@@ -17,7 +18,8 @@
     }
   ],
   "require": {
-    "php": ">7.1.0"
+    "php": ">7.1.0",
+    "ext-mbstring": "*"
   },
   "autoload": {
     "psr-4": {

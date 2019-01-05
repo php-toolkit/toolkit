@@ -21,11 +21,7 @@ class JsonHelper
      */
     public static function encode($data): string
     {
-        if (PHP_VERSION_ID >= 50400) {
-            return json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        }
-
-        return json_encode($data);
+        return \json_encode($data, \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -34,7 +30,7 @@ class JsonHelper
      * @return array|mixed|null|\stdClass|string
      * @throws \InvalidArgumentException
      */
-    public static function parse(string $data, $toArray = true)
+    public static function parse(string $data, bool $toArray = true)
     {
         if (is_file($data)) {
             return self::parseFile($data, $toArray);
@@ -44,18 +40,18 @@ class JsonHelper
     }
 
     /**
-     * @param           $file
+     * @param string   $file
      * @param bool|true $toArray
      * @return mixed|null|string
      * @throws \InvalidArgumentException
      */
-    public static function parseFile($file, $toArray = true)
+    public static function parseFile(string $file, $toArray = true)
     {
-        if (!is_file($file)) {
+        if (!\is_file($file)) {
             throw new \InvalidArgumentException("File not found or does not exist resources: {$file}");
         }
 
-        $string = file_get_contents($file);
+        $string = \file_get_contents($file);
 
         return self::parseString($string, $toArray);
     }
@@ -71,7 +67,7 @@ class JsonHelper
             return $toArray ? [] : new \stdClass();
         }
 
-        $string = (string)preg_replace([
+        $string = (string)\preg_replace([
             // 去掉所有多行注释/* .... */
             '/\/\*.*?\*\/\s*/is',
             // 去掉所有单行注释//....
@@ -81,7 +77,7 @@ class JsonHelper
         ], ['', '', ' '], trim($string));
 
         // json_last_error() === JSON_ERROR_NONE
-        return json_decode($string, $toArray);
+        return \json_decode($string, $toArray);
     }
 
     /**
@@ -100,17 +96,17 @@ class JsonHelper
             return false;
         }
 
-        $data = trim($input);
+        $data = \trim($input);
 
-        if (file_exists($input)) {
-            $data = file_get_contents($input);
+        if (\file_exists($input)) {
+            $data = \file_get_contents($input);
         }
 
         if (!$data) {
             return false;
         }
 
-        $data = preg_replace([
+        $data = \preg_replace([
             // 去掉所有多行注释/* .... */
             '/\/\*.*?\*\/\s*/is',
             // 去掉所有单行注释//....
@@ -124,17 +120,16 @@ class JsonHelper
         }
 
         $default = ['type' => 'min'];
-        $options = array_merge($default, $options);
+        $options = \array_merge($default, $options);
 
-        if (file_exists($input) && (empty($options['file']) || !is_file($options['file']))) {
+        if (\file_exists($input) && (empty($options['file']) || !\is_file($options['file']))) {
             $dir = \dirname($input);
-            $name = basename($input, '.json');
+            $name = \basename($input, '.json');
             $file = $dir . '/' . $name . '.' . $options['type'] . '.json';
             $options['file'] = $file;
         }
 
         static::saveAs($data, $options['file'], $options['type']);
-
         return $data;
     }
 
@@ -150,18 +145,18 @@ class JsonHelper
         $options = array_merge($default, $options);
         $dir = \dirname($output);
 
-        if (!file_exists($dir)) {
-            trigger_error('设置的json文件输出' . $dir . '目录不存在！');
+        if (!\file_exists($dir)) {
+            throw new \RuntimeException('设置的json文件输出' . $dir . '目录不存在！');
         }
 
-        $name = basename($output, '.json');
+        $name = \basename($output, '.json');
         $file = $dir . '/' . $name . '.' . $options['type'] . '.json';
 
         if ($options['type '] === 'min') {
             // 去掉空白
-            $data = (string)preg_replace('/(?!\w)\s*?(?!\w)/i', '', $data);
+            $data = (string)\preg_replace('/(?!\w)\s*?(?!\w)/i', '', $data);
         }
 
-        return file_put_contents($file, $data);
+        return \file_put_contents($file, $data);
     }
 }

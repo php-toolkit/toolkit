@@ -19,7 +19,7 @@ final class StrBuffer
      */
     private $body;
 
-    public function __construct($content = '')
+    public function __construct(string $content = '')
     {
         $this->body = $content;
     }

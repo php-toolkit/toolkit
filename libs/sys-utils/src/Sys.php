@@ -233,7 +233,7 @@ class Sys extends SysEnv
     {
         list($code, $output) = self::run('ip addr | grep eth0');
 
-        if ($code === 0 && $output && preg_match('#inet (.*)\/#', $output, $ms)) {
+        if ($code === 0 && $output && \preg_match('#inet (.*)\/#', $output, $ms)) {
             return $ms[1];
         }
 
@@ -252,7 +252,7 @@ class Sys extends SysEnv
      * not get up to date values on every terminal.
      * @return array|boolean An array of ($width, $height) or false when it was not able to determine size.
      */
-    public static function getScreenSize($refresh = false)
+    public static function getScreenSize(bool $refresh = false)
     {
         static $size;
         if ($size !== null && !$refresh) {
@@ -264,8 +264,8 @@ class Sys extends SysEnv
             $stty = [];
 
             if (
-                exec('stty -a 2>&1', $stty) &&
-                preg_match('/rows\s+(\d+);\s*columns\s+(\d+);/mi', implode(' ', $stty), $matches)
+                \exec('stty -a 2>&1', $stty) &&
+                \preg_match('/rows\s+(\d+);\s*columns\s+(\d+);/mi', implode(' ', $stty), $matches)
             ) {
                 return ($size = [$matches[2], $matches[1]]);
             }
@@ -283,12 +283,12 @@ class Sys extends SysEnv
 
         if (self::isWindows()) {
             $output = [];
-            exec('mode con', $output);
+            \exec('mode con', $output);
 
             if (isset($output[1]) && strpos($output[1], 'CON') !== false) {
                 return ($size = [
-                    (int)preg_replace('~\D~', '', $output[3]),
-                    (int)preg_replace('~\D~', '', $output[4])
+                    (int)\preg_replace('~\D~', '', $output[3]),
+                    (int)\preg_replace('~\D~', '', $output[4])
                 ]);
             }
         }
@@ -300,7 +300,7 @@ class Sys extends SysEnv
      * @param string $program
      * @return int|string
      */
-    public static function getCpuUsage($program)
+    public static function getCpuUsage(string $program)
     {
         if (!$program) {
             return -1;
@@ -312,10 +312,10 @@ class Sys extends SysEnv
     }
 
     /**
-     * @param $program
+     * @param string $program
      * @return int|string
      */
-    public static function getMemUsage($program)
+    public static function getMemUsage(string $program)
     {
         if (!$program) {
             return -1;
