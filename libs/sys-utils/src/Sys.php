@@ -95,7 +95,7 @@ class Sys extends SysEnv
      * @param string|null $cwd
      * @return array|string
      */
-    public static function execute($command, bool $returnStatus = true, string $cwd = null)
+    public static function execute(string $command, bool $returnStatus = true, string $cwd = null)
     {
         $exitStatus = 1;
 

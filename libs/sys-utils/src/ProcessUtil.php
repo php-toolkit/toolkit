@@ -388,7 +388,7 @@ class ProcessUtil
 
             // try again kill
             $ret = \posix_kill($pid, $signal);
-            usleep(10000);
+            \usleep(10000);
         }
 
         return $ret;
@@ -558,12 +558,18 @@ class ProcessUtil
      */
     public static function setTitle(string $title): bool
     {
-        if (Sys::isMac()) {
+        if (!$title || 'Darwin' === \PHP_OS) {
             return false;
         }
 
         if (\function_exists('cli_set_process_title')) {
-            return \cli_set_process_title($title);
+            \cli_set_process_title($title);
+        } elseif (\function_exists('setproctitle')) {
+            \setproctitle($title);
+        }
+
+        if ($error = \error_get_last()) {
+            throw new \RuntimeException($error['message']);
         }
 
         return false;
@@ -587,7 +593,7 @@ class ProcessUtil
 
         // Get gid.
         if ($group) {
-            if (!$gInfo = posix_getgrnam($group)) {
+            if (!$gInfo = \posix_getgrnam($group)) {
                 throw new \RuntimeException("Group {$group} not exists", -300);
             }
 

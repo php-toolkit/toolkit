@@ -13,7 +13,7 @@ namespace Toolkit\Sys;
  * @package Toolkit\Sys
  * @link http://php.net/manual/en/pcntl.constants.php
  */
-class Signal
+final class Signal
 {
     public const IGN = 1;
     public const DFL = 0;

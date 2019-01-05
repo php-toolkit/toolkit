@@ -35,9 +35,9 @@ class ArrayHelper
      */
     public static function isAssoc(array $array): bool
     {
-        $keys = array_keys($array);
+        $keys = \array_keys($array);
 
-        return array_keys($keys) !== $keys;
+        return \array_keys($keys) !== $keys;
     }
 
     /**
@@ -64,9 +64,9 @@ class ArrayHelper
         $object = new $class;
 
         foreach ($array as $name => $value) {
-            $name = trim($name);
+            $name = \trim($name);
 
-            if (!$name || is_numeric($name)) {
+            if (!$name || \is_numeric($name)) {
                 continue;
             }
 
@@ -104,7 +104,7 @@ class ArrayHelper
                 if (\is_int($default)) {
                     $value = (int)$value;
                 } elseif (\is_string($default)) {
-                    $value = trim($value);
+                    $value = \trim($value);
                 } elseif (\is_array($default)) {
                     $value = (array)$value;
                 }
@@ -145,7 +145,7 @@ class ArrayHelper
                 } else {
                     $src[$key] = $value;
                 }
-            } elseif (array_key_exists($key, $src) && \is_array($value)) {
+            } elseif (\array_key_exists($key, $src) && \is_array($value)) {
                 $src[$key] = self::merge($src[$key], $new[$key]);
             } else {
                 $src[$key] = $value;
@@ -196,12 +196,12 @@ class ArrayHelper
      */
     public static function valueTrim(array $data)
     {
-        if (is_scalar($data)) {
-            return trim($data);
+        if (\is_scalar($data)) {
+            return \trim($data);
         }
 
-        array_walk_recursive($data, function (&$value) {
-            $value = trim($value);
+        \array_walk_recursive($data, function (&$value) {
+            $value = \trim($value);
         });
 
         return $data;
@@ -215,7 +215,7 @@ class ArrayHelper
      */
     public static function keyExists($key, array $arr): bool
     {
-        return array_key_exists(strtolower($key), array_change_key_case($arr));
+        return \array_key_exists(\strtolower($key), \array_change_key_case($arr));
     }
 
     /**
@@ -251,7 +251,7 @@ class ArrayHelper
             if (\is_array($v)) {
                 $newArr[$k] = self::changeValueCase($v, $toUpper);
             } else {
-                $v = trim($v);
+                $v = \trim($v);
                 $newArr[$k] = $function($v);
             }
         }
@@ -271,11 +271,11 @@ class ArrayHelper
     {
         // 以逗号分隔的会被拆开，组成数组
         if (\is_string($check)) {
-            $check = trim($check, ', ');
-            $check = strpos($check, ',') !== false ? explode(',', $check) : [$check];
+            $check = \trim($check, ', ');
+            $check = \strpos($check, ',') !== false ? explode(',', $check) : [$check];
         }
 
-        return !array_diff((array)$check, $sampleArr);
+        return !\array_diff((array)$check, $sampleArr);
     }
 
     /**
@@ -289,11 +289,11 @@ class ArrayHelper
     {
         // 以逗号分隔的会被拆开，组成数组
         if (\is_string($check)) {
-            $check = trim($check, ', ');
-            $check = strpos($check, ',') !== false ? explode(',', $check) : [$check];
+            $check = \trim($check, ', ');
+            $check = \strpos($check, ',') !== false ? explode(',', $check) : [$check];
         }
 
-        return (bool)array_intersect((array)$check, $sampleArr);
+        return (bool)\array_intersect((array)$check, $sampleArr);
     }
 
     /**
@@ -377,8 +377,8 @@ class ArrayHelper
 
         foreach ($data as $key => $value) {
             // key is not a integer
-            if (!$expectInt || !is_numeric($key)) {
-                $width = mb_strlen($key, 'UTF-8');
+            if (!$expectInt || !\is_numeric($key)) {
+                $width = \mb_strlen($key, 'UTF-8');
                 $keyMaxWidth = $width > $keyMaxWidth ? $width : $keyMaxWidth;
             }
         }
@@ -427,6 +427,29 @@ class ArrayHelper
     }
 
     /**
+     * findValueByNodes
+     * @param  array $data
+     * @param  array $nodes
+     * @param  mixed $default
+     * @return mixed
+     */
+    public static function getValueByNodes(array $data, array $nodes, $default = null)
+    {
+        $temp = $data;
+
+        foreach ($nodes as $name) {
+            if (isset($temp[$name])) {
+                $temp = $temp[$name];
+            } else {
+                $temp = $default;
+                break;
+            }
+        }
+
+        return $temp;
+    }
+
+    /**
      * setByPath
      * @param array|\ArrayAccess &$data
      * @param string              $path
@@ -435,12 +458,12 @@ class ArrayHelper
      */
     public static function setByPath(&$data, string $path, $value, string $separator = '.')
     {
-        if (false === strpos($path, $separator)) {
+        if (false === \strpos($path, $separator)) {
             $data[$path] = $value;
             return;
         }
 
-        if (!$nodes = array_filter(explode($separator, $path))) {
+        if (!$nodes = \array_filter(\explode($separator, $path))) {
             return;
         }
 
@@ -473,7 +496,7 @@ class ArrayHelper
      * @param  array $array
      * @return array
      */
-    public static function collapse($array): array
+    public static function collapse(array $array): array
     {
         $results = [];
 
@@ -484,10 +507,11 @@ class ArrayHelper
                 continue;
             }
 
-            $results = \array_merge($results, $values);
+            // $results = \array_merge($results, $values);
+            $results[] = $values;
         }
 
-        return $results;
+        return \array_merge(...$results);
     }
 
     /**
@@ -513,7 +537,7 @@ class ArrayHelper
      */
     public static function divide($array): array
     {
-        return [array_keys($array), array_values($array)];
+        return [\array_keys($array), \array_values($array)];
     }
 
     /**
@@ -522,7 +546,7 @@ class ArrayHelper
      * @param  string $prepend
      * @return array
      */
-    public static function dot($array, $prepend = ''): array
+    public static function dot(array $array, string $prepend = ''): array
     {
         $results = [];
 
@@ -543,7 +567,7 @@ class ArrayHelper
      * @param  array|string $keys
      * @return array
      */
-    public static function except($array, $keys): array
+    public static function except(array $array, $keys): array
     {
         static::forget($array, $keys);
 
@@ -556,7 +580,7 @@ class ArrayHelper
      * @param  string|int         $key
      * @return bool
      */
-    public static function exists($array, $key): bool
+    public static function exists(array $array, $key): bool
     {
         if ($array instanceof \ArrayAccess) {
             return $array->offsetExists($key);
@@ -572,7 +596,7 @@ class ArrayHelper
      * @param  mixed  $value
      * @return array
      */
-    public static function add($array, $key, $value): array
+    public static function add(array $array, $key, $value): array
     {
         if (static::has($array, $key)) {
             static::set($array, $key, $value);
@@ -621,13 +645,13 @@ class ArrayHelper
      * @param  mixed  $value
      * @return array
      */
-    public static function set(&$array, $key, $value): array
+    public static function set(array &$array, $key, $value): array
     {
         if (null === $key) {
             return ($array = $value);
         }
 
-        $keys = explode('.', $key);
+        $keys = \explode('.', $key);
 
         while (\count($keys) > 1) {
             $key = array_shift($keys);
@@ -641,7 +665,7 @@ class ArrayHelper
             $array = &$array[$key];
         }
 
-        $array[array_shift($keys)] = $value;
+        $array[\array_shift($keys)] = $value;
 
         return $array;
     }
@@ -658,14 +682,14 @@ class ArrayHelper
             $item = $item instanceof CollectionInterface ? $item->all() : $item;
 
             if (!\is_array($item)) {
-                return array_merge($result, [$item]);
+                return \array_merge($result, [$item]);
             }
 
             if ($depth === 1) {
-                return array_merge($result, array_values($item));
+                return \array_merge($result, \array_values($item));
             }
 
-            return array_merge($result, static::flatten($item, $depth - 1));
+            return \array_merge($result, static::flatten($item, $depth - 1));
         }, []);
     }
 

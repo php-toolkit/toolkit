@@ -147,6 +147,18 @@ abstract class StringHelper
     }
 
     /**
+     * @param string $string
+     * @return int
+     */
+    public static function utf8Len(string $string): int
+    {
+        // strlen: one chinese is 3 char.
+        // mb_strlen: one chinese is 1 char.
+        // mb_strwidth: one chinese is 2 char.
+        return \mb_strlen($string, 'utf-8');
+    }
+
+    /**
      * 计算字符长度
      * @param  string $str
      * @return int
