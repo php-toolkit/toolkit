@@ -111,7 +111,7 @@ abstract class StringHelper
         ];
 
         $value = \trim($value);
-        $name  = \strtolower($rule);
+        $name = \strtolower($rule);
 
         // 检查是否有内置的正则表达式
         if (isset($validate[$name])) {
@@ -225,8 +225,8 @@ abstract class StringHelper
         ], $param);
 
         $chars = $param['chars'];
-        $max   = \strlen($chars) - 1;   //strlen($chars) 计算字符串的长度
-        $str   = '';
+        $max = \strlen($chars) - 1;   //strlen($chars) 计算字符串的长度
+        $str = '';
 
         for ($i = 0; $i < $length; $i++) {
             $str .= $chars[random_int(0, $max)];
@@ -259,6 +259,17 @@ abstract class StringHelper
         }
 
         return \substr(\hash('md5', \uniqid('', true)), 0, $length);
+    }
+
+    /**
+     * @param string $string
+     * @param int    $indent
+     * @param string $padStr
+     * @return string
+     */
+    public static function pad(string $string, $indent, $padStr): string
+    {
+        return $indent > 0 ? \str_pad($string, $indent, $padStr) : $string;
     }
 
     /**
@@ -395,7 +406,7 @@ abstract class StringHelper
 
     /**
      * @param string $string
-     * @param int $width
+     * @param int    $width
      * @return array
      */
     public static function splitByWidth(string $string, int $width): array
@@ -510,10 +521,10 @@ abstract class StringHelper
 
             $slice = \mb_substr($str, $start, $length, $charset);
         } else {
-            $re['utf-8']  = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
+            $re['utf-8'] = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
             $re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
-            $re['gbk']    = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
-            $re['big5']   = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
+            $re['gbk'] = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
+            $re['big5'] = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
 
             \preg_match_all($re[$charset], $str, $match);
             if (\count($match[0]) <= $length) {
@@ -557,7 +568,7 @@ abstract class StringHelper
     {
         if (!$length) {
             $length = $start;
-            $start  = 0;
+            $start = 0;
         }
 
         if (\strlen($str) <= $length) {
@@ -588,10 +599,10 @@ abstract class StringHelper
             'html'     => true
         ];
 
-        $options  = array_merge($default, $options);
+        $options = array_merge($default, $options);
         $ellipsis = $options['ellipsis'];
-        $exact    = $options['exact'];
-        $html     = $options['html'];
+        $exact = $options['exact'];
+        $html = $options['html'];
 
         /**
          * @var string $ellipsis
@@ -604,8 +615,8 @@ abstract class StringHelper
             }
 
             $total_length = self::strlen(strip_tags($ellipsis));
-            $open_tags    = $tags = [];
-            $truncate     = '';
+            $open_tags = $tags = [];
+            $truncate = '';
             preg_match_all('/(<\/?([\w+]+)[^>]*>)?([^<>]*)/', $text, $tags, PREG_SET_ORDER);
 
             foreach ($tags as $tag) {
@@ -619,12 +630,12 @@ abstract class StringHelper
                         }
                     }
                 }
-                $truncate       .= $tag[1];
+                $truncate .= $tag[1];
                 $content_length = self::strlen(preg_replace('/&[0-9a-z]{2,8};|&#[\d]{1,7};|&#x[0-9a-f]{1,6};/i', ' ',
                     $tag[3]));
 
                 if ($content_length + $total_length > $length) {
-                    $left            = $length - $total_length;
+                    $left = $length - $total_length;
                     $entities_length = 0;
 
                     if (preg_match_all('/&[0-9a-z]{2,8};|&#[\d]{1,7};|&#x[0-9a-f]{1,6};/i', $tag[3], $entities,
@@ -643,7 +654,7 @@ abstract class StringHelper
                     break;
                 }
 
-                $truncate     .= $tag[3];
+                $truncate .= $tag[3];
                 $total_length += $content_length;
 
                 if ($total_length >= $length) {
@@ -664,7 +675,7 @@ abstract class StringHelper
             $spacepos = self::strrpos($truncate, ' ');
             if ($html) {
                 $truncate_check = self::substr($truncate, 0, $spacepos);
-                $last_open_tag  = self::strrpos($truncate_check, '<');
+                $last_open_tag = self::strrpos($truncate_check, '<');
                 $last_close_tag = self::strrpos($truncate_check, '>');
 
                 if ($last_open_tag > $last_close_tag) {
@@ -801,7 +812,7 @@ abstract class StringHelper
                 return $str;
             }
 
-            $arr_char  = explode('_', strtolower($str));
+            $arr_char = explode('_', strtolower($str));
             $newString = array_shift($arr_char);
 
             foreach ($arr_char as $val) {

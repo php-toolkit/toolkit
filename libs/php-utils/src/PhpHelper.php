@@ -138,9 +138,9 @@ class PhpHelper extends PhpEnv
      */
     public static function dumpVars(...$args): string
     {
-        ob_start();
-        var_dump(...$args);
-        $string = ob_get_clean();
+        \ob_start();
+        \var_dump(...$args);
+        $string = \ob_get_clean();
 
         return \preg_replace("/=>\n\s+/", '=> ', $string);
     }

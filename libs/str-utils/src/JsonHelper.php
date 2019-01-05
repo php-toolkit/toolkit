@@ -15,6 +15,18 @@ namespace Toolkit\StrUtil;
 class JsonHelper
 {
     /**
+     * @param mixed $data
+     * @param int   $flags
+     * @return false|string
+     */
+    public static function prettyJSON(
+        $data,
+        int $flags = \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES
+    ) {
+        return \json_encode($data, $flags);
+    }
+
+    /**
      * encode data to json
      * @param $data
      * @return string
@@ -40,7 +52,7 @@ class JsonHelper
     }
 
     /**
-     * @param string   $file
+     * @param string    $file
      * @param bool|true $toArray
      * @return mixed|null|string
      * @throws \InvalidArgumentException
