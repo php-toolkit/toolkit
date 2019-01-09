@@ -9,12 +9,12 @@
 namespace Toolkit\PhpUtil;
 
 /**
- * Class Type
+ * Class Type - php data type
  * @package Toolkit\PhpUtil
  */
 final class Type
 {
-    // php data type
+    // basic types
     public const INT      = 'int';
     public const INTEGER  = 'integer';
     public const FLOAT    = 'float';
@@ -23,6 +23,7 @@ final class Type
     public const BOOLEAN  = 'boolean';
     public const STRING   = 'string';
 
+    // complex types
     public const ARRAY    = 'array';
     public const OBJECT   = 'object';
     public const RESOURCE = 'resource';

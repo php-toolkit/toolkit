@@ -31,7 +31,7 @@ class PhpException
      * @param null|string           $catcher
      * @return string the string representation of the exception.
      */
-    public static function toHtml($e, $getTrace = true, $catcher = null, $clearHtml = false): string
+    public static function toHtml($e, bool $getTrace = true, string $catcher = null, bool $clearHtml = false): string
     {
         if (!$getTrace) {
             $message = "Error: {$e->getMessage()}";
@@ -48,7 +48,7 @@ class PhpException
             );
         }
 
-        return $clearHtml ? strip_tags($message) : "<div class=\"exception-box\">{$message}</div>";
+        return $clearHtml ? \strip_tags($message) : "<div class=\"exception-box\">{$message}</div>";
     }
 
     /**
@@ -58,7 +58,7 @@ class PhpException
      * @param null|string           $catcher
      * @return array
      */
-    public static function toArray($e, $getTrace = true, $catcher = null): array
+    public static function toArray($e, bool $getTrace = true, string $catcher = null): array
     {
         $data = [
             'class'   => \get_class($e),
@@ -85,35 +85,33 @@ class PhpException
      * @param null|string           $catcher
      * @return string the string representation of the exception.
      */
-    public static function toJson($e, $getTrace = true, $catcher = null): string
+    public static function toJson($e, bool $getTrace = true, string $catcher = null): string
     {
         if (!$getTrace) {
-            $message = json_encode(['msg' => "Error: {$e->getMessage()}"]);
-        } else {
-            $map = [
-                'code' => $e->getCode() ?: 500,
-                'msg'  => sprintf(
-                    '%s(%d): %s, File: %s(Line %d)',
-                    \get_class($e),
-                    $e->getCode(),
-                    $e->getMessage(),
-                    $e->getFile(),
-                    $e->getLine()
-                ),
-                'data' => $e->getTrace()
-            ];
-
-            if ($catcher) {
-                $map['catcher'] = $catcher;
-            }
-
-            if ($getTrace) {
-                $map['trace'] = $e->getTrace();
-            }
-
-            $message = json_encode($map);
+            return \json_encode(['msg' => "Error: {$e->getMessage()}"]);
         }
 
-        return $message;
+        $map = [
+            'code' => $e->getCode() ?: 500,
+            'msg'  => sprintf(
+                '%s(%d): %s, File: %s(Line %d)',
+                \get_class($e),
+                $e->getCode(),
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            ),
+            'data' => $e->getTrace()
+        ];
+
+        if ($catcher) {
+            $map['catcher'] = $catcher;
+        }
+
+        if ($getTrace) {
+            $map['trace'] = $e->getTrace();
+        }
+
+        return \json_encode($map);
     }
 }

@@ -121,7 +121,7 @@ class PhpEnv
      */
     public static function setMuted()
     {
-        error_reporting(0);
+        \error_reporting(0);
     }
 
     /**
@@ -186,7 +186,6 @@ class PhpEnv
 
         foreach ($extensions as $extension) {
             if (!\extension_loaded($extension)) {
-                # 没有加载此扩展，记录
                 $allTotal['no'][] = $extension;
             } else {
                 $allTotal['yes'][] = $extension;

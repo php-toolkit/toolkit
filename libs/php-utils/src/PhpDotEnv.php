@@ -13,6 +13,7 @@ namespace Toolkit\PhpUtil;
  * @package Toolkit\PhpUtil
  *
  * in local config file `.env` (must is 'ini' format):
+ *
  * ```ini
  * APP_ENV=dev
  * DEBUG=true
@@ -22,7 +23,7 @@ namespace Toolkit\PhpUtil;
  * IN CODE:
  *
  * ```php
- * PhpDotEnv::load(__DIE__);
+ * PhpDotEnv::load(__DIR__);
  * env('DEBUG', false);
  * env('APP_ENV', 'pdt');
  * ```

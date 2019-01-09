@@ -102,21 +102,22 @@ class PhpHelper extends PhpEnv
     public static function runtime($startTime, $startMem, array $info = [], $realUsage = false): array
     {
         $info['startTime'] = $startTime;
-        $info['endTime'] = microtime(true);
-        $info['endMemory'] = memory_get_usage($realUsage);
+        $info['endTime']   = \microtime(true);
+        $info['endMemory'] = \memory_get_usage($realUsage);
 
         // 计算运行时间
-        $info['runtime'] = number_format(($info['endTime'] - $startTime) * 1000, 3) . 'ms';
+        $info['runtime'] = \number_format(($info['endTime'] - $startTime) * 1000, 3) . 'ms';
 
         if ($startMem) {
-            $startMem = array_sum(explode(' ', $startMem));
-            $endMem = array_sum(explode(' ', $info['endMemory']));
+            $startMem = \array_sum(\explode(' ', $startMem));
+            $endMem   = \array_sum(\explode(' ', $info['endMemory']));
 
-            $info['memory'] = number_format(($endMem - $startMem) / 1024, 3) . 'kb';
+            $info['memory'] = \number_format(($endMem - $startMem) / 1024, 3) . 'kb';
         }
 
-        $peakMem = memory_get_peak_usage(true) / 1024 / 1024;
-        $info['peakMemory'] = number_format($peakMem, 3) . 'Mb';
+        $peakMem = \memory_get_peak_usage(true) / 1024 / 1024;
+        // record
+        $info['peakMemory'] = \number_format($peakMem, 3) . 'Mb';
 
         return $info;
     }
@@ -162,12 +163,14 @@ class PhpHelper extends PhpEnv
     }
 
     /**
-     * @param $var
-     * @return mixed
+     * @param mixed $var
+     * @return string
      */
-    public static function exportVar($var)
+    public static function exportVar($var): string
     {
-        return \var_export($var, true);
+        $string = \var_export($var, true);
+
+        return \preg_replace('/=>\s+\n\s+array \(/', '=> array (', $string);
     }
 
 }

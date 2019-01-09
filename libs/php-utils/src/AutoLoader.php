@@ -64,12 +64,17 @@ class AutoLoader
     private $missingClasses = [];
 
     /**
+     * @param array $files
      * @return self
      */
-    public static function getLoader(): self
+    public static function getLoader(array $files = []): self
     {
         if (null !== self::$loader) {
             return self::$loader;
+        }
+
+        if ($files) {
+            self::addFiles($files);
         }
 
         self::$loader = $loader = new self();
@@ -235,11 +240,10 @@ class AutoLoader
      * @param  string $class The name of the class
      * @return bool|null True if loaded, null otherwise
      */
-    public function loadClass($class)
+    public function loadClass(string $class)
     {
         if ($file = $this->findFile($class)) {
             _includeClassFile($file);
-
             return true;
         }
 
@@ -251,7 +255,7 @@ class AutoLoader
      * @param string $class The name of the class
      * @return string|false The path if found, false otherwise
      */
-    public function findFile($class)
+    public function findFile(string $class)
     {
         // work around for PHP 5.3.0 - 5.3.2 https://bugs.php.net/50731
         if ('\\' === $class[0]) {
@@ -281,25 +285,25 @@ class AutoLoader
     private function findFileWithExtension(string $class, string $ext)
     {
         // PSR-4 lookup
-        $logicalPathPsr4 = \str_replace('\\', DIRECTORY_SEPARATOR, $class) . $ext;
+        $logicalPathPsr4 = \str_replace('\\', \DIRECTORY_SEPARATOR, $class) . $ext;
 
         // PSR-4
         foreach ($this->psr4Map as $prefix => $dir) {
             if (0 === \strpos($class, $prefix)) {
                 $length = \strlen($prefix);
 
-                if (\file_exists($file = $dir . DIRECTORY_SEPARATOR . substr($logicalPathPsr4, $length))) {
+                if (\file_exists($file = $dir . \DIRECTORY_SEPARATOR . \substr($logicalPathPsr4, $length))) {
                     return $file;
                 }
             }
         }
 
         // PEAR-like class name
-        $logicalPathPsr0 = \str_replace('_', DIRECTORY_SEPARATOR, $class) . $ext;
+        $logicalPathPsr0 = \str_replace('_', \DIRECTORY_SEPARATOR, $class) . $ext;
 
         foreach ($this->psr0Map as $prefix => $dir) {
             if (0 === \strpos($class, $prefix)) {
-                $file = $dir . DIRECTORY_SEPARATOR . $logicalPathPsr0;
+                $file = $dir . \DIRECTORY_SEPARATOR . $logicalPathPsr0;
 
                 if (\file_exists($file)) {
                     return $file;

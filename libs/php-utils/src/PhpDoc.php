@@ -21,23 +21,49 @@ class PhpDoc
     /**
      * Parses the comment block into tags.
      * @param string $comment The comment block text
-     * @param array  $ignored
+     * @param array  $options
+     * - 'allow'  // only allowed tags
+     * - 'ignore' // ignored tags
+     * - 'default' => 'description', // default tag name, first line text will attach to it.
      * @return array The parsed tags
      */
-    public static function getTags(string $comment, array $ignored = ['param', 'return']): array
+    public static function getTags(string $comment, array $options = []): array
     {
-        $comment = (string)\str_replace("\r\n", "\n", \trim($comment, "/ \n"));
-        $comment = "@description \n" . \str_replace("\r", '',
+        if (!$comment = \trim($comment, "/ \n")) {
+            return [];
+        }
+
+        $options = \array_merge([
+            'allow'   => [], // only allowed tags
+            'ignore'  => ['param', 'return'], // ignore tags
+            'default' => 'description', // default tag name, first line text will attach to it.
+        ], $options);
+
+        $allow    = (array)$options['allow'];
+        $ignored = (array)$options['ignore'];
+
+        // always allow default tag
+        if ($default = (string)$options['default']) {
+            $allow[] = $default;
+        }
+
+        $comment = \str_replace("\r\n", "\n", $comment);
+        $comment = "@{$default} \n" .
+            \str_replace("\r", '',
                 \trim(\preg_replace('/^\s*\**( |\t)?/m', '', $comment))
             );
 
-        $tags = [];
-        $parts = \preg_split('/^\s*@/m', $comment, -1, PREG_SPLIT_NO_EMPTY);
+        $tags  = [];
+        $parts = \preg_split('/^\s*@/m', $comment, -1, \PREG_SPLIT_NO_EMPTY);
 
         foreach ($parts as $part) {
             if (\preg_match('/^(\w+)(.*)/ms', \trim($part), $matches)) {
                 $name = $matches[1];
                 if (\in_array($name, $ignored, true)) {
+                    continue;
+                }
+
+                if ($allow && !\in_array($name, $allow, true)) {
                     continue;
                 }
 
@@ -56,7 +82,6 @@ class PhpDoc
 
     /**
      * Returns the first line of docBlock.
-     *
      * @param string $comment
      * @return string
      */
@@ -74,15 +99,14 @@ class PhpDoc
     /**
      * Returns full description from the doc-block.
      * If have multi line text, will return multi line.
-     *
      * @param string $comment
      * @return string
      */
     public static function description(string $comment): string
     {
-        $comment = (string)\str_replace("\r", '', \trim(\preg_replace('/^\s*\**( |\t)?/m', '', trim($comment, '/'))));
+        $comment = \str_replace("\r", '', \trim(\preg_replace('/^\s*\**( |\t)?/m', '', trim($comment, '/'))));
 
-        if (\preg_match('/^\s*@\w+/m', $comment, $matches, PREG_OFFSET_CAPTURE)) {
+        if (\preg_match('/^\s*@\w+/m', $comment, $matches, \PREG_OFFSET_CAPTURE)) {
             $comment = \trim(\substr($comment, 0, $matches[0][1]));
         }
 
