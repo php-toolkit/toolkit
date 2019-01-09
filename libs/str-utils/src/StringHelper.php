@@ -111,7 +111,7 @@ abstract class StringHelper
         ];
 
         $value = \trim($value);
-        $name = \strtolower($rule);
+        $name  = \strtolower($rule);
 
         // 检查是否有内置的正则表达式
         if (isset($validate[$name])) {
@@ -192,14 +192,14 @@ abstract class StringHelper
         }
 
         if (\function_exists('mb_strwidth')) {
-            return mb_strwidth($str, 'utf-8');
+            return \mb_strwidth($str, 'utf-8');
         }
 
         if (\function_exists('mb_strlen')) {
-            return mb_strlen($str, 'utf-8');
+            return \mb_strlen($str, 'utf-8');
         }
 
-        preg_match_all('/./u', $str, $ar);
+        \preg_match_all('/./u', $str, $ar);
 
         return \count($ar[0]);
     }
@@ -210,13 +210,13 @@ abstract class StringHelper
 
     /**
      * ********************** 生成一定长度的随机字符串函数 **********************
-     * @param              $length - 随机字符串长度
+     * @param  int         $length - 随机字符串长度
      * @param array|string $param -
      * @internal param string $chars
      * @return string
      * @throws \Exception
      */
-    public static function random($length, array $param = []): string
+    public static function random(int $length, array $param = []): string
     {
         $param = \array_merge([
             'prefix' => '',
@@ -225,8 +225,8 @@ abstract class StringHelper
         ], $param);
 
         $chars = $param['chars'];
-        $max = \strlen($chars) - 1;   //strlen($chars) 计算字符串的长度
-        $str = '';
+        $max   = \strlen($chars) - 1;   //strlen($chars) 计算字符串的长度
+        $str   = '';
 
         for ($i = 0; $i < $length; $i++) {
             $str .= $chars[random_int(0, $max)];
@@ -299,7 +299,7 @@ abstract class StringHelper
         return \str_replace(["\r\n", "\r", "\n"], '<br />', $str);
     }
 
-    public function lower(string $str): string
+    public static function lower(string $str): string
     {
         return static::strtolower($str);
     }
@@ -313,7 +313,7 @@ abstract class StringHelper
         return \function_exists('mb_strtolower') ? \mb_strtolower($str, 'utf-8') : \strtolower($str);
     }
 
-    public function upper(string $str): string
+    public static function upper(string $str): string
     {
         return static::strtoupper($str);
     }
@@ -351,6 +351,119 @@ abstract class StringHelper
             \ucwords(self::strtolower($str));
     }
 
+    /**
+     * @param string $str
+     * @param bool   $upperFirstChar
+     * @return mixed
+     */
+    public static function camel(string $str, bool $upperFirstChar = false): string
+    {
+        return self::toCamelCase($str, $upperFirstChar);
+    }
+
+    /**
+     * @param string $str
+     * @param bool   $upperFirstChar
+     * @return mixed
+     */
+    public static function toCamel(string $str, bool $upperFirstChar = false): string
+    {
+        return self::toCamelCase($str, $upperFirstChar);
+    }
+
+    /**
+     * to camel
+     * @param string $name
+     * @param bool   $upperFirst
+     * @return string
+     */
+    public static function camelCase(string $name, bool $upperFirst = false): string
+    {
+        $name = \trim($name, '-_');
+
+        // convert 'first-second' to 'firstSecond'
+        if (\strpos($name, '-')) {
+            $name = \ucwords(\str_replace('-', ' ', $name));
+            $name = \str_replace(' ', '', \lcfirst($name));
+        }
+
+        return $upperFirst ? \ucfirst($name) : $name;
+    }
+
+    /**
+     * Translates a string with underscores into camel case (e.g. first_name -> firstName)
+     * @param  string $str
+     * @param bool    $upperFirst
+     * @return mixed
+     */
+    public static function toCamelCase(string $str, bool $upperFirst = false): string
+    {
+        $str = (string)self::strtolower($str);
+
+        if ($upperFirst) {
+            $str = self::ucfirst($str);
+        }
+
+        return \preg_replace_callback('/_+([a-z])/', function ($c) {
+            return \strtoupper($c[1]);
+        }, $str);
+    }
+
+    public static function snake(string $str, string $sep = '_'): string
+    {
+        return self::toSnakeCase($str, $sep);
+    }
+
+    public static function toSnake(string $str, string $sep = '_'): string
+    {
+        return self::toSnakeCase($str, $sep);
+    }
+
+    /**
+     * Transform a CamelCase string to underscore_case string
+     * @param string $str
+     * @param string $sep
+     * @return string
+     */
+    public static function toSnakeCase(string $str, string $sep = '_'): string
+    {
+        // 'CMSCategories' => 'cms_categories'
+        // 'RangePrice' => 'range_price'
+        return self::lower(\trim(\preg_replace('/([A-Z][a-z])/', $sep . '$1', $str), $sep));
+    }
+
+    /**
+     * 驼峰式 <=> 下划线式
+     * @param  string $str [description]
+     * @param  bool   $toCamelCase
+     * true : 驼峰式 => 下划线式
+     * false : 驼峰式 <= 下划线式
+     * @return string
+     */
+    public static function nameChange(string $str, bool $toCamelCase = true): string
+    {
+        $str = \trim($str);
+
+        // 默认 ：下划线式 =>驼峰式
+        if ($toCamelCase) {
+            if (\strpos($str, '_') === false) {
+                return $str;
+            }
+
+            $arr_char  = \explode('_', \strtolower($str));
+            $newString = \array_shift($arr_char);
+
+            foreach ($arr_char as $val) {
+                $newString .= \ucfirst($val);
+            }
+
+            return $newString;
+        }
+
+        // 驼峰式 => 下划线式
+        return \strtolower(\preg_replace('/((?<=[a-z])(?=[A-Z]))/', '_', $str));
+    }
+
     ////////////////////////////////////////////////////////////////////////
     /// Convert to array
     ////////////////////////////////////////////////////////////////////////
@@ -385,23 +498,28 @@ abstract class StringHelper
      */
     public static function str2array(string $str, string $sep = ','): array
     {
-        $str = trim($str, "$sep ");
+        $str = \trim($str, "$sep ");
 
         if (!$str) {
             return [];
         }
 
-        return \preg_split("/\s*$sep\s*/", $str, -1, PREG_SPLIT_NO_EMPTY);
+        return \preg_split("/\s*$sep\s*/", $str, -1, \PREG_SPLIT_NO_EMPTY);
+    }
+
+    public static function explode(string $str, string $separator = '.'): array
+    {
+        return static::split2Array($str, $separator);
     }
 
     /**
-     * @param string $path
+     * @param string $str
      * @param string $separator
      * @return  array
      */
-    public static function split2Array(string $path, string $separator = '.'): array
+    public static function split2Array(string $str, string $separator = '.'): array
     {
-        return \array_values(\array_filter(\explode($separator, $path), '\strlen'));
+        return \array_values(\array_filter(\explode($separator, $str), '\trim'));
     }
 
     /**
@@ -419,8 +537,8 @@ abstract class StringHelper
         }
 
         $utf8String = \mb_convert_encoding($string, 'utf8', $encoding);
-        $lines = [];
-        $line = '';
+        $lines      = [];
+        $line       = '';
 
         foreach (\preg_split('//u', $utf8String) as $char) {
             // test if $char could be appended to current line
@@ -431,7 +549,7 @@ abstract class StringHelper
 
             // if not, push current line to array and make new line
             $lines[] = \str_pad($line, $width);
-            $line = $char;
+            $line    = $char;
         }
 
         if ('' !== $line) {
@@ -521,17 +639,17 @@ abstract class StringHelper
 
             $slice = \mb_substr($str, $start, $length, $charset);
         } else {
-            $re['utf-8'] = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
+            $re['utf-8']  = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
             $re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
-            $re['gbk'] = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
-            $re['big5'] = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
+            $re['gbk']    = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
+            $re['big5']   = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
 
             \preg_match_all($re[$charset], $str, $match);
             if (\count($match[0]) <= $length) {
                 return $str;
             }
 
-            $slice = implode('', \array_slice($match[0], $start, $length));
+            $slice = \implode('', \array_slice($match[0], $start, $length));
         }
 
         return (bool)$suffix ? $slice . '…' : $slice;
@@ -568,7 +686,7 @@ abstract class StringHelper
     {
         if (!$length) {
             $length = $start;
-            $start = 0;
+            $start  = 0;
         }
 
         if (\strlen($str) <= $length) {
@@ -599,10 +717,10 @@ abstract class StringHelper
             'html'     => true
         ];
 
-        $options = array_merge($default, $options);
+        $options  = array_merge($default, $options);
         $ellipsis = $options['ellipsis'];
-        $exact = $options['exact'];
-        $html = $options['html'];
+        $exact    = $options['exact'];
+        $html     = $options['html'];
 
         /**
          * @var string $ellipsis
@@ -610,13 +728,13 @@ abstract class StringHelper
          * @var bool   $html
          */
         if ($html) {
-            if (self::strlen(preg_replace('/<.*?>/', '', $text)) <= $length) {
+            if (self::strlen(\preg_replace('/<.*?>/', '', $text)) <= $length) {
                 return $text;
             }
 
-            $total_length = self::strlen(strip_tags($ellipsis));
-            $open_tags = $tags = [];
-            $truncate = '';
+            $total_length = self::strlen(\strip_tags($ellipsis));
+            $open_tags    = $tags = [];
+            $truncate     = '';
             preg_match_all('/(<\/?([\w+]+)[^>]*>)?([^<>]*)/', $text, $tags, PREG_SET_ORDER);
 
             foreach ($tags as $tag) {
@@ -630,12 +748,12 @@ abstract class StringHelper
                         }
                     }
                 }
-                $truncate .= $tag[1];
+                $truncate       .= $tag[1];
                 $content_length = self::strlen(preg_replace('/&[0-9a-z]{2,8};|&#[\d]{1,7};|&#x[0-9a-f]{1,6};/i', ' ',
                     $tag[3]));
 
                 if ($content_length + $total_length > $length) {
-                    $left = $length - $total_length;
+                    $left            = $length - $total_length;
                     $entities_length = 0;
 
                     if (preg_match_all('/&[0-9a-z]{2,8};|&#[\d]{1,7};|&#x[0-9a-f]{1,6};/i', $tag[3], $entities,
@@ -654,7 +772,7 @@ abstract class StringHelper
                     break;
                 }
 
-                $truncate .= $tag[3];
+                $truncate     .= $tag[3];
                 $total_length += $content_length;
 
                 if ($total_length >= $length) {
@@ -675,7 +793,7 @@ abstract class StringHelper
             $spacepos = self::strrpos($truncate, ' ');
             if ($html) {
                 $truncate_check = self::substr($truncate, 0, $spacepos);
-                $last_open_tag = self::strrpos($truncate_check, '<');
+                $last_open_tag  = self::strrpos($truncate_check, '<');
                 $last_close_tag = self::strrpos($truncate_check, '>');
 
                 if ($last_open_tag > $last_close_tag) {
@@ -715,115 +833,6 @@ abstract class StringHelper
         }
 
         return $truncate;
-    }
-
-    /**
-     * @param string $str
-     * @param bool   $upperFirstChar
-     * @return mixed
-     */
-    public static function camel(string $str, bool $upperFirstChar = false): string
-    {
-        return self::toCamelCase($str, $upperFirstChar);
-    }
-
-    /**
-     * @param string $str
-     * @param bool   $upperFirstChar
-     * @return mixed
-     */
-    public static function toCamel(string $str, bool $upperFirstChar = false): string
-    {
-        return self::toCamelCase($str, $upperFirstChar);
-    }
-
-    /**
-     * to camel
-     * @param string $name
-     * @param bool   $upperFirst
-     * @return string
-     */
-    public static function camelCase(string $name, bool $upperFirst = false): string
-    {
-        $name = \trim($name, '-_');
-
-        // convert 'first-second' to 'firstSecond'
-        if (\strpos($name, '-')) {
-            $name = \ucwords(\str_replace('-', ' ', $name));
-            $name = \str_replace(' ', '', \lcfirst($name));
-        }
-
-        return $upperFirst ? \ucfirst($name) : $name;
-    }
-
-    /**
-     * Translates a string with underscores into camel case (e.g. first_name -> firstName)
-     * @prototype string public static function toCamelCase(string $str[, bool $capitalise_first_char = false])
-     * @param      $str
-     * @param bool $upperFirstChar
-     * @return mixed
-     */
-    public static function toCamelCase(string $str, bool $upperFirstChar = false): string
-    {
-        $str = (string)self::strtolower($str);
-
-        if ($upperFirstChar) {
-            $str = self::ucfirst($str);
-        }
-
-        return \preg_replace_callback('/_+([a-z])/', function ($c) {
-            return \strtoupper($c[1]);
-        }, $str);
-    }
-
-    public static function toSnake(string $str, string $sep = '_'): string
-    {
-        return self::toSnakeCase($str, $sep);
-    }
-
-    /**
-     * Transform a CamelCase string to underscore_case string
-     * @param string $str
-     * @param string $sep
-     * @return string
-     */
-    public static function toSnakeCase(string $str, string $sep = '_'): string
-    {
-        // 'CMSCategories' => 'cms_categories'
-        // 'RangePrice' => 'range_price'
-        return self::strtolower(trim(preg_replace('/([A-Z][a-z])/', $sep . '$1', $str), $sep));
-    }
-
-    /**
-     * 驼峰式 <=> 下划线式
-     * @param  string $str [description]
-     * @param  bool   $toCamelCase
-     * true : 驼峰式 => 下划线式
-     * false : 驼峰式 <= 下划线式
-     * @return string
-     */
-    public static function nameChange(string $str, bool $toCamelCase = true): string
-    {
-        $str = trim($str);
-
-        // 默认 ：下划线式 =>驼峰式
-        if ($toCamelCase) {
-            if (strpos($str, '_') === false) {
-                return $str;
-            }
-
-            $arr_char = explode('_', strtolower($str));
-            $newString = array_shift($arr_char);
-
-            foreach ($arr_char as $val) {
-                $newString .= ucfirst($val);
-            }
-
-            return $newString;
-        }
-
-        // 驼峰式 => 下划线式
-        return \strtolower(preg_replace('/((?<=[a-z])(?=[A-Z]))/', '_', $str));
     }
 
     ////////////////////////////////////////////////////////////////////////

@@ -23,7 +23,7 @@ class HtmlHelper
      */
     public static function encode($text, $charset = 'utf-8'): string
     {
-        return htmlspecialchars($text, ENT_QUOTES, $charset);
+        return \htmlspecialchars($text, ENT_QUOTES, $charset);
     }
 
     /**
@@ -34,7 +34,7 @@ class HtmlHelper
      */
     public static function decode($text): string
     {
-        return htmlspecialchars_decode($text, ENT_QUOTES);
+        return \htmlspecialchars_decode($text, ENT_QUOTES);
     }
 
     /**
@@ -50,11 +50,11 @@ class HtmlHelper
 
         foreach ($data as $key => $value) {
             if (\is_string($key)) {
-                $key = htmlspecialchars($key, ENT_QUOTES, $charset);
+                $key = \htmlspecialchars($key, ENT_QUOTES, $charset);
             }
 
             if (\is_string($value)) {
-                $value = htmlspecialchars($value, ENT_QUOTES, $charset);
+                $value = \htmlspecialchars($value, ENT_QUOTES, $charset);
             } elseif (\is_array($value)) {
                 $value = static::encodeArray($value);
             }
@@ -86,19 +86,19 @@ class HtmlHelper
                 $data[$k] = self::escape($data, $type, $encoding);
             }
 
-        } else {
-            // 默认使用  htmlspecialchars()
-            if (!$type) {
-                $data = htmlspecialchars($data, ENT_QUOTES, $encoding);
-            } else {
-                $data = htmlentities($data, ENT_QUOTES, $encoding);
-            }
+            return $data;
+        }
 
-            //如‘&#x5FD7;’这样的16进制的html字符，为了防止这样的字符被错误转译，使用正则进行匹配，把这样的字符又转换回来。
-            if (strpos($data, '&#')) {
-                $data = preg_replace('/&((#(\d{3,5}|x[a-fA-F0-9]{4}));)/',
-                    '&\\1', $data);
-            }
+        // 默认使用  htmlspecialchars()
+        if (!$type) {
+            $data = \htmlspecialchars($data, \ENT_QUOTES, $encoding);
+        } else {
+            $data = \htmlentities($data, \ENT_QUOTES, $encoding);
+        }
+
+        //如‘&#x5FD7;’这样的16进制的html字符，为了防止这样的字符被错误转译，使用正则进行匹配，把这样的字符又转换回来。
+        if (\strpos($data, '&#')) {
+            $data = \preg_replace('/&((#(\d{3,5}|x[a-fA-F0-9]{4}));)/', '&\\1', $data);
         }
 
         return $data;
@@ -119,9 +119,9 @@ class HtmlHelper
             }
 
         } elseif (!$type) {//默认使用  htmlspecialchars_decode()
-            $data = htmlspecialchars_decode($data, ENT_QUOTES);
+            $data = \htmlspecialchars_decode($data, \ENT_QUOTES);
         } else {
-            $data = html_entity_decode($data, ENT_QUOTES, $encoding);
+            $data = \html_entity_decode($data, \ENT_QUOTES, $encoding);
         }
 
         return $data;
@@ -144,7 +144,7 @@ class HtmlHelper
      */
     public static function stripIframes(string $string): string
     {
-        return preg_replace('#(<[/]?iframe.*>)#U', '', $string);
+        return \preg_replace('#(<[/]?iframe.*>)#U', '', $string);
     }
 
     /**
@@ -154,7 +154,7 @@ class HtmlHelper
      */
     public static function stripScript(string $string): string
     {
-        return preg_replace('/<script[^>]*>.*?</script>/si', '', $string);
+        return \preg_replace('/<script[^>]*>.*?</script>/si', '', $string);
     }
 
     /**
@@ -164,7 +164,7 @@ class HtmlHelper
      */
     public static function stripStyle(string $string): string
     {
-        return preg_replace('/<style[^>]*>.*?</style>/si', '', $string);
+        return \preg_replace('/<style[^>]*>.*?</style>/si', '', $string);
     }
 
     /**
@@ -172,17 +172,17 @@ class HtmlHelper
      * @param bool|true $onlySrc
      * @return array
      */
-    public static function findImages(string $html, bool $onlySrc = true): array
+    public static function matchImages(string $html, bool $onlySrc = true): array
     {
         // $preg = '/<img.*?src=[\"|\']?(.*?)[\"|\']?\s.*>/i';
         $preg = '/<img.+src=\"(:?.+.+\.(?:jpg|gif|bmp|bnp|png)\"?).+>/i';
 
-        if (!preg_match_all($preg, trim($html), $images)) {
+        if (!\preg_match_all($preg, trim($html), $images)) {
             return [];
         }
 
         if ($onlySrc) {
-            return array_key_exists(1, $images) ? $images[1] : [];
+            return \array_key_exists(1, $images) ? $images[1] : [];
         }
 
         return $images;
@@ -194,7 +194,7 @@ class HtmlHelper
      */
     public static function minify(string $html): string
     {
-        $search = [
+        $search  = [
             '/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\')\/\/.*))/',
             '/\n/',
             '/\>[^\S ]+/s',
@@ -203,6 +203,6 @@ class HtmlHelper
         ];
         $replace = [' ', ' ', '>', '<', '\\1'];
 
-        return preg_replace($search, $replace, $html);
+        return \preg_replace($search, $replace, $html);
     }
 }

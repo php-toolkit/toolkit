@@ -135,9 +135,10 @@ class JsonHelper
         $options = \array_merge($default, $options);
 
         if (\file_exists($input) && (empty($options['file']) || !\is_file($options['file']))) {
-            $dir = \dirname($input);
+            $dir  = \dirname($input);
             $name = \basename($input, '.json');
             $file = $dir . '/' . $name . '.' . $options['type'] . '.json';
+            // save to options
             $options['file'] = $file;
         }
 
@@ -155,18 +156,18 @@ class JsonHelper
     {
         $default = ['type' => 'min', 'file' => ''];
         $options = array_merge($default, $options);
-        $dir = \dirname($output);
+        $saveDir = \dirname($output);
 
-        if (!\file_exists($dir)) {
-            throw new \RuntimeException('设置的json文件输出' . $dir . '目录不存在！');
+        if (!\file_exists($saveDir)) {
+            throw new \RuntimeException('设置的json文件输出' . $saveDir . '目录不存在！');
         }
 
         $name = \basename($output, '.json');
-        $file = $dir . '/' . $name . '.' . $options['type'] . '.json';
+        $file = $saveDir . '/' . $name . '.' . $options['type'] . '.json';
 
+        // 去掉空白
         if ($options['type '] === 'min') {
-            // 去掉空白
-            $data = (string)\preg_replace('/(?!\w)\s*?(?!\w)/i', '', $data);
+            $data = \preg_replace('/(?!\w)\s*?(?!\w)/i', '', $data);
         }
 
         return \file_put_contents($file, $data);
