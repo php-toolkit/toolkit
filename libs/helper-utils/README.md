@@ -1,11 +1,13 @@
-# utils for php
+# helper utils
 
-## install 
+Some useful helper utils for php
+
+## Install 
 
 ```bash
 composer require toolkit/helper-utils
 ```
 
-## license
+## License
 
 MIT

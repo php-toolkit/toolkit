@@ -12,6 +12,6 @@ Some useful object utils for the php.
 composer require toolkit/obj-utils
 ```
 
-## license
+## License
 
 MIT

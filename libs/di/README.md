@@ -83,6 +83,6 @@ mixed(string|array|object|callback) `$definition` 服务实例对象|服务信�
   ]
 ```
 
-## license
+## License
 
 MIT

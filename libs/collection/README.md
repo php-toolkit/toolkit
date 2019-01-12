@@ -1,5 +1,5 @@
 # data collection utils for php
 
-## license
+## License
 
 MIT

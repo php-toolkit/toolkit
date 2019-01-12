@@ -31,6 +31,6 @@ cache:
 composer require toolkit/file-parse
 ```
 
-## license
+## License
 
 MIT

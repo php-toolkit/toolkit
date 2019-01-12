@@ -38,6 +38,6 @@ $decoded = $parser->encode($encoded);
 phpunit 
 ```
 
-## license
+## License
 
 MIT

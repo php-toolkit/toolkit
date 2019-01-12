@@ -124,7 +124,7 @@ git subtree pull --prefix=libs/php-utils https://github.com/php-toolkit/php-util
 git subtree push --prefix=libs/php-utils https://github.com/php-toolkit/php-utils master
 ```
 
-## license
+## License
 
 MIT
 
