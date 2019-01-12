@@ -1,4 +1,10 @@
-# 文件内容解析
+# file parse
+
+[![License](https://img.shields.io/packagist/l/php-toolkit/file-parse.svg?style=flat-square)](LICENSE)
+[![Php Version](https://img.shields.io/badge/php-%3E=7.1.0-brightgreen.svg?maxAge=2592000)](https://packagist.org/packages/php-toolkit/file-parse)
+[![Latest Stable Version](http://img.shields.io/packagist/v/php-toolkit/file-parse.svg)](https://packagist.org/packages/php-toolkit/file-parse)
+
+Some useful file parse utils for the php.
 
 `ini`, `json`, `yml` 格式的文件解析
 
@@ -19,7 +25,7 @@ cache:
   debug: reference#debug
 ```
 
-## install
+## Install
 
 ```bash
 composer require toolkit/file-parse

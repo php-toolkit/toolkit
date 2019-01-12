@@ -1,20 +1,24 @@
-# str utils
+# string utils
 
-string utils for php
+[![License](https://img.shields.io/packagist/l/php-toolkit/str-utils.svg?style=flat-square)](LICENSE)
+[![Php Version](https://img.shields.io/badge/php-%3E=7.1.0-brightgreen.svg?maxAge=2592000)](https://packagist.org/packages/php-toolkit/str-utils)
+[![Latest Stable Version](http://img.shields.io/packagist/v/php-toolkit/str-utils.svg)](https://packagist.org/packages/php-toolkit/str-utils)
 
-contains:
+String utils for php language.
+
+Contains:
 
 - html string helper
 - json string helper
 - url string helper
 - common string helper
 
-## install
+## Install
 
 ```bash
 composer require toolkit/str-utils
 ```
 
-## license
+## License
 
 MIT
