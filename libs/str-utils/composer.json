@@ -27,6 +27,6 @@
     }
   },
   "suggest": {
-    "inhere/php-validate": "Very lightweight data validate tool",
+    "inhere/php-validate": "Very lightweight data validate tool"
   }
 }

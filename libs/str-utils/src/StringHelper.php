@@ -469,28 +469,6 @@ abstract class StringHelper
     ////////////////////////////////////////////////////////////////////////
 
     /**
-     * @param  string $str
-     * @param  string $sep
-     * @return array
-     */
-    public static function toArray(string $str, string $sep = ','): array
-    {
-        $array = [];
-
-        if (\is_string($str)) {
-            $str = \trim($str, "$sep ");
-
-            if (!$str) {
-                return [];
-            }
-
-            $array = \strpos($str, $sep) !== false ? \array_map('trim', \explode($sep, $str)) : [$str];
-        }
-
-        return $array;
-    }
-
-    /**
      * var_dump(str2array('34,56,678, 678, 89, '));
      * @param string $str
      * @param string $sep
@@ -507,19 +485,51 @@ abstract class StringHelper
         return \preg_split("/\s*$sep\s*/", $str, -1, \PREG_SPLIT_NO_EMPTY);
     }
 
-    public static function explode(string $str, string $separator = '.'): array
+    public static function toArray(string $string, string $delimiter = ',', int $limit = 0): array
     {
-        return static::split2Array($str, $separator);
+        $string = \trim($string, "$delimiter ");
+        if ($string === '') {
+            return [];
+        }
+
+        $values  = [];
+        $rawList = $limit < 1 ? \explode($delimiter, $string) : \explode($delimiter, $string, $limit);
+
+        foreach ($rawList as $val) {
+            if (($val = \trim($val)) !== '') {
+                $values[] = $val;
+            }
+        }
+
+        return $values;
+    }
+
+    public static function explode(string $str, string $separator = '.', int $limit = 0): array
+    {
+        return static::split2Array($str, $separator, $limit);
     }
 
     /**
-     * @param string $str
-     * @param string $separator
-     * @return  array
+     * @param string $string
+     * @param string $delimiter
+     * @param int    $limit
+     * @return array
      */
-    public static function split2Array(string $str, string $separator = '.'): array
+    public static function split2Array(string $string, string $delimiter = ',', int $limit = 0): array
     {
-        return \array_values(\array_filter(\explode($separator, $str), '\trim'));
+        $string = \trim($string, "$delimiter ");
+
+        if (!\strpos($string, $delimiter)) {
+            return [$string];
+        }
+
+        if ($limit < 1) {
+            $list = \explode($delimiter, $string);
+        } else {
+            $list = \explode($delimiter, $string, $limit);
+        }
+
+        return \array_values(array_filter(\array_map('trim', $list), 'strlen'));
     }
 
     /**
