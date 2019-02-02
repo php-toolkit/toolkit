@@ -39,13 +39,9 @@ class PhpDoc
             'default' => 'description', // default tag name, first line text will attach to it.
         ], $options);
 
-        $allow    = (array)$options['allow'];
+        $allow   = (array)$options['allow'];
         $ignored = (array)$options['ignore'];
-
-        // always allow default tag
-        if ($default = (string)$options['default']) {
-            $allow[] = $default;
-        }
+        $default = (string)$options['default'];
 
         $comment = \str_replace("\r\n", "\n", $comment);
         $comment = "@{$default} \n" .
@@ -59,11 +55,12 @@ class PhpDoc
         foreach ($parts as $part) {
             if (\preg_match('/^(\w+)(.*)/ms', \trim($part), $matches)) {
                 $name = $matches[1];
-                if (\in_array($name, $ignored, true)) {
+                if (!$name || \in_array($name, $ignored, true)) {
                     continue;
                 }
 
-                if ($allow && !\in_array($name, $allow, true)) {
+                // always allow default tag
+                if ($default !== $name && $allow && !\in_array($name, $allow, true)) {
                     continue;
                 }
 
