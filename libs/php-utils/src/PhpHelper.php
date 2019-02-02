@@ -45,7 +45,7 @@ class PhpHelper extends PhpEnv
         }
 
         if (\is_array($cb)) {
-            list($obj, $mhd) = $cb;
+            [$obj, $mhd] = $cb;
 
             return \is_object($obj) ? $obj->$mhd(...$args) : $obj::$mhd(...$args);
         }

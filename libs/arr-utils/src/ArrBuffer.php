@@ -34,7 +34,7 @@ final class ArrBuffer
     /**
      * @param string $content
      */
-    public function write(string $content)
+    public function write(string $content): void
     {
         $this->body[] = $content;
     }
@@ -42,7 +42,7 @@ final class ArrBuffer
     /**
      * @param string $content
      */
-    public function append(string $content)
+    public function append(string $content): void
     {
         $this->write($content);
     }
@@ -50,7 +50,7 @@ final class ArrBuffer
     /**
      * @param string $content
      */
-    public function prepend(string $content)
+    public function prepend(string $content): void
     {
         array_unshift($this->body, $content);
     }
@@ -58,7 +58,7 @@ final class ArrBuffer
     /**
      * clear
      */
-    public function clear()
+    public function clear(): void
     {
         $this->body = [];
     }
@@ -74,7 +74,7 @@ final class ArrBuffer
     /**
      * @param string[] $body
      */
-    public function setBody(array $body)
+    public function setBody(array $body): void
     {
         $this->body = $body;
     }
@@ -106,7 +106,7 @@ final class ArrBuffer
     /**
      * @param string $delimiter
      */
-    public function setDelimiter(string $delimiter)
+    public function setDelimiter(string $delimiter): void
     {
         $this->delimiter = $delimiter;
     }

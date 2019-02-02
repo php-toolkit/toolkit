@@ -110,7 +110,7 @@ class PhpEnv
      * setStrict
      * @return  void
      */
-    public static function setStrict()
+    public static function setStrict(): void
     {
         error_reporting(32767);
     }
@@ -119,7 +119,7 @@ class PhpEnv
      * setMuted
      * @return  void
      */
-    public static function setMuted()
+    public static function setMuted(): void
     {
         \error_reporting(0);
     }

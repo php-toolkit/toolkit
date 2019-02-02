@@ -325,7 +325,7 @@ class ProcessUtil
      * exit
      * @param int $code
      */
-    public static function quit($code = 0)
+    public static function quit($code = 0): void
     {
         exit((int)$code);
     }
@@ -581,7 +581,7 @@ class ProcessUtil
      * @param string $group
      * @throws \RuntimeException
      */
-    public static function changeScriptOwner(string $user, string $group = '')
+    public static function changeScriptOwner(string $user, string $group = ''): void
     {
         $uInfo = \posix_getpwnam($user);
 

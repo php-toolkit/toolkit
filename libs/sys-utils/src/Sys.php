@@ -143,7 +143,7 @@ class Sys extends SysEnv
      * run a command in background
      * @param string $cmd
      */
-    public static function bgExec(string $cmd)
+    public static function bgExec(string $cmd): void
     {
         self::execInBackground($cmd);
     }
@@ -152,7 +152,7 @@ class Sys extends SysEnv
      * run a command in background
      * @param string $cmd
      */
-    public static function execInBackground(string $cmd)
+    public static function execInBackground(string $cmd): void
     {
         if (self::isWindows()) {
             \pclose(\popen('start /B ' . $cmd, 'r'));
@@ -231,7 +231,7 @@ class Sys extends SysEnv
      */
     public static function getOutsideIP(): string
     {
-        list($code, $output) = self::run('ip addr | grep eth0');
+        [$code, $output] = self::run('ip addr | grep eth0');
 
         if ($code === 0 && $output && \preg_match('#inet (.*)\/#', $output, $ms)) {
             return $ms[1];

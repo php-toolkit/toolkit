@@ -103,7 +103,7 @@ class AutoLoader
     /**
      * @param array $files
      */
-    public static function setFiles(array $files)
+    public static function setFiles(array $files): void
     {
         self::$files = $files;
     }
@@ -111,7 +111,7 @@ class AutoLoader
     /**
      * @param array $files
      */
-    public static function addFiles(array $files)
+    public static function addFiles(array $files): void
     {
         if (self::$files) {
             self::$files = \array_merge(self::$files, $files);
@@ -128,7 +128,7 @@ class AutoLoader
      * @param string $prefix
      * @param string $path
      */
-    public function addPsr0(string $prefix, string $path)
+    public function addPsr0(string $prefix, string $path): void
     {
         $this->psr0Map[$prefix] = $path;
     }
@@ -136,7 +136,7 @@ class AutoLoader
     /**
      * @param array $psr0Map Class to filename map
      */
-    public function addPsr0Map(array $psr0Map)
+    public function addPsr0Map(array $psr0Map): void
     {
         if ($this->psr0Map) {
             $this->psr0Map = \array_merge($this->psr0Map, $psr0Map);
@@ -150,7 +150,7 @@ class AutoLoader
      * @param string $path
      * @throws \InvalidArgumentException
      */
-    public function addPsr4(string $prefix, string $path)
+    public function addPsr4(string $prefix, string $path): void
     {
         // Register directories for a new namespace.
         $length = \strlen($prefix);
@@ -165,7 +165,7 @@ class AutoLoader
     /**
      * @param array $psr4Map Class to filename map
      */
-    public function addPsr4Map(array $psr4Map)
+    public function addPsr4Map(array $psr4Map): void
     {
         if ($this->psr4Map) {
             $this->psr4Map = \array_merge($this->psr4Map, $psr4Map);
@@ -185,7 +185,7 @@ class AutoLoader
     /**
      * @param array $psr4Map
      */
-    public function setPsr4Map($psr4Map)
+    public function setPsr4Map($psr4Map): void
     {
         $this->psr4Map = $psr4Map;
     }
@@ -201,7 +201,7 @@ class AutoLoader
     /**
      * @param array $classMap
      */
-    public function setClassMap(array $classMap)
+    public function setClassMap(array $classMap): void
     {
         $this->classMap = $classMap;
     }
@@ -209,7 +209,7 @@ class AutoLoader
     /**
      * @param array $classMap Class to filename map
      */
-    public function addClassMap(array $classMap)
+    public function addClassMap(array $classMap): void
     {
         if ($this->classMap) {
             $this->classMap = \array_merge($this->classMap, $classMap);
@@ -222,7 +222,7 @@ class AutoLoader
      * Registers this instance as an autoloader.
      * @param bool $prepend Whether to prepend the autoloader or not
      */
-    public function register(bool $prepend = false)
+    public function register(bool $prepend = false): void
     {
         \spl_autoload_register([$this, 'loadClass'], true, $prepend);
     }
@@ -230,7 +230,7 @@ class AutoLoader
     /**
      * Un-registers this instance as an autoloader.
      */
-    public function unRegister()
+    public function unRegister(): void
     {
         \spl_autoload_unregister([$this, 'loadClass']);
     }
@@ -240,7 +240,7 @@ class AutoLoader
      * @param  string $class The name of the class
      * @return bool|null True if loaded, null otherwise
      */
-    public function loadClass(string $class)
+    public function loadClass(string $class): ?bool
     {
         if ($file = $this->findFile($class)) {
             _includeClassFile($file);

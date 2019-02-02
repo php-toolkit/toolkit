@@ -456,7 +456,7 @@ class ArrayHelper
      * @param mixed               $value
      * @param string              $separator
      */
-    public static function setByPath(&$data, string $path, $value, string $separator = '.')
+    public static function setByPath(&$data, string $path, $value, string $separator = '.'): void
     {
         if (false === \strpos($path, $separator)) {
             $data[$path] = $value;
@@ -699,7 +699,7 @@ class ArrayHelper
      * @param  array|string $keys
      * @return void
      */
-    public static function forget(&$array, $keys)
+    public static function forget(&$array, $keys): void
     {
         $original = &$array;
         $keys = (array)$keys;

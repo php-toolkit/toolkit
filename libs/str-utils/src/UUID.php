@@ -231,7 +231,7 @@ class UUID
      * @param integer     $len
      * @return string|null
      */
-    protected static function makeBin($str, $len)
+    protected static function makeBin($str, $len): ?string
     {
         if ($str instanceof self) {
             return $str->bytes;

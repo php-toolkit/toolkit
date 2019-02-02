@@ -881,12 +881,12 @@ abstract class StringHelper
         }
 
         if ($replaceParams && \count($replaceParams) === 2) {
-            list($search, $replace) = $replaceParams;
+            [$search, $replace] = $replaceParams;
             $str = str_replace($search, $replace, $str);
         }
 
         if ($pregParams && \count($pregParams) === 2) {
-            list($pattern, $replace) = $pregParams;
+            [$pattern, $replace] = $pregParams;
             $str = preg_replace($pattern, $replace, $str);
         }
 

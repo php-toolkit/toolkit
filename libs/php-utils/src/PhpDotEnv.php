@@ -57,7 +57,7 @@ final class PhpDotEnv
     /**
      * @param string $file
      */
-    public function add(string $file)
+    public function add(string $file): void
     {
         if (\is_file($file) && \is_readable($file)) {
             $this->settingEnv(\parse_ini_file($file));
@@ -68,7 +68,7 @@ final class PhpDotEnv
      * setting env data
      * @param array $data
      */
-    private function settingEnv(array $data)
+    private function settingEnv(array $data): void
     {
         $loadedVars = \array_flip(\explode(',', \getenv(self::FULL_KEY)));
         unset($loadedVars['']);

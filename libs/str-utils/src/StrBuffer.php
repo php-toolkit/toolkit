@@ -27,7 +27,7 @@ final class StrBuffer
     /**
      * @param string $content
      */
-    public function write(string $content)
+    public function write(string $content): void
     {
         $this->body .= $content;
     }
@@ -35,7 +35,7 @@ final class StrBuffer
     /**
      * @param string $content
      */
-    public function append(string $content)
+    public function append(string $content): void
     {
         $this->write($content);
     }
@@ -43,7 +43,7 @@ final class StrBuffer
     /**
      * @param string $content
      */
-    public function prepend(string $content)
+    public function prepend(string $content): void
     {
         $this->body = $content . $this->body;
     }
@@ -51,7 +51,7 @@ final class StrBuffer
     /**
      * clear
      */
-    public function clear()
+    public function clear(): void
     {
         $this->body = '';
     }
@@ -67,7 +67,7 @@ final class StrBuffer
     /**
      * @param string $body
      */
-    public function setBody(string $body)
+    public function setBody(string $body): void
     {
         $this->body = $body;
     }
