@@ -6,21 +6,21 @@
  * Time: 20:25
  */
 
-namespace Toolkit\File\Parse\Test;
+namespace Toolkit\File\ParseTest;
 
 use PHPUnit\Framework\TestCase;
 use Toolkit\File\Parse\IniParser;
 
 /**
  * Class IniParserTest
- * @package Toolkit\File\Parse\Test
+ * @package Toolkit\File\ParseTest
  */
 class IniParserTest extends TestCase
 {
     /**
      * simple parse
      */
-    public function testParse()
+    public function testParse(): void
     {
         $ret = IniParser::parseFile(__DIR__ . '/data/test.ini');
 
