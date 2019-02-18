@@ -263,13 +263,24 @@ abstract class StringHelper
 
     /**
      * @param string $string
-     * @param int    $indent
+     * @param int    $padLen
      * @param string $padStr
+     * @param int    $padType
      * @return string
      */
-    public static function pad(string $string, $indent, $padStr): string
+    public static function pad(string $string, int $padLen, string $padStr = ' ', int $padType = \STR_PAD_RIGHT): string
     {
-        return $indent > 0 ? \str_pad($string, $indent, $padStr) : $string;
+        return $padLen > 0 ? \str_pad($string, $padLen, $padStr, $padType) : $string;
+    }
+
+    public static function padLeft(string $string, int $padLen, string $padStr = ' '): string
+    {
+        return $padLen > 0 ? \str_pad($string, $padLen, $padStr, \STR_PAD_LEFT) : $string;
+    }
+
+    public static function padRight(string $string, int $padLen, string $padStr = ' '): string
+    {
+        return $padLen > 0 ? \str_pad($string, $padLen, $padStr) : $string;
     }
 
     /**
