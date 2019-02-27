@@ -54,7 +54,7 @@ class DevController extends Controller
     {
         $this->checkEnv();
 
-        $output->color('Components Total: ' . \count($this->components));
+        $output->colored('Components Total: ' . \count($this->components));
 
         $buffer = [];
         $showRepo = (bool)$input->getOpt('show-repo');
@@ -255,14 +255,14 @@ class DevController extends Controller
                 }
             }
 
-            $output->color($doneOne, 'success');
+            $output->colored($doneOne, 'success');
 
             if ($ret && $input->getOpt('show-result')) {
                 $output->writeln(\PHP_EOL . $ret);
             }
         }
 
-        $output->color(\sprintf($config['done'], \count($names)), 'success');
+        $output->colored(\sprintf($config['done'], \count($names)), 'success');
 
         return 0;
     }
@@ -293,13 +293,13 @@ class DevController extends Controller
         $option = '';
 
         if (!$samiPath = $input->getOpt('sami')) {
-            $output->color("Please input the sami.phar path by option '--sami'", 'error');
+            $output->colored("Please input the sami.phar path by option '--sami'", 'error');
 
             return -1;
         }
 
         if (!\is_file($samiPath)) {
-            $output->color('The sami.phar file is not exists! File: ' . $samiPath, 'error');
+            $output->colored('The sami.phar file is not exists! File: ' . $samiPath, 'error');
 
             return -1;
         }
@@ -335,7 +335,7 @@ class DevController extends Controller
             }
         }
 
-        $output->color("\nOK, Classes reference documents generated!");
+        $output->colored("\nOK, Classes reference documents generated!");
 
         return 0;
     }
