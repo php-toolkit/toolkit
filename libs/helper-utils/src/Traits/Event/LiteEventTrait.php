@@ -31,7 +31,7 @@ trait LiteEventTrait
      * @param callable $cb event callback
      * @param bool     $replace replace exists's event cb
      */
-    public function on($name, callable $cb, $replace = false)
+    public function on($name, callable $cb, $replace = false): void
     {
         if ($replace || !isset($this->_events[$name])) {
             $this->_events[$name] = $cb;
@@ -96,7 +96,7 @@ trait LiteEventTrait
     /**
      * clearEvents
      */
-    public function clearEvents()
+    public function clearEvents(): void
     {
         $this->_events = [];
     }

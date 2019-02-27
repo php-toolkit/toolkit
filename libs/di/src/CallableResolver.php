@@ -97,7 +97,7 @@ final class CallableResolver implements CallableResolverInterface
      *
      * @throws \RuntimeException if the callable is not resolvable
      */
-    private function assertCallable($callable)
+    private function assertCallable($callable): void
     {
         if (!\is_callable($callable)) {
             throw new RuntimeException(sprintf(

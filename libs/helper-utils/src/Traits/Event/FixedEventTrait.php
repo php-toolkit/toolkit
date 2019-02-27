@@ -96,7 +96,7 @@ trait FixedEventTrait
      * @param bool     $replace replace exists's event cb
      * @throws \InvalidArgumentException
      */
-    public function on(string $event, callable $cb, bool $replace = false)
+    public function on(string $event, callable $cb, bool $replace = false): void
     {
         if (false === ($key = array_search($event, $this->getSupportedEvents(), true))) {
             $sup = implode(',', $this->getSupportedEvents());

@@ -61,7 +61,7 @@ class FormatHelper
             $mTime = microtime(true);
         }
 
-        list($ts, $ms) = explode('.', sprintf('%.4f', $mTime));
+        [$ts, $ms] = explode('.', sprintf('%.4f', $mTime));
 
         return date('Y/m/d H:i:s', $ts) . '.' . $ms;
     }
@@ -270,7 +270,7 @@ class FormatHelper
         for ($i = 0; $i < $c; $i++) {
             $token = $tokens[$i];
             if (\is_array($token)) {
-                list($tn, $ts) = $token; // tokens: number, string, line
+                [$tn, $ts] = $token; // tokens: number, string, line
                 $tname = token_name($tn);
                 if ($tn === T_INLINE_HTML) {
                     $new .= $ts;

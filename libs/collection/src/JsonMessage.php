@@ -105,7 +105,7 @@ class JsonMessage
      * @param string $key
      * @param mixed  $value
      */
-    public function add($key, $value)
+    public function add($key, $value): void
     {
         if (null === $this->data) {
             $this->data = [];

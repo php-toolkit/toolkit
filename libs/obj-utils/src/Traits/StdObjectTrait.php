@@ -65,7 +65,7 @@ trait StdObjectTrait
     /**
      * init
      */
-    protected function init()
+    protected function init(): void
     {
         // init something ...
     }

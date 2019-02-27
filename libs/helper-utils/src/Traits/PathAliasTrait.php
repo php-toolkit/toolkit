@@ -38,7 +38,7 @@ trait PathAliasTrait
 
         if (\strpos($alias, $sep)) {
             // have other partial. e.g: @project/temp/logs
-            list($alias, $other) = \explode($sep, $alias, 2);
+            [$alias, $other] = \explode($sep, $alias, 2);
         }
 
         if (!isset(self::$aliases[$alias])) {
@@ -62,7 +62,7 @@ trait PathAliasTrait
      * @param        $value
      * @throws \InvalidArgumentException
      */
-    public static function setAlias(string $alias, $value)
+    public static function setAlias(string $alias, $value): void
     {
         self::$aliases[$alias] = self::alias($value);
     }
@@ -71,7 +71,7 @@ trait PathAliasTrait
      * @param array $aliases
      * @throws \InvalidArgumentException
      */
-    public static function setAliases(array $aliases)
+    public static function setAliases(array $aliases): void
     {
         foreach ($aliases as $alias => $realPath) {
             // 1th char must is '@'

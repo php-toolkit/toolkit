@@ -38,7 +38,7 @@ trait RuntimeProfileTrait
      * @param array  $context
      * @param string $category
      */
-    public static function profile($name, array $context = [], $category = 'application')
+    public static function profile($name, array $context = [], $category = 'application'): void
     {
         $data = [
             '_profile_stats' => [
@@ -72,7 +72,7 @@ trait RuntimeProfileTrait
             return false;
         }
 
-        list($category, $name) = explode('|', $latestKey);
+        [$category, $name] = explode('|', $latestKey);
 
         if (isset(self::$profiles[$category][$name])) {
             $data = self::$profiles[$category][$name];

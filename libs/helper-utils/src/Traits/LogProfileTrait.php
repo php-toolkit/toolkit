@@ -33,7 +33,7 @@ trait LogProfileTrait
      * @param array  $context
      * @param string $category
      */
-    public function profile($name, array $context = [], $category = 'application')
+    public function profile($name, array $context = [], $category = 'application'): void
     {
         $data = [
             '_profile_stats' => [
@@ -53,13 +53,13 @@ trait LogProfileTrait
      * @param string|null $title
      * @param array       $context
      */
-    public function profileEnd($title = null, array $context = [])
+    public function profileEnd($title = null, array $context = []): void
     {
         if (!$this->activeKey) {
             return;
         }
 
-        list($category, $name) = explode('|', $this->activeKey);
+        [$category, $name] = explode('|', $this->activeKey);
 
         if (isset($this->profiles[$category][$name])) {
             $data = $this->profiles[$category][$name];

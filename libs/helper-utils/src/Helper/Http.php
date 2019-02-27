@@ -24,7 +24,7 @@ class Http
      * @param array             $options
      * @throws \RuntimeException
      */
-    public static function respond(ResponseInterface $response, array $options = [])
+    public static function respond(ResponseInterface $response, array $options = []): void
     {
         $options = array_merge([
             'chunkSize'              => 4096,

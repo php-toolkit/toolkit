@@ -19,7 +19,7 @@ use Toolkit\Collection\Language;
 class LanguageTest extends TestCase
 {
 
-    public function testTranslate()
+    public function testTranslate(): void
     {
         $l = new Language([
             'lang'      => 'en',

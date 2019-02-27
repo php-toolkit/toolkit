@@ -29,7 +29,7 @@ trait NameAliasTrait
      * @param string       $name
      * @param array|string $alias
      */
-    public function setAlias(string $name, $alias)
+    public function setAlias(string $name, $alias): void
     {
         if (!$name || !$alias) {
             return;

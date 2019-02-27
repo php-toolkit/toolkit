@@ -485,7 +485,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
                 }
             }
 
-            public function rewind()
+            public function rewind(): void
             {
                 if (false === $this->isRewindable()) {
                     return;
@@ -501,8 +501,8 @@ final class FileFinder implements \IteratorAggregate, \Countable
                 }
 
                 if (false !== $stream = @opendir($this->getPath())) {
-                    $infoS = stream_get_meta_data($stream);
-                    closedir($stream);
+                    $infoS = \stream_get_meta_data($stream);
+                    \closedir($stream);
 
                     if ($infoS['seekable']) {
                         return $this->rewindable = true;
@@ -522,7 +522,7 @@ final class FileFinder implements \IteratorAggregate, \Countable
 
                 public function __construct(\RecursiveIterator $iterator, array $excludes)
                 {
-                    $this->excludes = array_flip($excludes);
+                    $this->excludes = \array_flip($excludes);
                     $this->iterator = $iterator;
 
                     parent::__construct($iterator);
@@ -598,14 +598,14 @@ final class FileFinder implements \IteratorAggregate, \Countable
                     $pathname = $this->current()->getFilename();
 
                     foreach ($this->notNames as $not) {
-                        if (fnmatch($not, $pathname)) {
+                        if (\fnmatch($not, $pathname)) {
                             return false;
                         }
                     }
 
                     if ($this->names) {
                         foreach ($this->names as $need) {
-                            if (fnmatch($need, $pathname)) {
+                            if (\fnmatch($need, $pathname)) {
                                 return true;
                             }
                         }
@@ -665,14 +665,14 @@ final class FileFinder implements \IteratorAggregate, \Countable
                     }
 
                     foreach ($this->notPaths as $not) {
-                        if (fnmatch($not, $pathname)) {
+                        if (\fnmatch($not, $pathname)) {
                             return false;
                         }
                     }
 
                     if ($this->paths) {
                         foreach ($this->paths as $need) {
-                            if (fnmatch($need, $pathname)) {
+                            if (\fnmatch($need, $pathname)) {
                                 return true;
                             }
                         }

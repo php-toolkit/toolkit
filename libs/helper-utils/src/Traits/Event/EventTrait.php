@@ -43,7 +43,7 @@ trait EventTrait
      * @param callable $handler
      * @param bool     $once
      */
-    public function on($event, callable $handler, $once = false)
+    public function on($event, callable $handler, $once = false): void
     {
         if ($this->isSupportedEvent($event)) {
             $this->eventHandlers[$event][] = $handler;
@@ -56,7 +56,7 @@ trait EventTrait
      * @param          $event
      * @param callable $handler
      */
-    public function once($event, callable $handler)
+    public function once($event, callable $handler): void
     {
         $this->on($event, $handler, true);
     }
@@ -110,7 +110,7 @@ trait EventTrait
     /**
      * clearEvents
      */
-    public function clearEvents()
+    public function clearEvents(): void
     {
         $this->events = $this->eventHandlers = [];
     }
@@ -166,7 +166,7 @@ trait EventTrait
     /**
      * @param array $supportedEvents
      */
-    public function setSupportEvents(array $supportedEvents)
+    public function setSupportEvents(array $supportedEvents): void
     {
         $this->supportedEvents = $supportedEvents;
     }

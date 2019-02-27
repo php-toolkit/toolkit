@@ -33,7 +33,7 @@ trait AopProxyAwareTrait
      */
     private $proxyTarget;
 
-    public function proxy($class, $method = null, array $args = [])
+    public function proxy($class, string $method = '', array $args = [])
     {
         $this->proxyTarget = $class;
 
@@ -50,7 +50,7 @@ trait AopProxyAwareTrait
      * @return mixed
      * @throws \LogicException
      */
-    public function call($method, array $args = [])
+    public function call(string $method, array $args = [])
     {
         if (!$target = $this->proxyTarget) {
             throw new \LogicException('Please setting the proxy target [proxyTarget]');
@@ -84,7 +84,7 @@ trait AopProxyAwareTrait
      * @param array  $args
      * @return mixed
      */
-    public function __call($method, array $args = [])
+    public function __call(string $method, array $args = [])
     {
         return $this->call($method, $args);
     }
@@ -105,8 +105,8 @@ trait AopProxyAwareTrait
 
         // has object and method
         if ($num > 1) {
-            $class = array_shift($args);
-            $method = array_shift($args);
+            $class  = \array_shift($args);
+            $method = \array_shift($args);
 
             return $this->proxy($class, $method, $args);
         }
@@ -115,19 +115,19 @@ trait AopProxyAwareTrait
     }
 
     /**
-     * @param        $target
-     * @param string $method
-     * @param string $prefix
-     * @return null|array
+     * @param string|object $target
+     * @param string        $method
+     * @param string        $prefix
+     * @return array
      */
-    protected function findProxyCallback($target, $method, $prefix = 'before')
+    protected function findProxyCallback($target, $method, $prefix = 'before'): array: ?array
     {
         $className = \is_string($target) ? $target : \get_class($target);
 
         // e.g XyzClass::methodAfter
-        $key = $className . '::' . $method . ucfirst($prefix);
+        $key = $className . '::' . $method . \ucfirst($prefix);
 
-        return $this->proxyMap[$key] ?? null;
+        return $this->proxyMap[$key] ?? [];
     }
 
     /**
@@ -148,13 +148,14 @@ trait AopProxyAwareTrait
      * @param string   $position 'before' 'after'
      * @return $this
      */
-    public function addProxy($key, $handler, $position = 'before'): self
+    public function addProxy(string $key, $handler, string $position = 'before'): self
     {
         if (!\in_array($position, self::$proxyPoints, true)) {
             return $this;
         }
 
-        $key .= ucfirst($position);
+        $key .= \ucfirst($position);
+        // save
         $this->proxyMap[$key][] = $handler;
 
         return $this;
@@ -175,7 +176,7 @@ trait AopProxyAwareTrait
                 }
 
                 $position = $handler['position'] ?? 'before';
-                $handler = $handler['handler'];
+                $handler  = $handler['handler'];
             }
 
             $this->addProxy($key, $handler, $position);
@@ -211,7 +212,7 @@ trait AopProxyAwareTrait
     /**
      * @param array $proxyMap
      */
-    public function setProxyMap(array $proxyMap)
+    public function setProxyMap(array $proxyMap): void: void
     {
         $this->proxyMap = $proxyMap;
     }

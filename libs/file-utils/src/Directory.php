@@ -180,27 +180,27 @@ class Directory extends FileSystem
      * @return array
      * @throws FileNotFoundException
      */
-    public static function simpleInfo($dir, $ext = null, $recursive = false): array
+    public static function simpleInfo(string $dir, $ext = null, $recursive = false): array
     {
         $list = [];
         $dir = self::pathFormat($dir);
-        $ext = \is_array($ext) ? implode('|', $ext) : trim($ext);
+        $ext = \is_array($ext) ? \implode('|', $ext) : \trim($ext);
 
-        if (!is_dir($dir)) {
+        if (!\is_dir($dir)) {
             throw new FileNotFoundException("directory not exists! DIR: $dir");
         }
 
         // glob()寻找与模式匹配的文件路径 $file is pull path
-        foreach (glob($dir . '*') as $file) {
+        foreach (\glob($dir . '*') as $file) {
 
             // 匹配文件 如果没有传入$ext 则全部遍历，传入了则按传入的类型来查找
-            if (is_file($file) && (!$ext || preg_match("/\.($ext)$/i", $file))) {
+            if (\is_file($file) && (!$ext || \preg_match("/\.($ext)$/i", $file))) {
                 //basename — 返回路径中的 文件名部分
-                $list[] = basename($file);
+                $list[] = \basename($file);
 
                 // is directory
             } else {
-                $list[] = '/' . basename($file);
+                $list[] = '/' . \basename($file);
 
                 if ($recursive) {
                     $list = array_merge($list, self::simpleInfo($file, $ext, $recursive));
@@ -221,7 +221,7 @@ class Directory extends FileSystem
      * @return array
      * @throws FileNotFoundException
      */
-    public static function getFiles($path, $ext = null, $recursive = false, $parent = null, array $list = []): array
+    public static function getFiles(string $path, $ext = null, $recursive = false, $parent = null, array $list = []): array
     {
         $path = self::pathFormat($path);
 
@@ -230,13 +230,13 @@ class Directory extends FileSystem
         }
 
         $len = \strlen($path);
-        $ext = \is_array($ext) ? implode('|', $ext) : trim($ext);
+        $ext = \is_array($ext) ? \implode('|', $ext) : \trim($ext);
 
         foreach (glob($path . '*') as $v) {
             $relatePath = substr($v, $len);
 
             // 匹配文件 如果没有传入$ext 则全部遍历，传入了则按传入的类型来查找
-            if (is_file($v) && (!$ext || preg_match("/\.($ext)$/i", $v))) {
+            if (\is_file($v) && (!$ext || \preg_match("/\.($ext)$/i", $v))) {
                 $list[] = $parent . $relatePath;
 
             } elseif ($recursive) {

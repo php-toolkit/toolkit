@@ -124,7 +124,7 @@ abstract class File extends FileSystem
      * @param $path
      * @throws IOException
      */
-    public static function write($content, $path)
+    public static function write($content, $path): void
     {
         $handler = static::openHandler($path);
 
@@ -154,7 +154,7 @@ abstract class File extends FileSystem
      * @param string   $path The path to the file (for exception printing only).
      * @throws IOException
      */
-    public static function writeToFile($handler, string $content, string $path = '')
+    public static function writeToFile($handler, string $content, string $path = ''): void
     {
         if (($result = @fwrite($handler, $content)) === false || ($result < \strlen($content))) {
             throw new IOException('The file "' . $path . '" could not be written to. Check your disk space and file permissions.');
@@ -172,7 +172,7 @@ abstract class File extends FileSystem
      *      'case.html'   => 'content' ,
      *  );
      **/
-    public static function createAndWrite(array $fileData = [], $append = false, $mode = 0664)
+    public static function createAndWrite(array $fileData = [], $append = false, $mode = 0664): void
     {
         foreach ($fileData as $file => $content) {
             //检查目录是否存在，不存在就先创建（多级）目录
@@ -262,7 +262,7 @@ abstract class File extends FileSystem
      * @throws FileSystemException
      * @throws IOException
      */
-    public static function move(string $file, string $target)
+    public static function move(string $file, string $target): void
     {
         Directory::mkdir(\dirname($target));
 
@@ -388,7 +388,7 @@ abstract class File extends FileSystem
      * @param string $file
      * @param string $as
      */
-    public static function downBigFile($file, $as)
+    public static function downBigFile($file, $as): void
     {
         header('Expires: Mon, 1 Apr 1974 05:00:00 GMT');
         header('Pragma: no-cache');

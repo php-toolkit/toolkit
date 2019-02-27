@@ -18,7 +18,7 @@ use Toolkit\DI\Container;
  */
 class ContainerTest extends TestCase
 {
-    public function testCreate()
+    public function testCreate(): void
     {
         $di = new Container([
             's1' => SomeClass::class,

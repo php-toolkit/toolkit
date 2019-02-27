@@ -170,7 +170,7 @@ class Collection extends SimpleCollection
     /**
      * @param string $separator
      */
-    public function setSeparator($separator)
+    public function setSeparator($separator): void
     {
         $this->separator = $separator;
     }

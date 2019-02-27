@@ -48,7 +48,7 @@ class ObjectHelper
      * @param       $object
      * @param array $options
      */
-    public static function configure($object, array $options)
+    public static function configure($object, array $options): void
     {
         foreach ($options as $property => $value) {
             if (\property_exists($object, $property)) {
@@ -62,7 +62,7 @@ class ObjectHelper
      * @param       $object
      * @param array $options
      */
-    public static function setAttrs($object, array $options)
+    public static function setAttrs($object, array $options): void
     {
         self::configure($object, $options);
     }

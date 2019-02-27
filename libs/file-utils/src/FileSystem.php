@@ -116,7 +116,7 @@ abstract class FileSystem
      * @throws FileNotFoundException
      * @throws \InvalidArgumentException
      */
-    public static function check(string $file, $ext = null)
+    public static function check(string $file, $ext = null): void
     {
         if (!$file || !file_exists($file)) {
             throw new FileNotFoundException("File {$file} not exists！");
@@ -142,7 +142,7 @@ abstract class FileSystem
      * @throws IOException When target file or directory already exists
      * @throws IOException When origin cannot be renamed
      */
-    public static function rename(string $origin, string $target, bool $overwrite = false)
+    public static function rename(string $origin, string $target, bool $overwrite = false): void
     {
         // we check that target does not exist
         if (!$overwrite && static::isReadable($target)) {
@@ -176,7 +176,7 @@ abstract class FileSystem
      * @param int                       $mode The directory mode
      * @throws IOException On any directory creation failure
      */
-    public static function mkdir($dirs, $mode = 0777)
+    public static function mkdir($dirs, $mode = 0777): void
     {
         foreach (Arr::toIterator($dirs) as $dir) {
             if (is_dir($dir)) {
@@ -207,7 +207,7 @@ abstract class FileSystem
      * @param bool                      $recursive Whether change the mod recursively or not
      * @throws IOException When the change fail
      */
-    public static function chmod($files, $mode, $umask = 0000, $recursive = false)
+    public static function chmod($files, $mode, $umask = 0000, $recursive = false): void
     {
         foreach (Arr::toIterator($files) as $file) {
             if (true !== @chmod($file, $mode & ~$umask)) {
@@ -228,7 +228,7 @@ abstract class FileSystem
      * @param bool                      $recursive Whether change the owner recursively or not
      * @throws IOException When the change fail
      */
-    public static function chown($files, string $user, $recursive = false)
+    public static function chown($files, string $user, $recursive = false): void
     {
         foreach (Arr::toIterator($files) as $file) {
             if ($recursive && is_dir($file) && !is_link($file)) {

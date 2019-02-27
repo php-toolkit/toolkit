@@ -49,11 +49,15 @@ final class StrBuffer
     }
 
     /**
-     * clear
+     * clear data
      */
-    public function clear(): void
+    public function clear(): string
     {
+        $string = $this->body;
+        // clear
         $this->body = '';
+
+        return $string;
     }
 
     /**

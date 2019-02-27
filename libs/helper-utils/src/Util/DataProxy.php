@@ -59,7 +59,7 @@ class DataProxy
      * @param string   $name
      * @param callable $callback
      */
-    public function add(string $name, callable $callback)
+    public function add(string $name, callable $callback): void
     {
         if (!isset($this->proxies[$name])) {
             $this->proxies[$name] = $callback;
@@ -70,7 +70,7 @@ class DataProxy
      * @param string   $name
      * @param callable $callback
      */
-    public function addProxy(string $name, callable $callback)
+    public function addProxy(string $name, callable $callback): void
     {
         if (!isset($this->proxies[$name])) {
             $this->proxies[$name] = $callback;
@@ -81,7 +81,7 @@ class DataProxy
      * @param string   $name
      * @param callable $callback
      */
-    public function setProxy(string $name, callable $callback)
+    public function setProxy(string $name, callable $callback): void
     {
         if (!isset($this->proxies[$name])) {
             $this->proxies[$name] = $callback;
@@ -100,7 +100,7 @@ class DataProxy
     /**
      * @param array $proxies
      */
-    public function addProxies(array $proxies)
+    public function addProxies(array $proxies): void
     {
         foreach ($proxies as $name => $callback) {
             $this->addProxy($name, $callback);
@@ -118,7 +118,7 @@ class DataProxy
     /**
      * @param array $proxies
      */
-    public function setProxies(array $proxies)
+    public function setProxies(array $proxies): void
     {
         $this->proxies = $proxies;
     }

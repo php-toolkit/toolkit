@@ -55,7 +55,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      *       'id' => Service Object
      *       ... ...
      *   ];
-     * @var Service[]
+     * @var ObjectItem[]
      */
     private $services = [];
 
@@ -107,7 +107,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
         // 已经是个服务实例 object
         if (\is_object($definition)) {
             $this->ids[$id] = (bool)$opts['locked'];
-            $this->services[$id] = new Service($definition, $args, $opts['shared'], $opts['locked']);
+            $this->services[$id] = new ObjectItem($definition, $args, $opts['shared'], $opts['locked']);
             $this->setAlias($id, $opts['aliases']);
 
             return $this;
@@ -152,7 +152,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
         }
 
         $this->ids[$id] = (bool)$opts['locked'];
-        $this->services[$id] = new Service($callback, $args, $opts['shared'], $opts['locked']);
+        $this->services[$id] = new ObjectItem($callback, $args, $opts['shared'], $opts['locked']);
         $this->setAlias($id, $opts['aliases']);
 
         // active service
@@ -464,10 +464,10 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * 获取某一个服务的信息
      * @param      $id
      * @param bool $thrErr
-     * @return Service|null
+     * @return ObjectItem|null
      * @throws \InvalidArgumentException
      */
-    public function getService(string $id, $thrErr = false)
+    public function getService(string $id, $thrErr = false): ?ObjectItem
     {
         $id = $this->resolveAlias($id);
 
@@ -569,9 +569,9 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
     }
 
     /**
-     * 是已注册的服务
+     * Is a registered service object
      * @param string $id
-     * @return bool|Service
+     * @return bool|ObjectItem
      */
     public function has($id)
     {
@@ -591,7 +591,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
 
     /**
      * @param $name
-     * @return bool|Service
+     * @return bool|ObjectItem
      */
     public function __isset($name)
     {
@@ -621,9 +621,9 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
             return $service->get($this);
         }
 
-        $method = 'get' . ucfirst($name);
+        $method = 'get' . \ucfirst($name);
 
-        if (method_exists($this, $method)) {
+        if (\method_exists($this, $method)) {
             return $this->$method();
         }
 
@@ -677,13 +677,12 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * Sets an offset in the iterator.
      * @param   mixed $offset The array offset.
      * @param   mixed $value The array value.
-     * @return $this
      * @throws \InvalidArgumentException
      * @throws DependencyResolutionException
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
-        return $this->set($offset, $value);
+        $this->set($offset, $value);
     }
 
     /**
@@ -691,7 +690,7 @@ class Container implements ContainerInterface, \ArrayAccess, \IteratorAggregate,
      * @param   mixed $offset The array offset.
      * @return  void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         $this->del($offset);
     }

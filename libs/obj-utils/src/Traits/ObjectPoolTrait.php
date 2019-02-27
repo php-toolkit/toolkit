@@ -37,7 +37,7 @@ trait ObjectPoolTrait
     /**
      * @param \stdClass|string $object
      */
-    public static function put($object)
+    public static function put($object): void
     {
         if (\is_string($object)) {
             $object = new $object;
@@ -99,7 +99,7 @@ trait ObjectPoolTrait
      * @param null $class
      * @throws \InvalidArgumentException
      */
-    public static function destroy($class = null)
+    public static function destroy($class = null): void
     {
         if ($class) {
             if (!isset(self::$pool[$class])) {

@@ -47,7 +47,7 @@ trait FixedEventStaticTrait
      * @param callable $handler
      * @param bool     $once
      */
-    public static function on($event, callable $handler, $once = false)
+    public static function on($event, callable $handler, $once = false): void
     {
         if (self::isSupportedEvent($event)) {
             self::$eventHandlers[$event][] = $handler;
@@ -60,7 +60,7 @@ trait FixedEventStaticTrait
      * @param          $event
      * @param callable $handler
      */
-    public static function once($event, callable $handler)
+    public static function once($event, callable $handler): void
     {
         self::on($event, $handler, true);
     }
@@ -160,7 +160,7 @@ trait FixedEventStaticTrait
     /**
      * @param array $supportedEvents
      */
-    public static function setSupportEvents(array $supportedEvents)
+    public static function setSupportEvents(array $supportedEvents): void
     {
         self::$supportedEvents = $supportedEvents;
     }

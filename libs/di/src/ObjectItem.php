@@ -11,10 +11,10 @@
 namespace Toolkit\DI;
 
 /**
- * Class Service
+ * Class ObjectItem
  * @package Toolkit\DI
  */
-final class Service
+final class ObjectItem
 {
     /**
      * @var callable
@@ -109,7 +109,7 @@ final class Service
     /**
      * @param $callback
      */
-    public function setCallback($callback)
+    public function setCallback($callback): void
     {
         if (!\method_exists($callback, '__invoke')) {
             $this->instance = $callback;
@@ -134,7 +134,7 @@ final class Service
      * @param array $params 设置参数
      * @throws \InvalidArgumentException
      */
-    public function setArguments(array $params)
+    public function setArguments(array $params): void
     {
         $this->arguments = $params;
     }
@@ -158,7 +158,7 @@ final class Service
     /**
      * @param bool $locked
      */
-    public function setLocked($locked = true)
+    public function setLocked($locked = true): void
     {
         $this->locked = (bool)$locked;
     }
@@ -174,7 +174,7 @@ final class Service
     /**
      * @param bool $shared
      */
-    public function setShared($shared = true)
+    public function setShared($shared = true): void
     {
         $this->shared = (bool)$shared;
     }

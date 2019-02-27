@@ -62,7 +62,7 @@ class DsnHelper
             throw new \RuntimeException('The ' . $driver . ' driver is not supported.');
         }
 
-        list($dsn, $replace) = static::$driver();
+        [$dsn, $replace] = static::$driver();
 
         $dsn = strtr($dsn, $replace);
 

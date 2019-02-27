@@ -82,7 +82,7 @@ final class DIManager
      * @param string $group
      * @return  void
      */
-    public static function setDefaultGroup($group = 'di')
+    public static function setDefaultGroup($group = 'di'): void
     {
         $group = strtolower(trim($group));
 
@@ -109,7 +109,7 @@ final class DIManager
      * reset
      * @param string $group
      */
-    public static function reset($group = null)
+    public static function reset($group = null): void
     {
         if (!$group) {
             static::$containers = [];

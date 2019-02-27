@@ -167,7 +167,7 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
      * @param   mixed $value The array value.
      * @return  void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $index = $this->getSize();
 
@@ -185,7 +185,7 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
      * @param   mixed $offset The array offset.
      * @return  void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         $index = $this->getKeyIndex($offset);
 

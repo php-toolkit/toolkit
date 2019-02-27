@@ -158,7 +158,7 @@ class DateHelper
      * @param null|array $unit
      * @return string
      */
-    public static function before($time, $unit = null)
+    public static function before($time, $unit = null): ?string
     {
         if (!\is_int($time)) {
             return false;

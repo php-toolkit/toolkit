@@ -25,7 +25,7 @@ trait LogShortTrait
      *
      * @return void
      */
-    public static function emergency($message, array $context = [])
+    public static function emergency($message, array $context = []): void
     {
         self::log(Logger::EMERGENCY, $message, $context);
     }
@@ -41,7 +41,7 @@ trait LogShortTrait
      *
      * @return void
      */
-    public static function alert($message, array $context = [])
+    public static function alert($message, array $context = []): void
     {
         self::log(Logger::ALERT, $message, $context);
     }
@@ -56,7 +56,7 @@ trait LogShortTrait
      *
      * @return void
      */
-    public static function critical($message, array $context = [])
+    public static function critical($message, array $context = []): void
     {
         self::log(Logger::CRITICAL, $message, $context);
     }
@@ -70,7 +70,7 @@ trait LogShortTrait
      *
      * @return void
      */
-    public static function error($message, array $context = [])
+    public static function error($message, array $context = []): void
     {
         self::log(Logger::ERROR, $message, $context);
     }
@@ -86,7 +86,7 @@ trait LogShortTrait
      *
      * @return void
      */
-    public static function warning($message, array $context = [])
+    public static function warning($message, array $context = []): void
     {
         self::log(Logger::WARNING, $message, $context);
     }
@@ -99,7 +99,7 @@ trait LogShortTrait
      *
      * @return void
      */
-    public static function notice($message, array $context = [])
+    public static function notice($message, array $context = []): void
     {
         self::log(Logger::NOTICE, $message, $context);
     }
@@ -114,7 +114,7 @@ trait LogShortTrait
      *
      * @return void
      */
-    public static function info($message, array $context = [])
+    public static function info($message, array $context = []): void
     {
         self::log(Logger::INFO, $message, $context);
     }
@@ -127,7 +127,7 @@ trait LogShortTrait
      *
      * @return void
      */
-    public static function debug($message, array $context = [])
+    public static function debug($message, array $context = []): void
     {
         self::log(Logger::DEBUG, $message, $context);
     }
@@ -136,7 +136,7 @@ trait LogShortTrait
      * @param string $message
      * @param array  $context
      */
-    public static function trace($message, array $context = [])
+    public static function trace($message, array $context = []): void
     {
         if (!isset($context['_called_at'])) {
             $tce = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
@@ -160,5 +160,5 @@ trait LogShortTrait
      *
      * @return void
      */
-    abstract public static function log($level, $message, array $context = []);
+    abstract public static function log($level, $message, array $context = []): void;
 }

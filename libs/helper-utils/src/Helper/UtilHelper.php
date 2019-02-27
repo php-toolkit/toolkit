@@ -13,7 +13,7 @@ abstract class UtilHelper
      * @param mixed  $object Object to display
      * @param string $type
      */
-    public static function fd($object, $type = 'log')
+    public static function fd($object, $type = 'log'): void
     {
         $types = ['log', 'debug', 'info', 'warn', 'error', 'assert'];
 

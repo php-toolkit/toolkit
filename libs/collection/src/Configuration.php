@@ -131,7 +131,7 @@ final class Configuration extends Collection
     /**
      * @param string $mode
      */
-    public function setMode(string $mode)
+    public function setMode(string $mode): void
     {
         $this->mode = $mode;
     }
@@ -139,7 +139,7 @@ final class Configuration extends Collection
     /**
      * @param bool $readonly
      */
-    public function setReadonly($readonly)
+    public function setReadonly($readonly): void
     {
         $this->readonly = (bool)$readonly;
     }
@@ -164,7 +164,7 @@ final class Configuration extends Collection
     /**
      * @param string $format
      */
-    public function setFormat(string $format)
+    public function setFormat(string $format): void
     {
         $this->format = $format;
     }
@@ -181,7 +181,7 @@ final class Configuration extends Collection
      * @param string $folderPath
      * @throws \InvalidArgumentException
      */
-    public function setFolderPath(string $folderPath)
+    public function setFolderPath(string $folderPath): void
     {
         if (!\is_dir($folderPath)) {
             throw new \InvalidArgumentException("The config files folder path is not exists! Path: $folderPath");

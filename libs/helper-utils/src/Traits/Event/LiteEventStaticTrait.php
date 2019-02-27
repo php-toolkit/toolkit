@@ -31,7 +31,7 @@ trait LiteEventStaticTrait
      * @param callable $cb event callback
      * @param bool     $replace replace exists's event cb
      */
-    public static function on($name, callable $cb, $replace = false)
+    public static function on($name, callable $cb, $replace = false): void
     {
         if ($replace || !isset(self::$_events[$name])) {
             self::$_events[$name] = $cb;

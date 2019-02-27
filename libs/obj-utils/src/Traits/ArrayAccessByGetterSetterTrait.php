@@ -51,7 +51,7 @@ trait ArrayAccessByGetterSetterTrait
      * @param   mixed $offset The array offset.
      * @param   mixed $value The array value.
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $setter = 'set' . ucfirst($offset);
 
@@ -65,7 +65,7 @@ trait ArrayAccessByGetterSetterTrait
      * @param   mixed $offset The array offset.
      * @return  void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         // unset($this->$offset);
     }

@@ -17,7 +17,7 @@ use Toolkit\DataParser\JsonParser;
  */
 class JsonParserTest extends TestCase
 {
-    public function testDecode()
+    public function testDecode(): void
     {
         $str = '{"name": "value"}';
 
@@ -27,7 +27,7 @@ class JsonParserTest extends TestCase
         $this->assertArrayHasKey('name', $ret);
     }
 
-    public function testEncode()
+    public function testEncode(): void
     {
         $data = [
             'name' => 'value',

@@ -34,7 +34,7 @@ class Configurable
     /**
      * init
      */
-    protected function init()
+    protected function init(): void
     {
         // init something ...
     }

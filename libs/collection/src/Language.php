@@ -131,7 +131,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * @see self::translate()
      * @throws \InvalidArgumentException
      */
-    public function tl(string $key, array $args = [], $lang = null)
+    public function tl(string $key, array $args = [], $lang = '')
     {
         return $this->translate($key, $args, $lang);
     }
@@ -141,7 +141,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * @see self::translate()
      * @throws \InvalidArgumentException
      */
-    public function trans(string $key, array $args = [], $lang = null)
+    public function trans(string $key, array $args = [], $lang = '')
     {
         return $this->translate($key, $args, $lang);
     }
@@ -155,7 +155,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * @throws \RangeException
      * @throws \InvalidArgumentException
      */
-    public function translate(string $key, array $args = [], $lang = null)
+    public function translate(string $key, array $args = [], string $lang = '')
     {
         if (!\is_string($key)) {
             throw new \InvalidArgumentException('The translate key must be a string.');
@@ -166,7 +166,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
             throw new \InvalidArgumentException('Cannot translate the empty key');
         }
 
-        list($lang, $key) = $this->parseKey($key, $lang);
+        [$lang, $key] = $this->parseKey($key, $lang);
 
         // translate form current language. if not found, translate form fallback language.
         if (($value = $this->findTranslationText($key)) === null) {
@@ -178,7 +178,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
                     return $args['__default'];
                 }
 
-                return ucfirst(Str::toSnake(\str_replace(['-', '_'], ' ', $key), ' '));
+                return \ucfirst(Str::toSnake(\str_replace(['-', '_'], ' ', $key), ' '));
             }
         }
 
@@ -219,7 +219,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
         }
 
         if (\strpos($key, $this->separator)) {
-            list($fileKey,) = \explode($this->separator, $key);
+            [$fileKey,] = \explode($this->separator, $key);
         } else {
             $fileKey = $key;
         }
@@ -268,7 +268,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
         }
 
         if (\strpos($key, $this->separator)) {
-            list($fileKey,) = \explode($this->separator, $key);
+            [$fileKey,] = \explode($this->separator, $key);
         } else {
             $fileKey = $key;
         }
@@ -297,7 +297,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param string $lang
      * @return array
      */
-    private function parseKey(string $key, string $lang = null): array
+    private function parseKey(string $key, string $lang = ''): array
     {
         if ($lang) {
             return [$lang, $key];
@@ -321,9 +321,9 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param string $lang
      * @return string
      */
-    protected function buildLangFilePath(string $filename, $lang = ''): string
+    protected function buildLangFilePath(string $filename, string $lang = ''): string
     {
-        $path = ($lang ?: $this->lang) . DIRECTORY_SEPARATOR . trim($filename);
+        $path = ($lang ?: $this->lang) . DIRECTORY_SEPARATOR . \trim($filename);
 
         return $this->basePath . DIRECTORY_SEPARATOR . $path;
     }
@@ -336,7 +336,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param string $fileKey
      * @return string|null
      */
-    public function getLangFile(string $fileKey)
+    public function getLangFile(string $fileKey): ?string
     {
         return $this->langFiles[$fileKey] ?? null;
     }
@@ -632,7 +632,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * <b>Traversable</b>
      * @since 5.0.0
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return $this->data->getIterator();
     }
@@ -681,7 +681,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * @return void
      * @since 5.0.0
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->set($offset, $value);
     }
@@ -695,7 +695,7 @@ class Language implements \ArrayAccess, \Countable, \IteratorAggregate
      * @return void
      * @since 5.0.0
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->data[$offset]);
     }

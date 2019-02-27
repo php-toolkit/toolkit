@@ -45,7 +45,7 @@ trait PathResolverTrait
     /**
      * @param callable $pathResolver
      */
-    public function setPathResolver(callable $pathResolver)
+    public function setPathResolver(callable $pathResolver): void
     {
         $this->pathResolver = $pathResolver;
     }

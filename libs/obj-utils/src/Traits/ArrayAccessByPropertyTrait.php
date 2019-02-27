@@ -46,7 +46,7 @@ trait ArrayAccessByPropertyTrait
      * @param   mixed $value The array value.
      * @return  void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->$offset = $value;
     }
@@ -56,7 +56,7 @@ trait ArrayAccessByPropertyTrait
      * @param   mixed $offset The array offset.
      * @return  void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         // unset($this->$offset);
     }

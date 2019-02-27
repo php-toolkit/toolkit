@@ -54,7 +54,7 @@ class DevController extends Controller
     {
         $this->checkEnv();
 
-        $output->color('Components Total: ' . \count($this->components), 'info');
+        $output->color('Components Total: ' . \count($this->components));
 
         $buffer = [];
         $showRepo = (bool)$input->getOpt('show-repo');
@@ -248,7 +248,7 @@ class DevController extends Controller
 
             // if '--dry-run' is true. do not exec.
             if (!$tryRun) {
-                list($code, $ret, $err) = Sys::run($command, $workDir);
+                [$code, $ret, $err] = Sys::run($command, $workDir);
 
                 if ($code !== 0) {
                     throw new \RuntimeException("Exec command failed. command: $command error: $err \nreturn: \n$ret");
@@ -324,7 +324,7 @@ class DevController extends Controller
 
         // if '--dry-run' is true. do not exec.
         if (!$tryRun) {
-            list($code, $ret,) = Sys::run($command, $workDir);
+            [$code, $ret,] = Sys::run($command, $workDir);
 
             if ($code !== 0) {
                 throw new \RuntimeException("Exec command failed. command: $command return: \n$ret");
@@ -340,7 +340,7 @@ class DevController extends Controller
         return 0;
     }
 
-    private function checkEnv()
+    private function checkEnv(): void
     {
         if (!\defined('TOOLKIT_DIR') || !TOOLKIT_DIR) {
             $this->writeln('<error>Missing the TOOLKIT_DIR define</error>', true);

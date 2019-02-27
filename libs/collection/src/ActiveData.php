@@ -21,7 +21,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * @param bool|false         $recursive
      * @return static
      */
-    public static function create(array $data = [], $recursive = false)
+    public static function create(array $data = [], bool $recursive = false)
     {
         return new static($data, $recursive);
     }
@@ -31,7 +31,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * @param array $data
      * @param bool  $recursive
      */
-    public function __construct(array $data = [], $recursive = false)
+    public function __construct(array $data = [], bool $recursive = false)
     {
         if ($data) {
             $this->load($data, $recursive);
@@ -44,12 +44,12 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * @param bool  $recursive
      * @return $this
      */
-    public function load($data, $recursive = false): self
+    public function load($data, bool $recursive = false): self
     {
         foreach ($data as $name => $value) {
-            $name = trim($name);
+            $name = \trim($name);
 
-            if (is_numeric($name)) {
+            if (\is_numeric($name)) {
                 continue;
             }
 
@@ -59,7 +59,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
         return $this;
     }
 
-    public function isStrict()
+    public function isStrict(): bool
     {
         return false;
     }
@@ -69,7 +69,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * @return array|\ArrayIterator
      * @throws \ReflectionException
      */
-    public function all($toArray = false)
+    public function all(bool $toArray = false)
     {
         $class = new \ReflectionClass($this);
         $attrs = [];
@@ -87,20 +87,20 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
     /**
      * 以点连接 快速获取子级节点的值
      * @param string $name
-     * @return ActiveData|null
+     * @return ActiveData|mixed
      */
     public function get(string $name)
     {
-        if (strpos($name, '.')) {
-            $names = explode('.', $name);
+        if (\strpos($name, '.')) {
+            $names = \explode('.', $name);
             $node = $this;
 
             foreach ($names as $n) {
-                if ($node instanceof self && property_exists($node, $n)) {
+                if ($node instanceof self && \property_exists($node, $n)) {
                     $node = $node->$n;
                 } else {
                     if ($this->isStrict()) {
-                        exit("Stored data don't exists node '$n'\n");
+                        throw new \RuntimeException("Stored data don't exists node '$n'");
                     }
 
                     $node = null;
@@ -111,7 +111,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
             return $node;
         }
 
-        return property_exists($this, $name) ? $this->$name : null;
+        return \property_exists($this, $name) ? $this->$name : null;
     }
 
     /**
@@ -120,7 +120,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * @return \ArrayIterator
      * @throws \ReflectionException
      */
-    public function getIterator()
+    public function getIterator(): \ArrayIterator
     {
         return $this->all();
     }
@@ -132,7 +132,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      */
     public function offsetExists($offset): bool
     {
-        return property_exists($this, $offset);
+        return \property_exists($this, $offset);
     }
 
     /**
@@ -151,7 +151,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * @param   mixed $value The array value.
      * @return  void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->$offset = $value;
     }
@@ -161,7 +161,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
      * @param   mixed $offset The array offset.
      * @return  void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->$offset);
     }
@@ -179,5 +179,4 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
     {
         return $this->get($name);
     }
-
 }

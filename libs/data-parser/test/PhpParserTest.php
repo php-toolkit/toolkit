@@ -17,7 +17,7 @@ use Toolkit\DataParser\PhpParser;
  */
 class PhpParserTest extends TestCase
 {
-    public function testDecode()
+    public function testDecode(): void
     {
         $str = 'a:1:{s:4:"name";s:5:"value";}';
 
@@ -28,7 +28,7 @@ class PhpParserTest extends TestCase
         $this->assertArrayHasKey('name', $ret);
     }
 
-    public function testEncode()
+    public function testEncode(): void
     {
         $data = [
             'name' => 'value',
