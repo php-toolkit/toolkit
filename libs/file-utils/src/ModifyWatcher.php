@@ -273,25 +273,25 @@ final class ModifyWatcher
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getIdFile(): ?string
+    public function getIdFile(): string
     {
         return $this->idFile;
     }
 
     /**
-     * @return string|null
+     * @return string[]
      */
-    public function getWatchDir(): ?string
+    public function getWatchDir(): array
     {
         return $this->watchDirs;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getDirMd5(): ?string
+    public function getDirMd5(): string
     {
         return $this->dirMd5;
     }
