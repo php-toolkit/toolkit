@@ -60,17 +60,21 @@ class PhpDoc
                     continue;
                 }
 
+                if (!$value = \trim($matches[2])) {
+                    continue;
+                }
+
                 // always allow default tag
                 if ($default !== $name && $allow && !\in_array($name, $allow, true)) {
                     continue;
                 }
 
                 if (!isset($tags[$name])) {
-                    $tags[$name] = \trim($matches[2]);
+                    $tags[$name] = $value;
                 } elseif (\is_array($tags[$name])) {
-                    $tags[$name][] = \trim($matches[2]);
+                    $tags[$name][] = $value;
                 } else {
-                    $tags[$name] = [$tags[$name], \trim($matches[2])];
+                    $tags[$name] = [$tags[$name], $value];
                 }
             }
         }
