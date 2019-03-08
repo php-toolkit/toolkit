@@ -25,9 +25,10 @@ class PhpDoc
      * - 'allow'  // only allowed tags
      * - 'ignore' // ignored tags
      * - 'default' => 'description', // default tag name, first line text will attach to it.
+     * @param array  $defaults
      * @return array The parsed tags
      */
-    public static function getTags(string $comment, array $options = []): array
+    public static function getTags(string $comment, array $options = [], array $defaults = []): array
     {
         if (!$comment = \trim($comment, "/ \n")) {
             return [];
@@ -74,7 +75,7 @@ class PhpDoc
             }
         }
 
-        return $tags;
+        return $defaults ? \array_merge($defaults, $tags) :$tags;
     }
 
     /**
