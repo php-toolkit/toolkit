@@ -2,8 +2,72 @@
 
 namespace Toolkit\StrUtil;
 
+use Exception;
+use Inhere\Exceptions\InvalidArgumentException;
+use function array_map;
+use function array_merge;
+use function array_shift;
+use function array_slice;
+use function array_values;
+use function base64_encode;
+use function count;
+use function explode;
+use function func_get_arg;
+use function func_num_args;
+use function function_exists;
+use function hash;
+use function hex2bin;
+use function html_entity_decode;
+use function implode;
+use function in_array;
+use function is_array;
+use function is_int;
+use function is_string;
+use function lcfirst;
+use function mb_convert_case;
+use function mb_convert_encoding;
+use function mb_convert_variables;
+use function mb_detect_encoding;
+use function mb_internal_encoding;
+use function mb_strlen;
+use function mb_strpos;
+use function mb_strrpos;
+use function mb_strtolower;
+use function mb_strtoupper;
+use function mb_strwidth;
+use function mb_substr;
+use function preg_match;
+use function preg_match_all;
+use function preg_replace;
+use function preg_replace_callback;
+use function preg_split;
+use function random_token;
+use function str_pad;
+use function str_replace;
+use function str_split;
+use function strip_tags;
+use function stripos;
+use function strlen;
+use function strpos;
+use function strrpos;
+use function strtolower;
+use function strtoupper;
+use function substr;
+use function trim;
+use function ucfirst;
+use function ucwords;
+use function uniqid;
+use function utf8_decode;
+use function utf8_encode;
+use const ENT_COMPAT;
+use const MB_CASE_TITLE;
+use const PREG_SPLIT_NO_EMPTY;
+use const STR_PAD_LEFT;
+use const STR_PAD_RIGHT;
+
 /**
  * Class StringHelper
+ *
  * @package Toolkit\StrUtil
  */
 abstract class StringHelper
@@ -16,6 +80,7 @@ abstract class StringHelper
      * @param string $string
      * @param string $prefix
      * @param string $suffix
+     *
      * @return string
      */
     public static function optional(string $string, string $prefix = ' ', string $suffix = ''): string
@@ -30,6 +95,7 @@ abstract class StringHelper
     /**
      * @param string       $string
      * @param string|array $needle
+     *
      * @return bool
      */
     public static function contains(string $string, $needle): bool
@@ -40,17 +106,18 @@ abstract class StringHelper
     /**
      * @param string       $string
      * @param string|array $needle
+     *
      * @return bool
      */
     public static function has(string $string, $needle): bool
     {
-        if (\is_string($needle)) {
-            return \stripos($string, $needle) !== false;
+        if (is_string($needle)) {
+            return stripos($string, $needle) !== false;
         }
 
-        if (\is_array($needle)) {
+        if (is_array($needle)) {
             foreach ((array)$needle as $item) {
-                if (\stripos($string, $item) !== false) {
+                if (stripos($string, $item) !== false) {
                     return true;
                 }
             }
@@ -64,13 +131,12 @@ abstract class StringHelper
      * @param        $find
      * @param int    $offset
      * @param string $encoding
+     *
      * @return bool|int
      */
     public static function strpos(string $str, string $find, int $offset = 0, string $encoding = 'UTF-8')
     {
-        return \function_exists('mb_strpos') ?
-            \mb_strpos($str, $find, $offset, $encoding) :
-            \strpos($str, $find, $offset);
+        return function_exists('mb_strpos') ? mb_strpos($str, $find, $offset, $encoding) : strpos($str, $find, $offset);
     }
 
     /**
@@ -78,20 +144,23 @@ abstract class StringHelper
      * @param string $find
      * @param int    $offset
      * @param string $encoding
+     *
      * @return bool|int
      */
     public static function strrpos(string $str, string $find, int $offset = 0, string $encoding = 'utf-8')
     {
-        return \function_exists('mb_strrpos') ?
-            \mb_strrpos($str, $find, $offset, $encoding) :
-            \strrpos($str, $find, $offset);
+        return function_exists('mb_strrpos') ? mb_strrpos($str, $find, $offset, $encoding) :
+            strrpos($str, $find, $offset);
     }
 
     /**
      * 使用正则验证数据
+     *
      * @access public
+     *
      * @param string $value 要验证的数据
-     * @param string $rule 验证规则 require email url currency number integer english
+     * @param string $rule  验证规则 require email url currency number integer english
+     *
      * @return boolean
      */
     public static function regexMatch(string $value, string $rule): bool
@@ -110,15 +179,15 @@ abstract class StringHelper
             'english'  => '/^[A-Za-z]+$/',
         ];
 
-        $value = \trim($value);
-        $name  = \strtolower($rule);
+        $value = trim($value);
+        $name  = strtolower($rule);
 
         // 检查是否有内置的正则表达式
         if (isset($validate[$name])) {
             $rule = $validate[$name];
         }
 
-        return \preg_match($rule, $value) === 1;
+        return preg_match($rule, $value) === 1;
     }
 
     ////////////////////////////////////////////////////////////////////////
@@ -127,27 +196,30 @@ abstract class StringHelper
 
     /**
      * from Symfony
+     *
      * @param string $string
+     *
      * @return int
      */
     public static function len(string $string): int
     {
-        if (false === $encoding = \mb_detect_encoding($string, null, true)) {
-            return \strlen($string);
+        if (false === $encoding = mb_detect_encoding($string, null, true)) {
+            return strlen($string);
         }
 
-        return \mb_strwidth($string, $encoding);
+        return mb_strwidth($string, $encoding);
     }
 
     public static function strlen(string $str, string $encoding = 'UTF-8'): int
     {
-        $str = \html_entity_decode($str, \ENT_COMPAT, 'UTF-8');
+        $str = html_entity_decode($str, ENT_COMPAT, 'UTF-8');
 
-        return \function_exists('mb_strlen') ? \mb_strlen($str, $encoding) : \strlen($str);
+        return function_exists('mb_strlen') ? mb_strlen($str, $encoding) : strlen($str);
     }
 
     /**
      * @param string $string
+     *
      * @return int
      */
     public static function utf8Len(string $string): int
@@ -155,12 +227,14 @@ abstract class StringHelper
         // strlen: one chinese is 3 char.
         // mb_strlen: one chinese is 1 char.
         // mb_strwidth: one chinese is 2 char.
-        return \mb_strlen($string, 'utf-8');
+        return mb_strlen($string, 'utf-8');
     }
 
     /**
      * 计算字符长度
-     * @param  string $str
+     *
+     * @param string $str
+     *
      * @return int
      */
     public static function length(string $str): int
@@ -169,21 +243,23 @@ abstract class StringHelper
             return 0;
         }
 
-        if (\function_exists('mb_strlen')) {
-            return \mb_strlen($str, 'utf-8');
+        if (function_exists('mb_strlen')) {
+            return mb_strlen($str, 'utf-8');
         }
 
-        \preg_match_all('/./u', $str, $arr);
+        preg_match_all('/./u', $str, $arr);
 
-        return \count($arr[0]);
+        return count($arr[0]);
     }
 
     /**
-     * @from web
+     * @from     web
      * 可以统计中文字符串长度的函数
+     *
      * @param string $str 要计算长度的字符串
-     * @internal param bool $type 计算长度类型，0(默认)表示一个中文算一个字符，1表示一个中文算两个字符
+     *
      * @return int
+     * @internal param bool $type 计算长度类型，0(默认)表示一个中文算一个字符，1表示一个中文算两个字符
      */
     public static function absLen(string $str): int
     {
@@ -191,17 +267,17 @@ abstract class StringHelper
             return 0;
         }
 
-        if (\function_exists('mb_strwidth')) {
-            return \mb_strwidth($str, 'utf-8');
+        if (function_exists('mb_strwidth')) {
+            return mb_strwidth($str, 'utf-8');
         }
 
-        if (\function_exists('mb_strlen')) {
-            return \mb_strlen($str, 'utf-8');
+        if (function_exists('mb_strlen')) {
+            return mb_strlen($str, 'utf-8');
         }
 
-        \preg_match_all('/./u', $str, $ar);
+        preg_match_all('/./u', $str, $ar);
 
-        return \count($ar[0]);
+        return count($ar[0]);
     }
 
     ////////////////////////////////////////////////////////////
@@ -210,22 +286,24 @@ abstract class StringHelper
 
     /**
      * ********************** 生成一定长度的随机字符串函数 **********************
-     * @param  int         $length - 随机字符串长度
-     * @param array|string $param -
-     * @internal param string $chars
+     *
+     * @param int          $length - 随机字符串长度
+     * @param array|string $param  -
+     *
      * @return string
-     * @throws \Exception
+     * @throws Exception
+     * @internal param string $chars
      */
     public static function random(int $length, array $param = []): string
     {
-        $param = \array_merge([
+        $param = array_merge([
             'prefix' => '',
             'suffix' => '',
             'chars'  => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
         ], $param);
 
         $chars = $param['chars'];
-        $max   = \strlen($chars) - 1;   //strlen($chars) 计算字符串的长度
+        $max   = strlen($chars) - 1;   //strlen($chars) 计算字符串的长度
         $str   = '';
 
         for ($i = 0; $i < $length; $i++) {
@@ -237,28 +315,26 @@ abstract class StringHelper
 
     /**
      * @param int $length
+     *
      * @return string
      */
     public static function genSalt(int $length = 32): string
     {
-        return \substr(
-            \str_replace('+', '.', \base64_encode(\hex2bin(\random_token($length)))),
-            0,
-            44
-        );
+        return substr(str_replace('+', '.', base64_encode(hex2bin(random_token($length)))), 0, 44);
     }
 
     /**
      * @param int $length
+     *
      * @return bool|string
      */
     public static function genUid(int $length = 7): string
     {
-        if (!\is_int($length) || $length > 32 || $length < 1) {
+        if (!is_int($length) || $length > 32 || $length < 1) {
             $length = 7;
         }
 
-        return \substr(\hash('md5', \uniqid('', true)), 0, $length);
+        return substr(hash('md5', uniqid('', true)), 0, $length);
     }
 
     /**
@@ -266,30 +342,33 @@ abstract class StringHelper
      * @param int    $padLen
      * @param string $padStr
      * @param int    $padType
+     *
      * @return string
      */
-    public static function pad(string $string, int $padLen, string $padStr = ' ', int $padType = \STR_PAD_RIGHT): string
+    public static function pad(string $string, int $padLen, string $padStr = ' ', int $padType = STR_PAD_RIGHT): string
     {
-        return $padLen > 0 ? \str_pad($string, $padLen, $padStr, $padType) : $string;
+        return $padLen > 0 ? str_pad($string, $padLen, $padStr, $padType) : $string;
     }
 
     public static function padLeft(string $string, int $padLen, string $padStr = ' '): string
     {
-        return $padLen > 0 ? \str_pad($string, $padLen, $padStr, \STR_PAD_LEFT) : $string;
+        return $padLen > 0 ? str_pad($string, $padLen, $padStr, STR_PAD_LEFT) : $string;
     }
 
     public static function padRight(string $string, int $padLen, string $padStr = ' '): string
     {
-        return $padLen > 0 ? \str_pad($string, $padLen, $padStr) : $string;
+        return $padLen > 0 ? str_pad($string, $padLen, $padStr) : $string;
     }
 
     /**
      * gen UUID
+     *
      * @param int  $version
      * @param null $node
      * @param null $ns
+     *
      * @return UUID
-     * @throws \Inhere\Exceptions\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     // public static function genUUID($version = 1, $node = null, $ns = null)
     // {
@@ -302,12 +381,14 @@ abstract class StringHelper
 
     /**
      * Convert \n and \r\n and \r to <br />
+     *
      * @param string $str String to transform
+     *
      * @return string New string
      */
     public static function nl2br(string $str): string
     {
-        return \str_replace(["\r\n", "\r", "\n"], '<br />', $str);
+        return str_replace(["\r\n", "\r", "\n"], '<br />', $str);
     }
 
     public static function lower(string $str): string
@@ -317,11 +398,12 @@ abstract class StringHelper
 
     /**
      * @param string $str
+     *
      * @return bool|string
      */
     public static function strtolower(string $str): string
     {
-        return \function_exists('mb_strtolower') ? \mb_strtolower($str, 'utf-8') : \strtolower($str);
+        return function_exists('mb_strtolower') ? mb_strtolower($str, 'utf-8') : strtolower($str);
     }
 
     public static function upper(string $str): string
@@ -331,19 +413,21 @@ abstract class StringHelper
 
     /**
      * @param $str
+     *
      * @return bool|string
      */
     public static function strtoupper(string $str)
     {
-        if (!\is_string($str)) {
+        if (!is_string($str)) {
             return $str;
         }
 
-        return \function_exists('mb_strtoupper') ? \mb_strtoupper($str, 'utf-8') : \strtoupper($str);
+        return function_exists('mb_strtoupper') ? mb_strtoupper($str, 'utf-8') : strtoupper($str);
     }
 
     /**
      * @param $str
+     *
      * @return string
      */
     public static function ucfirst(string $str): string
@@ -353,18 +437,19 @@ abstract class StringHelper
 
     /**
      * @param $str
+     *
      * @return string
      */
     public static function ucwords(string $str): string
     {
-        return \function_exists('mb_convert_case') ?
-            \mb_convert_case($str, \MB_CASE_TITLE) :
-            \ucwords(self::strtolower($str));
+        return function_exists('mb_convert_case') ? mb_convert_case($str, MB_CASE_TITLE) :
+            ucwords(self::strtolower($str));
     }
 
     /**
      * @param string $str
      * @param bool   $upperFirstChar
+     *
      * @return mixed
      */
     public static function camel(string $str, bool $upperFirstChar = false): string
@@ -375,6 +460,7 @@ abstract class StringHelper
     /**
      * @param string $str
      * @param bool   $upperFirstChar
+     *
      * @return mixed
      */
     public static function toCamel(string $str, bool $upperFirstChar = false): string
@@ -384,27 +470,31 @@ abstract class StringHelper
 
     /**
      * to camel
+     *
      * @param string $name
      * @param bool   $upperFirst
+     *
      * @return string
      */
     public static function camelCase(string $name, bool $upperFirst = false): string
     {
-        $name = \trim($name, '-_');
+        $name = trim($name, '-_');
 
         // convert 'first-second' to 'firstSecond'
-        if (\strpos($name, '-')) {
-            $name = \ucwords(\str_replace('-', ' ', $name));
-            $name = \str_replace(' ', '', \lcfirst($name));
+        if (strpos($name, '-')) {
+            $name = ucwords(str_replace('-', ' ', $name));
+            $name = str_replace(' ', '', lcfirst($name));
         }
 
-        return $upperFirst ? \ucfirst($name) : $name;
+        return $upperFirst ? ucfirst($name) : $name;
     }
 
     /**
      * Translates a string with underscores into camel case (e.g. first_name -> firstName)
-     * @param  string $str
-     * @param bool    $upperFirst
+     *
+     * @param string $str
+     * @param bool   $upperFirst
+     *
      * @return mixed
      */
     public static function toCamelCase(string $str, bool $upperFirst = false): string
@@ -415,8 +505,8 @@ abstract class StringHelper
             $str = self::ucfirst($str);
         }
 
-        return \preg_replace_callback('/_+([a-z])/', function ($c) {
-            return \strtoupper($c[1]);
+        return preg_replace_callback('/_+([a-z])/', function ($c) {
+            return strtoupper($c[1]);
         }, $str);
     }
 
@@ -432,47 +522,51 @@ abstract class StringHelper
 
     /**
      * Transform a CamelCase string to underscore_case string
+     *
      * @param string $str
      * @param string $sep
+     *
      * @return string
      */
     public static function toSnakeCase(string $str, string $sep = '_'): string
     {
         // 'CMSCategories' => 'cms_categories'
         // 'RangePrice' => 'range_price'
-        return self::lower(\trim(\preg_replace('/([A-Z][a-z])/', $sep . '$1', $str), $sep));
+        return self::lower(trim(preg_replace('/([A-Z][a-z])/', $sep . '$1', $str), $sep));
     }
 
     /**
      * 驼峰式 <=> 下划线式
-     * @param  string $str [description]
-     * @param  bool   $toCamelCase
-     * true : 驼峰式 => 下划线式
-     * false : 驼峰式 <= 下划线式
+     *
+     * @param string $str [description]
+     * @param bool   $toCamelCase
+     *                    true : 驼峰式 => 下划线式
+     *                    false : 驼峰式 <= 下划线式
+     *
      * @return string
      */
     public static function nameChange(string $str, bool $toCamelCase = true): string
     {
-        $str = \trim($str);
+        $str = trim($str);
 
         // 默认 ：下划线式 =>驼峰式
         if ($toCamelCase) {
-            if (\strpos($str, '_') === false) {
+            if (strpos($str, '_') === false) {
                 return $str;
             }
 
-            $arr_char  = \explode('_', \strtolower($str));
-            $newString = \array_shift($arr_char);
+            $arr_char  = explode('_', strtolower($str));
+            $newString = array_shift($arr_char);
 
             foreach ($arr_char as $val) {
-                $newString .= \ucfirst($val);
+                $newString .= ucfirst($val);
             }
 
             return $newString;
         }
 
         // 驼峰式 => 下划线式
-        return \strtolower(\preg_replace('/((?<=[a-z])(?=[A-Z]))/', '_', $str));
+        return strtolower(preg_replace('/((?<=[a-z])(?=[A-Z]))/', '_', $str));
     }
 
     ////////////////////////////////////////////////////////////////////////
@@ -481,33 +575,35 @@ abstract class StringHelper
 
     /**
      * var_dump(str2array('34,56,678, 678, 89, '));
+     *
      * @param string $str
      * @param string $sep
+     *
      * @return array
      */
     public static function str2array(string $str, string $sep = ','): array
     {
-        $str = \trim($str, "$sep ");
+        $str = trim($str, "$sep ");
 
         if (!$str) {
             return [];
         }
 
-        return \preg_split("/\s*$sep\s*/", $str, -1, \PREG_SPLIT_NO_EMPTY);
+        return preg_split("/\s*$sep\s*/", $str, -1, PREG_SPLIT_NO_EMPTY);
     }
 
     public static function toArray(string $string, string $delimiter = ',', int $limit = 0): array
     {
-        $string = \trim($string, "$delimiter ");
+        $string = trim($string, "$delimiter ");
         if ($string === '') {
             return [];
         }
 
         $values  = [];
-        $rawList = $limit < 1 ? \explode($delimiter, $string) : \explode($delimiter, $string, $limit);
+        $rawList = $limit < 1 ? explode($delimiter, $string) : explode($delimiter, $string, $limit);
 
         foreach ($rawList as $val) {
-            if (($val = \trim($val)) !== '') {
+            if (($val = trim($val)) !== '') {
                 $values[] = $val;
             }
         }
@@ -524,28 +620,30 @@ abstract class StringHelper
      * @param string $string
      * @param string $delimiter
      * @param int    $limit
+     *
      * @return array
      */
     public static function split2Array(string $string, string $delimiter = ',', int $limit = 0): array
     {
-        $string = \trim($string, "$delimiter ");
+        $string = trim($string, "$delimiter ");
 
-        if (!\strpos($string, $delimiter)) {
+        if (!strpos($string, $delimiter)) {
             return [$string];
         }
 
         if ($limit < 1) {
-            $list = \explode($delimiter, $string);
+            $list = explode($delimiter, $string);
         } else {
-            $list = \explode($delimiter, $string, $limit);
+            $list = explode($delimiter, $string, $limit);
         }
 
-        return \array_values(array_filter(\array_map('trim', $list), 'strlen'));
+        return array_values(array_filter(array_map('trim', $list), 'strlen'));
     }
 
     /**
      * @param string $string
      * @param int    $width
+     *
      * @return array
      */
     public static function splitByWidth(string $string, int $width): array
@@ -553,31 +651,31 @@ abstract class StringHelper
         // str_split is not suitable for multi-byte characters, we should use preg_split to get char array properly.
         // additionally, array_slice() is not enough as some character has doubled width.
         // we need a function to split string not by character count but by string width
-        if (false === $encoding = \mb_detect_encoding($string, null, true)) {
-            return \str_split($string, $width);
+        if (false === $encoding = mb_detect_encoding($string, null, true)) {
+            return str_split($string, $width);
         }
 
-        $utf8String = \mb_convert_encoding($string, 'utf8', $encoding);
+        $utf8String = mb_convert_encoding($string, 'utf8', $encoding);
         $lines      = [];
         $line       = '';
 
-        foreach (\preg_split('//u', $utf8String) as $char) {
+        foreach (preg_split('//u', $utf8String) as $char) {
             // test if $char could be appended to current line
-            if (\mb_strwidth($line . $char, 'utf8') <= $width) {
+            if (mb_strwidth($line . $char, 'utf8') <= $width) {
                 $line .= $char;
                 continue;
             }
 
             // if not, push current line to array and make new line
-            $lines[] = \str_pad($line, $width);
+            $lines[] = str_pad($line, $width);
             $line    = $char;
         }
 
         if ('' !== $line) {
-            $lines[] = \count($lines) ? \str_pad($line, $width) : $line;
+            $lines[] = count($lines) ? str_pad($line, $width) : $line;
         }
 
-        \mb_convert_variables($encoding, 'utf8', $lines);
+        mb_convert_variables($encoding, 'utf8', $lines);
 
         return $lines;
     }
@@ -591,23 +689,26 @@ abstract class StringHelper
      * @param int      $start
      * @param int|null $length
      * @param string   $encoding
+     *
      * @return bool|string
      */
     public static function substr(string $str, int $start, int $length = null, string $encoding = 'utf-8')
     {
-        if (\function_exists('mb_substr')) {
-            return \mb_substr($str, $start, ($length === null ? self::strlen($str) : (int)$length), $encoding);
+        if (function_exists('mb_substr')) {
+            return mb_substr($str, $start, ($length === null ? self::strlen($str) : (int)$length), $encoding);
         }
 
-        return \substr($str, $start, ($length === null ? self::strlen($str) : (int)$length));
+        return substr($str, $start, ($length === null ? self::strlen($str) : (int)$length));
     }
 
     /**
      * @from web
      *  utf-8编码下截取中文字符串,参数可以参照substr函数
-     * @param string $str 要进行截取的字符串
+     *
+     * @param string $str   要进行截取的字符串
      * @param int    $start 要进行截取的开始位置，负数为反向截取
-     * @param int    $end 要进行截取的长度
+     * @param int    $end   要进行截取的长度
+     *
      * @return string
      */
     public static function utf8SubStr(string $str, int $start = 0, int $end = null): string
@@ -616,61 +717,63 @@ abstract class StringHelper
             return false;
         }
 
-        if (\function_exists('mb_substr')) {
-            if (\func_num_args() >= 3) {
-                $end = \func_get_arg(2);
+        if (function_exists('mb_substr')) {
+            if (func_num_args() >= 3) {
+                $end = func_get_arg(2);
 
-                return \mb_substr($str, $start, $end, 'utf-8');
+                return mb_substr($str, $start, $end, 'utf-8');
             }
 
-            \mb_internal_encoding('UTF-8');
+            mb_internal_encoding('UTF-8');
 
-            return \mb_substr($str, $start);
+            return mb_substr($str, $start);
 
         }
 
         $null = '';
-        \preg_match_all('/./u', $str, $ar);
+        preg_match_all('/./u', $str, $ar);
 
-        if (\func_num_args() >= 3) {
-            $end = \func_get_arg(2);
-            return \implode($null, \array_slice($ar[0], $start, $end));
+        if (func_num_args() >= 3) {
+            $end = func_get_arg(2);
+            return implode($null, array_slice($ar[0], $start, $end));
         }
 
-        return \implode($null, \array_slice($ar[0], $start));
+        return implode($null, array_slice($ar[0], $start));
     }
 
 
     /**
      * @from web
      * 中文截取，支持gb2312,gbk,utf-8,big5   *
-     * @param string $str 要截取的字串
-     * @param int    $start 截取起始位置
-     * @param int    $length 截取长度
+     *
+     * @param string $str     要截取的字串
+     * @param int    $start   截取起始位置
+     * @param int    $length  截取长度
      * @param string $charset utf-8|gb2312|gbk|big5 编码
-     * @param bool   $suffix 是否加尾缀
+     * @param bool   $suffix  是否加尾缀
+     *
      * @return string
      */
     public static function zhSubStr($str, $start = 0, $length = 0, $charset = 'utf-8', $suffix = true): string
     {
-        if (\function_exists('mb_substr')) {
-            if (\mb_strlen($str, $charset) <= $length) {
+        if (function_exists('mb_substr')) {
+            if (mb_strlen($str, $charset) <= $length) {
                 return $str;
             }
 
-            $slice = \mb_substr($str, $start, $length, $charset);
+            $slice = mb_substr($str, $start, $length, $charset);
         } else {
             $re['utf-8']  = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
             $re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
             $re['gbk']    = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
             $re['big5']   = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
 
-            \preg_match_all($re[$charset], $str, $match);
-            if (\count($match[0]) <= $length) {
+            preg_match_all($re[$charset], $str, $match);
+            if (count($match[0]) <= $length) {
                 return $str;
             }
 
-            $slice = \implode('', \array_slice($match[0], $start, $length));
+            $slice = implode('', array_slice($match[0], $start, $length));
         }
 
         return (bool)$suffix ? $slice . '…' : $slice;
@@ -678,9 +781,11 @@ abstract class StringHelper
 
     /**
      * Truncate strings
+     *
      * @param string $str
      * @param int    $maxLength Max length
-     * @param string $suffix Suffix optional
+     * @param string $suffix    Suffix optional
+     *
      * @return string $str truncated
      */
     /* CAUTION : Use it only on module hookEvents.
@@ -691,16 +796,18 @@ abstract class StringHelper
             return $str;
         }
 
-        $str = \utf8_decode($str);
+        $str = utf8_decode($str);
 
-        return \utf8_encode(\substr($str, 0, $maxLength - self::strlen($suffix)) . $suffix);
+        return utf8_encode(substr($str, 0, $maxLength - self::strlen($suffix)) . $suffix);
     }
 
     /**
      * 字符截断输出
+     *
      * @param string   $str
      * @param int      $start
      * @param null|int $length
+     *
      * @return string
      */
     public static function truncate2(string $str, int $start, int $length = null): string
@@ -710,14 +817,14 @@ abstract class StringHelper
             $start  = 0;
         }
 
-        if (\strlen($str) <= $length) {
+        if (strlen($str) <= $length) {
             return $str;
         }
 
-        if (\function_exists('mb_substr')) {
-            $str = \mb_substr(\strip_tags($str), $start, $length, 'utf-8');
+        if (function_exists('mb_substr')) {
+            $str = mb_substr(strip_tags($str), $start, $length, 'utf-8');
         } else {
-            $str = \substr($str, $start, $length) . '...';
+            $str = substr($str, $start, $length) . '...';
         }
 
         return $str;
@@ -725,9 +832,11 @@ abstract class StringHelper
 
     /**
      * Copied from CakePHP String utility file
+     *
      * @param string $text
      * @param int    $length
      * @param array  $options
+     *
      * @return bool|string
      */
     public static function truncate3(string $text, int $length = 120, array $options = [])
@@ -749,11 +858,11 @@ abstract class StringHelper
          * @var bool   $html
          */
         if ($html) {
-            if (self::strlen(\preg_replace('/<.*?>/', '', $text)) <= $length) {
+            if (self::strlen(preg_replace('/<.*?>/', '', $text)) <= $length) {
                 return $text;
             }
 
-            $total_length = self::strlen(\strip_tags($ellipsis));
+            $total_length = self::strlen(strip_tags($ellipsis));
             $open_tags    = $tags = [];
             $truncate     = '';
             preg_match_all('/(<\/?([\w+]+)[^>]*>)?([^<>]*)/', $text, $tags, PREG_SET_ORDER);
@@ -778,7 +887,8 @@ abstract class StringHelper
                     $entities_length = 0;
 
                     if (preg_match_all('/&[0-9a-z]{2,8};|&#[\d]{1,7};|&#x[0-9a-f]{1,6};/i', $tag[3], $entities,
-                        PREG_OFFSET_CAPTURE)) {
+                        PREG_OFFSET_CAPTURE)
+                    ) {
                         foreach ((array)$entities[0] as $entity) {
                             if ($entity[1] + 1 - $entities_length <= $left) {
                                 $left--;
@@ -830,7 +940,7 @@ abstract class StringHelper
                 if (!empty($dropped_tags)) {
                     if (!empty($open_tags)) {
                         foreach ($dropped_tags as $closing_tag) {
-                            if (!\in_array($closing_tag[1], $open_tags, true)) {
+                            if (!in_array($closing_tag[1], $open_tags, true)) {
                                 array_unshift($open_tags, $closing_tag[1]);
                             }
                         }
@@ -862,41 +972,43 @@ abstract class StringHelper
 
     /**
      * [format description]
+     *
      * @param       $str
      * @param array $replaceParams 用于 str_replace('search','replace',$str )
+     * @param array $pregParams    用于 preg_replace('pattern','replace',$str)
+     *
+     * @return string [type]                [description]
      * @example
-     *   $replaceParams = [
+     *        $pregParams = [
+     *        'xx',  //'pattern'
+     *        'yy',  //'replace'
+     *        ]
+     *        * $pregParams = [
+     *        ['xx','xx2'],  //'pattern'
+     *        ['yy','yy2'],  //'replace'
+     *        ]
+     * @example
+     *        $replaceParams = [
      *        'xx',  //'search'
      *        'yy', //'replace'
-     *   ]
-     *   $replaceParams = [
+     *        ]
+     *        $replaceParams = [
      *        ['xx','xx2'],  //'search'
      *        ['yy','yy2'],  //'replace'
-     *   ]
-     * @param array $pregParams 用于 preg_replace('pattern','replace',$str)
-     * @example
-     * $pregParams = [
-     *     'xx',  //'pattern'
-     *     'yy',  //'replace'
-     * ]
-     * * $pregParams = [
-     *     ['xx','xx2'],  //'pattern'
-     *     ['yy','yy2'],  //'replace'
-     * ]
-     * @return string [type]                [description]
+     *        ]
      */
     public static function format($str, array $replaceParams = [], array $pregParams = []): string
     {
-        if (!\is_string($str) || !$str || (!$replaceParams && !$pregParams)) {
+        if (!is_string($str) || !$str || (!$replaceParams && !$pregParams)) {
             return $str;
         }
 
-        if ($replaceParams && \count($replaceParams) === 2) {
+        if ($replaceParams && count($replaceParams) === 2) {
             [$search, $replace] = $replaceParams;
             $str = str_replace($search, $replace, $str);
         }
 
-        if ($pregParams && \count($pregParams) === 2) {
+        if ($pregParams && count($pregParams) === 2) {
             [$pattern, $replace] = $pregParams;
             $str = preg_replace($pattern, $replace, $str);
         }
@@ -906,7 +1018,9 @@ abstract class StringHelper
 
     /**
      * 格式化，用空格分隔各个词组
-     * @param  string $keyword 字符串
+     *
+     * @param string $keyword 字符串
+     *
      * @return string 格式化后的字符串
      */
     public static function wordFormat($keyword): string
@@ -924,8 +1038,10 @@ abstract class StringHelper
 
     /**
      * 缩进格式化内容，去空白/注释
+     *
      * @param     $fileName
      * @param int $type
+     *
      * @return mixed
      */
     public static function deleteStripSpace($fileName, $type = 0)

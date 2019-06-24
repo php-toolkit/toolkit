@@ -6,19 +6,17 @@
  * Time: 23:57
  */
 
+use Toolkit\File\FileFinder;
+
 require dirname(__DIR__) . '/test/boot.php';
 
 // var_dump(fnmatch('.*', ".gitkeep"));die;
 // var_dump(glob(__DIR__ . '/{t,T}ests', GLOB_BRACE | GLOB_ONLYDIR));
 
-$finder = \Toolkit\File\FileFinder::create()
-    ->files()
-    ->name('*.php')
-    // ->ignoreVCS(false)
+$finder = FileFinder::create()->files()->name('*.php')// ->ignoreVCS(false)
     // ->ignoreDotFiles(false)
     // ->exclude('tmp')
-    ->notPath('tmp')
-    ->inDir(dirname(__DIR__));
+                    ->notPath('tmp')->inDir(dirname(__DIR__));
 
 foreach ($finder as $file) {
     // var_dump($file);die;

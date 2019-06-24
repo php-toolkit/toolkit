@@ -8,13 +8,19 @@
 
 namespace Toolkit\ArrUtil;
 
+use ArrayAccess;
+use IteratorAggregate;
+use SplFixedArray;
+use function count;
+
 /**
  * Class FixedArray
  *  fixed size array implements, and support string key.
  *  `SplFixedArray` only allow int key.
+ *
  * @package Toolkit\ArrUtil
  */
-class FixedArray implements \ArrayAccess, \IteratorAggregate
+class FixedArray implements ArrayAccess, IteratorAggregate
 {
     /**
      * @var array
@@ -25,32 +31,35 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
     protected $keys;
 
     /**
-     * @var \SplFixedArray
+     * @var SplFixedArray
      */
     protected $values;
 
     /**
      * FixedArray constructor.
+     *
      * @param int $size
      */
     public function __construct(int $size = 0)
     {
-        $this->keys = [];
-        $this->values = new \SplFixedArray($size);
+        $this->keys   = [];
+        $this->values = new SplFixedArray($size);
     }
 
     /**
      * reset
+     *
      * @param int $size
      */
     public function reset(int $size = 0)
     {
-        $this->keys = [];
-        $this->values = new \SplFixedArray($size);
+        $this->keys   = [];
+        $this->values = new SplFixedArray($size);
     }
 
     /**
      * @param string $key
+     *
      * @return bool
      */
     public function __isset(string $key)
@@ -69,6 +78,7 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
 
     /**
      * @param string $key
+     *
      * @return mixed
      */
     public function __get(string $key)
@@ -86,6 +96,7 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
 
     /**
      * @param $key
+     *
      * @return int
      */
     public function getKeyIndex($key): int
@@ -110,17 +121,17 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * @return \SplFixedArray
+     * @return SplFixedArray
      */
-    public function getValues(): \SplFixedArray
+    public function getValues(): SplFixedArray
     {
         return $this->values;
     }
 
     /**
-     * @param \SplFixedArray $values
+     * @param SplFixedArray $values
      */
-    public function setValues(\SplFixedArray $values)
+    public function setValues(SplFixedArray $values)
     {
         $this->values = $values;
     }
@@ -128,16 +139,19 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
     /**
      * Defined by IteratorAggregate interface
      * Returns an iterator for this object, for use with foreach
-     * @return \SplFixedArray
+     *
+     * @return SplFixedArray
      */
-    public function getIterator(): \SplFixedArray
+    public function getIterator(): SplFixedArray
     {
         return $this->values;
     }
 
     /**
      * Checks whether an offset exists in the iterator.
-     * @param   mixed $offset The array offset.
+     *
+     * @param mixed $offset The array offset.
+     *
      * @return  boolean  True if the offset exists, false otherwise.
      */
     public function offsetExists($offset): bool
@@ -147,7 +161,9 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
 
     /**
      * Gets an offset in the iterator.
-     * @param   mixed $offset The array offset.
+     *
+     * @param mixed $offset The array offset.
+     *
      * @return  mixed  The array value if it exists, null otherwise.
      */
     public function offsetGet($offset)
@@ -163,8 +179,10 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
 
     /**
      * Sets an offset in the iterator.
-     * @param   mixed $offset The array offset.
-     * @param   mixed $value The array value.
+     *
+     * @param mixed $offset The array offset.
+     * @param mixed $value  The array value.
+     *
      * @return  void
      */
     public function offsetSet($offset, $value): void
@@ -172,17 +190,19 @@ class FixedArray implements \ArrayAccess, \IteratorAggregate
         $index = $this->getSize();
 
         // change size.
-        if ($index <= \count($this->keys)) {
+        if ($index <= count($this->keys)) {
             $this->values->setSize($index + 10);
         }
 
         $this->values[$index] = $value;
-        $this->keys[$offset] = $index;
+        $this->keys[$offset]  = $index;
     }
 
     /**
      * Unset an offset in the iterator.
-     * @param   mixed $offset The array offset.
+     *
+     * @param mixed $offset The array offset.
+     *
      * @return  void
      */
     public function offsetUnset($offset): void

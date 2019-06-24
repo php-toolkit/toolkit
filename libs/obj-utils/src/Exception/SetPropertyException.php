@@ -8,10 +8,13 @@
 
 namespace Toolkit\ObjUtil\Exception;
 
+use RuntimeException;
+
 /**
  * Class SetPropertyException
+ *
  * @package Toolkit\ObjUtil\Exception
  */
-class SetPropertyException extends \RuntimeException
+class SetPropertyException extends RuntimeException
 {
 }

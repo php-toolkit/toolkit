@@ -8,8 +8,15 @@
 
 namespace Toolkit\PhpUtil;
 
+use Exception;
+use Throwable;
+use function get_class;
+use function json_encode;
+use function strip_tags;
+
 /**
  * Class PhpException
+ *
  * @package Toolkit\PhpUtil
  */
 class PhpException
@@ -25,10 +32,12 @@ class PhpException
 
     /**
      * Converts an exception into a simple string.
-     * @param \Exception|\Throwable $e the exception being converted
-     * @param bool                  $clearHtml
-     * @param bool                  $getTrace
-     * @param null|string           $catcher
+     *
+     * @param Exception|Throwable $e the exception being converted
+     * @param bool                $clearHtml
+     * @param bool                $getTrace
+     * @param null|string         $catcher
+     *
      * @return string the string representation of the exception.
      */
     public static function toHtml($e, bool $getTrace = true, string $catcher = null, bool $clearHtml = false): string
@@ -36,32 +45,27 @@ class PhpException
         if (!$getTrace) {
             $message = "Error: {$e->getMessage()}";
         } else {
-            $message = sprintf(
-                "<h3>%s(%d): %s</h3>\n<pre><strong>File: %s(Line %d)</strong>%s \n\n%s</pre>",
-                \get_class($e),
-                $e->getCode(),
-                $e->getMessage(),
-                $e->getFile(),
-                $e->getLine(),
-                $catcher ? "\nCatch By: $catcher" : '',
-                $e->getTraceAsString()
-            );
+            $message = sprintf("<h3>%s(%d): %s</h3>\n<pre><strong>File: %s(Line %d)</strong>%s \n\n%s</pre>",
+                get_class($e), $e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(),
+                $catcher ? "\nCatch By: $catcher" : '', $e->getTraceAsString());
         }
 
-        return $clearHtml ? \strip_tags($message) : "<div class=\"exception-box\">{$message}</div>";
+        return $clearHtml ? strip_tags($message) : "<div class=\"exception-box\">{$message}</div>";
     }
 
     /**
      * Converts an exception into a simple array.
-     * @param \Exception|\Throwable $e the exception being converted
-     * @param bool                  $getTrace
-     * @param null|string           $catcher
+     *
+     * @param Exception|Throwable $e the exception being converted
+     * @param bool                $getTrace
+     * @param null|string         $catcher
+     *
      * @return array
      */
     public static function toArray($e, bool $getTrace = true, string $catcher = null): array
     {
         $data = [
-            'class'   => \get_class($e),
+            'class'   => get_class($e),
             'message' => $e->getMessage(),
             'code'    => $e->getCode(),
             'file'    => $e->getFile() . ':' . $e->getLine(),
@@ -80,27 +84,23 @@ class PhpException
 
     /**
      * Converts an exception into a json string.
-     * @param \Exception|\Throwable $e the exception being converted
-     * @param bool                  $getTrace
-     * @param null|string           $catcher
+     *
+     * @param Exception|Throwable $e the exception being converted
+     * @param bool                $getTrace
+     * @param null|string         $catcher
+     *
      * @return string the string representation of the exception.
      */
     public static function toJson($e, bool $getTrace = true, string $catcher = null): string
     {
         if (!$getTrace) {
-            return \json_encode(['msg' => "Error: {$e->getMessage()}"]);
+            return json_encode(['msg' => "Error: {$e->getMessage()}"]);
         }
 
         $map = [
             'code' => $e->getCode() ?: 500,
-            'msg'  => sprintf(
-                '%s(%d): %s, File: %s(Line %d)',
-                \get_class($e),
-                $e->getCode(),
-                $e->getMessage(),
-                $e->getFile(),
-                $e->getLine()
-            ),
+            'msg'  => sprintf('%s(%d): %s, File: %s(Line %d)', get_class($e), $e->getCode(), $e->getMessage(),
+                $e->getFile(), $e->getLine()),
             'data' => $e->getTrace()
         ];
 
@@ -112,6 +112,6 @@ class PhpException
             $map['trace'] = $e->getTrace();
         }
 
-        return \json_encode($map);
+        return json_encode($map);
     }
 }

@@ -10,13 +10,23 @@
 
 namespace Toolkit\File;
 
+use InvalidArgumentException;
 use Toolkit\File\Exception\FileNotFoundException;
 use Toolkit\File\Exception\FileReadException;
 use Toolkit\File\Exception\FileSystemException;
 use Toolkit\File\Exception\IOException;
+use function dirname;
+use function file_put_contents;
+use function function_exists;
+use function in_array;
+use function is_array;
+use function is_string;
+use function stat;
+use function strlen;
 
 /**
  * Class File
+ *
  * @package Toolkit\File
  */
 abstract class File extends FileSystem
@@ -31,8 +41,10 @@ abstract class File extends FileSystem
 
     /**
      * 获得文件名称
+     *
      * @param string $file
      * @param bool   $clearExt 是否去掉文件名中的后缀，仅保留名字
+     *
      * @return string
      */
     public static function getName($file, $clearExt = false): string
@@ -44,8 +56,10 @@ abstract class File extends FileSystem
 
     /**
      * 获得文件扩展名、后缀名
+     *
      * @param      $filename
      * @param bool $clearPoint 是否带点
+     *
      * @return string
      */
     public static function getSuffix($filename, $clearPoint = false): string
@@ -57,8 +71,10 @@ abstract class File extends FileSystem
 
     /**
      * 获得文件扩展名、后缀名
+     *
      * @param      $path
      * @param bool $clearPoint 是否带点
+     *
      * @return string
      */
     public static function getExtension($path, $clearPoint = false): string
@@ -70,6 +86,7 @@ abstract class File extends FileSystem
 
     /**
      * @param string $file
+     *
      * @return string eg: image/gif
      */
     public static function mimeType($file): string
@@ -80,9 +97,10 @@ abstract class File extends FileSystem
     /**
      * @param string $filename
      * @param bool   $check
+     *
      * @return array
      * @throws FileNotFoundException
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function info(string $filename, $check = true): array
     {
@@ -101,27 +119,31 @@ abstract class File extends FileSystem
 
     /**
      * @param $filename
+     *
      * @return array
      */
     public static function getStat($filename): array
     {
-        return \stat($filename);
+        return stat($filename);
     }
 
     /**
      * save description
-     * @param  mixed  $data string array(仅一维数组) 或者是 stream  资源
-     * @param  string $filename [description], LOCK_EX
+     *
+     * @param mixed  $data     string array(仅一维数组) 或者是 stream  资源
+     * @param string $filename [description], LOCK_EX
+     *
      * @return bool
      */
     public static function save(string $filename, string $data): bool
     {
-        return \file_put_contents($filename, $data) !== false;
+        return file_put_contents($filename, $data) !== false;
     }
 
     /**
      * @param $content
      * @param $path
+     *
      * @throws IOException
      */
     public static function write($content, $path): void
@@ -135,6 +157,7 @@ abstract class File extends FileSystem
 
     /**
      * @param string $path
+     *
      * @return resource
      * @throws IOException
      */
@@ -149,14 +172,16 @@ abstract class File extends FileSystem
 
     /**
      * Attempts to write $content to the file specified by $handler. $path is used for printing exceptions.
+     *
      * @param resource $handler The resource to write to.
      * @param string   $content The content to write.
-     * @param string   $path The path to the file (for exception printing only).
+     * @param string   $path    The path to the file (for exception printing only).
+     *
      * @throws IOException
      */
     public static function writeToFile($handler, string $content, string $path = ''): void
     {
-        if (($result = @fwrite($handler, $content)) === false || ($result < \strlen($content))) {
+        if (($result = @fwrite($handler, $content)) === false || ($result < strlen($content))) {
             throw new IOException('The file "' . $path . '" could not be written to. Check your disk space and file permissions.');
         }
     }
@@ -164,19 +189,20 @@ abstract class File extends FileSystem
     /**
      * ********************** 创建多级目录和多个文件 **********************
      * 结合上两个函数
+     *
      * @param $fileData - 数组：要创建的多个文件名组成,含文件的完整路径
-     * @param $append - 是否以追加的方式写入数据 默认false
-     * @param $mode =0777 - 权限，默认0775
-     *  eg: $fileData = array(
-     *      'file_name'   => 'content',
-     *      'case.html'   => 'content' ,
-     *  );
+     * @param $append   - 是否以追加的方式写入数据 默认false
+     * @param $mode     =0777 - 权限，默认0775
+     *                  eg: $fileData = array(
+     *                  'file_name'   => 'content',
+     *                  'case.html'   => 'content' ,
+     *                  );
      **/
     public static function createAndWrite(array $fileData = [], $append = false, $mode = 0664): void
     {
         foreach ($fileData as $file => $content) {
             //检查目录是否存在，不存在就先创建（多级）目录
-            Directory::create(\dirname($file), $mode);
+            Directory::create(dirname($file), $mode);
 
             //$fileName = basename($file); //文件名
 
@@ -196,6 +222,7 @@ abstract class File extends FileSystem
      * @param bool|false    $useIncludePath
      * @param null|resource $streamContext
      * @param int           $curlTimeout
+     *
      * @return bool|mixed|string
      * @throws FileNotFoundException
      * @throws FileReadException
@@ -212,7 +239,7 @@ abstract class File extends FileSystem
             $streamContext = @stream_context_create(['http' => ['timeout' => $curlTimeout]]);
         }
 
-        if ($isUrl && \in_array(ini_get('allow_url_fopen'), ['On', 'on', '1'], true)) {
+        if ($isUrl && in_array(ini_get('allow_url_fopen'), ['On', 'on', '1'], true)) {
             if (!file_exists($file)) {
                 throw new FileNotFoundException("File [{$file}] don't exists!");
             }
@@ -225,7 +252,7 @@ abstract class File extends FileSystem
         }
 
         // fetch remote content by url
-        if (\function_exists('curl_init')) {
+        if (function_exists('curl_init')) {
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_URL, $file);
@@ -258,13 +285,14 @@ abstract class File extends FileSystem
     /**
      * @param string $file
      * @param string $target
+     *
      * @throws FileNotFoundException
      * @throws FileSystemException
      * @throws IOException
      */
     public static function move(string $file, string $target): void
     {
-        Directory::mkdir(\dirname($target));
+        Directory::mkdir(dirname($target));
 
         if (static::copy($file, $target)) {
             unlink($file);
@@ -273,8 +301,9 @@ abstract class File extends FileSystem
 
     /**
      * @param $filename
+     *
      * @return bool
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @throws FileNotFoundException
      */
     public static function delete($filename): bool
@@ -286,6 +315,7 @@ abstract class File extends FileSystem
      * @param      $source
      * @param      $destination
      * @param null $streamContext
+     *
      * @return bool|int
      * @throws FileSystemException
      * @throws FileNotFoundException
@@ -306,8 +336,9 @@ abstract class File extends FileSystem
     /**
      * @param $inFile
      * @param $outFile
+     *
      * @return mixed
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @throws FileNotFoundException
      */
     public static function combine($inFile, $outFile)
@@ -315,7 +346,7 @@ abstract class File extends FileSystem
         self::check($inFile);
 
         $data = '';
-        if (\is_array($inFile)) {
+        if (is_array($inFile)) {
             foreach ($inFile as $value) {
                 if (is_file($value)) {
                     $data .= trim(file_get_contents($value));
@@ -351,20 +382,22 @@ abstract class File extends FileSystem
 
     /**
      * Removes whitespace from a PHP source string while preserving line numbers.
+     *
      * @param string $source A PHP string
+     *
      * @return string The PHP string with the whitespace removed
      */
     public static function stripPhpCode(string $source): string
     {
-        if (!\function_exists('token_get_all')) {
+        if (!function_exists('token_get_all')) {
             return $source;
         }
 
         $output = '';
         foreach (token_get_all($source) as $token) {
-            if (\is_string($token)) {
+            if (is_string($token)) {
                 $output .= $token;
-            } elseif (\in_array($token[0], [T_COMMENT, T_DOC_COMMENT], true)) {
+            } elseif (in_array($token[0], [T_COMMENT, T_DOC_COMMENT], true)) {
                 $output .= str_repeat("\n", substr_count($token[1], "\n"));
             } elseif (T_WHITESPACE === $token[0]) {
                 // reduce wide spaces
@@ -373,7 +406,7 @@ abstract class File extends FileSystem
                 $whitespace = preg_replace('{(?:\r\n|\r|\n)}', "\n", $whitespace);
                 // trim leading spaces
                 $whitespace = preg_replace('{\n +}', "\n", $whitespace);
-                $output .= $whitespace;
+                $output     .= $whitespace;
             } else {
                 $output .= $token[1];
             }
@@ -385,6 +418,7 @@ abstract class File extends FileSystem
     /**
      * If you want to download files from a linux server with
      * a filesize bigger than 2GB you can use the following
+     *
      * @param string $file
      * @param string $as
      */

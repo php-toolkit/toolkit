@@ -8,8 +8,43 @@
 
 namespace Toolkit\Sys;
 
+use Closure;
+use RuntimeException;
+use function array_merge;
+use function cli_set_process_title;
+use function error_get_last;
+use function file_exists;
+use function file_get_contents;
+use function function_exists;
+use function getmypid;
+use function pcntl_alarm;
+use function pcntl_async_signals;
+use function pcntl_fork;
+use function pcntl_signal;
+use function pcntl_signal_dispatch;
+use function pcntl_signal_get_handler;
+use function pcntl_waitpid;
+use function pcntl_wexitstatus;
+use function posix_geteuid;
+use function posix_getgrnam;
+use function posix_getpid;
+use function posix_getpwnam;
+use function posix_getpwuid;
+use function posix_getuid;
+use function posix_kill;
+use function posix_setgid;
+use function posix_setuid;
+use function setproctitle;
+use function time;
+use function unlink;
+use function usleep;
+use const PHP_OS;
+use const SIGALRM;
+use const SIGTERM;
+
 /**
  * Class ProcessUtil
+ *
  * @package Toolkit\Sys
  */
 class ProcessUtil
@@ -26,11 +61,13 @@ class ProcessUtil
 
     /**
      * fork/create a child process.
+     *
      * @param callable|null $onStart Will running on the child process start.
      * @param callable|null $onError
-     * @param int           $id The process index number. will use `forks()`
+     * @param int           $id      The process index number. will use `forks()`
+     *
      * @return array|false
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public static function fork(callable $onStart = null, callable $onError = null, $id = 0)
     {
@@ -39,14 +76,14 @@ class ProcessUtil
         }
 
         $info = [];
-        $pid = \pcntl_fork();
+        $pid  = pcntl_fork();
 
         // at parent, get forked child info
         if ($pid > 0) {
             $info = [
                 'id'        => $id,
                 'pid'       => $pid,
-                'startTime' => \time(),
+                'startTime' => time(),
             ];
         } elseif ($pid === 0) { // at child
             $pid = self::getPid();
@@ -59,19 +96,20 @@ class ProcessUtil
                 $onError($pid);
             }
 
-            throw new \RuntimeException('Fork child process failed! exiting.');
+            throw new RuntimeException('Fork child process failed! exiting.');
         }
 
         return $info;
     }
 
     /**
-     * @see ProcessUtil::fork()
      * @param callable|null $onStart
      * @param callable|null $onError
      * @param int           $id
+     *
      * @return array|false
-     * @throws \RuntimeException
+     * @throws RuntimeException
+     * @see ProcessUtil::fork()
      */
     public static function create(callable $onStart = null, callable $onError = null, $id = 0)
     {
@@ -80,25 +118,27 @@ class ProcessUtil
 
     /**
      * Daemon, detach and run in the background
-     * @param \Closure|null $beforeQuit
+     *
+     * @param Closure|null $beforeQuit
+     *
      * @return int Return new process PID
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
-    public static function daemonRun(\Closure $beforeQuit = null): int
+    public static function daemonRun(Closure $beforeQuit = null): int
     {
         if (!self::hasPcntl()) {
             return 0;
         }
 
         // umask(0);
-        $pid = \pcntl_fork();
+        $pid = pcntl_fork();
 
         switch ($pid) {
             case 0: // at new process
                 $pid = self::getPid();
 
                 if (posix_setsid() < 0) {
-                    throw new \RuntimeException('posix_setsid() execute failed! exiting');
+                    throw new RuntimeException('posix_setsid() execute failed! exiting');
                 }
 
                 // chdir('/');
@@ -106,7 +146,7 @@ class ProcessUtil
                 break;
 
             case -1: // fork failed.
-                throw new \RuntimeException('Fork new process is failed! exiting');
+                throw new RuntimeException('Fork new process is failed! exiting');
                 break;
 
             default: // at parent
@@ -121,12 +161,13 @@ class ProcessUtil
     }
 
     /**
-     * @see ProcessUtil::forks()
      * @param int           $number
      * @param callable|null $onStart
      * @param callable|null $onError
+     *
      * @return array|false
-     * @throws \RuntimeException
+     * @throws RuntimeException
+     * @see ProcessUtil::forks()
      */
     public static function multi(int $number, callable $onStart = null, callable $onError = null)
     {
@@ -135,11 +176,13 @@ class ProcessUtil
 
     /**
      * fork/create multi child processes.
+     *
      * @param int           $number
      * @param callable|null $onStart Will running on the child processes.
      * @param callable|null $onError
+     *
      * @return array|false
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public static function forks(int $number, callable $onStart = null, callable $onError = null)
     {
@@ -154,7 +197,7 @@ class ProcessUtil
         $pidAry = [];
 
         for ($id = 0; $id < $number; $id++) {
-            $info = self::fork($onStart, $onError, $id);
+            $info                 = self::fork($onStart, $onError, $id);
             $pidAry[$info['pid']] = $info;
         }
 
@@ -163,7 +206,9 @@ class ProcessUtil
 
     /**
      * wait child exit.
+     *
      * @param callable $onExit Exit callback. will received args: (pid, exitCode, status)
+     *
      * @return bool
      */
     public static function wait(callable $onExit): bool
@@ -177,12 +222,12 @@ class ProcessUtil
         // pid < 0：子进程都没了
         // pid > 0：捕获到一个子进程退出的情况
         // pid = 0：没有捕获到退出的子进程
-        while (($pid = \pcntl_waitpid(-1, $status, WNOHANG)) >= 0) {
+        while (($pid = pcntl_waitpid(-1, $status, WNOHANG)) >= 0) {
             if ($pid) {
                 // handler(pid, exitCode, status)
-                $onExit($pid, \pcntl_wexitstatus($status), $status);
+                $onExit($pid, pcntl_wexitstatus($status), $status);
             } else {
-                \usleep(50000);
+                usleep(50000);
             }
         }
 
@@ -191,26 +236,28 @@ class ProcessUtil
 
     /**
      * Stops all running children
+     *
      * @param array $children
-     * [
-     *  'pid' => [
+     *      [
+     *      'pid' => [
      *      'id' => worker id
-     *  ],
-     *  ... ...
-     * ]
+     *      ],
+     *      ... ...
+     *      ]
      * @param int   $signal
      * @param array $events
-     * [
-     *   'beforeStops' => function ($sigText) {
+     *      [
+     *      'beforeStops' => function ($sigText) {
      *      echo "Stopping processes({$sigText}) ...\n";
-     *  },
-     *  'beforeStop' => function ($pid, $info) {
+     *      },
+     *      'beforeStop' => function ($pid, $info) {
      *      echo "Stopping process(PID:$pid)\n";
-     *  }
-     * ]
+     *      }
+     *      ]
+     *
      * @return bool
      */
-    public static function stopWorkers(array $children, int $signal = \SIGTERM, array $events = []): bool
+    public static function stopWorkers(array $children, int $signal = SIGTERM, array $events = []): bool
     {
         if (!$children) {
             return false;
@@ -220,7 +267,7 @@ class ProcessUtil
             return false;
         }
 
-        $events = \array_merge([
+        $events = array_merge([
             'beforeStops' => null,
             'beforeStop'  => null,
         ], $events);
@@ -247,9 +294,11 @@ class ProcessUtil
 
     /**
      * send kill signal to the process
+     *
      * @param int  $pid
      * @param bool $force
      * @param int  $timeout
+     *
      * @return bool
      */
     public static function kill(int $pid, bool $force = false, int $timeout = 3): bool
@@ -259,11 +308,13 @@ class ProcessUtil
 
     /**
      * Do shutdown process and wait it exit.
+     *
      * @param int    $pid Master Pid
      * @param bool   $force
      * @param int    $waitTime
      * @param null   $error
      * @param string $name
+     *
      * @return bool
      */
     public static function killAndWait(
@@ -287,7 +338,7 @@ class ProcessUtil
             return true;
         }
 
-        $startTime = \time();
+        $startTime = time();
         echo 'Stopping .';
 
         // wait exit
@@ -296,7 +347,7 @@ class ProcessUtil
                 break;
             }
 
-            if (\time() - $startTime > $waitTime) {
+            if (time() - $startTime > $waitTime) {
                 $error = "Stop the $name(PID:$pid) failed(timeout)!";
                 break;
             }
@@ -314,6 +365,7 @@ class ProcessUtil
 
     /**
      * @param int $pid
+     *
      * @return bool
      */
     public static function isRunning(int $pid): bool
@@ -323,6 +375,7 @@ class ProcessUtil
 
     /**
      * exit
+     *
      * @param int $code
      */
     public static function quit($code = 0): void
@@ -332,8 +385,10 @@ class ProcessUtil
 
     /**
      * 杀死所有进程
+     *
      * @param     $name
      * @param int $sigNo
+     *
      * @return string
      */
     public static function killByName(string $name, int $sigNo = 9): string
@@ -349,9 +404,11 @@ class ProcessUtil
 
     /**
      * send signal to the process
+     *
      * @param int $pid
      * @param int $signal
      * @param int $timeout
+     *
      * @return bool
      */
     public static function sendSignal(int $pid, int $signal, int $timeout = 0): bool
@@ -361,7 +418,7 @@ class ProcessUtil
         }
 
         // do send
-        if ($ret = \posix_kill($pid, $signal)) {
+        if ($ret = posix_kill($pid, $signal)) {
             return true;
         }
 
@@ -371,8 +428,8 @@ class ProcessUtil
         }
 
         // failed, try again ...
-        $timeout = $timeout > 0 && $timeout < 10 ? $timeout : 3;
-        $startTime = \time();
+        $timeout   = $timeout > 0 && $timeout < 10 ? $timeout : 3;
+        $startTime = time();
 
         // retry stop if not stopped.
         while (true) {
@@ -382,13 +439,13 @@ class ProcessUtil
             }
 
             // have been timeout
-            if ((\time() - $startTime) >= $timeout) {
+            if ((time() - $startTime) >= $timeout) {
                 return false;
             }
 
             // try again kill
-            $ret = \posix_kill($pid, $signal);
-            \usleep(10000);
+            $ret = posix_kill($pid, $signal);
+            usleep(10000);
         }
 
         return $ret;
@@ -396,8 +453,10 @@ class ProcessUtil
 
     /**
      * install signal
-     * @param  int      $signal e.g: SIGTERM SIGINT(Ctrl+C) SIGUSR1 SIGUSR2 SIGHUP
-     * @param  callable $handler
+     *
+     * @param int      $signal e.g: SIGTERM SIGINT(Ctrl+C) SIGUSR1 SIGUSR2 SIGHUP
+     * @param callable $handler
+     *
      * @return bool
      */
     public static function installSignal($signal, callable $handler): bool
@@ -406,11 +465,12 @@ class ProcessUtil
             return false;
         }
 
-        return \pcntl_signal($signal, $handler, false);
+        return pcntl_signal($signal, $handler, false);
     }
 
     /**
      * dispatch signal
+     *
      * @return bool
      */
     public static function dispatchSignal(): bool
@@ -420,31 +480,35 @@ class ProcessUtil
         }
 
         // receive and dispatch signal
-        return \pcntl_signal_dispatch();
+        return pcntl_signal_dispatch();
     }
 
     /**
      * get signal handler
+     *
      * @param int $signal
+     *
      * @return bool|string|mixed
      * @since 7.1
      */
     public static function getSignalHandler(int $signal)
     {
-        return \pcntl_signal_get_handler($signal);
+        return pcntl_signal_get_handler($signal);
     }
 
     /**
      * Enable/disable asynchronous signal handling or return the old setting
+     *
      * @param bool|null $on
      *  - bool Enable or disable.
      *  - null Return old setting.
+     *
      * @return bool
      * @since 7.1
      */
     public static function asyncSignal(bool $on = null): bool
     {
-        return \pcntl_async_signals($on);
+        return pcntl_async_signals($on);
     }
 
     /**************************************************************************************
@@ -453,34 +517,37 @@ class ProcessUtil
 
     /**
      * get current process id
+     *
      * @return int
      */
     public static function getPid(): int
     {
-        if (\function_exists('posix_getpid')) {
-            return \posix_getpid();
+        if (function_exists('posix_getpid')) {
+            return posix_getpid();
         }
 
-        return \getmypid();
+        return getmypid();
     }
 
     /**
      * get PID by pid File
+     *
      * @param string $file
      * @param bool   $checkLive
+     *
      * @return int
      */
     public static function getPidByFile(string $file, bool $checkLive = false): int
     {
-        if ($file && \file_exists($file)) {
-            $pid = (int)\file_get_contents($file);
+        if ($file && file_exists($file)) {
+            $pid = (int)file_get_contents($file);
 
             // check live
             if ($checkLive && self::isRunning($pid)) {
                 return $pid;
             }
 
-            \unlink($file);
+            unlink($file);
         }
 
         return 0;
@@ -488,11 +555,12 @@ class ProcessUtil
 
     /**
      * Get unix user of current process.
+     *
      * @return array
      */
     public static function getCurrentUser(): array
     {
-        return \posix_getpwuid(\posix_getuid());
+        return posix_getpwuid(posix_getuid());
     }
 
     /**
@@ -505,8 +573,10 @@ class ProcessUtil
      *          ProcessUtil::clearAlarm(); // close
      *      }
      *  });
+     *
      * @param int      $seconds
      * @param callable $handler
+     *
      * @return bool|int
      */
     public static function afterDo(int $seconds, callable $handler)
@@ -515,9 +585,9 @@ class ProcessUtil
             return false;
         }
 
-        self::installSignal(\SIGALRM, $handler);
+        self::installSignal(SIGALRM, $handler);
 
-        return \pcntl_alarm($seconds);
+        return pcntl_alarm($seconds);
     }
 
     /**
@@ -525,15 +595,17 @@ class ProcessUtil
      */
     public static function clearAlarm(): int
     {
-        return \pcntl_alarm(-1);
+        return pcntl_alarm(-1);
     }
 
     /**
      * run a command. it is support windows
+     *
      * @param string      $command
      * @param string|null $cwd
+     *
      * @return array
-     * @throws \RuntimeException
+     * @throws RuntimeException
      * @deprecated Please use Sys::run()
      */
     public static function run(string $command, string $cwd = null): array
@@ -543,7 +615,9 @@ class ProcessUtil
 
     /**
      * Set process title.
+     *
      * @param string $title
+     *
      * @return bool
      */
     public static function setName(string $title): bool
@@ -553,23 +627,25 @@ class ProcessUtil
 
     /**
      * Set process title.
+     *
      * @param string $title
+     *
      * @return bool
      */
     public static function setTitle(string $title): bool
     {
-        if (!$title || 'Darwin' === \PHP_OS) {
+        if (!$title || 'Darwin' === PHP_OS) {
             return false;
         }
 
-        if (\function_exists('cli_set_process_title')) {
-            \cli_set_process_title($title);
-        } elseif (\function_exists('setproctitle')) {
-            \setproctitle($title);
+        if (function_exists('cli_set_process_title')) {
+            cli_set_process_title($title);
+        } elseif (function_exists('setproctitle')) {
+            setproctitle($title);
         }
 
-        if ($error = \error_get_last()) {
-            throw new \RuntimeException($error['message']);
+        if ($error = error_get_last()) {
+            throw new RuntimeException($error['message']);
         }
 
         return false;
@@ -577,24 +653,26 @@ class ProcessUtil
 
     /**
      * Set unix user and group for current process script.
+     *
      * @param string $user
      * @param string $group
-     * @throws \RuntimeException
+     *
+     * @throws RuntimeException
      */
     public static function changeScriptOwner(string $user, string $group = ''): void
     {
-        $uInfo = \posix_getpwnam($user);
+        $uInfo = posix_getpwnam($user);
 
         if (!$uInfo || !isset($uInfo['uid'])) {
-            throw new \RuntimeException("User ({$user}) not found.");
+            throw new RuntimeException("User ({$user}) not found.");
         }
 
         $uid = (int)$uInfo['uid'];
 
         // Get gid.
         if ($group) {
-            if (!$gInfo = \posix_getgrnam($group)) {
-                throw new \RuntimeException("Group {$group} not exists", -300);
+            if (!$gInfo = posix_getgrnam($group)) {
+                throw new RuntimeException("Group {$group} not exists", -300);
             }
 
             $gid = (int)$gInfo['gid'];
@@ -603,19 +681,19 @@ class ProcessUtil
         }
 
         if (!posix_initgroups($uInfo['name'], $gid)) {
-            throw new \RuntimeException("The user [{$user}] is not in the user group ID [GID:{$gid}]", -300);
+            throw new RuntimeException("The user [{$user}] is not in the user group ID [GID:{$gid}]", -300);
         }
 
-        \posix_setgid($gid);
+        posix_setgid($gid);
 
-        if (\posix_geteuid() !== $gid) {
-            throw new \RuntimeException("Unable to change group to {$user} (UID: {$gid}).", -300);
+        if (posix_geteuid() !== $gid) {
+            throw new RuntimeException("Unable to change group to {$user} (UID: {$gid}).", -300);
         }
 
-        \posix_setuid($uid);
+        posix_setuid($uid);
 
-        if (\posix_geteuid() !== $uid) {
-            throw new \RuntimeException("Unable to change user to {$user} (UID: {$uid}).", -300);
+        if (posix_geteuid() !== $uid) {
+            throw new RuntimeException("Unable to change user to {$user} (UID: {$uid}).", -300);
         }
     }
 
@@ -624,7 +702,7 @@ class ProcessUtil
      */
     public static function hasPcntl(): bool
     {
-        return !Sys::isWindows() && \function_exists('pcntl_fork');
+        return !Sys::isWindows() && function_exists('pcntl_fork');
     }
 
     /**
@@ -632,6 +710,6 @@ class ProcessUtil
      */
     public static function hasPosix(): bool
     {
-        return !Sys::isWindows() && \function_exists('posix_kill');
+        return !Sys::isWindows() && function_exists('posix_kill');
     }
 }

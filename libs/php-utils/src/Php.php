@@ -10,6 +10,7 @@ namespace Toolkit\PhpUtil;
 
 /**
  * Class Php - alias of the class PhpHelper
+ *
  * @package Toolkit\PhpUtil
  */
 class Php extends PhpHelper

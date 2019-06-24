@@ -10,29 +10,46 @@
 
 namespace Toolkit\File;
 
+use FilesystemIterator;
+use InvalidArgumentException;
+use RecursiveCallbackFilterIterator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use Toolkit\ArrUtil\Arr;
 use Toolkit\File\Exception\FileNotFoundException;
 use Toolkit\File\Exception\IOException;
+use Traversable;
+use function count;
+use function file_exists;
+use function function_exists;
+use function is_array;
+use function is_string;
+use function preg_match;
+use function str_ireplace;
+use function strlen;
+use function strpos;
+use function substr;
 
 /**
  * Class FileSystem
+ *
  * @package Toolkit\File
  */
 abstract class FileSystem
 {
     /**
      * @param $path
+     *
      * @return bool
      */
     public static function isAbsPath(string $path): bool
     {
-        if (!$path || !\is_string($path)) {
+        if (!$path || !is_string($path)) {
             return false;
         }
 
-        if (
-            \strpos($path, '/') === 0 ||  // linux/mac
-            1 === \preg_match('#^[a-z]:[\/|\\\]{1}.+#i', $path) // windows
+        if (strpos($path, '/') === 0 ||  // linux/mac
+            1 === preg_match('#^[a-z]:[\/|\\\]{1}.+#i', $path) // windows
         ) {
             return true;
         }
@@ -42,34 +59,37 @@ abstract class FileSystem
 
     /**
      * Returns whether the file path is an absolute path.
+     *
      * @from Symfony-filesystem
+     *
      * @param string $file A file path
+     *
      * @return bool
      */
     public static function isAbsolutePath(string $file): bool
     {
-        return strspn($file, '/\\', 0, 1)
-            || (\strlen($file) > 3 && ctype_alpha($file[0])
-                && $file[1] === ':'
-                && strspn($file, '/\\', 2, 1)
-            )
-            || null !== parse_url($file, PHP_URL_SCHEME);
+        return strspn($file, '/\\', 0,
+                1) || (strlen($file) > 3 && ctype_alpha($file[0]) && $file[1] === ':' && strspn($file, '/\\', 2,
+                    1)) || null !== parse_url($file, PHP_URL_SCHEME);
     }
 
     /**
      * 转换为标准的路径结构
-     * @param  string $dirName
+     *
+     * @param string $dirName
+     *
      * @return string
      */
     public static function pathFormat(string $dirName): string
     {
-        $dirName = (string)\str_ireplace('\\', '/', trim($dirName));
+        $dirName = (string)str_ireplace('\\', '/', trim($dirName));
 
-        return \substr($dirName, -1) === '/' ? $dirName : $dirName . '/';
+        return substr($dirName, -1) === '/' ? $dirName : $dirName . '/';
     }
 
     /**
      * @param string $path e.g phar://E:/workenv/xxx/yyy/app.phar/web
+     *
      * @return string
      */
     public function clearPharPath(string $path): string
@@ -87,8 +107,10 @@ abstract class FileSystem
 
     /**
      * 检查文件/夹/链接是否存在
+     *
      * @param string      $file 要检查的目标
      * @param null|string $type
+     *
      * @return array|string
      */
     public static function exists(string $file, $type = null)
@@ -113,8 +135,9 @@ abstract class FileSystem
     /**
      * @param string            $file
      * @param null|string|array $ext eg: 'jpg|gif'
+     *
      * @throws FileNotFoundException
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function check(string $file, $ext = null): void
     {
@@ -123,22 +146,25 @@ abstract class FileSystem
         }
 
         if ($ext) {
-            if (\is_array($ext)) {
+            if (is_array($ext)) {
                 $ext = implode('|', $ext);
             }
 
             if (preg_match("/\.($ext)$/i", $file)) {
-                throw new \InvalidArgumentException("{$file} extension is not match: {$ext}");
+                throw new InvalidArgumentException("{$file} extension is not match: {$ext}");
             }
         }
     }
 
     /**
      * Renames a file or a directory.
+     *
      * @from Symfony-filesystem
-     * @param string $origin The origin filename or directory
-     * @param string $target The new filename or directory
+     *
+     * @param string $origin    The origin filename or directory
+     * @param string $target    The new filename or directory
      * @param bool   $overwrite Whether to overwrite the target if it already exists
+     *
      * @throws IOException When target file or directory already exists
      * @throws IOException When origin cannot be renamed
      */
@@ -156,14 +182,17 @@ abstract class FileSystem
 
     /**
      * Tells whether a file exists and is readable.
+     *
      * @from Symfony-filesystem
+     *
      * @param string $filename Path to the file
+     *
      * @return bool
      * @throws IOException When windows path is longer than 258 characters
      */
     public static function isReadable(string $filename): bool
     {
-        if ('\\' === DIRECTORY_SEPARATOR && \strlen($filename) > 258) {
+        if ('\\' === DIRECTORY_SEPARATOR && strlen($filename) > 258) {
             throw new IOException('Could not check if file is readable because path length exceeds 258 characters.');
         }
 
@@ -172,8 +201,10 @@ abstract class FileSystem
 
     /**
      * Creates a directory recursively.
-     * @param string|array|\Traversable $dirs The directory path
-     * @param int                       $mode The directory mode
+     *
+     * @param string|array|Traversable $dirs The directory path
+     * @param int                      $mode The directory mode
+     *
      * @throws IOException On any directory creation failure
      */
     public static function mkdir($dirs, $mode = 0777): void
@@ -200,11 +231,14 @@ abstract class FileSystem
 
     /**
      * Change mode for an array of files or directories.
+     *
      * @from Symfony-filesystem
-     * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to change mode
-     * @param int                       $mode The new mode (octal)
-     * @param int                       $umask The mode mask (octal)
-     * @param bool                      $recursive Whether change the mod recursively or not
+     *
+     * @param string|array|Traversable $files     A filename, an array of files, or a \Traversable instance to change mode
+     * @param int                      $mode      The new mode (octal)
+     * @param int                      $umask     The mode mask (octal)
+     * @param bool                     $recursive Whether change the mod recursively or not
+     *
      * @throws IOException When the change fail
      */
     public static function chmod($files, $mode, $umask = 0000, $recursive = false): void
@@ -215,27 +249,30 @@ abstract class FileSystem
             }
 
             if ($recursive && is_dir($file) && !is_link($file)) {
-                self::chmod(new \FilesystemIterator($file), $mode, $umask, true);
+                self::chmod(new FilesystemIterator($file), $mode, $umask, true);
             }
         }
     }
 
     /**
      * Change the owner of an array of files or directories.
+     *
      * @from Symfony-filesystem
-     * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to change owner
-     * @param string                    $user The new owner user name
-     * @param bool                      $recursive Whether change the owner recursively or not
+     *
+     * @param string|array|Traversable $files     A filename, an array of files, or a \Traversable instance to change owner
+     * @param string                   $user      The new owner user name
+     * @param bool                     $recursive Whether change the owner recursively or not
+     *
      * @throws IOException When the change fail
      */
     public static function chown($files, string $user, $recursive = false): void
     {
         foreach (Arr::toIterator($files) as $file) {
             if ($recursive && is_dir($file) && !is_link($file)) {
-                self::chown(new \FilesystemIterator($file), $user, true);
+                self::chown(new FilesystemIterator($file), $user, true);
             }
 
-            if (is_link($file) && \function_exists('lchown')) {
+            if (is_link($file) && function_exists('lchown')) {
                 if (true !== lchown($file, $user)) {
                     throw new IOException(sprintf('Failed to chown file "%s".', $file));
                 }
@@ -248,24 +285,26 @@ abstract class FileSystem
     /**
      * @param string   $srcDir
      * @param callable $filter
-     * @return \RecursiveIteratorIterator
-     * @throws \InvalidArgumentException
+     *
+     * @return RecursiveIteratorIterator
+     * @throws InvalidArgumentException
      */
-    public static function getIterator(string $srcDir, callable $filter): \RecursiveIteratorIterator
+    public static function getIterator(string $srcDir, callable $filter): RecursiveIteratorIterator
     {
-        if (!$srcDir || !\file_exists($srcDir)) {
-            throw new \InvalidArgumentException('Please provide a exists source directory.');
+        if (!$srcDir || !file_exists($srcDir)) {
+            throw new InvalidArgumentException('Please provide a exists source directory.');
         }
 
-        $directory = new \RecursiveDirectoryIterator($srcDir);
-        $filterIterator = new \RecursiveCallbackFilterIterator($directory, $filter);
+        $directory      = new RecursiveDirectoryIterator($srcDir);
+        $filterIterator = new RecursiveCallbackFilterIterator($directory, $filter);
 
-        return new \RecursiveIteratorIterator($filterIterator);
+        return new RecursiveIteratorIterator($filterIterator);
     }
 
     /**
      * @param     $path
      * @param int $mode
+     *
      * @return bool
      */
     public static function chmodDir(string $path, $mode = 0664): bool
@@ -299,14 +338,15 @@ abstract class FileSystem
 
     /**
      * @param string $dir
+     *
      * @return string
      */
     public static function availableSpace(string $dir = '.'): string
     {
-        $base = 1024;
-        $bytes = disk_free_space($dir);
+        $base   = 1024;
+        $bytes  = disk_free_space($dir);
         $suffix = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-        $class = min((int)log($bytes, $base), \count($suffix) - 1);
+        $class  = min((int)log($bytes, $base), count($suffix) - 1);
 
         //echo $bytes . '<br />';
 
@@ -316,14 +356,15 @@ abstract class FileSystem
 
     /**
      * @param string $dir
+     *
      * @return string
      */
     public static function countSpace(string $dir = '.'): string
     {
-        $base = 1024;
-        $bytes = disk_total_space($dir);
+        $base   = 1024;
+        $bytes  = disk_total_space($dir);
         $suffix = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-        $class = min((int)log($bytes, $base), \count($suffix) - 1);
+        $class  = min((int)log($bytes, $base), count($suffix) - 1);
 
         // pow($base, $class)
         return sprintf('%1.2f', $bytes / ($base ** $class)) . ' ' . $suffix[$class];
@@ -331,9 +372,12 @@ abstract class FileSystem
 
     /**
      * 文件或目录权限检查函数
-     * @from web
+     *
+     * @from   web
      * @access public
-     * @param  string $file_path 文件路径
+     *
+     * @param string $file_path 文件路径
+     *
      * @return int  返回值的取值范围为{0 <= x <= 15}，每个值表示的含义可由四位二进制数组合推出。
      *                  返回值在二进制计数法中，四位由高到低分别代表
      *                  可执行rename()函数权限 |可对文件追加内容权限 |可写入文件权限|可读取文件权限。

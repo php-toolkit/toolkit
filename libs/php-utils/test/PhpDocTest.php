@@ -7,6 +7,7 @@ use Toolkit\PhpUtil\PhpDoc;
 
 /**
  * Class PhpDocTest
+ *
  * @package Toolkit\PhpUtilTest
  */
 class PhpDocTest extends TestCase
@@ -24,7 +25,7 @@ class PhpDocTest extends TestCase
  *  {fullCmd}:stop      Stop the http server
  */
 DOC;
-        $ret = PhpDoc::getTags($comment);
+        $ret     = PhpDoc::getTags($comment);
         $this->assertCount(3, $ret);
         $this->assertArrayHasKey('since', $ret);
         $this->assertArrayHasKey('example', $ret);

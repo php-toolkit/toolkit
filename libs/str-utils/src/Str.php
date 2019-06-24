@@ -10,6 +10,7 @@ namespace Toolkit\StrUtil;
 
 /**
  * Class Str alias of the StringHelper
+ *
  * @package Toolkit\StrUtil
  */
 final class Str extends StringHelper

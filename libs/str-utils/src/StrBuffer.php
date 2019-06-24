@@ -10,6 +10,7 @@ namespace Toolkit\StrUtil;
 
 /**
  * Class StrBuffer
+ *
  * @package Toolkit\StrUtil
  */
 final class StrBuffer

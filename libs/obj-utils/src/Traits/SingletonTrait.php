@@ -12,6 +12,7 @@ use Toolkit\ObjUtil\Obj;
 
 /**
  * Trait SingletonTrait
+ *
  * @package Toolkit\ObjUtil\Traits
  */
 trait SingletonTrait

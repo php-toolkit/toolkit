@@ -8,11 +8,14 @@
 
 namespace Toolkit\File\Exception;
 
+use RuntimeException;
+
 /**
  * Class FileNotFoundException
+ *
  * @package Toolkit\File\Exception
  */
-class FileNotFoundException extends \RuntimeException
+class FileNotFoundException extends RuntimeException
 {
 
 }

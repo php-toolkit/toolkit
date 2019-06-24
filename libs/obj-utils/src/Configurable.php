@@ -12,6 +12,7 @@ use Toolkit\ObjUtil\Traits\PropertyAccessByGetterSetterTrait;
 
 /**
  * Class Configurable
+ *
  * @package Toolkit\ObjUtil
  */
 class Configurable
@@ -20,6 +21,7 @@ class Configurable
 
     /**
      * Configurable constructor.
+     *
      * @param array $config
      */
     public function __construct(array $config = [])

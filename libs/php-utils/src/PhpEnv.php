@@ -8,8 +8,17 @@
 
 namespace Toolkit\PhpUtil;
 
+use RuntimeException;
+use function defined;
+use function error_reporting;
+use function extension_loaded;
+use function function_exists;
+use function get_loaded_extensions;
+use function in_array;
+
 /**
  * Class PhpEnv
+ *
  * @package Toolkit\PhpUtil
  */
 class PhpEnv
@@ -20,15 +29,17 @@ class PhpEnv
 
     /**
      * Get PHP version
+     *
      * @return string
      */
     public static function getVersion(): string
     {
-        return \defined('HHVM_VERSION') ? HHVM_VERSION : PHP_VERSION;
+        return defined('HHVM_VERSION') ? HHVM_VERSION : PHP_VERSION;
     }
 
     /**
      * isEmbed
+     *
      * @return  boolean
      */
     public static function isEmbed(): bool
@@ -46,6 +57,7 @@ class PhpEnv
 
     /**
      * is Cli
+     *
      * @return  boolean
      */
     public static function isCli(): bool
@@ -56,6 +68,7 @@ class PhpEnv
     /**
      * is Build In Server
      * run server use like: `php -S 127.0.0.1:8085`
+     *
      * @return  boolean
      */
     public static function isBuiltInServer(): bool
@@ -73,11 +86,12 @@ class PhpEnv
 
     /**
      * isWeb
+     *
      * @return  boolean
      */
     public static function isWeb(): bool
     {
-        return \in_array(PHP_SAPI, [
+        return in_array(PHP_SAPI, [
             'apache',
             'cgi',
             'fast-cgi',
@@ -90,15 +104,17 @@ class PhpEnv
 
     /**
      * isHHVM
+     *
      * @return  boolean
      */
     public static function isHHVM(): bool
     {
-        return \defined('HHVM_VERSION');
+        return defined('HHVM_VERSION');
     }
 
     /**
      * isPHP
+     *
      * @return  boolean
      */
     public static function isPHP(): bool
@@ -108,6 +124,7 @@ class PhpEnv
 
     /**
      * setStrict
+     *
      * @return  void
      */
     public static function setStrict(): void
@@ -117,29 +134,32 @@ class PhpEnv
 
     /**
      * setMuted
+     *
      * @return  void
      */
     public static function setMuted(): void
     {
-        \error_reporting(0);
+        error_reporting(0);
     }
 
     /**
      * @param string $name
+     *
      * @return bool
      */
     public static function hasExtension(string $name): bool
     {
-        return \extension_loaded($name);
+        return extension_loaded($name);
     }
 
     /**
      * Returns true when the runtime used is PHP and Xdebug is loaded.
+     *
      * @return boolean
      */
     public static function hasXDebug(): bool
     {
-        return static::isPHP() && \extension_loaded('xdebug');
+        return static::isPHP() && extension_loaded('xdebug');
     }
 
     /**
@@ -147,7 +167,7 @@ class PhpEnv
      */
     public static function hasPcntl(): bool
     {
-        return \function_exists('pcntl_fork');
+        return function_exists('pcntl_fork');
     }
 
     /**
@@ -155,21 +175,22 @@ class PhpEnv
      */
     public static function hasPosix(): bool
     {
-        return \function_exists('posix_kill');
+        return function_exists('posix_kill');
     }
 
     /**
      * @param            $name
      * @param bool|false $throwException
+     *
      * @return bool
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public static function extIsLoaded(string $name, $throwException = false): bool
     {
-        $result = \extension_loaded($name);
+        $result = extension_loaded($name);
 
         if (!$result && $throwException) {
-            throw new \RuntimeException("Extension [$name] is not loaded.");
+            throw new RuntimeException("Extension [$name] is not loaded.");
         }
 
         return $result;
@@ -177,7 +198,9 @@ class PhpEnv
 
     /**
      * 检查多个扩展加载情况
+     *
      * @param array $extensions
+     *
      * @return array|bool
      */
     public static function checkExtList(array $extensions = [])
@@ -185,7 +208,7 @@ class PhpEnv
         $allTotal = [];
 
         foreach ($extensions as $extension) {
-            if (!\extension_loaded($extension)) {
+            if (!extension_loaded($extension)) {
                 $allTotal['no'][] = $extension;
             } else {
                 $allTotal['yes'][] = $extension;
@@ -197,11 +220,13 @@ class PhpEnv
 
     /**
      * 返回加载的扩展
+     *
      * @param bool $zend_extensions
+     *
      * @return array
      */
     public static function getLoadedExtension($zend_extensions = false): array
     {
-        return \get_loaded_extensions($zend_extensions);
+        return get_loaded_extensions($zend_extensions);
     }
 }

@@ -8,11 +8,13 @@
 
 namespace Toolkit\ObjUtil;
 
+use ArrayAccess;
 use Toolkit\ObjUtil\Traits\ObjectPoolTrait;
 
 /**
  * Class Obj
  *  alias of the ObjectHelper
+ *
  * @package Toolkit\ObjUtil
  */
 class Obj extends ObjectHelper
@@ -26,6 +28,7 @@ class Obj extends ObjectHelper
 
     /**
      * @param string $class
+     *
      * @return mixed
      */
     public static function singleton(string $class)
@@ -39,6 +42,7 @@ class Obj extends ObjectHelper
 
     /**
      * @param string $class
+     *
      * @return mixed
      */
     public static function factory(string $class)
@@ -52,10 +56,11 @@ class Obj extends ObjectHelper
 
     /**
      * @param $object
+     *
      * @return bool
      */
     public static function isArrayable($object): bool
     {
-        return $object instanceof \ArrayAccess || method_exists($object, 'toArray');
+        return $object instanceof ArrayAccess || method_exists($object, 'toArray');
     }
 }

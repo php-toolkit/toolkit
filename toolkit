@@ -4,6 +4,9 @@
  * entry file for CLI
  */
 
+use Inhere\Console\Application;
+use Toolkit\Dev\Console\DevController;
+
 define('BASE_PATH', __DIR__);
 define('TOOLKIT_DIR', __DIR__);
 
@@ -14,7 +17,7 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 }
 
 // create app instance
-$app = new \Inhere\Console\Application([
+$app = new Application([
     'name'     => 'php toolkit',
     'debug'    => true,
     'version'  => '1.0.0',
@@ -30,7 +33,7 @@ $app->setLogo("
 ", 'success');
 
 // add commands
-$app->addController(\Toolkit\Dev\Console\DevController::class);
+$app->addController(DevController::class);
 
 // run
 $app->run();

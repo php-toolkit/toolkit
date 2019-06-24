@@ -9,8 +9,20 @@
 
 namespace Toolkit\PhpUtil;
 
+use InvalidArgumentException;
+use function array_merge;
+use function file_exists;
+use function spl_autoload_register;
+use function spl_autoload_unregister;
+use function str_replace;
+use function strlen;
+use function strpos;
+use function substr;
+use const DIRECTORY_SEPARATOR;
+
 /**
  * Class AutoLoader
+ *
  * @package Toolkit\PhpUtil
  * ```php
  * AutoLoader::addFiles([
@@ -65,6 +77,7 @@ class AutoLoader
 
     /**
      * @param array $files
+     *
      * @return self
      */
     public static function getLoader(array $files = []): self
@@ -114,7 +127,7 @@ class AutoLoader
     public static function addFiles(array $files): void
     {
         if (self::$files) {
-            self::$files = \array_merge(self::$files, $files);
+            self::$files = array_merge(self::$files, $files);
         } else {
             self::$files = $files;
         }
@@ -139,7 +152,7 @@ class AutoLoader
     public function addPsr0Map(array $psr0Map): void
     {
         if ($this->psr0Map) {
-            $this->psr0Map = \array_merge($this->psr0Map, $psr0Map);
+            $this->psr0Map = array_merge($this->psr0Map, $psr0Map);
         } else {
             $this->psr0Map = $psr0Map;
         }
@@ -148,15 +161,16 @@ class AutoLoader
     /**
      * @param string $prefix
      * @param string $path
-     * @throws \InvalidArgumentException
+     *
+     * @throws InvalidArgumentException
      */
     public function addPsr4(string $prefix, string $path): void
     {
         // Register directories for a new namespace.
-        $length = \strlen($prefix);
+        $length = strlen($prefix);
 
         if ('\\' !== $prefix[$length - 1]) {
-            throw new \InvalidArgumentException('A non-empty PSR-4 prefix must end with a namespace separator.');
+            throw new InvalidArgumentException('A non-empty PSR-4 prefix must end with a namespace separator.');
         }
 
         $this->psr4Map[$prefix] = $path;
@@ -168,7 +182,7 @@ class AutoLoader
     public function addPsr4Map(array $psr4Map): void
     {
         if ($this->psr4Map) {
-            $this->psr4Map = \array_merge($this->psr4Map, $psr4Map);
+            $this->psr4Map = array_merge($this->psr4Map, $psr4Map);
         } else {
             $this->psr4Map = $psr4Map;
         }
@@ -212,7 +226,7 @@ class AutoLoader
     public function addClassMap(array $classMap): void
     {
         if ($this->classMap) {
-            $this->classMap = \array_merge($this->classMap, $classMap);
+            $this->classMap = array_merge($this->classMap, $classMap);
         } else {
             $this->classMap = $classMap;
         }
@@ -220,11 +234,12 @@ class AutoLoader
 
     /**
      * Registers this instance as an autoloader.
+     *
      * @param bool $prepend Whether to prepend the autoloader or not
      */
     public function register(bool $prepend = false): void
     {
-        \spl_autoload_register([$this, 'loadClass'], true, $prepend);
+        spl_autoload_register([$this, 'loadClass'], true, $prepend);
     }
 
     /**
@@ -232,12 +247,14 @@ class AutoLoader
      */
     public function unRegister(): void
     {
-        \spl_autoload_unregister([$this, 'loadClass']);
+        spl_autoload_unregister([$this, 'loadClass']);
     }
 
     /**
      * Loads the given class or interface.
-     * @param  string $class The name of the class
+     *
+     * @param string $class The name of the class
+     *
      * @return bool|null True if loaded, null otherwise
      */
     public function loadClass(string $class): ?bool
@@ -252,14 +269,16 @@ class AutoLoader
 
     /**
      * Finds the path to the file where the class is defined.
+     *
      * @param string $class The name of the class
+     *
      * @return string|false The path if found, false otherwise
      */
     public function findFile(string $class)
     {
         // work around for PHP 5.3.0 - 5.3.2 https://bugs.php.net/50731
         if ('\\' === $class[0]) {
-            $class = (string)\substr($class, 1);
+            $class = (string)substr($class, 1);
         }
 
         // class map lookup
@@ -280,32 +299,33 @@ class AutoLoader
     /**
      * @param string $class
      * @param string $ext
+     *
      * @return bool|string
      */
     private function findFileWithExtension(string $class, string $ext)
     {
         // PSR-4 lookup
-        $logicalPathPsr4 = \str_replace('\\', \DIRECTORY_SEPARATOR, $class) . $ext;
+        $logicalPathPsr4 = str_replace('\\', DIRECTORY_SEPARATOR, $class) . $ext;
 
         // PSR-4
         foreach ($this->psr4Map as $prefix => $dir) {
-            if (0 === \strpos($class, $prefix)) {
-                $length = \strlen($prefix);
+            if (0 === strpos($class, $prefix)) {
+                $length = strlen($prefix);
 
-                if (\file_exists($file = $dir . \DIRECTORY_SEPARATOR . \substr($logicalPathPsr4, $length))) {
+                if (file_exists($file = $dir . DIRECTORY_SEPARATOR . substr($logicalPathPsr4, $length))) {
                     return $file;
                 }
             }
         }
 
         // PEAR-like class name
-        $logicalPathPsr0 = \str_replace('_', \DIRECTORY_SEPARATOR, $class) . $ext;
+        $logicalPathPsr0 = str_replace('_', DIRECTORY_SEPARATOR, $class) . $ext;
 
         foreach ($this->psr0Map as $prefix => $dir) {
-            if (0 === \strpos($class, $prefix)) {
-                $file = $dir . \DIRECTORY_SEPARATOR . $logicalPathPsr0;
+            if (0 === strpos($class, $prefix)) {
+                $file = $dir . DIRECTORY_SEPARATOR . $logicalPathPsr0;
 
-                if (\file_exists($file)) {
+                if (file_exists($file)) {
                     return $file;
                 }
             }
@@ -335,6 +355,7 @@ function _globalIncludeFile($fileIdentifier, $file)
 /**
  * Scope isolated include.
  * Prevents access to $this/self from included files.
+ *
  * @param $file
  */
 function _includeClassFile($file)

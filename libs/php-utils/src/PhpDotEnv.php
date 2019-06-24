@@ -8,8 +8,25 @@
 
 namespace Toolkit\PhpUtil;
 
+use function array_flip;
+use function array_keys;
+use function constant;
+use function defined;
+use function explode;
+use function getenv;
+use function implode;
+use function is_file;
+use function is_int;
+use function is_readable;
+use function is_string;
+use function parse_ini_file;
+use function putenv;
+use function strpos;
+use function strtoupper;
+
 /**
  * Class PhpDotEnv - local env read
+ *
  * @package Toolkit\PhpUtil
  *
  * in local config file `.env` (must is 'ini' format):
@@ -35,6 +52,7 @@ final class PhpDotEnv
     /**
      * @param string $fileDir
      * @param string $fileName
+     *
      * @return static
      */
     public static function load(string $fileDir, string $fileName = '.env')
@@ -44,6 +62,7 @@ final class PhpDotEnv
 
     /**
      * constructor.
+     *
      * @param string $fileDir
      * @param string $fileName
      */
@@ -59,27 +78,28 @@ final class PhpDotEnv
      */
     public function add(string $file): void
     {
-        if (\is_file($file) && \is_readable($file)) {
-            $this->settingEnv(\parse_ini_file($file));
+        if (is_file($file) && is_readable($file)) {
+            $this->settingEnv(parse_ini_file($file));
         }
     }
 
     /**
      * setting env data
+     *
      * @param array $data
      */
     private function settingEnv(array $data): void
     {
-        $loadedVars = \array_flip(\explode(',', \getenv(self::FULL_KEY)));
+        $loadedVars = array_flip(explode(',', getenv(self::FULL_KEY)));
         unset($loadedVars['']);
 
         foreach ($data as $name => $value) {
-            if (\is_int($name) || !\is_string($value)) {
+            if (is_int($name) || !is_string($value)) {
                 continue;
             }
 
-            $name = \strtoupper($name);
-            $notHttpName = 0 !== \strpos($name, 'HTTP_');
+            $name        = strtoupper($name);
+            $notHttpName = 0 !== strpos($name, 'HTTP_');
 
             // don't check existence with getenv() because of thread safety issues
             if ((isset($_ENV[$name]) || (isset($_SERVER[$name]) && $notHttpName)) && !isset($loadedVars[$name])) {
@@ -87,12 +107,12 @@ final class PhpDotEnv
             }
 
             // is a constant var
-            if ($value && \defined($value)) {
-                $value = \constant($value);
+            if ($value && defined($value)) {
+                $value = constant($value);
             }
 
             // eg: "FOO=BAR"
-            \putenv("$name=$value");
+            putenv("$name=$value");
             $_ENV[$name] = $value;
 
             if ($notHttpName) {
@@ -103,9 +123,9 @@ final class PhpDotEnv
         }
 
         if ($loadedVars) {
-            $loadedVars = \implode(',', \array_keys($loadedVars));
-            \putenv(self::FULL_KEY . "=$loadedVars");
-            $_ENV[self::FULL_KEY] = $loadedVars;
+            $loadedVars = implode(',', array_keys($loadedVars));
+            putenv(self::FULL_KEY . "=$loadedVars");
+            $_ENV[self::FULL_KEY]    = $loadedVars;
             $_SERVER[self::FULL_KEY] = $loadedVars;
         }
     }

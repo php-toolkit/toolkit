@@ -8,8 +8,17 @@
 
 namespace Toolkit\Sys;
 
+use function defined;
+use function function_exists;
+use function getmyuid;
+use function in_array;
+use function php_uname;
+use function posix_getuid;
+use function stripos;
+
 /**
  * Class EnvHelper
+ *
  * @package Toolkit\Sys
  */
 class SysEnv
@@ -25,7 +34,7 @@ class SysEnv
     {
         $uNames = ['CYG', 'DAR', 'FRE', 'HP-', 'IRI', 'LIN', 'NET', 'OPE', 'SUN', 'UNI'];
 
-        return \in_array(strtoupper(substr(PHP_OS, 0, 3)), $uNames, true);
+        return in_array(strtoupper(substr(PHP_OS, 0, 3)), $uNames, true);
     }
 
     /**
@@ -57,7 +66,7 @@ class SysEnv
      */
     public static function isMac(): bool
     {
-        return \stripos(PHP_OS, 'Darwin') !== false;
+        return stripos(PHP_OS, 'Darwin') !== false;
     }
 
     /**
@@ -65,11 +74,11 @@ class SysEnv
      */
     public static function isRoot(): bool
     {
-        if (\function_exists('posix_getuid')) {
-            return \posix_getuid() === 0;
+        if (function_exists('posix_getuid')) {
+            return posix_getuid() === 0;
         }
 
-        return \getmyuid() === 0;
+        return getmyuid() === 0;
     }
 
     /**
@@ -77,7 +86,7 @@ class SysEnv
      */
     public static function getHostname(): string
     {
-        return \php_uname('n');
+        return php_uname('n');
     }
 
     /**
@@ -104,20 +113,17 @@ class SysEnv
      * Returns true if STDOUT supports colorization.
      * This code has been copied and adapted from
      * \Symfony\Component\Console\Output\OutputStream.
+     *
      * @return boolean
      */
     public static function isSupportColor(): bool
     {
         if (DIRECTORY_SEPARATOR === '\\') {
-            return
-                '10.0.10586' === PHP_WINDOWS_VERSION_MAJOR . '.' . PHP_WINDOWS_VERSION_MINOR . '.' . PHP_WINDOWS_VERSION_BUILD
-                || false !== getenv('ANSICON')
-                || 'ON' === getenv('ConEmuANSI')
-                || 'xterm' === getenv('TERM')// || 'cygwin' === getenv('TERM')
+            return '10.0.10586' === PHP_WINDOWS_VERSION_MAJOR . '.' . PHP_WINDOWS_VERSION_MINOR . '.' . PHP_WINDOWS_VERSION_BUILD || false !== getenv('ANSICON') || 'ON' === getenv('ConEmuANSI') || 'xterm' === getenv('TERM')// || 'cygwin' === getenv('TERM')
                 ;
         }
 
-        if (!\defined('STDOUT')) {
+        if (!defined('STDOUT')) {
             return false;
         }
 
@@ -126,12 +132,14 @@ class SysEnv
 
     /**
      * Returns if the file descriptor is an interactive terminal or not.
-     * @param  int|resource $fileDescriptor
+     *
+     * @param int|resource $fileDescriptor
+     *
      * @return boolean
      */
     public static function isInteractive($fileDescriptor): bool
     {
-        return \function_exists('posix_isatty') && @posix_isatty($fileDescriptor);
+        return function_exists('posix_isatty') && @posix_isatty($fileDescriptor);
     }
 
 }

@@ -8,8 +8,34 @@
 
 namespace Toolkit\Sys;
 
+use RuntimeException;
+use function chdir;
+use function exec;
+use function fclose;
+use function function_exists;
+use function getcwd;
+use function implode;
+use function is_resource;
+use function ob_end_clean;
+use function ob_get_contents;
+use function ob_start;
+use function passthru;
+use function pclose;
+use function popen;
+use function posix_getpwuid;
+use function posix_getuid;
+use function preg_match;
+use function preg_replace;
+use function proc_close;
+use function proc_open;
+use function shell_exec;
+use function sys_get_temp_dir;
+use function system;
+use function trim;
+
 /**
  * Class Sys
+ *
  * @package Toolkit\Sys
  */
 class Sys extends SysEnv
@@ -18,8 +44,9 @@ class Sys extends SysEnv
      * @param string      $command
      * @param null|string $logfile
      * @param null|string $user
+     *
      * @return mixed
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public static function exec($command, $logfile = null, $user = null)
     {
@@ -37,7 +64,7 @@ class Sys extends SysEnv
         exec("$suDo $command 1>> \"$logfile\" 2>&1", $dummy, $retVal);
 
         if ($retVal !== 0) {
-            throw new \RuntimeException("command exited with status '$retVal'.");
+            throw new RuntimeException("command exited with status '$retVal'.");
         }
 
         return $dummy;
@@ -45,10 +72,12 @@ class Sys extends SysEnv
 
     /**
      * run a command. it is support windows
+     *
      * @param string      $command
      * @param string|null $cwd
+     *
      * @return array
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public static function run(string $command, string $cwd = null): array
     {
@@ -59,26 +88,26 @@ class Sys extends SysEnv
             3 => ['pipe', 'r'], // stdin - This is the pipe we can feed the password into
         ];
 
-        $process = \proc_open($command, $descriptors, $pipes, $cwd);
+        $process = proc_open($command, $descriptors, $pipes, $cwd);
 
-        if (!\is_resource($process)) {
-            throw new \RuntimeException("Can't open resource with proc_open.");
+        if (!is_resource($process)) {
+            throw new RuntimeException("Can't open resource with proc_open.");
         }
 
         // Nothing to push to input.
-        \fclose($pipes[0]);
+        fclose($pipes[0]);
 
         $output = stream_get_contents($pipes[1]);
-        \fclose($pipes[1]);
+        fclose($pipes[1]);
 
         $error = stream_get_contents($pipes[2]);
-        \fclose($pipes[2]);
+        fclose($pipes[2]);
 
         // TODO: Write passphrase in pipes[3].
-        \fclose($pipes[3]);
+        fclose($pipes[3]);
 
         // Close all pipes before proc_close! $code === 0 is success.
-        $code = \proc_close($process);
+        $code = proc_close($process);
 
         return [$code, $output, $error];
     }
@@ -90,9 +119,11 @@ class Sys extends SysEnv
      * 2. passthru
      * 3. exec
      * 4. shell_exec
+     *
      * @param string      $command
      * @param bool        $returnStatus
      * @param string|null $cwd
+     *
      * @return array|string
      */
     public static function execute(string $command, bool $returnStatus = true, string $cwd = null)
@@ -100,47 +131,48 @@ class Sys extends SysEnv
         $exitStatus = 1;
 
         if ($cwd) {
-            \chdir($cwd);
+            chdir($cwd);
         }
 
         // system
-        if (\function_exists('system')) {
-            \ob_start();
-            \system($command, $exitStatus);
-            $output = \ob_get_contents();
-            \ob_end_clean();
+        if (function_exists('system')) {
+            ob_start();
+            system($command, $exitStatus);
+            $output = ob_get_contents();
+            ob_end_clean();
 
             // passthru
-        } elseif (\function_exists('passthru')) {
-            \ob_start();
-            \passthru($command, $exitStatus);
-            $output = \ob_get_contents();
-            \ob_end_clean();
+        } elseif (function_exists('passthru')) {
+            ob_start();
+            passthru($command, $exitStatus);
+            $output = ob_get_contents();
+            ob_end_clean();
             //exec
-        } elseif (\function_exists('exec')) {
-            \exec($command, $output, $exitStatus);
-            $output = \implode("\n", $output);
+        } elseif (function_exists('exec')) {
+            exec($command, $output, $exitStatus);
+            $output = implode("\n", $output);
 
             //shell_exec
-        } elseif (\function_exists('shell_exec')) {
-            $output = \shell_exec($command);
+        } elseif (function_exists('shell_exec')) {
+            $output = shell_exec($command);
         } else {
-            $output = 'Command execution not possible on this system';
+            $output     = 'Command execution not possible on this system';
             $exitStatus = 0;
         }
 
         if ($returnStatus) {
             return [
-                'output' => \trim($output),
+                'output' => trim($output),
                 'status' => $exitStatus
             ];
         }
 
-        return \trim($output);
+        return trim($output);
     }
 
     /**
      * run a command in background
+     *
      * @param string $cmd
      */
     public static function bgExec(string $cmd): void
@@ -150,24 +182,26 @@ class Sys extends SysEnv
 
     /**
      * run a command in background
+     *
      * @param string $cmd
      */
     public static function execInBackground(string $cmd): void
     {
         if (self::isWindows()) {
-            \pclose(\popen('start /B ' . $cmd, 'r'));
+            pclose(popen('start /B ' . $cmd, 'r'));
         } else {
-            \exec($cmd . ' > /dev/null &');
+            exec($cmd . ' > /dev/null &');
         }
     }
 
     /**
      * Get unix user of current process.
+     *
      * @return array
      */
     public static function getCurrentUser(): array
     {
-        return \posix_getpwuid(\posix_getuid());
+        return posix_getpwuid(posix_getuid());
     }
 
     /**
@@ -184,8 +218,8 @@ class Sys extends SysEnv
     public static function getTempDir(): string
     {
         // @codeCoverageIgnoreStart
-        if (\function_exists('sys_get_temp_dir')) {
-            $tmp = \sys_get_temp_dir();
+        if (function_exists('sys_get_temp_dir')) {
+            $tmp = sys_get_temp_dir();
         } elseif (!empty($_SERVER['TMP'])) {
             $tmp = $_SERVER['TMP'];
         } elseif (!empty($_SERVER['TEMP'])) {
@@ -193,7 +227,7 @@ class Sys extends SysEnv
         } elseif (!empty($_SERVER['TMPDIR'])) {
             $tmp = $_SERVER['TMPDIR'];
         } else {
-            $tmp = \getcwd();
+            $tmp = getcwd();
         }
         // @codeCoverageIgnoreEnd
 
@@ -202,6 +236,7 @@ class Sys extends SysEnv
 
     /**
      * get bash is available
+     *
      * @return bool
      */
     public static function shIsAvailable(): bool
@@ -215,6 +250,7 @@ class Sys extends SysEnv
 
     /**
      * get bash is available
+     *
      * @return bool
      */
     public static function bashIsAvailable(): bool
@@ -233,7 +269,7 @@ class Sys extends SysEnv
     {
         [$code, $output] = self::run('ip addr | grep eth0');
 
-        if ($code === 0 && $output && \preg_match('#inet (.*)\/#', $output, $ms)) {
+        if ($code === 0 && $output && preg_match('#inet (.*)\/#', $output, $ms)) {
             return $ms[1];
         }
 
@@ -246,10 +282,13 @@ class Sys extends SysEnv
      * ```php
      * list($width, $height) = Sys::getScreenSize();
      * ```
+     *
      * @from Yii2
+     *
      * @param boolean $refresh whether to force checking and not re-use cached size value.
-     * This is useful to detect changing window size while the application is running but may
-     * not get up to date values on every terminal.
+     *                         This is useful to detect changing window size while the application is running but may
+     *                         not get up to date values on every terminal.
+     *
      * @return array|boolean An array of ($width, $height) or false when it was not able to determine size.
      */
     public static function getScreenSize(bool $refresh = false)
@@ -263,9 +302,8 @@ class Sys extends SysEnv
             // try stty if available
             $stty = [];
 
-            if (
-                \exec('stty -a 2>&1', $stty) &&
-                \preg_match('/rows\s+(\d+);\s*columns\s+(\d+);/mi', implode(' ', $stty), $matches)
+            if (exec('stty -a 2>&1', $stty) && preg_match('/rows\s+(\d+);\s*columns\s+(\d+);/mi', implode(' ', $stty),
+                    $matches)
             ) {
                 return ($size = [$matches[2], $matches[1]]);
             }
@@ -283,12 +321,12 @@ class Sys extends SysEnv
 
         if (self::isWindows()) {
             $output = [];
-            \exec('mode con', $output);
+            exec('mode con', $output);
 
             if (isset($output[1]) && strpos($output[1], 'CON') !== false) {
                 return ($size = [
-                    (int)\preg_replace('~\D~', '', $output[3]),
-                    (int)\preg_replace('~\D~', '', $output[4])
+                    (int)preg_replace('~\D~', '', $output[3]),
+                    (int)preg_replace('~\D~', '', $output[4])
                 ]);
             }
         }
@@ -298,6 +336,7 @@ class Sys extends SysEnv
 
     /**
      * @param string $program
+     *
      * @return int|string
      */
     public static function getCpuUsage(string $program)
@@ -306,13 +345,14 @@ class Sys extends SysEnv
             return -1;
         }
 
-        $info = \exec('ps aux | grep ' . $program . ' | grep -v grep | grep -v su | awk {"print $3"}');
+        $info = exec('ps aux | grep ' . $program . ' | grep -v grep | grep -v su | awk {"print $3"}');
 
         return $info;
     }
 
     /**
      * @param string $program
+     *
      * @return int|string
      */
     public static function getMemUsage(string $program)
@@ -321,7 +361,7 @@ class Sys extends SysEnv
             return -1;
         }
 
-        $info = \exec('ps aux | grep ' . $program . ' | grep -v grep | grep -v su | awk {"print $4"}');
+        $info = exec('ps aux | grep ' . $program . ' | grep -v grep | grep -v su | awk {"print $4"}');
 
         return $info;
     }

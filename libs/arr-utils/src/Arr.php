@@ -11,6 +11,7 @@ namespace Toolkit\ArrUtil;
 /**
  * Class Arr
  *  alias of the StringHelper
+ *
  * @package Toolkit\ArrUtil
  */
 class Arr extends ArrayHelper

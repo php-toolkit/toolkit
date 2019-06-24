@@ -8,10 +8,14 @@
 
 namespace Toolkit\File;
 
+use RuntimeException;
 use Toolkit\Sys\Sys;
+use function in_array;
+use function json_encode;
 
 /**
  * Class FilesWatcher - Check Dir's files modified by md5_file()
+ *
  * @package Inhere\Server\Components
  */
 final class ModifyWatcher
@@ -57,6 +61,7 @@ final class ModifyWatcher
 
     /**
      * ModifyWatcher constructor.
+     *
      * @param string|null $idFile
      */
     public function __construct(string $idFile = null)
@@ -68,6 +73,7 @@ final class ModifyWatcher
 
     /**
      * @param string $idFile
+     *
      * @return $this
      */
     public function setIdFile(string $idFile): self
@@ -79,6 +85,7 @@ final class ModifyWatcher
 
     /**
      * @param string|array $notNames
+     *
      * @return ModifyWatcher
      */
     public function name($notNames): self
@@ -90,6 +97,7 @@ final class ModifyWatcher
 
     /**
      * @param string|array $notNames
+     *
      * @return ModifyWatcher
      */
     public function notName($notNames): self
@@ -101,6 +109,7 @@ final class ModifyWatcher
 
     /**
      * @param string|array $excludeDirs
+     *
      * @return ModifyWatcher
      */
     public function exclude($excludeDirs): self
@@ -112,6 +121,7 @@ final class ModifyWatcher
 
     /**
      * @param bool $ignoreDotDirs
+     *
      * @return ModifyWatcher
      */
     public function ignoreDotDirs($ignoreDotDirs): ModifyWatcher
@@ -123,6 +133,7 @@ final class ModifyWatcher
 
     /**
      * @param bool $ignoreDotFiles
+     *
      * @return ModifyWatcher
      */
     public function ignoreDotFiles($ignoreDotFiles): ModifyWatcher
@@ -133,6 +144,7 @@ final class ModifyWatcher
 
     /**
      * @param string|array $dirs
+     *
      * @return $this
      */
     public function watch($dirs): self
@@ -144,7 +156,9 @@ final class ModifyWatcher
 
     /**
      * alias of the watch()
+     *
      * @param string|array $dirs
+     *
      * @return $this
      */
     public function watchDir($dirs): self
@@ -168,7 +182,7 @@ final class ModifyWatcher
     public function isChanged(): bool
     {
         if (!$this->idFile) {
-            $this->idFile = Sys::getTempDir() . '/' . md5(\json_encode($this->watchDirs)) . '.id';
+            $this->idFile = Sys::getTempDir() . '/' . md5(json_encode($this->watchDirs)) . '.id';
         }
 
         // get old hash id
@@ -205,14 +219,14 @@ final class ModifyWatcher
     public function calcMd5Hash(): string
     {
         if (!$this->watchDirs) {
-            throw new \RuntimeException('Please setting want to watched directories before run.');
+            throw new RuntimeException('Please setting want to watched directories before run.');
         }
 
         foreach ($this->watchDirs as $dir) {
             $this->collectDirMd5($dir);
         }
 
-        $this->dirMd5 = md5($this->md5String);
+        $this->dirMd5    = md5($this->md5String);
         $this->md5String = null;
 
         if ($this->idFile) {
@@ -242,7 +256,7 @@ final class ModifyWatcher
                     continue;
                 }
 
-                if (\in_array($f, $this->excludes, true)) {
+                if (in_array($f, $this->excludes, true)) {
                     continue;
                 }
 

@@ -10,6 +10,7 @@ namespace Toolkit\PhpUtil;
 
 /**
  * Class Type - php data type
+ *
  * @package Toolkit\PhpUtil
  */
 final class Type

@@ -8,11 +8,14 @@
 
 namespace Toolkit\File\Exception;
 
+use Exception;
+
 /**
  * Class FileSystemException
+ *
  * @package Toolkit\File\Exception
  */
-class FileSystemException extends \Exception
+class FileSystemException extends Exception
 {
 
 }

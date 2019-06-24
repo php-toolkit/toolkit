@@ -10,6 +10,7 @@ namespace Toolkit\StrUtil;
 
 /**
  * Class Json
+ *
  * @package Toolkit\StrUtil
  */
 final class Json extends JsonHelper

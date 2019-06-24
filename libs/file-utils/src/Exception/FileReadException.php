@@ -10,6 +10,7 @@ namespace Toolkit\File\Exception;
 
 /**
  * Class FileReadException
+ *
  * @package Toolkit\File\Exception
  */
 class FileReadException extends FileSystemException

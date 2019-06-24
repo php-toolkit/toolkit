@@ -10,6 +10,7 @@ namespace Toolkit\ArrUtil;
 
 /**
  * Class ArrBuffer
+ *
  * @package Toolkit\ArrUtil
  */
 final class ArrBuffer
@@ -22,6 +23,7 @@ final class ArrBuffer
 
     /**
      * constructor.
+     *
      * @param string $content
      */
     public function __construct(string $content = '')

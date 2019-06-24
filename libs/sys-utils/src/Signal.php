@@ -10,8 +10,9 @@ namespace Toolkit\Sys;
 
 /**
  * Class Signal
+ *
  * @package Toolkit\Sys
- * @link http://php.net/manual/en/pcntl.constants.php
+ * @link    http://php.net/manual/en/pcntl.constants.php
  */
 final class Signal
 {

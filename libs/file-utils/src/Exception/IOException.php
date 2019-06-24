@@ -10,6 +10,7 @@ namespace Toolkit\File\Exception;
 
 /**
  * Class IOException
+ *
  * @package Toolkit\File\Exception
  */
 class IOException extends FileSystemException
