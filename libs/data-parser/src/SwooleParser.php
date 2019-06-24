@@ -8,25 +8,30 @@
 
 namespace Toolkit\DataParser;
 
+use RuntimeException;
 use Swoole\Serialize;
+use function class_exists;
 
 /**
  * Class SwooleParser
+ *
  * @package Toolkit\DataParser
- * @author inhere <in.798@qq.com>
- * @link https://wiki.swoole.com/wiki/page/p-serialize.html
+ * @author  inhere <in.798@qq.com>
+ * @link    https://wiki.swoole.com/wiki/page/p-serialize.html
  */
 class SwooleParser extends AbstractDataParser
 {
     /**
      * class constructor.
+     *
      * @param array $encodeOpts
-     * @throws \RuntimeException
+     *
+     * @throws RuntimeException
      */
     public function __construct(array $encodeOpts = [])
     {
-        if (!\class_exists(Serialize::class, false)) {
-            throw new \RuntimeException("The php extension 'swoole_serialize' is required!");
+        if (!class_exists(Serialize::class, false)) {
+            throw new RuntimeException("The php extension 'swoole_serialize' is required!");
         }
 
         parent::__construct($encodeOpts);
@@ -34,6 +39,7 @@ class SwooleParser extends AbstractDataParser
 
     /**
      * @param mixed $data
+     *
      * @return string
      */
     public function encode($data): string
@@ -43,6 +49,7 @@ class SwooleParser extends AbstractDataParser
 
     /**
      * @param string $data
+     *
      * @return mixed
      */
     public function decode(string $data)

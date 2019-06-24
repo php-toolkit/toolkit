@@ -8,15 +8,28 @@
 
 namespace Toolkit\Collection;
 
+use InvalidArgumentException;
+use RangeException;
+use RecursiveArrayIterator;
+use stdClass;
 use Toolkit\ArrUtil\Arr;
+use Toolkit\File\Exception\FileNotFoundException;
 use Toolkit\File\File;
 use Toolkit\File\Parse\IniParser;
 use Toolkit\File\Parse\JsonParser;
 use Toolkit\File\Parse\YmlParser;
 use Toolkit\ObjUtil\Obj;
+use Traversable;
+use function in_array;
+use function is_array;
+use function is_object;
+use function is_string;
+use function serialize;
+use function unserialize;
 
 /**
  * Class DataCollector - 数据收集器 (数据存储器 - DataStorage) complex deep
+ *
  * @package Toolkit\Collection
  * 支持 链式的子节点 设置 和 值获取
  * e.g:
@@ -46,18 +59,21 @@ class Collection extends SimpleCollection
 
     /**
      * Property separator.
+     *
      * @var  string
      */
     protected $separator = '.';
 
     /**
      * name
+     *
      * @var string
      */
     protected $name;
 
     /**
      * formats
+     *
      * @var array
      */
     protected static $formats = ['json', 'php', 'ini', 'yml'];
@@ -69,10 +85,12 @@ class Collection extends SimpleCollection
 
     /**
      * __construct
+     *
      * @param mixed  $data
      * @param string $format
      * @param string $name
-     * @throws \RangeException
+     *
+     * @throws RangeException
      */
     public function __construct($data = null, $format = 'php', $name = 'box1')
     {
@@ -88,8 +106,9 @@ class Collection extends SimpleCollection
      * @param mixed  $data
      * @param string $format
      * @param string $name
+     *
      * @return static
-     * @throws \RangeException
+     * @throws RangeException
      */
     public static function make($data = null, $format = 'php', $name = 'box1')
     {
@@ -98,8 +117,10 @@ class Collection extends SimpleCollection
 
     /**
      * set config value by path
+     *
      * @param string $path
      * @param mixed  $value
+     *
      * @return mixed
      */
     public function set($path, $value)
@@ -111,8 +132,10 @@ class Collection extends SimpleCollection
 
     /**
      * get value by path
+     *
      * @param string $path
      * @param string $default
+     *
      * @return mixed
      */
     public function get(string $path, $default = null)
@@ -127,6 +150,7 @@ class Collection extends SimpleCollection
 
     /**
      * @param string $path
+     *
      * @return bool
      */
     public function has(string $path): bool
@@ -143,6 +167,7 @@ class Collection extends SimpleCollection
 
     /**
      * Clear all data.
+     *
      * @return  static
      */
     public function clear()
@@ -152,9 +177,10 @@ class Collection extends SimpleCollection
 
     /**
      * @param string $class
+     *
      * @return mixed
      */
-    public function toObject(string $class = \stdClass::class)
+    public function toObject(string $class = stdClass::class)
     {
         return Arr::toObject($this->data, $class);
     }
@@ -185,7 +211,9 @@ class Collection extends SimpleCollection
 
     /**
      * setName
+     *
      * @param string $value
+     *
      * @return $this
      */
     public function setName($value): self
@@ -197,6 +225,7 @@ class Collection extends SimpleCollection
 
     /**
      * getName
+     *
      * @return string
      */
     public function getName(): string
@@ -206,11 +235,13 @@ class Collection extends SimpleCollection
 
     /**
      * load
+     *
      * @param string|array|mixed $data
      * @param string             $format = 'php'
+     *
      * @return static
-     * @throws \InvalidArgumentException
-     * @throws \RangeException
+     * @throws InvalidArgumentException
+     * @throws RangeException
      */
     public function load($data, $format = 'php')
     {
@@ -218,7 +249,7 @@ class Collection extends SimpleCollection
             return $this;
         }
 
-        if (\is_string($data) && \in_array($format, static::$formats, true)) {
+        if (is_string($data) && in_array($format, static::$formats, true)) {
             switch ($format) {
                 case static::FORMAT_YML:
                     $this->loadYaml($data);
@@ -238,7 +269,7 @@ class Collection extends SimpleCollection
                     break;
             }
 
-        } elseif (\is_array($data) || \is_object($data)) {
+        } elseif (is_array($data) || is_object($data)) {
             $this->bindData($this->data, $data);
         }
 
@@ -248,8 +279,9 @@ class Collection extends SimpleCollection
     /**
      * @param        $file
      * @param string $format
+     *
      * @return array|mixed
-     * @throws \Toolkit\File\Exception\FileNotFoundException
+     * @throws FileNotFoundException
      */
     public static function read($file, $format = self::FORMAT_PHP)
     {
@@ -258,7 +290,9 @@ class Collection extends SimpleCollection
 
     /**
      * load data form yml file
+     *
      * @param $data
+     *
      * @return static
      */
     public function loadYaml($data)
@@ -268,18 +302,20 @@ class Collection extends SimpleCollection
 
     /**
      * load data form php file or array
+     *
      * @param array|string $data
+     *
      * @return static
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function loadArray($data)
     {
-        if (\is_string($data) && is_file($data)) {
+        if (is_string($data) && is_file($data)) {
             $data = require $data;
         }
 
-        if (!\is_array($data)) {
-            throw new \InvalidArgumentException('param type error! must is array.');
+        if (!is_array($data)) {
+            throw new InvalidArgumentException('param type error! must is array.');
         }
 
         return $this->bindData($this->data, $data);
@@ -287,14 +323,16 @@ class Collection extends SimpleCollection
 
     /**
      * load data form php file or array
+     *
      * @param mixed $data
+     *
      * @return static
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function loadObject($data)
     {
-        if (!\is_object($data)) {
-            throw new \InvalidArgumentException('param type error! must is object.');
+        if (!is_object($data)) {
+            throw new InvalidArgumentException('param type error! must is object.');
         }
 
         return $this->bindData($this->data, $data);
@@ -302,7 +340,9 @@ class Collection extends SimpleCollection
 
     /**
      * load data form ini file
+     *
      * @param string $string
+     *
      * @return static
      */
     public function loadIni($string)
@@ -312,7 +352,9 @@ class Collection extends SimpleCollection
 
     /**
      * load data form json file
+     *
      * @param $data
+     *
      * @return Collection
      */
     public function loadJson($data): Collection
@@ -324,6 +366,7 @@ class Collection extends SimpleCollection
      * @param            $parent
      * @param            $data
      * @param bool|false $raw
+     *
      * @return $this
      */
     protected function bindData(&$parent, $data, $raw = false): self
@@ -338,7 +381,7 @@ class Collection extends SimpleCollection
                 continue;
             }
 
-            if (\is_array($value)) {
+            if (is_array($value)) {
                 if (!isset($parent[$key])) {
                     $parent[$key] = [];
                 }
@@ -361,16 +404,18 @@ class Collection extends SimpleCollection
     }
 
     /**
-     * @return \RecursiveArrayIterator
+     * @return RecursiveArrayIterator
      */
-    public function getIterator(): \Traversable
+    public function getIterator(): Traversable
     {
-        return new \RecursiveArrayIterator($this->data);
+        return new RecursiveArrayIterator($this->data);
     }
 
     /**
      * Unset an offset in the iterator.
-     * @param   mixed $offset The array offset.
+     *
+     * @param mixed $offset The array offset.
+     *
      * @return  void
      */
     public function offsetUnset($offset)
@@ -380,7 +425,7 @@ class Collection extends SimpleCollection
 
     public function __clone()
     {
-        $this->data = \unserialize(\serialize($this->data), ['allowed_classes' => self::class]);
+        $this->data = unserialize(serialize($this->data), ['allowed_classes' => self::class]);
     }
 
     //////
@@ -392,6 +437,7 @@ class Collection extends SimpleCollection
      * @param bool          $enhancement
      * @param callable|null $pathHandler
      * @param string        $fileDir
+     *
      * @return array
      */
     public static function parseIni($string, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
@@ -404,6 +450,7 @@ class Collection extends SimpleCollection
      * @param bool          $enhancement
      * @param callable|null $pathHandler
      * @param string        $fileDir
+     *
      * @return array
      */
     public static function parseJson($data, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
@@ -413,10 +460,12 @@ class Collection extends SimpleCollection
 
     /**
      * parse YAML
-     * @param string|bool $data Waiting for the parse data
+     *
+     * @param string|bool $data        Waiting for the parse data
      * @param bool        $enhancement Simple support import other config by tag 'import'. must is bool.
      * @param callable    $pathHandler When the second param is true, this param is valid.
-     * @param string      $fileDir When the second param is true, this param is valid.
+     * @param string      $fileDir     When the second param is true, this param is valid.
+     *
      * @return array
      */
     public static function parseYaml($data, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array

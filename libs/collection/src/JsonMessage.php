@@ -8,8 +8,12 @@
 
 namespace Toolkit\Collection;
 
+use InvalidArgumentException;
+use function json_encode;
+
 /**
  * Class JsonMessage
+ *
  * @package SlimExt\Helpers
  * $mg = JsonMessage::create(['msg' => 'success', 'code' => 23]);
  * $mg->data = [ 'key' => 'test'];
@@ -52,6 +56,7 @@ class JsonMessage
 
     /**
      * JsonMessage constructor.
+     *
      * @param null   $data
      * @param string $msg
      * @param int    $code
@@ -59,7 +64,7 @@ class JsonMessage
     public function __construct($data = null, $msg = 'success', $code = 0)
     {
         $this->data = $data;
-        $this->msg = $msg;
+        $this->msg  = $msg;
         $this->code = $code;
     }
 
@@ -81,6 +86,7 @@ class JsonMessage
 
     /**
      * @param $code
+     *
      * @return $this
      */
     public function code($code): self
@@ -92,6 +98,7 @@ class JsonMessage
 
     /**
      * @param $msg
+     *
      * @return $this
      */
     public function msg($msg): self
@@ -116,6 +123,7 @@ class JsonMessage
 
     /**
      * @param array|string $data
+     *
      * @return $this
      */
     public function data($data): self
@@ -151,11 +159,12 @@ class JsonMessage
      */
     public function __toString()
     {
-        return (string)\json_encode($this->all());
+        return (string)json_encode($this->all());
     }
 
     /**
      * @param string $name
+     *
      * @return bool
      */
     public function __isset(string $name)
@@ -174,8 +183,9 @@ class JsonMessage
 
     /**
      * @param string $name
+     *
      * @return mixed
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function __get($name)
     {
@@ -183,6 +193,6 @@ class JsonMessage
             return $this->data[$name];
         }
 
-        throw new \InvalidArgumentException(sprintf('the property is not exists: %s', $name));
+        throw new InvalidArgumentException(sprintf('the property is not exists: %s', $name));
     }
 }

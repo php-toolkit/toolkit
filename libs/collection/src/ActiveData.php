@@ -10,15 +10,30 @@
 
 namespace Toolkit\Collection;
 
+use ArrayAccess;
+use ArrayIterator;
+use IteratorAggregate;
+use ReflectionClass;
+use ReflectionException;
+use RuntimeException;
+use function explode;
+use function is_array;
+use function is_numeric;
+use function property_exists;
+use function strpos;
+use function trim;
+
 /**
  * Class ActiveData
+ *
  * @package Toolkit\Collection
  */
-class ActiveData implements \ArrayAccess, \IteratorAggregate
+class ActiveData implements ArrayAccess, IteratorAggregate
 {
     /**
-     * @param array|\ArrayAccess $data
-     * @param bool|false         $recursive
+     * @param array|ArrayAccess $data
+     * @param bool|false        $recursive
+     *
      * @return static
      */
     public static function create(array $data = [], bool $recursive = false)
@@ -28,6 +43,7 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
 
     /**
      * ActiveData constructor.
+     *
      * @param array $data
      * @param bool  $recursive
      */
@@ -40,20 +56,22 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
 
     /**
      * 初始化，载入数据
+     *
      * @param array $data
      * @param bool  $recursive
+     *
      * @return $this
      */
     public function load($data, bool $recursive = false): self
     {
         foreach ($data as $name => $value) {
-            $name = \trim($name);
+            $name = trim($name);
 
-            if (\is_numeric($name)) {
+            if (is_numeric($name)) {
                 continue;
             }
 
-            $this->$name = $recursive && \is_array($value) ? static::create($value, $recursive) : $value;
+            $this->$name = $recursive && is_array($value) ? static::create($value, $recursive) : $value;
         }
 
         return $this;
@@ -66,12 +84,13 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
 
     /**
      * @param bool $toArray
-     * @return array|\ArrayIterator
-     * @throws \ReflectionException
+     *
+     * @return array|ArrayIterator
+     * @throws ReflectionException
      */
     public function all(bool $toArray = false)
     {
-        $class = new \ReflectionClass($this);
+        $class = new ReflectionClass($this);
         $attrs = [];
 
         foreach ($class->getProperties() as $property) {
@@ -81,26 +100,28 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
         }
 
         //return $toArray ? $attrs : (new \ArrayObject($attrs));
-        return $toArray ? $attrs : new \ArrayIterator($attrs);
+        return $toArray ? $attrs : new ArrayIterator($attrs);
     }
 
     /**
      * 以点连接 快速获取子级节点的值
+     *
      * @param string $name
+     *
      * @return ActiveData|mixed
      */
     public function get(string $name)
     {
-        if (\strpos($name, '.')) {
-            $names = \explode('.', $name);
-            $node = $this;
+        if (strpos($name, '.')) {
+            $names = explode('.', $name);
+            $node  = $this;
 
             foreach ($names as $n) {
-                if ($node instanceof self && \property_exists($node, $n)) {
+                if ($node instanceof self && property_exists($node, $n)) {
                     $node = $node->$n;
                 } else {
                     if ($this->isStrict()) {
-                        throw new \RuntimeException("Stored data don't exists node '$n'");
+                        throw new RuntimeException("Stored data don't exists node '$n'");
                     }
 
                     $node = null;
@@ -111,33 +132,38 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
             return $node;
         }
 
-        return \property_exists($this, $name) ? $this->$name : null;
+        return property_exists($this, $name) ? $this->$name : null;
     }
 
     /**
      * Defined by IteratorAggregate interface
      * Returns an iterator for this object, for use with foreach
-     * @return \ArrayIterator
-     * @throws \ReflectionException
+     *
+     * @return ArrayIterator
+     * @throws ReflectionException
      */
-    public function getIterator(): \ArrayIterator
+    public function getIterator(): ArrayIterator
     {
         return $this->all();
     }
 
     /**
      * Checks whether an offset exists in the iterator.
-     * @param   mixed $offset The array offset.
+     *
+     * @param mixed $offset The array offset.
+     *
      * @return  boolean  True if the offset exists, false otherwise.
      */
     public function offsetExists($offset): bool
     {
-        return \property_exists($this, $offset);
+        return property_exists($this, $offset);
     }
 
     /**
      * Gets an offset in the iterator.
-     * @param   mixed $offset The array offset.
+     *
+     * @param mixed $offset The array offset.
+     *
      * @return  mixed  The array value if it exists, null otherwise.
      */
     public function offsetGet($offset)
@@ -147,8 +173,10 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
 
     /**
      * Sets an offset in the iterator.
-     * @param   mixed $offset The array offset.
-     * @param   mixed $value The array value.
+     *
+     * @param mixed $offset The array offset.
+     * @param mixed $value  The array value.
+     *
      * @return  void
      */
     public function offsetSet($offset, $value): void
@@ -158,7 +186,9 @@ class ActiveData implements \ArrayAccess, \IteratorAggregate
 
     /**
      * Unset an offset in the iterator.
-     * @param   mixed $offset The array offset.
+     *
+     * @param mixed $offset The array offset.
+     *
      * @return  void
      */
     public function offsetUnset($offset): void

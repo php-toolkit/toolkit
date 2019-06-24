@@ -2,10 +2,16 @@
 
 namespace Toolkit\Collection;
 
+use ArrayAccess;
+use Countable;
+use IteratorAggregate;
+use JsonSerializable;
+use Serializable;
+
 /**
  * Collection Interface
  */
-interface CollectionInterface extends \Serializable, \ArrayAccess, \Countable, \IteratorAggregate, \JsonSerializable
+interface CollectionInterface extends Serializable, ArrayAccess, Countable, IteratorAggregate, JsonSerializable
 {
     public function set($key, $value);
 
@@ -23,12 +29,14 @@ interface CollectionInterface extends \Serializable, \ArrayAccess, \Countable, \
 
     /**
      * @param string $key
+     *
      * @return bool
      */
     public function has(string $key): bool;
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function remove($key);

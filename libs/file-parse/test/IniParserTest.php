@@ -13,6 +13,7 @@ use Toolkit\File\Parse\IniParser;
 
 /**
  * Class IniParserTest
+ *
  * @package Toolkit\File\ParseTest
  */
 class IniParserTest extends TestCase

@@ -8,23 +8,30 @@
 
 namespace Toolkit\DataParser;
 
+use RuntimeException;
+use function function_exists;
+use function msgpack_pack;
+use function msgpack_unpack;
+
 /**
  * Class MsgPackParser
+ *
  * @package Toolkit\DataParser
- * @author inhere <in.798@qq.com>
- * @link https://github.com/msgpack/msgpack-php php-ext
- * @link https://github.com/rybakit/msgpack.php php
+ * @author  inhere <in.798@qq.com>
+ * @link    https://github.com/msgpack/msgpack-php php-ext
+ * @link    https://github.com/rybakit/msgpack.php php
  */
 class MsgPackParser extends AbstractDataParser
 {
     /**
      * class constructor.
-     * @throws \RuntimeException
+     *
+     * @throws RuntimeException
      */
     public function __construct()
     {
-        if (!\function_exists('msgpack_pack')) {
-            throw new \RuntimeException("The php extension 'msgpack' is required!");
+        if (!function_exists('msgpack_pack')) {
+            throw new RuntimeException("The php extension 'msgpack' is required!");
         }
 
         parent::__construct();
@@ -32,19 +39,21 @@ class MsgPackParser extends AbstractDataParser
 
     /**
      * @param mixed $data
+     *
      * @return string
      */
     public function encode($data): string
     {
-        return \msgpack_pack($data);
+        return msgpack_pack($data);
     }
 
     /**
      * @param string $data
+     *
      * @return mixed
      */
     public function decode(string $data)
     {
-        return \msgpack_unpack($data);
+        return msgpack_unpack($data);
     }
 }

@@ -9,18 +9,21 @@ namespace Toolkit\DI;
 
 /**
  * Class DIManager - Container Manager
+ *
  * @package Toolkit\DI
  */
 final class DIManager
 {
     /**
      * 一组容器的扼要描述，标记不同的容器(这里一组含有一个基础容器和其他的属于这组[$group]的其它子容器)
+     *
      * @var string $group
      */
     private static $defaultGroup = 'di';
 
     /**
      * $containers 容器列表
+     *
      * @var array
      */
     private static $containers = [
@@ -40,6 +43,7 @@ final class DIManager
 
     /**
      * @param null|string $name
+     *
      * @return Container
      */
     public static function getContainer(string $name = null): Container
@@ -50,6 +54,7 @@ final class DIManager
     /**
      * @param string $name
      * @param string $group
+     *
      * @return Container
      */
     public static function make(string $name = null, string $group = null): Container
@@ -59,7 +64,7 @@ final class DIManager
         // No name, return default's base container.
         if (!$name) {
             if (empty(self::$containers[$group]['root'])) {
-                $container = new Container;
+                $container       = new Container;
                 $container->name = 'di.root';
 
                 self::$containers[$group]['root'] = $container;
@@ -70,7 +75,7 @@ final class DIManager
 
         // Has name, we return children container.
         if (empty(self::$containers[$group][$name]) || !(self::$containers[$group][$name] instanceof Container)) {
-            self::$containers[$group][$name] = new Container([], self::make(null, $group));
+            self::$containers[$group][$name]       = new Container([], self::make(null, $group));
             self::$containers[$group][$name]->name = $name;
         }
 
@@ -79,7 +84,9 @@ final class DIManager
 
     /**
      * setProfile
+     *
      * @param string $group
+     *
      * @return  void
      */
     public static function setDefaultGroup($group = 'di'): void
@@ -98,6 +105,7 @@ final class DIManager
 
     /**
      * Method to get property Profile
+     *
      * @return  string
      */
     public static function getDefaultGroup(): string
@@ -107,6 +115,7 @@ final class DIManager
 
     /**
      * reset
+     *
      * @param string $group
      */
     public static function reset($group = null): void

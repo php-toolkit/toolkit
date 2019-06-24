@@ -10,8 +10,9 @@ namespace Toolkit\DataParser;
 
 /**
  * Class DataParserAwareTrait
+ *
  * @package Toolkit\DataParser
- * @author inhere <in.798@qq.com>
+ * @author  inhere <in.798@qq.com>
  */
 trait DataParserAwareTrait
 {
@@ -34,6 +35,7 @@ trait DataParserAwareTrait
 
     /**
      * @param DataParserInterface $parser
+     *
      * @return DataParserAwareTrait
      */
     public function setParser(DataParserInterface $parser): self

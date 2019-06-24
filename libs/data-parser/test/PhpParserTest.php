@@ -13,6 +13,7 @@ use Toolkit\DataParser\PhpParser;
 
 /**
  * Class PhpParserTest
+ *
  * @covers \Toolkit\DataParser\PhpParser
  */
 class PhpParserTest extends TestCase
@@ -22,7 +23,7 @@ class PhpParserTest extends TestCase
         $str = 'a:1:{s:4:"name";s:5:"value";}';
 
         $parser = new PhpParser();
-        $ret = $parser->decode($str);
+        $ret    = $parser->decode($str);
 
         $this->assertIsArray($ret);
         $this->assertArrayHasKey('name', $ret);
@@ -35,7 +36,7 @@ class PhpParserTest extends TestCase
         ];
 
         $parser = new PhpParser();
-        $ret = $parser->encode($data);
+        $ret    = $parser->encode($data);
 
         $this->assertIsString($ret);
         $this->assertStringStartsWith('a:1:{', $ret);

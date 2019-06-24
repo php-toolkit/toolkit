@@ -13,8 +13,9 @@ use Toolkit\DI\Container;
 
 /**
  * Class ContainerTest
+ *
  * @package Toolkit\DITest
- * @covers \Toolkit\DI\Container
+ * @covers  \Toolkit\DI\Container
  */
 class ContainerTest extends TestCase
 {

@@ -8,11 +8,14 @@
 
 namespace Toolkit\DI\Exception;
 
+use RuntimeException;
+
 /**
  * Class DependencyResolutionException
+ *
  * @package Toolkit\DI\Exception
  */
-class DependencyResolutionException extends \RuntimeException
+class DependencyResolutionException extends RuntimeException
 {
 
 }

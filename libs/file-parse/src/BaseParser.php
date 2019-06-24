@@ -8,8 +8,14 @@
 
 namespace Toolkit\File\Parse;
 
+use InvalidArgumentException;
+use function dirname;
+use function file_get_contents;
+use function is_file;
+
 /**
  * Class BaseParser
+ *
  * @package Toolkit\File\Parse
  */
 abstract class BaseParser
@@ -20,10 +26,12 @@ abstract class BaseParser
 
     /**
      * parse data
-     * @param string   $string Waiting for the parse data
+     *
+     * @param string   $string      Waiting for the parse data
      * @param bool     $enhancement 启用增强功能，支持通过关键字 继承、导入、参考
      * @param callable $pathHandler When the second param is true, this param is valid.
-     * @param string   $fileDir When the second param is true, this param is valid.
+     * @param string   $fileDir     When the second param is true, this param is valid.
+     *
      * @return array
      */
     abstract protected static function doParse(
@@ -38,11 +46,12 @@ abstract class BaseParser
      * @param bool          $enhancement
      * @param callable|null $pathHandler
      * @param string        $fileDir
+     *
      * @return array
      */
     public static function parse($string, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
-        if (\is_file($string)) {
+        if (is_file($string)) {
             return self::parseFile($string, $enhancement, $pathHandler, $fileDir);
         }
 
@@ -54,17 +63,18 @@ abstract class BaseParser
      * @param bool          $enhancement
      * @param callable|null $pathHandler
      * @param string        $fileDir
+     *
      * @return array
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function parseFile($file, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
-        if (!\is_file($file)) {
-            throw new \InvalidArgumentException("Target file [$file] not exists");
+        if (!is_file($file)) {
+            throw new InvalidArgumentException("Target file [$file] not exists");
         }
 
-        $fileDir = $fileDir ?: \dirname($file);
-        $data = \file_get_contents($file);
+        $fileDir = $fileDir ?: dirname($file);
+        $data    = file_get_contents($file);
 
         return static::doParse($data, $enhancement, $pathHandler, $fileDir);
     }
@@ -74,6 +84,7 @@ abstract class BaseParser
      * @param bool          $enhancement
      * @param callable|null $pathHandler
      * @param string        $fileDir
+     *
      * @return array
      */
     public static function parseString(

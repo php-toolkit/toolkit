@@ -8,11 +8,14 @@
 
 namespace Toolkit\DI\Exception;
 
+use RuntimeException;
+
 /**
  * Class NotFoundException
+ *
  * @package Toolkit\DI\Exception
  */
-class NotFoundException extends \RuntimeException
+class NotFoundException extends RuntimeException
 {
 
 }

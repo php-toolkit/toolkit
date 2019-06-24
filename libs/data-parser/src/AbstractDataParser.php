@@ -10,8 +10,9 @@ namespace Toolkit\DataParser;
 
 /**
  * Class AbstractDataParser
+ *
  * @package Toolkit\DataParser
- * @author inhere <in.798@qq.com>
+ * @author  inhere <in.798@qq.com>
  */
 abstract class AbstractDataParser implements DataParserInterface
 {
@@ -27,6 +28,7 @@ abstract class AbstractDataParser implements DataParserInterface
 
     /**
      * JsonParser constructor.
+     *
      * @param array $encodeOpts
      * @param array $decodeOpts
      */

@@ -10,8 +10,12 @@
 
 namespace Toolkit\DI;
 
+use InvalidArgumentException;
+use function method_exists;
+
 /**
  * Class ObjectItem
+ *
  * @package Toolkit\DI
  */
 final class ObjectItem
@@ -33,18 +37,21 @@ final class ObjectItem
 
     /**
      * 锁定服务，不允许覆盖设置(一旦激活服务也会自动锁定)
+     *
      * @var bool
      */
     private $locked;
 
     /**
      * 共享的服务，获取的总是第一次激活的服务实例(即是单例模式)
+     *
      * @var bool
      */
     private $shared;
 
     /**
      * Service constructor.
+     *
      * @param       $callback
      * @param array $arguments
      * @param bool  $shared
@@ -78,13 +85,14 @@ final class ObjectItem
     /**
      * @param Container $container
      * @param bool      $forceNew
+     *
      * @return mixed|null
      */
     public function get(Container $container, $forceNew = false)
     {
         if ($this->shared) {
             if (!$this->instance || $forceNew) {
-                $cb = $this->callback;
+                $cb             = $this->callback;
                 $this->instance = $cb($container);
             }
 
@@ -111,9 +119,9 @@ final class ObjectItem
      */
     public function setCallback($callback): void
     {
-        if (!\method_exists($callback, '__invoke')) {
+        if (!method_exists($callback, '__invoke')) {
             $this->instance = $callback;
-            $callback = function () use ($callback) {
+            $callback       = function () use ($callback) {
                 return $callback;
             };
         }
@@ -131,8 +139,10 @@ final class ObjectItem
 
     /**
      * 给服务设置参数，在获取服务实例前
+     *
      * @param array $params 设置参数
-     * @throws \InvalidArgumentException
+     *
+     * @throws InvalidArgumentException
      */
     public function setArguments(array $params): void
     {

@@ -13,8 +13,9 @@ use Toolkit\Collection\Language;
 
 /**
  * Class LanguageTest
+ *
  * @package Toolkit\Collection\Test
- * @covers \Toolkit\Collection\Language
+ * @covers  \Toolkit\Collection\Language
  */
 class LanguageTest extends TestCase
 {

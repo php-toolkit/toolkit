@@ -8,14 +8,19 @@
 
 namespace Toolkit\DI;
 
+use function array_merge;
+use function is_array;
+
 /**
  * Class NameAliasTrait
+ *
  * @package Toolkit\DI
  */
 trait NameAliasTrait
 {
     /**
      * 别名
+     *
      * @var array
      * [
      *  'alias name' => 'id',
@@ -26,6 +31,7 @@ trait NameAliasTrait
 
     /**
      * set name alias
+     *
      * @param string       $name
      * @param array|string $alias
      */
@@ -36,7 +42,7 @@ trait NameAliasTrait
         }
 
         // setting
-        if (\is_array($alias)) {
+        if (is_array($alias)) {
             foreach ($alias as $aliasName) {
                 if (!isset($this->aliases[$aliasName])) {
                     $this->aliases[$aliasName] = $name;
@@ -49,6 +55,7 @@ trait NameAliasTrait
 
     /**
      * @param string $alias
+     *
      * @return mixed
      */
     public function resolveAlias(string $alias): string
@@ -58,6 +65,7 @@ trait NameAliasTrait
 
     /**
      * @param $alias
+     *
      * @return bool
      */
     public function isAlias(string $alias): bool
@@ -75,6 +83,7 @@ trait NameAliasTrait
 
     /**
      * @param array $aliases
+     *
      * @return $this
      */
     public function setAliases(array $aliases): self
@@ -86,11 +95,12 @@ trait NameAliasTrait
 
     /**
      * @param array $aliases
+     *
      * @return $this
      */
     public function addAliases(array $aliases): self
     {
-        $this->aliases = \array_merge($this->aliases, $aliases);
+        $this->aliases = array_merge($this->aliases, $aliases);
 
         return $this;
     }

@@ -5,6 +5,10 @@
 
 namespace Toolkit\Collection;
 
+use ArrayIterator;
+use Traversable;
+use function count;
+
 /**
  * Class Collection
  */
@@ -12,12 +16,14 @@ class SimpleCollection implements CollectionInterface
 {
     /**
      * The source data
+     *
      * @var array
      */
     protected $data = [];
 
     /**
      * @param array|null $items
+     *
      * @return static
      */
     public static function make($items = null)
@@ -27,6 +33,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Create new collection
+     *
      * @param array $items Pre-populate collection with this key-value array
      */
     public function __construct(array $items = [])
@@ -45,8 +52,10 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Set collection item
-     * @param string $key The data key
+     *
+     * @param string $key   The data key
      * @param mixed  $value The data value
+     *
      * @return $this
      */
     public function set($key, $value)
@@ -59,6 +68,7 @@ class SimpleCollection implements CollectionInterface
     /**
      * @param $name
      * @param $value
+     *
      * @return $this
      */
     public function add($name, $value): self
@@ -72,8 +82,10 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Get collection item for key
-     * @param string $key The data key
+     *
+     * @param string $key     The data key
      * @param mixed  $default The default value to return if data key does not exist
+     *
      * @return mixed The key's value, or the default value
      */
     public function get(string $key, $default = null)
@@ -83,6 +95,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Add item to collection
+     *
      * @param array $items Key-value array of data to append to this collection
      */
     public function replace(array $items)
@@ -94,6 +107,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * @param array $names
+     *
      * @return array
      */
     public function gets(array $names): array
@@ -109,6 +123,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * @param array $data
+     *
      * @return static
      */
     public function sets(array $data)
@@ -122,6 +137,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * @param callable $filter
+     *
      * @return static
      */
     public function reject(callable $filter)
@@ -141,6 +157,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * @param callable $callback
+     *
      * @return static
      */
     public function map(callable $callback)
@@ -157,6 +174,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * @param string $char
+     *
      * @return string
      */
     public function implode(string $char = ','): string
@@ -166,6 +184,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Get all items in collection
+     *
      * @return array The collection's source data
      */
     public function all(): array
@@ -183,6 +202,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Get collection keys
+     *
      * @return array The collection's source data keys
      */
     public function keys(): array
@@ -192,7 +212,9 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Does this collection have a given key?
+     *
      * @param string $key The data key
+     *
      * @return bool
      */
     public function has(string $key): bool
@@ -202,7 +224,9 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Remove item from collection
+     *
      * @param string $key The data key
+     *
      * @return mixed|null
      */
     public function remove($key)
@@ -231,7 +255,9 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Does this collection have a given key?
-     * @param  string $key The data key
+     *
+     * @param string $key The data key
+     *
      * @return bool
      */
     public function offsetExists($key): bool
@@ -241,7 +267,9 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Get collection item for key
+     *
      * @param string $key The data key
+     *
      * @return mixed The key's value, or the default value
      */
     public function offsetGet($key)
@@ -251,7 +279,8 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Set collection item
-     * @param string $key The data key
+     *
+     * @param string $key   The data key
      * @param mixed  $value The data value
      */
     public function offsetSet($key, $value)
@@ -261,7 +290,9 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Remove item from collection
+     *
      * @param string $key The data key
+     *
      * @return mixed|null
      */
     public function offsetUnset($key)
@@ -275,11 +306,12 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Get number of items in collection
+     *
      * @return int
      */
     public function count(): int
     {
-        return \count($this->data);
+        return count($this->data);
     }
 
     /********************************************************************************
@@ -321,11 +353,12 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * Get collection iterator
-     * @return \ArrayIterator
+     *
+     * @return ArrayIterator
      */
-    public function getIterator(): \Traversable
+    public function getIterator(): Traversable
     {
-        return new \ArrayIterator($this->data);
+        return new ArrayIterator($this->data);
     }
 
     /********************************************************************************
@@ -334,6 +367,7 @@ class SimpleCollection implements CollectionInterface
 
     /**
      * @param $name
+     *
      * @return mixed
      */
     public function __get($name)

@@ -1,13 +1,16 @@
 <?php
 /**
- * @from slim 3
+ * @from      slim 3
  * @license   MIT
  */
 
 namespace Toolkit\DI;
 
+use Closure;
 use Inhere\Middleware\CallableResolverInterface;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use RuntimeException;
 
 /**
  * ResolveCallable
@@ -26,10 +29,10 @@ trait CallableResolverAwareTrait
      *
      * @param callable|string $callable
      *
-     * @return \Closure
+     * @return Closure
      *
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \RuntimeException If the string cannot be resolved as a callable
+     * @throws ContainerExceptionInterface
+     * @throws RuntimeException If the string cannot be resolved as a callable
      */
     protected function resolveCallable($callable): callable
     {

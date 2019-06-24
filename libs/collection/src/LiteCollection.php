@@ -8,14 +8,19 @@
 
 namespace Toolkit\Collection;
 
+use ArrayObject;
+use function array_key_exists;
+
 /**
  * Class LiteCollection
+ *
  * @package Toolkit\Collection
  */
-class LiteCollection extends \ArrayObject implements CollectionInterface
+class LiteCollection extends ArrayObject implements CollectionInterface
 {
     /**
      * @param array|null $items
+     *
      * @return static
      */
     public static function make($items = null)
@@ -25,6 +30,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
 
     /**
      * Create new collection
+     *
      * @param array $items Pre-populate collection with this key-value array
      */
     public function __construct(array $items = [])
@@ -37,6 +43,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
     /**
      * @param string     $name
      * @param null|mixed $default
+     *
      * @return mixed|null
      */
     public function get(string $name, $default = null)
@@ -47,6 +54,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
     /**
      * @param string $name
      * @param mixed  $value
+     *
      * @return mixed|null
      */
     public function add($name, $value)
@@ -63,6 +71,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
     /**
      * @param string $name
      * @param mixed  $value
+     *
      * @return mixed|null
      */
     public function set($name, $value)
@@ -82,6 +91,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
 
     /**
      * @param callable $filter
+     *
      * @return static
      */
     public function reject(callable $filter)
@@ -101,6 +111,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
 
     /**
      * @param callable $callback
+     *
      * @return static
      */
     public function map(callable $callback)
@@ -117,6 +128,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
 
     /**
      * @param string $char
+     *
      * @return string
      */
     public function implode($char = ','): string
@@ -144,7 +156,7 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
      */
     public function has(string $key): bool
     {
-        return \array_key_exists($key, $this->data);
+        return array_key_exists($key, $this->data);
     }
 
     /**
@@ -174,7 +186,8 @@ class LiteCollection extends \ArrayObject implements CollectionInterface
 
     /**
      * Specify data which should be serialized to JSON
-     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
      * @return mixed data which can be serialized by <b>json_encode</b>,
      * which is a value of any type other than a resource.
      * @since 5.4.0

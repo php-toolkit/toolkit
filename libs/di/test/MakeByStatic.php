@@ -10,6 +10,7 @@ namespace Toolkit\DITest;
 
 /**
  * Class SomeClass
+ *
  * @package Toolkit\DITest
  */
 class MakeByStatic

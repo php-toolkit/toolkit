@@ -1,14 +1,19 @@
 <?php
 /**
- * @from slim 3
+ * @from      slim 3
  * @license   MIT
  */
 
 namespace Toolkit\DI;
 
 use Inhere\Middleware\CallableResolverInterface;
+use InvalidArgumentException;
 use Psr\Container\ContainerInterface;
 use RuntimeException;
+use function is_array;
+use function is_callable;
+use function is_object;
+use function is_string;
 
 /**
  * This class resolves a string of the format 'class:method' into a closure
@@ -46,11 +51,11 @@ final class CallableResolver implements CallableResolverInterface
      */
     public function resolve($toResolve): callable
     {
-        if (\is_callable($toResolve)) {
+        if (is_callable($toResolve)) {
             return $toResolve;
         }
 
-        if (!\is_string($toResolve)) {
+        if (!is_string($toResolve)) {
             $this->assertCallable($toResolve);
         }
 
@@ -74,10 +79,11 @@ final class CallableResolver implements CallableResolverInterface
      *
      * @param string $class
      * @param string $method
+     *
      * @return callable
      *
-     * @throws \InvalidArgumentException
-     * @throws \RuntimeException if the callable does not exist
+     * @throws InvalidArgumentException
+     * @throws RuntimeException if the callable does not exist
      */
     private function resolveCallable($class, $method = '__invoke'): callable
     {
@@ -95,15 +101,13 @@ final class CallableResolver implements CallableResolverInterface
     /**
      * @param Callable $callable
      *
-     * @throws \RuntimeException if the callable is not resolvable
+     * @throws RuntimeException if the callable is not resolvable
      */
     private function assertCallable($callable): void
     {
-        if (!\is_callable($callable)) {
-            throw new RuntimeException(sprintf(
-                '%s is not resolvable',
-                \is_array($callable) || \is_object($callable) ? json_encode($callable) : $callable
-            ));
+        if (!is_callable($callable)) {
+            throw new RuntimeException(sprintf('%s is not resolvable',
+                is_array($callable) || is_object($callable) ? json_encode($callable) : $callable));
         }
     }
 }

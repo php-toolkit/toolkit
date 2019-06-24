@@ -13,6 +13,7 @@ use Toolkit\DataParser\JsonParser;
 
 /**
  * Class JsonParserTest
+ *
  * @covers \Toolkit\DataParser\JsonParser
  */
 class JsonParserTest extends TestCase
@@ -22,7 +23,7 @@ class JsonParserTest extends TestCase
         $str = '{"name": "value"}';
 
         $parser = new JsonParser();
-        $ret = $parser->decode($str);
+        $ret    = $parser->decode($str);
 
         $this->assertArrayHasKey('name', $ret);
     }
@@ -34,7 +35,7 @@ class JsonParserTest extends TestCase
         ];
 
         $parser = new JsonParser();
-        $ret = $parser->encode($data);
+        $ret    = $parser->encode($data);
 
         $this->assertJson($ret);
     }
