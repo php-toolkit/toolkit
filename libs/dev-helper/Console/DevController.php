@@ -11,7 +11,18 @@ namespace Toolkit\Dev\Console;
 use Inhere\Console\Controller;
 use Inhere\Console\IO\Input;
 use Inhere\Console\IO\Output;
+use RuntimeException;
 use Toolkit\Sys\Sys;
+use function array_filter;
+use function array_intersect;
+use function count;
+use function defined;
+use function implode;
+use function is_dir;
+use function is_file;
+use function sprintf;
+use function str_pad;
+use const PHP_EOL;
 
 /**
  * Internal tool for toolkit development
@@ -54,7 +65,7 @@ class DevController extends Controller
     {
         $this->checkEnv();
 
-        $output->colored('Components Total: ' . \count($this->components));
+        $output->colored('Components Total: ' . count($this->components));
 
         $buffer = [];
         $showRepo = (bool)$input->getOpt('show-repo');
@@ -65,9 +76,9 @@ class DevController extends Controller
                 continue;
             }
 
-            $remote = \sprintf($this->gitUrl, self::TYPE_HTTPS, $component);
-            $component = \str_pad($component, 20);
-            $buffer[] = \sprintf('  <comment>%s</comment> -  %s', $component, $remote);
+            $remote = sprintf($this->gitUrl, self::TYPE_HTTPS, $component);
+            $component = str_pad($component, 20);
+            $buffer[] = sprintf('  <comment>%s</comment> -  %s', $component, $remote);
         }
 
         $output->writeln($buffer);
@@ -93,7 +104,7 @@ class DevController extends Controller
      * @param Input  $input
      * @param Output $output
      * @return int
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function addCommand(Input $input, Output $output): int
     {
@@ -108,7 +119,7 @@ class DevController extends Controller
         $config['onExec'] = function (string $name) use ($output) {
             $libPath = $this->componentDir . '/libs/' . $name;
 
-            if (\is_dir($libPath)) {
+            if (is_dir($libPath)) {
                 $output->liteWarning("Component cannot be repeat add: $name");
 
                 return false;
@@ -138,7 +149,7 @@ class DevController extends Controller
      * @param Input  $input
      * @param Output $output
      * @return int
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function pullCommand(Input $input, Output $output): int
     {
@@ -174,7 +185,7 @@ class DevController extends Controller
      * @param Input  $input
      * @param Output $output
      * @return int
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function pushCommand(Input $input, Output $output): int
     {
@@ -194,7 +205,7 @@ class DevController extends Controller
      * @param Output $output
      * @param array  $config
      * @return int
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     protected function runGitSubtree(Input $input, Output $output, array $config): int
     {
@@ -202,24 +213,24 @@ class DevController extends Controller
         $output->writeln("<comment>Component Directory</comment>:\n $this->componentDir");
 
         $operate = $config['operate'];
-        $names = \array_filter($input->getArgs(), 'is_int', ARRAY_FILTER_USE_KEY);
+        $names = array_filter($input->getArgs(), 'is_int', ARRAY_FILTER_USE_KEY);
 
         if ($names) {
             $back = $names;
-            $names = \array_intersect($names, $this->components);
+            $names = array_intersect($names, $this->components);
 
             if (!$names) {
-                throw new \RuntimeException('Invalid component name entered: ' . \implode(', ', $back));
+                throw new RuntimeException('Invalid component name entered: ' . implode(', ', $back));
             }
         } elseif ($input->getSameOpt(['a', 'all'], false)) {
             $names = $this->components;
         } else {
-            throw new \RuntimeException('Please enter the name of the component that needs to be operated');
+            throw new RuntimeException('Please enter the name of the component that needs to be operated');
         }
 
         $output->writeln([
             "<comment>{$config['operatedNames']}</comment>:",
-            ' <info>' . \implode(', ', $names) . '</info>'
+            ' <info>' . implode(', ', $names) . '</info>'
         ]);
 
         $doneOne = ' OK';
@@ -240,8 +251,8 @@ class DevController extends Controller
             }
 
             $ret = null;
-            $remote = \sprintf($this->gitUrl, $protoHost, $name);
-            $command = \sprintf('git subtree %s --prefix=libs/%s %s master%s', $operate, $name, $remote, $squash);
+            $remote = sprintf($this->gitUrl, $protoHost, $name);
+            $command = sprintf('git subtree %s --prefix=libs/%s %s master%s', $operate, $name, $remote, $squash);
 
             $output->writeln("> <cyan>$command</cyan>");
             $output->write("{$config['doing']} '$name' ...", false);
@@ -251,18 +262,18 @@ class DevController extends Controller
                 [$code, $ret, $err] = Sys::run($command, $workDir);
 
                 if ($code !== 0) {
-                    throw new \RuntimeException("Exec command failed. command: $command error: $err \nreturn: \n$ret");
+                    throw new RuntimeException("Exec command failed. command: $command error: $err \nreturn: \n$ret");
                 }
             }
 
             $output->colored($doneOne, 'success');
 
             if ($ret && $input->getOpt('show-result')) {
-                $output->writeln(\PHP_EOL . $ret);
+                $output->writeln(PHP_EOL . $ret);
             }
         }
 
-        $output->colored(\sprintf($config['done'], \count($names)), 'success');
+        $output->colored(sprintf($config['done'], count($names)), 'success');
 
         return 0;
     }
@@ -284,7 +295,7 @@ class DevController extends Controller
      * @param Input  $input
      * @param Output $output
      * @return int
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function genApiCommand(Input $input, Output $output): int
     {
@@ -298,7 +309,7 @@ class DevController extends Controller
             return -1;
         }
 
-        if (!\is_file($samiPath)) {
+        if (!is_file($samiPath)) {
             $output->colored('The sami.phar file is not exists! File: ' . $samiPath, 'error');
 
             return -1;
@@ -313,7 +324,7 @@ class DevController extends Controller
         }
 
         // php ~/Workspace/php/tools/sami.phar render --force
-        $command = \sprintf(
+        $command = sprintf(
             'php ~/Workspace/php/tools/sami.phar %s %s%s',
             'update',
             $config,
@@ -327,11 +338,11 @@ class DevController extends Controller
             [$code, $ret,] = Sys::run($command, $workDir);
 
             if ($code !== 0) {
-                throw new \RuntimeException("Exec command failed. command: $command return: \n$ret");
+                throw new RuntimeException("Exec command failed. command: $command return: \n$ret");
             }
 
             if ($input->getOpt('show-result')) {
-                $output->writeln(\PHP_EOL . $ret);
+                $output->writeln(PHP_EOL . $ret);
             }
         }
 
@@ -342,7 +353,7 @@ class DevController extends Controller
 
     private function checkEnv(): void
     {
-        if (!\defined('TOOLKIT_DIR') || !TOOLKIT_DIR) {
+        if (!defined('TOOLKIT_DIR') || !TOOLKIT_DIR) {
             $this->writeln('<error>Missing the TOOLKIT_DIR define</error>', true);
         }
 
@@ -350,7 +361,7 @@ class DevController extends Controller
 
         $file = TOOLKIT_DIR . '/components.inc';
 
-        if (!\is_file($file)) {
+        if (!is_file($file)) {
             $this->writeln('<error>Missing the components config.</error>', true);
         }
 

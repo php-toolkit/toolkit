@@ -56,6 +56,9 @@
       "Toolkit\\Traits\\": "libs/helper-utils/src/Traits"
     }
   },
+  "scripts": {
+    "test-cli": "phpunit -c libs/cli-utils/phpunit.xml.dist"
+  },
   "suggest": {
     "inhere/php-validate": "Very lightweight data validate tool",
     "inhere/console": "a lightweight php console application library."
