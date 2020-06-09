@@ -18,42 +18,15 @@
   ],
   "require": {
     "php": ">7.1.0",
-    "psr/container": "^1.0"
+    "psr/container": "^1.0",
+    "toolkit/stdlib": "^1.0"
   },
   "require-dev": {
     "inhere/console": "dev-master"
   },
-  "replace": {
-    "toolkit/arr-utils": "self.version",
-    "toolkit/collection": "self.version",
-    "toolkit/cli-utils": "self.version",
-    "toolkit/data-parser": "self.version",
-    "toolkit/di": "self.version",
-    "toolkit/file-utils": "self.version",
-    "toolkit/file-parse": "self.version",
-    "toolkit/obj-utils": "self.version",
-    "toolkit/php-utils": "self.version",
-    "toolkit/str-utils": "self.version",
-    "toolkit/sys-utils": "self.version",
-    "toolkit/helper-utils": "self.version"
-  },
   "autoload": {
     "psr-4": {
-      "Toolkit\\Dev\\": "libs/dev-helper/",
-      "Toolkit\\ArrUtil\\": "libs/arr-utils/src/",
-      "Toolkit\\Collection\\": "libs/collection/src/",
-      "Toolkit\\Cli\\": "libs/cli-utils/src/",
-      "Toolkit\\DI\\": "libs/di/src/",
-      "Toolkit\\DataParser\\": "libs/data-parser/src/",
-      "Toolkit\\File\\": "libs/file-utils/src/",
-      "Toolkit\\File\\Parse\\": "libs/file-parse/src/",
-      "Toolkit\\ObjUtil\\": "libs/obj-utils/src/",
-      "Toolkit\\PhpUtil\\": "libs/php-utils/src/",
-      "Toolkit\\StrUtil\\": "libs/str-utils/src/",
-      "Toolkit\\Sys\\": "libs/sys-utils/src/",
-      "Toolkit\\Util\\": "libs/helper-utils/src/Util",
-      "Toolkit\\Helper\\": "libs/helper-utils/src/Helper",
-      "Toolkit\\Traits\\": "libs/helper-utils/src/Traits"
+      "Toolkit\\Dev\\": "src/"
     }
   },
   "scripts": {
