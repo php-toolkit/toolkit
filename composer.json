@@ -29,17 +29,8 @@
       "Toolkit\\Dev\\": "src/"
     }
   },
-  "scripts": {
-    "test-cli": "phpunit -c libs/cli-utils/phpunit.xml.dist"
-  },
   "suggest": {
     "inhere/php-validate": "Very lightweight data validate tool",
     "inhere/console": "a lightweight php console application library."
-  },
-  "repositories": {
-    "packagist": {
-      "type": "composer",
-      "url": "https://packagist.phpcomposer.com"
-    }
   }
 }
