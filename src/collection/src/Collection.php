@@ -12,13 +12,13 @@ use InvalidArgumentException;
 use RangeException;
 use RecursiveArrayIterator;
 use stdClass;
-use Toolkit\ArrUtil\Arr;
-use Toolkit\File\Exception\FileNotFoundException;
-use Toolkit\File\File;
-use Toolkit\File\Parse\IniParser;
-use Toolkit\File\Parse\JsonParser;
-use Toolkit\File\Parse\YmlParser;
-use Toolkit\ObjUtil\Obj;
+use Toolkit\Stdlib\Arr;
+use Toolkit\FsUtil\Exception\FileNotFoundException;
+use Toolkit\FsUtil\File;
+use Toolkit\FsUtil\Parser\IniParser;
+use Toolkit\FsUtil\Parser\JsonParser;
+use Toolkit\FsUtil\Parser\YmlParser;
+use Toolkit\Stdlib\Obj;
 use Traversable;
 use function in_array;
 use function is_array;
@@ -158,7 +158,7 @@ class Collection extends SimpleCollection
         return $this->exists($path);
     }
 
-    public function reset()
+    public function reset(): Collection
     {
         $this->data = [];
 
@@ -167,12 +167,10 @@ class Collection extends SimpleCollection
 
     /**
      * Clear all data.
-     *
-     * @return  static
      */
-    public function clear()
+    public function clear(): void
     {
-        return $this->reset();
+        $this->reset();
     }
 
     /**

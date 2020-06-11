@@ -177,7 +177,7 @@ class LiteCollection extends ArrayObject implements CollectionInterface
     /**
      * clear all data
      */
-    public function clear()
+    public function clear(): void
     {
         foreach ($this as $key) {
             unset($this[$key]);

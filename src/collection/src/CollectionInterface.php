@@ -44,5 +44,5 @@ interface CollectionInterface extends Serializable, ArrayAccess, Countable, Iter
     /**
      * clear all data
      */
-    public function clear();
+    public function clear(): void;
 }

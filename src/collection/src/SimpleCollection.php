@@ -244,7 +244,7 @@ class SimpleCollection implements CollectionInterface
     /**
      * Remove all items from collection
      */
-    public function clear()
+    public function clear(): void
     {
         $this->data = [];
     }
